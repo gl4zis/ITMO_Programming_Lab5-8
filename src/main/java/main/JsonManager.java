@@ -9,7 +9,7 @@ import java.io.*;
 import java.util.List;
 
 
-public abstract class JsonWorker {
+public abstract class JsonManager {
     private static File file;
     private static InputStream in;
     private static java.io.Reader reader;
@@ -25,11 +25,11 @@ public abstract class JsonWorker {
             } catch (NullPointerException e) {
                 System.out.println("Такой переменной не существует");
                 System.out.println("Введите имя переменной окружения, в которой записан путь к JSON файлу коллекции: ");
-                env = InputReader.readNextConsoleLine();
+                env = InputConsoleReader.readNextLine();
             } catch (FileNotFoundException | SecurityException e) {
                 System.out.println("Неправильно указан путь или нет доступа к файлу");
                 System.out.println("Введите имя переменной окружения, в которой записан путь к JSON файлу коллекции: ");
-                env = InputReader.readNextConsoleLine();
+                env = InputConsoleReader.readNextLine();
             }
         } while (true);
     }

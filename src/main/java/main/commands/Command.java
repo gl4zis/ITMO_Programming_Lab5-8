@@ -1,11 +1,6 @@
 package main.commands;
 
-import main.InputReader;
-import main.dragons.*;
 import main.exceptions.IncorrectInputException;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public abstract class Command {
 

@@ -1,5 +1,6 @@
 package main.commands;
 
+import main.InputConsoleReader;
 import main.dragons.Dragon;
 import main.dragons.DragonCollection;
 import main.exceptions.ObjectNotFoundException;
@@ -17,7 +18,7 @@ public class UpdateCommand extends ArgsCommand {
         try {
             int id = Integer.parseInt(arg);
             DragonCollection.instance.remove(id);
-            Dragon dragon = CommandManager.readDragon();
+            Dragon dragon = InputConsoleReader.readDragon();
             dragon.setId(id);
             DragonCollection.instance.add(dragon);
             System.out.println("Новый объект успешно добавлен");

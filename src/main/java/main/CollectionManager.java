@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 
-public abstract class CollectionWorker {
+public abstract class CollectionManager {
     public static void transferCollection(JSONObject json) {
         if (json == null) System.out.println("Не буду работать");
         else if (json.toString().equals("{}")) System.out.println("Создана новая коллекция");
@@ -116,6 +116,6 @@ public abstract class CollectionWorker {
 
         json.put("dragons", dragons);
 
-        JsonWorker.writeJSON(json);
+        JsonManager.writeJSON(json);
     }
 }

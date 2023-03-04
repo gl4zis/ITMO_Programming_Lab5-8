@@ -1,5 +1,6 @@
 package main.commands;
 
+import main.InputConsoleReader;
 import main.dragons.Dragon;
 import main.dragons.DragonCollection;
 
@@ -14,7 +15,7 @@ public class RemoveGreaterCommand extends NonArgsCommand {
 
     @Override
     public void execute() {
-        Dragon maxDragon = CommandManager.readDragon();
+        Dragon maxDragon = InputConsoleReader.readDragon();
         Iterator<Dragon> iterator = DragonCollection.instance.getItems().iterator();
         Dragon dragon;
         while (iterator.hasNext()) {

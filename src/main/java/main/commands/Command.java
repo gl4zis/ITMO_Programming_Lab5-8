@@ -59,101 +59,6 @@ public abstract class Command {
         }
     }
 
-    public static void seekScriptCommand(Reader reader, String line) throws IncorrectInputException, IOException {
-        String[] input = line.split(" ");
-        if (input.length > 2)
-            throw new IncorrectInputException("Неизвестная команда");
-        else {
-            String command = input[0];
-            if (commands.containsKey(command)) {
-                try {
-                    String arg = input[1];
-                    commands.get(command).scriptExecute(reader, arg);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    commands.get(command).scriptExecute(reader);
-                }
-            } else {
-                throw new IncorrectInputException("Неизвестная команда");
-            }
-        }
-    }
-
-    protected static Dragon readDragonFromScript(Reader reader) throws IOException, IncorrectInputException {
-        Map<Integer, Color> colors = new HashMap<>();
-        colors.put(1, Color.GREEN);
-        colors.put(2, Color.RED);
-        colors.put(3, Color.ORANGE);
-        colors.put(4, Color.BROWN);
-        Map<Integer, DragonCharacter> characters = new HashMap<>();
-        characters.put(1, DragonCharacter.WISE);
-        characters.put(2, DragonCharacter.CHAOTIC_EVIL);
-        characters.put(3, DragonCharacter.FICKLE);
-
-        double x = 0;
-        float y = 0;
-        int age = -1;
-        long weight = 0;
-        Color color = null;
-        DragonCharacter character = null;
-        float eyesCount = 0;
-        DragonHead head = null;
-        boolean mistake = false;
-        String name = InputReader.readNextFileLine(reader);
-        if (name.equals("")) mistake = true;
-        try {
-            x = Double.parseDouble(InputReader.readNextFileLine(reader));
-            if (x <= -497) mistake = true;
-        } catch (NumberFormatException e) {
-            mistake = true;
-        }
-        try {
-            y = Float.parseFloat(InputReader.readNextFileLine(reader));
-        } catch (NumberFormatException e) {
-            mistake = true;
-        }
-        Coordinates coordinates = new Coordinates(x, y);
-        try {
-            String arg = InputReader.readNextFileLine(reader);
-            if (!arg.equals("")) age = Integer.parseInt(arg);
-        } catch (NumberFormatException e) {
-            mistake = true;
-        } catch (NullPointerException ignore) {
-        }
-        try {
-            weight = Long.parseLong(InputReader.readNextFileLine(reader));
-        } catch (NumberFormatException e) {
-            mistake = true;
-        }
-        try {
-            int colorNumber = Integer.parseInt(InputReader.readNextFileLine(reader));
-            if (colorNumber >= 1 && colorNumber <= 4) color = colors.get(colorNumber);
-            else mistake = true;
-        } catch (NumberFormatException e) {
-            mistake = true;
-        }
-        try {
-            int chrNumber = Integer.parseInt(InputReader.readNextFileLine(reader));
-            if (chrNumber >= 1 && chrNumber <= 3) character = characters.get(chrNumber);
-            else mistake = true;
-        } catch (NumberFormatException e) {
-            mistake = true;
-        }
-        try {
-            eyesCount = Float.parseFloat(InputReader.readNextFileLine(reader));
-        } catch (NumberFormatException e) {
-            mistake = true;
-        }
-        head = new DragonHead(eyesCount);
-        if (mistake) throw new IncorrectInputException("Некорректные данный нового объекта");
-        else {
-            Dragon dragon = new Dragon(name, coordinates, weight, color, character, head);
-            try {
-                dragon.setAge(age);
-            } catch (IncorrectFileDataException ignore) {
-            }
-            return dragon;
-        }
-    }
 
     protected static Dragon readDragon() {
         System.out.println("""
@@ -295,8 +200,4 @@ public abstract class Command {
     public abstract void execute() throws IncorrectInputException;
 
     public abstract void execute(String arg) throws IncorrectInputException;
-
-    public abstract void scriptExecute(Reader reader) throws IncorrectInputException, IOException;
-
-    public abstract void scriptExecute(Reader reader, String arg) throws IncorrectInputException;
 }

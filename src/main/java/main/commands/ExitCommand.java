@@ -15,11 +15,6 @@ public class ExitCommand extends NonArgsCommand {
     }
 
     @Override
-    public void scriptExecute(Reader reader) {
-        execute();
-    }
-
-    @Override
     public void execute() {
         System.exit(0);
     }

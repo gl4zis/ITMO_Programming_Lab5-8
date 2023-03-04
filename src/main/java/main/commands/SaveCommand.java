@@ -19,11 +19,6 @@ public class SaveCommand extends NonArgsCommand {
     }
 
     @Override
-    public void scriptExecute(Reader reader) {
-        execute();
-    }
-
-    @Override
     public void execute() {
         try {
             CollectionWorker.saveCollection();

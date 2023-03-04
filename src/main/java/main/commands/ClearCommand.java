@@ -17,11 +17,6 @@ public class ClearCommand extends NonArgsCommand {
     }
 
     @Override
-    public void scriptExecute(Reader reader) {
-        execute();
-    }
-
-    @Override
     public void execute() {
         DragonCollection.instance.clear();
         System.out.println("Коллекция очищена");

@@ -18,11 +18,6 @@ public class RemoveByIdCommand extends ArgsCommand {
     }
 
     @Override
-    public void scriptExecute(Reader reader, String arg) {
-        execute(arg);
-    }
-
-    @Override
     public void execute(String arg) {
         try {
             int id = Integer.parseInt(arg);

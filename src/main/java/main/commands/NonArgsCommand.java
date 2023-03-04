@@ -15,8 +15,4 @@ public abstract class NonArgsCommand extends Command {
     public void execute(String arg) throws IncorrectInputException {
         throw new IncorrectInputException("Неизвестная команда. Введите команду help, чтобы посмотреть информацию о коммандах");
     }
-
-    public void scriptExecute(Reader reader, String arg) throws IncorrectInputException {
-        throw new IncorrectInputException("Неизвестная комнда");
-    }
 }

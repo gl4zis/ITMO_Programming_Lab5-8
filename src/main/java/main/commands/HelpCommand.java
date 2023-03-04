@@ -15,11 +15,6 @@ public class HelpCommand extends NonArgsCommand {
     }
 
     @Override
-    public void scriptExecute(Reader reader) {
-        execute();
-    }
-
-    @Override
     public void execute() {
         System.out.println("""
                 help : вывести справку по доступным командам

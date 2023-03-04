@@ -19,11 +19,6 @@ public class ShowCommand extends NonArgsCommand {
     }
 
     @Override
-    public void scriptExecute(Reader reader) {
-        execute();
-    }
-
-    @Override
     public void execute() {
         if (DragonCollection.instance.getItems().size() == 0) {
             System.out.println("Нет элементов в коллекции");

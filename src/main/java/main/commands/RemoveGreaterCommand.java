@@ -19,11 +19,6 @@ public class RemoveGreaterCommand extends NonArgsCommand {
     }
 
     @Override
-    public void scriptExecute(Reader reader) {
-        //Реализовать
-    }
-
-    @Override
     public void execute() {
         Dragon maxDragon = readDragon();
         Iterator<Dragon> iterator = DragonCollection.instance.getItems().iterator();

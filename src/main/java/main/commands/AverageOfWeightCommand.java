@@ -17,11 +17,6 @@ public class AverageOfWeightCommand extends NonArgsCommand {
     }
 
     @Override
-    public void scriptExecute(Reader reader) {
-        execute();
-    }
-
-    @Override
     public void execute() {
         System.out.println(DragonCollection.instance.getAverageWeight());
     }

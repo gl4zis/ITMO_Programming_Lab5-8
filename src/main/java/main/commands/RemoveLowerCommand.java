@@ -19,11 +19,6 @@ public class RemoveLowerCommand extends NonArgsCommand {
     }
 
     @Override
-    public void scriptExecute(Reader reader) {
-        //Реализовать
-    }
-
-    @Override
     public void execute() {
         Dragon minDragon = readDragon();
         Iterator<Dragon> iterator = DragonCollection.instance.getItems().iterator();

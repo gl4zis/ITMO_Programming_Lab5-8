@@ -19,11 +19,6 @@ public class UpdateCommand extends ArgsCommand {
     }
 
     @Override
-    public void scriptExecute(Reader reader, String arg) {
-        //Реализовать
-    }
-
-    @Override
     public void execute(String arg) {
         try {
             int id = Integer.parseInt(arg);

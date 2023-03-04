@@ -17,7 +17,4 @@ public abstract class ArgsCommand extends Command {
         throw new IncorrectInputException("Неизвестная команда. Введите команду help, чтобы посмотреть информацию о коммандах");
     }
 
-    public void scriptExecute(Reader reader) throws IncorrectInputException {
-        throw new IncorrectInputException("Неизвестная команда");
-    }
 }

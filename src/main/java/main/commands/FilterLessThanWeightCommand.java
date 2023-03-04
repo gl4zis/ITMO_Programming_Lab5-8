@@ -19,11 +19,6 @@ public class FilterLessThanWeightCommand extends ArgsCommand {
     }
 
     @Override
-    public void scriptExecute(Reader reader, String arg) {
-        execute(arg);
-    }
-
-    @Override
     public void execute(String arg) {
         try {
             long weight = Long.parseLong(arg);

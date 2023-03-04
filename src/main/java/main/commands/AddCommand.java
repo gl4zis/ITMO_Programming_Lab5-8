@@ -19,12 +19,6 @@ public class AddCommand extends NonArgsCommand {
         return addCommand;
     }
 
-    @Override
-    public void scriptExecute(Reader reader) throws IOException, IncorrectInputException {
-        Dragon dragon = Command.readDragonFromScript(reader);
-        DragonCollection.instance.add(dragon);
-        System.out.println("Новый объект успешно добавлен");
-    }
 
     @Override
     public void execute() {

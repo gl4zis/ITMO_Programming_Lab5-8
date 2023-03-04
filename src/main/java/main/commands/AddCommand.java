@@ -12,7 +12,7 @@ public class AddCommand extends NonArgsCommand {
 
     @Override
     public void execute() {
-        Dragon dragon = readDragon();
+        Dragon dragon = CommandManager.readDragon();
         DragonCollection.instance.add(dragon);
         System.out.println("Новый объект успешно добавлен");
     }

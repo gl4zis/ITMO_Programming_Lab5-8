@@ -15,7 +15,7 @@ public class AddIfMinCommand extends NonArgsCommand {
 
     @Override
     public void execute() {
-        Dragon dragon = readDragon();
+        Dragon dragon = CommandManager.readDragon();
         Dragon minDragon = DragonCollection.instance.getMin();
         if (minDragon == null || DragonCollection.instance.getMin().compareTo(dragon) > 0) {
             DragonCollection.instance.add(dragon);

@@ -17,7 +17,7 @@ public class UpdateCommand extends ArgsCommand {
         try {
             int id = Integer.parseInt(arg);
             DragonCollection.instance.remove(id);
-            Dragon dragon = Command.readDragon();
+            Dragon dragon = CommandManager.readDragon();
             dragon.setId(id);
             DragonCollection.instance.add(dragon);
             System.out.println("Новый объект успешно добавлен");

@@ -14,7 +14,7 @@ public class RemoveLowerCommand extends NonArgsCommand {
 
     @Override
     public void execute() {
-        Dragon minDragon = readDragon();
+        Dragon minDragon = CommandManager.readDragon();
         Iterator<Dragon> iterator = DragonCollection.instance.getItems().iterator();
         Dragon dragon;
         while (iterator.hasNext()) {

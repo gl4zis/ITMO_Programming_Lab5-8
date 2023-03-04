@@ -5,15 +5,16 @@ import main.dragons.DragonCollection;
 import java.io.Reader;
 
 public class ClearCommand extends NonArgsCommand {
-    private static ClearCommand clearCommand;
-
     private ClearCommand(String name) {
         super(name);
     }
 
-    public static ClearCommand getInstance() {
-        if (clearCommand == null) clearCommand = new ClearCommand("clear");
-        return clearCommand;
+    private static class CommandHolder {
+        public static final Command INSTANCE = new ClearCommand("clear");
+    }
+
+    public static Command getInstance() {
+        return CommandHolder.INSTANCE;
     }
 
     @Override

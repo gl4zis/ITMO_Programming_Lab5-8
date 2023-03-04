@@ -7,15 +7,16 @@ import java.io.Reader;
 import java.util.Iterator;
 
 public class RemoveGreaterCommand extends NonArgsCommand {
-    private static RemoveGreaterCommand removeGreaterCommand;
-
     private RemoveGreaterCommand(String name) {
         super(name);
     }
 
-    public static RemoveGreaterCommand getInstance() {
-        if (removeGreaterCommand == null) removeGreaterCommand = new RemoveGreaterCommand("remove_greater");
-        return removeGreaterCommand;
+    private static class CommandHolder {
+        public static final Command INSTANCE = new RemoveGreaterCommand("remove_greater");
+    }
+
+    public static Command getInstance() {
+        return CommandHolder.INSTANCE;
     }
 
     @Override

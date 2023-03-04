@@ -7,15 +7,16 @@ import java.io.Reader;
 
 
 public class ShowCommand extends NonArgsCommand {
-    private static ShowCommand showCommand;
-
     private ShowCommand(String name) {
         super(name);
     }
 
-    public static ShowCommand getInstance() {
-        if (showCommand == null) showCommand = new ShowCommand("show");
-        return showCommand;
+    private static class CommandHolder {
+        public static final Command INSTANCE = new ShowCommand("show");
+    }
+
+    public static Command getInstance() {
+        return CommandHolder.INSTANCE;
     }
 
     @Override

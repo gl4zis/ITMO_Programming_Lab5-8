@@ -5,15 +5,16 @@ import main.dragons.DragonCollection;
 import java.io.Reader;
 
 public class AverageOfWeightCommand extends NonArgsCommand {
-    private static AverageOfWeightCommand averageOfWeightCommand;
-
     private AverageOfWeightCommand(String name) {
         super(name);
     }
 
-    public static AverageOfWeightCommand getInstance() {
-        if (averageOfWeightCommand == null) averageOfWeightCommand = new AverageOfWeightCommand("average_of_weight");
-        return averageOfWeightCommand;
+    private static class CommandHolder {
+        public static final Command INSTANCE = new AverageOfWeightCommand("average_of_weight");
+    }
+
+    public static Command getInstance() {
+        return CommandHolder.INSTANCE;
     }
 
     @Override

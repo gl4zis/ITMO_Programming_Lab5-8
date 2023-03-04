@@ -8,17 +8,18 @@ import java.io.IOException;
 import java.io.Reader;
 
 public class AddCommand extends NonArgsCommand {
-    private static AddCommand addCommand;
 
     private AddCommand(String name) {
         super(name);
     }
 
-    public static AddCommand getInstance() {
-        if (addCommand == null) addCommand = new AddCommand("add");
-        return addCommand;
+    private static class CommandHolder {
+        public static final Command INSTANCE = new AddCommand("add");
     }
 
+    public static Command getInstance() {
+        return CommandHolder.INSTANCE;
+    }
 
     @Override
     public void execute() {

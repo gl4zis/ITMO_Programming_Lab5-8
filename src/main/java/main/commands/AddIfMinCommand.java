@@ -8,15 +8,16 @@ import java.io.IOException;
 import java.io.Reader;
 
 public class AddIfMinCommand extends NonArgsCommand {
-    private static AddIfMinCommand addIfMinCommand;
-
     private AddIfMinCommand(String name) {
         super(name);
     }
 
-    public static AddIfMinCommand getInstance() {
-        if (addIfMinCommand == null) addIfMinCommand = new AddIfMinCommand("add_if_min");
-        return addIfMinCommand;
+    private static class CommandHolder {
+        public static final Command INSTANCE = new AddIfMinCommand("add_if_min");
+    }
+
+    public static Command getInstance() {
+        return CommandHolder.INSTANCE;
     }
 
     @Override

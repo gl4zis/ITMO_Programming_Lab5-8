@@ -7,16 +7,9 @@ import java.io.Reader;
 
 
 public class ShowCommand extends NonArgsCommand {
-    private ShowCommand(String name) {
-        super(name);
-    }
 
-    private static class CommandHolder {
-        public static final Command INSTANCE = new ShowCommand("show");
-    }
-
-    public static Command getInstance() {
-        return CommandHolder.INSTANCE;
+    ShowCommand() {
+        super("show");
     }
 
     @Override

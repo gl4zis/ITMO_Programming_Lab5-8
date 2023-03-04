@@ -6,16 +6,9 @@ import java.io.IOException;
 import java.io.Reader;
 
 public class SaveCommand extends NonArgsCommand {
-    private SaveCommand(String name) {
-        super(name);
-    }
 
-    private static class CommandHolder {
-        public static final Command INSTANCE = new SaveCommand("save");
-    }
-
-    public static Command getInstance() {
-        return CommandHolder.INSTANCE;
+    SaveCommand() {
+        super("save");
     }
 
     @Override

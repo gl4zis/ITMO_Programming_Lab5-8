@@ -7,7 +7,6 @@ import java.io.Reader;
 public abstract class NonArgsCommand extends Command {
     protected NonArgsCommand(String name) {
         super(name);
-        haveArgs = false;
     }
 
     public abstract void execute();

@@ -2,11 +2,8 @@ package main.commands;
 
 import main.InputReader;
 import main.dragons.*;
-import main.exceptions.IncorrectFileDataException;
 import main.exceptions.IncorrectInputException;
 
-import java.io.IOException;
-import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,30 +11,45 @@ public abstract class Command {
     public static Map<String, Command> commands;
 
     static {
+        Command add = new AddCommand();
+        Command addIfMin = new AddIfMinCommand();
+        Command averageOfWeight = new AverageOfWeightCommand();
+        Command clear = new ClearCommand();
+        Command executeScript = new ExecuteScriptCommand();
+        Command exit = new ExitCommand();
+        Command filterLessThanWeight = new FilterLessThanWeightCommand();
+        Command help = new HelpCommand();
+        Command info = new InfoCommand();
+        Command minByAge = new MinByAgeCommand();
+        Command removeById = new RemoveByIdCommand();
+        Command removeGreater = new RemoveGreaterCommand();
+        Command removeLower = new RemoveLowerCommand();
+        Command save = new SaveCommand();
+        Command show = new ShowCommand();
+        Command update = new UpdateCommand();
         commands = new HashMap<>();
-        commands.put(HelpCommand.getInstance().getName(), HelpCommand.getInstance());
-        commands.put(InfoCommand.getInstance().getName(), InfoCommand.getInstance());
-        commands.put(ShowCommand.getInstance().getName(), ShowCommand.getInstance());
-        commands.put(AddCommand.getInstance().getName(), AddCommand.getInstance());
-        commands.put(ClearCommand.getInstance().getName(), ClearCommand.getInstance());
-        commands.put(SaveCommand.getInstance().getName(), SaveCommand.getInstance());
-        commands.put(ExitCommand.getInstance().getName(), ExitCommand.getInstance());
-        commands.put(AddIfMinCommand.getInstance().getName(), AddIfMinCommand.getInstance());
-        commands.put(RemoveGreaterCommand.getInstance().getName(), RemoveGreaterCommand.getInstance());
-        commands.put(RemoveLowerCommand.getInstance().getName(), RemoveLowerCommand.getInstance());
-        commands.put(AverageOfWeightCommand.getInstance().getName(), AverageOfWeightCommand.getInstance());
-        commands.put(MinByAgeCommand.getInstance().getName(), MinByAgeCommand.getInstance());
-        commands.put(RemoveByIdCommand.getInstance().getName(), RemoveByIdCommand.getInstance());
-        commands.put(UpdateCommand.getInstance().getName(), UpdateCommand.getInstance());
-        commands.put(ExecuteScriptCommand.getInstance().getName(), ExecuteScriptCommand.getInstance());
-        commands.put(FilterLessThanWeightCommand.getInstance().getName(), FilterLessThanWeightCommand.getInstance());
+        commands.put(add.getName(), add);
+        commands.put(addIfMin.getName(), addIfMin);
+        commands.put(averageOfWeight.getName(), averageOfWeight);
+        commands.put(clear.getName(), clear);
+        commands.put(executeScript.getName(), executeScript);
+        commands.put(exit.getName(), exit);
+        commands.put(filterLessThanWeight.getName(), filterLessThanWeight);
+        commands.put(help.getName(), help);
+        commands.put(info.getName(), info);
+        commands.put(minByAge.getName(), minByAge);
+        commands.put(removeById.getName(), removeById);
+        commands.put(removeGreater.getName(), removeGreater);
+        commands.put(removeLower.getName(), removeLower);
+        commands.put(save.getName(), save);
+        commands.put(show.getName(), show);
+        commands.put(update.getName(), update);
     }
 
-    private final String name;
-    protected boolean haveArgs;
+    private final String NAME;
 
     protected Command(String name) {
-        this.name = name;
+        this.NAME = name;
     }
 
     public static void seekCommand(String line) throws IncorrectInputException {
@@ -185,16 +197,12 @@ public abstract class Command {
         return dragon;
     }
 
-    public static Command getInstance() {
-        return null;
-    }
-
     public static void addNewCommand(ArgsCommand newCommand) {
         commands.put(newCommand.getName(), newCommand);
     }
 
     public String getName() {
-        return name;
+        return NAME;
     }
 
     public abstract void execute() throws IncorrectInputException;

@@ -7,16 +7,9 @@ import main.exceptions.ObjectNotFoundException;
 import java.io.Reader;
 
 public class UpdateCommand extends ArgsCommand {
-    private UpdateCommand(String name) {
-        super(name);
-    }
 
-    private static class CommandHolder {
-        public static final Command INSTANCE = new UpdateCommand("update");
-    }
-
-    public static Command getInstance() {
-        return CommandHolder.INSTANCE;
+    UpdateCommand() {
+        super("update");
     }
 
     @Override

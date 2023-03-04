@@ -3,16 +3,9 @@ package main.commands;
 import java.io.Reader;
 
 public class HelpCommand extends NonArgsCommand {
-    private HelpCommand(String name) {
-        super(name);
-    }
 
-    private static class CommandHolder {
-        public static final Command INSTANCE = new HelpCommand("add");
-    }
-
-    public static Command getInstance() {
-        return CommandHolder.INSTANCE;
+    HelpCommand() {
+        super("help");
     }
 
     @Override

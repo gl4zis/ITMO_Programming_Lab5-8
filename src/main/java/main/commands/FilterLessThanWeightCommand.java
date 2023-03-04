@@ -6,16 +6,9 @@ import main.dragons.DragonCollection;
 import java.io.Reader;
 
 public class FilterLessThanWeightCommand extends ArgsCommand {
-    private FilterLessThanWeightCommand(String name) {
-        super(name);
-    }
 
-    private static class CommandHolder {
-        public static final Command INSTANCE = new FilterLessThanWeightCommand("filter_less_than_weight");
-    }
-
-    public static Command getInstance() {
-        return CommandHolder.INSTANCE;
+    FilterLessThanWeightCommand() {
+        super("filter_less_than_weight");
     }
 
     @Override

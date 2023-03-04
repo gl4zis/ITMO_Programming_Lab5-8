@@ -6,16 +6,9 @@ import main.exceptions.ObjectNotFoundException;
 import java.io.Reader;
 
 public class RemoveByIdCommand extends ArgsCommand {
-    private RemoveByIdCommand(String name) {
-        super(name);
-    }
 
-    private static class CommandHolder {
-        public static final Command INSTANCE = new RemoveByIdCommand("remove_by_id");
-    }
-
-    public static Command getInstance() {
-        return CommandHolder.INSTANCE;
+    RemoveByIdCommand() {
+        super("remove_by_id");
     }
 
     @Override

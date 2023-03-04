@@ -8,7 +8,6 @@ public abstract class ArgsCommand extends Command {
 
     protected ArgsCommand(String name) {
         super(name);
-        haveArgs = true;
     }
 
     public abstract void execute(String arg);

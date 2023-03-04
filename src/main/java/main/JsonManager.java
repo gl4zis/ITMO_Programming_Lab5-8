@@ -36,8 +36,7 @@ public abstract class JsonManager {
 
     public static JSONObject readJSON() {
         try {
-            JSONObject json = (JSONObject) new JSONParser().parse(reader);
-            return json;
+            return (JSONObject) new JSONParser().parse(reader);
         } catch (ParseException e) {
             System.out.println("Некорректный файл");
             return new JSONObject();
@@ -50,11 +49,11 @@ public abstract class JsonManager {
 
     public static void writeJSON(JSONObject json) throws IOException {
         FileOutputStream writer = new FileOutputStream(file);
-        String output = jsonFormat(json.toJSONString());
+        String output = jsonFormating(json.toJSONString());
         writer.write(output.getBytes());
     }
 
-    private static String jsonFormat(String json) {
+    private static String jsonFormating(String json) {
         String[] input = json.split("");
         StringBuilder output = new StringBuilder();
         List<String> openSym = List.of(new String[]{"{", "["});

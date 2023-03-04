@@ -77,9 +77,8 @@ public abstract class CollectionManager {
         }
         try {
             int age = ((Long) dragon.get("age")).intValue();
-            assert dragonObject != null;
             dragonObject.setAge(age);
-        } catch (IncorrectFileDataException | NullPointerException ignored) {
+        } catch (NullPointerException ignored) {
         }
         return returningId;
     }

@@ -7,10 +7,9 @@ public class Main {
 
     public static void main(String[] args) {
         CollectionManager.transferCollection(JsonManager.readJSON());
-        CommandManager manager = new CommandManager();
         while (true) {
             try {
-                manager.seekCommand(InputConsoleReader.readNextLine());
+                CommandManager.seekCommand(InputConsoleReader.readNextLine());
             } catch (IncorrectInputException e) {
                 System.out.println(e.getMessage());
             }

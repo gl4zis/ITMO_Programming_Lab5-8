@@ -191,6 +191,4 @@ public abstract class InputConsoleReader {
         }
         return line.toString();
     }*/
-
-
 }

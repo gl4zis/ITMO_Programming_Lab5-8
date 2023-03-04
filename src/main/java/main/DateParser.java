@@ -8,9 +8,10 @@ import java.util.Locale;
 import java.util.Map;
 
 public abstract class DateParser {
-    static Map<String, String> months = new HashMap<>();
 
-    static {
+    public static String dateToString(Date date) {
+        Map<String, String> months = new HashMap<>();
+
         months.put("Jan", "01");
         months.put("Feb", "02");
         months.put("Mar", "03");
@@ -23,9 +24,7 @@ public abstract class DateParser {
         months.put("Oct", "10");
         months.put("Nov", "11");
         months.put("Dec", "12");
-    }
 
-    public static String dateToString(Date date) {
         String input = date.toString();
         String[] data = input.split(" ");
         String day = data[2];

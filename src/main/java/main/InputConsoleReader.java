@@ -173,22 +173,4 @@ public abstract class InputConsoleReader {
             dragon.setAge(age);
         return dragon;
     }
-
-    /*public static String readNextFileLine(Reader reader) throws IOException {
-        StringBuilder line = new StringBuilder();
-        boolean comment = false;
-        int nextSym = reader.read();
-        if (nextSym == -1) return null;
-        if (nextSym == 13 || nextSym == 10) nextSym = reader.read();
-        while (nextSym != 13 && nextSym != -1) {
-            line.append((char) nextSym);
-            if (nextSym == 47) comment = true;
-            nextSym = reader.read();
-            if (nextSym == 47 && comment) {
-                while (nextSym != 13) nextSym = reader.read();
-                return line.substring(0, line.length() - 2);
-            }
-        }
-        return line.toString();
-    }*/
 }

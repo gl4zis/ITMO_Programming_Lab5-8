@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="decompozed readDragon method">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="some changes in managers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/DateParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/DateParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/InputConsoleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/InputConsoleReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/JsonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/JsonManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/CommandManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677950225012</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="some changes in managers">
+      <created>1677961885211</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1677961885212</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -175,7 +179,8 @@
     <MESSAGE value="removed commands singleton :)" />
     <MESSAGE value="decompozed class command" />
     <MESSAGE value="decompozed readDragon method" />
-    <option name="LAST_COMMIT_MESSAGE" value="decompozed readDragon method" />
+    <MESSAGE value="some changes in managers" />
+    <option name="LAST_COMMIT_MESSAGE" value="some changes in managers" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

@@ -6,54 +6,69 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.util.Dictionary;
 import java.util.List;
 
 
-public abstract class JsonManager {
-    private static File file;
-    private static InputStream in;
-    private static java.io.Reader reader;
+public class JsonManager {
 
-    static {
-        String env = "config";
-        do {
+    private final String env;
+    String filePath;
+    File file;
+
+    public JsonManager(String env) {
+        this.env = env;
+        initJson();
+    }
+
+    private void initJson() {
+        while (true) {
             try {
-                file = new File(System.getenv(env));
-                in = new FileInputStream(file);
-                reader = new InputStreamReader(in);
+                filePath = System.getenv(env);
+                file = new File(filePath);
                 break;
             } catch (NullPointerException e) {
                 System.out.println("Такой переменной не существует");
-                System.out.println("Введите имя переменной окружения, в которой записан путь к JSON файлу коллекции: ");
-                env = InputConsoleReader.readNextLine();
-            } catch (FileNotFoundException | SecurityException e) {
-                System.out.println("Неправильно указан путь или нет доступа к файлу");
-                System.out.println("Введите имя переменной окружения, в которой записан путь к JSON файлу коллекции: ");
-                env = InputConsoleReader.readNextLine();
+                System.out.println("Введите путь к JSON файлу коллекции");
+                filePath = InputConsoleReader.readNextLine();
             }
-        } while (true);
+        }
     }
 
-    public static JSONObject readJSON() {
+    private Reader getNewReader(File file) {
+        try {
+            FileInputStream in = new FileInputStream(file);
+            return new InputStreamReader(in);
+        } catch (FileNotFoundException | SecurityException e) {
+            System.out.println("Нет доступа к файлу или файл не существует");
+            return null;
+        }
+    }
+
+    public JSONObject readJSON() {
+        Reader reader = getNewReader(file);
         try {
             return (JSONObject) new JSONParser().parse(reader);
         } catch (ParseException e) {
             System.out.println("Некорректный файл");
             return new JSONObject();
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             System.out.println("Что-то случилось с файликом =(\n" +
                     "Попробуйте перезапустить программу");
             return null;
         }
     }
 
-    public static void writeJSON(JSONObject json) throws IOException {
-        FileOutputStream writer = new FileOutputStream(file);
-        String output = jsonFormating(json.toJSONString());
-        writer.write(output.getBytes());
+    public void writeJSON(JSONObject json) throws IOException {
+        try (FileOutputStream writer = new FileOutputStream(file)) {
+            String output = jsonFormating(json.toJSONString());
+            writer.write(output.getBytes());
+        } catch (FileNotFoundException | SecurityException e) {
+            System.out.println("Нет доступа к файлу");
+        }
     }
 
-    private static String jsonFormating(String json) {
+    private String jsonFormating(String json) {
         String[] input = json.split("");
         StringBuilder output = new StringBuilder();
         List<String> openSym = List.of(new String[]{"{", "["});

@@ -115,6 +115,6 @@ public abstract class CollectionManager {
 
         json.put("dragons", dragons);
 
-        JsonManager.writeJSON(json);
+        Main.jsonManager.writeJSON(json);
     }
 }

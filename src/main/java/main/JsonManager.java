@@ -13,8 +13,8 @@ import java.util.List;
 public class JsonManager {
 
     private final String env;
-    String filePath;
-    File file;
+    private String filePath;
+    private File file;
 
     public JsonManager(String env) {
         this.env = env;

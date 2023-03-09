@@ -1,5 +1,6 @@
 package main;
 
+import main.commands.CommandManager;
 import main.dragons.*;
 
 import java.util.HashMap;
@@ -9,7 +10,7 @@ import java.util.Scanner;
 
 public abstract class InputConsoleReader {
 
-    static String errorMessage = "Неверный ввод. Повторите еще раз";
+    static final String ERROR_MESSAGE = "Неверный ввод. Повторите еще раз";
 
     public static String readNextLine() {
         String line = "";
@@ -23,13 +24,13 @@ public abstract class InputConsoleReader {
     }
 
     private static String readStringVar(boolean canBeNull) {
-        boolean mistake = false;
+        boolean mistake;
         String var;
         do {
             var = readNextLine();
             if (var.equals("") && !canBeNull) {
                 mistake = true;
-                System.out.println(errorMessage);
+                System.out.println(ERROR_MESSAGE);
             } else mistake = false;
         } while (mistake);
         return var;
@@ -45,7 +46,7 @@ public abstract class InputConsoleReader {
                 var = Double.parseDouble(strVar);
                 return var;
             } catch (NumberFormatException e) {
-                System.out.println(errorMessage);
+                System.out.println(ERROR_MESSAGE);
             }
         } while (true);
     }
@@ -58,7 +59,7 @@ public abstract class InputConsoleReader {
                 return null;
             if (var - minValue > -1E-13 && var - maxValue < 1E-13)
                 break;
-            System.out.println(errorMessage);
+            System.out.println(ERROR_MESSAGE);
         } while (true);
         return var;
     }
@@ -73,7 +74,7 @@ public abstract class InputConsoleReader {
                 var = Long.parseLong(strVar);
                 return var;
             } catch (NumberFormatException e) {
-                System.out.println(errorMessage);
+                System.out.println(ERROR_MESSAGE);
             }
         } while (true);
     }
@@ -86,7 +87,7 @@ public abstract class InputConsoleReader {
                 return null;
             if (var >= minValue && var <= maxValue)
                 break;
-            System.out.println(errorMessage);
+            System.out.println(ERROR_MESSAGE);
         } while (true);
         return var;
     }

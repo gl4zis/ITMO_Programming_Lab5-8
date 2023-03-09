@@ -51,7 +51,7 @@ public abstract class CommandManager {
         if (commands == null)
             addStandartCommands();
         String[] input = line.split(" ");
-        if (input.length > 2)
+        if (input.length > 2 || input.length == 0)
             throw new IncorrectInputException("Неизвестная команда. Введите команду help, чтобы посмотреть информацию о коммандах");
         else {
             String command = input[0];

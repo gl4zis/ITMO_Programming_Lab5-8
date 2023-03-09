@@ -13,7 +13,7 @@ public class SaveCommand extends NonArgsCommand {
     @Override
     public void execute() {
         try {
-            CollectionManager.saveCollection();
+            CollectionManager.saveCollection(MANAGER);
             System.out.println("Коллекция успешно сохранена в файл");
         } catch (IOException e) {
             System.out.println("Ошибка доступа к файлу");

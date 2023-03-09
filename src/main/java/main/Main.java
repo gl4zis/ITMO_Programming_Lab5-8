@@ -1,16 +1,16 @@
 package main;
 
+import main.commands.Command;
 import main.commands.CommandManager;
 import main.exceptions.IncorrectInputException;
-import org.json.simple.JSONObject;
 
 public class Main {
-    public static JsonManager jsonManager = new JsonManager("config");
 
     public static void main(String[] args) {
-        CollectionManager.transferCollection(jsonManager.readJSON());
+        Command.generateCollection();
         while (true) {
             try {
+                System.out.print("-> ");
                 CommandManager.seekCommand(InputConsoleReader.readNextLine());
             } catch (IncorrectInputException e) {
                 System.out.println(e.getMessage());

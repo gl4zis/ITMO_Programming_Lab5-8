@@ -83,7 +83,7 @@ public abstract class CollectionManager {
         return returningId;
     }
 
-    public static void saveCollection() throws IOException {
+    public static void saveCollection(JsonManager manager) throws IOException {
         JSONObject json = new JSONObject();
         json.put("creationDate", DateParser.dateToString(DragonCollection.instance.getCreationDate()));
         JSONArray dragons = new JSONArray();
@@ -115,6 +115,6 @@ public abstract class CollectionManager {
 
         json.put("dragons", dragons);
 
-        Main.jsonManager.writeJSON(json);
+        manager.writeJSON(json);
     }
 }

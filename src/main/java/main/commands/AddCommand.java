@@ -8,7 +8,7 @@ public class AddCommand extends NonArgsCommand {
 
 
     AddCommand() {
-        super("add");
+        super("add", "add {element} : добавить новый элемент в коллекцию");
     }
 
     @Override

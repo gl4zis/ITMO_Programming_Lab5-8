@@ -7,14 +7,20 @@ import main.exceptions.IncorrectInputException;
 public abstract class Command {
 
     protected static final JsonManager MANAGER = new JsonManager("config");
-    private final String NAME;
+    private final String name;
+    private final String descr;
 
-    protected Command(String name) {
-        this.NAME = name;
+    protected Command(String name, String descr) {
+        this.name = name;
+        this.descr = descr;
     }
 
     public String getName() {
-        return NAME;
+        return name;
+    }
+
+    public String getDescription() {
+        return descr;
     }
 
     public static void generateCollection() {

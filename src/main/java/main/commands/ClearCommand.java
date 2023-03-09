@@ -7,7 +7,7 @@ import java.io.Reader;
 public class ClearCommand extends NonArgsCommand {
 
     ClearCommand() {
-        super("clear");
+        super("clear", "clear : очистить коллекцию");
     }
 
     @Override

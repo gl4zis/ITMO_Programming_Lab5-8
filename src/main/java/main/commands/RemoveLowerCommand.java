@@ -10,7 +10,8 @@ import java.util.Iterator;
 public class RemoveLowerCommand extends NonArgsCommand {
 
     RemoveLowerCommand() {
-        super("remove_lower");
+        super("remove_lower",
+                "remove_lower {element} : удалить из коллекции все элементы, меньшие, чем заданный");
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.io.Reader;
 public class ExitCommand extends NonArgsCommand {
 
     ExitCommand() {
-        super("exit");
+        super("exit", "exit : завершить программу (без сохранения в файл)");
     }
 
     @Override

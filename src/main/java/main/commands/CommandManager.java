@@ -2,7 +2,9 @@ package main.commands;
 
 import main.exceptions.IncorrectInputException;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public abstract class CommandManager {
@@ -66,6 +68,10 @@ public abstract class CommandManager {
                 throw new IncorrectInputException("Неизвестная команда. Введите команду help, чтобы посмотреть информацию о коммандах");
             }
         }
+    }
+
+    public static Collection<Command> getCommands() {
+        return commands.values();
     }
 
     public static synchronized void addNewCommand(ArgsCommand newCommand) {

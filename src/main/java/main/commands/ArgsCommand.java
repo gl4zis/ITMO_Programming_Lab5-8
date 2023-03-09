@@ -6,8 +6,8 @@ import java.io.Reader;
 
 public abstract class ArgsCommand extends Command {
 
-    protected ArgsCommand(String name) {
-        super(name);
+    protected ArgsCommand(String name, String descr) {
+        super(name, descr);
     }
 
     public abstract void execute(String arg);

@@ -10,7 +10,7 @@ import java.io.Reader;
 public class UpdateCommand extends ArgsCommand {
 
     UpdateCommand() {
-        super("update");
+        super("update", "update id {element} : обновить значение элемента коллекции, id которого равен заданному");
     }
 
     @Override

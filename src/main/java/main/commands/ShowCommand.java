@@ -9,7 +9,7 @@ import java.io.Reader;
 public class ShowCommand extends NonArgsCommand {
 
     ShowCommand() {
-        super("show");
+        super("show", "show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении");
     }
 
     @Override

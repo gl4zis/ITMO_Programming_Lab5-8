@@ -4,15 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="reworked JsonManager class">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="some bugfix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/CollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/CollectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/InputConsoleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/InputConsoleReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/JsonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/JsonManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/AddCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/AddIfMinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/AddIfMinCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/ArgsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/ArgsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/AverageOfWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/AverageOfWeightCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/ClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/ClearCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/ExecuteScriptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/ExecuteScriptCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/ExitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/ExitCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/FilterLessThanWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/FilterLessThanWeightCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/HelpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/InfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/InfoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/MinByAgeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/MinByAgeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/NonArgsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/NonArgsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/RemoveByIdCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/RemoveGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/RemoveGreaterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/RemoveLowerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/RemoveLowerCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/SaveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/ShowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/ShowCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/UpdateCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678014391075</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="some bugfix">
+      <created>1678350366660</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1678350366660</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -213,7 +233,8 @@
     <MESSAGE value="decompozed readDragon method" />
     <MESSAGE value="some changes in managers" />
     <MESSAGE value="reworked JsonManager class" />
-    <option name="LAST_COMMIT_MESSAGE" value="reworked JsonManager class" />
+    <MESSAGE value="some bugfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="some bugfix" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

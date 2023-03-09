@@ -11,7 +11,8 @@ import java.io.Reader;
 public class AddIfMinCommand extends NonArgsCommand {
 
     AddIfMinCommand() {
-        super("add_if_min");
+        super("add_if_min",
+                "add_if_min {element} : добавить новый элемент в коллекцию, если его значение меньше, чем у наименьшего элемента этой коллекции");
     }
 
     @Override

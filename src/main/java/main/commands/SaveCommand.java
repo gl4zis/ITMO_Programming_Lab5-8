@@ -7,7 +7,7 @@ import java.io.IOException;
 public class SaveCommand extends NonArgsCommand {
 
     SaveCommand() {
-        super("save");
+        super("save", "save : сохранить коллекцию в файл");
     }
 
     @Override

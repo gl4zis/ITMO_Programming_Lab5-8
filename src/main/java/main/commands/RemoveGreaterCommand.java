@@ -10,7 +10,8 @@ import java.util.Iterator;
 public class RemoveGreaterCommand extends NonArgsCommand {
 
     RemoveGreaterCommand() {
-        super("remove_greater");
+        super("remove_greater",
+                "remove_greater {element} : удалить из коллекции все элементы, превышающие заданный");
     }
 
     @Override

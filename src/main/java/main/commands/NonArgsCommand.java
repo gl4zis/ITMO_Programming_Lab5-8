@@ -5,8 +5,8 @@ import main.exceptions.IncorrectInputException;
 import java.io.Reader;
 
 public abstract class NonArgsCommand extends Command {
-    protected NonArgsCommand(String name) {
-        super(name);
+    protected NonArgsCommand(String name, String descr) {
+        super(name, descr);
     }
 
     public abstract void execute();

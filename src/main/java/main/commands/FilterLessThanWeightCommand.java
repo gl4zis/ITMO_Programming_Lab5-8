@@ -8,7 +8,8 @@ import java.io.Reader;
 public class FilterLessThanWeightCommand extends ArgsCommand {
 
     FilterLessThanWeightCommand() {
-        super("filter_less_than_weight");
+        super("filter_less_than_weight",
+                "filter_less_than_weight weight : вывести элементы, значение поля weight которых меньше заданного");
     }
 
     @Override

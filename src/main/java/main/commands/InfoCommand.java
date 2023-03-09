@@ -7,7 +7,7 @@ import java.io.Reader;
 public class InfoCommand extends NonArgsCommand {
 
     InfoCommand() {
-        super("info");
+        super("info", "info : вывести в стандартный поток вывода информацию о коллекции");
     }
 
     @Override

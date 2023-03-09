@@ -8,7 +8,7 @@ import java.io.Reader;
 public class RemoveByIdCommand extends ArgsCommand {
 
     RemoveByIdCommand() {
-        super("remove_by_id");
+        super("remove_by_id", "remove_by_id id : удалить элемент из коллекции по его id");
     }
 
     @Override

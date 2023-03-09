@@ -22,15 +22,21 @@ public class JsonManager {
     }
 
     private void initJson() {
-        while (true) {
-            try {
-                filePath = System.getenv(env);
-                file = new File(filePath);
-                break;
-            } catch (NullPointerException e) {
-                System.out.println("Такой переменной не существует");
-                System.out.println("Введите путь к JSON файлу коллекции");
-                filePath = InputConsoleReader.readNextLine();
+        try {
+            filePath = System.getenv(env);
+            file = new File(filePath);
+        } catch (NullPointerException e) {
+            System.out.println("Переменной '" + env + "' не существует");
+            System.out.println("Введите путь к JSON файлу коллекции");
+            while (true) {
+                try {
+                    filePath = InputConsoleReader.readNextLine();
+                    file = new File(filePath);
+                    break;
+                } catch (NullPointerException e2) {
+                    System.out.println("Файла не существует");
+                    System.out.println("Введите путь к JSON файлу коллекции");
+                }
             }
         }
     }

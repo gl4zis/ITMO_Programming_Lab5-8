@@ -52,7 +52,7 @@ public class Dragon implements Comparable<Dragon> {
     @Override
     public String toString() {
         return "Id - " + id + "\n" +
-                "имя - " + name + "\n" +
+                "Имя - " + name + "\n" +
                 "Координаты:" + coordinates + "\n" +
                 "Дата создания - " + DateParser.dateToString(creationDate) + "\n" +
                 "Возраст - " + age + " лет\n" +

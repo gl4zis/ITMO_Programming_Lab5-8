@@ -1,12 +1,14 @@
 package main.commands;
 
 import main.CollectionManager;
+import main.InputConsoleReader;
 import main.JsonManager;
 import main.exceptions.IncorrectInputException;
 
 public abstract class Command {
 
     protected static final JsonManager MANAGER = new JsonManager("config");
+    protected static final CommandManager INVOKER = new CommandManager();
     private final String name;
     private final String descr;
 
@@ -21,6 +23,14 @@ public abstract class Command {
 
     public String getDescription() {
         return descr;
+    }
+
+    public static void parse() {
+        try {
+            INVOKER.seekCommand(InputConsoleReader.readNextLine());
+        } catch (IncorrectInputException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void generateCollection() {

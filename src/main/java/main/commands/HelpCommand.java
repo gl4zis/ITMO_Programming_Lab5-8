@@ -1,7 +1,5 @@
 package main.commands;
 
-import java.io.Reader;
-
 public class HelpCommand extends NonArgsCommand {
 
     HelpCommand() {
@@ -10,7 +8,7 @@ public class HelpCommand extends NonArgsCommand {
 
     @Override
     public void execute() {
-        for (Command command : CommandManager.getCommands()) {
+        for (Command command : INVOKER.getCommands()) {
             System.out.println("\t" + command.getDescription());
         }
     }

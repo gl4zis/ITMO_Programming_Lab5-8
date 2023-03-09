@@ -70,7 +70,7 @@ public class Dragon implements Comparable<Dragon> {
     @Override
     public boolean equals(Object obj) {
         if (obj != null && obj.getClass().equals(this.getClass())) {
-            return id == ((Dragon) obj).id;
+            return id.equals(((Dragon) obj).id);
         } else {
             return false;
         }

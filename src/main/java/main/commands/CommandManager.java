@@ -2,16 +2,21 @@ package main.commands;
 
 import main.exceptions.IncorrectInputException;
 
+import javax.xml.stream.events.Comment;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class CommandManager {
+public class CommandManager {
 
-    private static Map<String, Command> commands;
+    private Map<String, Command> commands;
 
-    private static synchronized void addStandartCommands() {
+    CommandManager() {
+        addStandartCommands();
+    }
+
+    private void addStandartCommands() {
         if (commands == null) {
             commands = new HashMap<>();
             Command add = new AddCommand();
@@ -49,32 +54,36 @@ public abstract class CommandManager {
         }
     }
 
-    public static void seekCommand(String line) throws IncorrectInputException {
+    public void seekCommand(String line) throws IncorrectInputException {
         if (commands == null)
             addStandartCommands();
-        String[] input = line.split(" ");
-        if (input.length > 2 || input.length == 0)
-            throw new IncorrectInputException("Неизвестная команда. Введите команду help, чтобы посмотреть информацию о коммандах");
-        else {
-            String command = input[0];
-            if (commands.containsKey(command)) {
-                try {
-                    String arg = input[1];
-                    commands.get(command).execute(arg);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    commands.get(command).execute();
-                }
-            } else {
+        if (line.equals("")) {
+        } else {
+            String[] input = line.split(" ");
+            if (input.length == 0) {
+            } else if (input.length > 2)
                 throw new IncorrectInputException("Неизвестная команда. Введите команду help, чтобы посмотреть информацию о коммандах");
+            else {
+                String command = input[0];
+                if (commands.containsKey(command)) {
+                    try {
+                        String arg = input[1];
+                        commands.get(command).execute(arg);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        commands.get(command).execute();
+                    }
+                } else {
+                    throw new IncorrectInputException("Неизвестная команда. Введите команду help, чтобы посмотреть информацию о коммандах");
+                }
             }
         }
     }
 
-    public static Collection<Command> getCommands() {
+    public Collection<Command> getCommands() {
         return commands.values();
     }
 
-    public static synchronized void addNewCommand(ArgsCommand newCommand) {
+    public void addNewCommand(ArgsCommand newCommand) {
         if (commands == null)
             addStandartCommands();
         commands.put(newCommand.getName(), newCommand);

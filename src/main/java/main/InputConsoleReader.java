@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public abstract class InputConsoleReader {
 
-    static final String ERROR_MESSAGE = "Неверный ввод. Повторите еще раз";
+    private static final String ERROR_MESSAGE = "Неверный ввод. Повторите еще раз";
 
     public static String readNextLine() {
         String line = "";

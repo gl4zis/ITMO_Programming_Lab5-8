@@ -9,12 +9,8 @@ public class Main {
     public static void main(String[] args) {
         Command.generateCollection();
         while (true) {
-            try {
-                System.out.print("-> ");
-                CommandManager.seekCommand(InputConsoleReader.readNextLine());
-            } catch (IncorrectInputException e) {
-                System.out.println(e.getMessage());
-            }
+            System.out.print("-> ");
+            Command.parse();
         }
     }
 }

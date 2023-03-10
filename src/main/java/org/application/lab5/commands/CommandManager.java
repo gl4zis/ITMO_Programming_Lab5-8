@@ -10,7 +10,7 @@ public class CommandManager {
 
     private Map<String, Command> commands;
 
-    CommandManager() {
+    public CommandManager() {
         addStandartCommands();
     }
 

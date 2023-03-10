@@ -1,5 +1,6 @@
 package org.application.lab5.collection;
 
+import org.application.lab5.Main;
 import org.application.lab5.parsers.DateParser;
 import org.application.lab5.dragons.Dragon;
 import org.application.lab5.exceptions.IdCollisionException;
@@ -11,7 +12,6 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 
 public class DragonCollection {
-    public static DragonCollection instance = new DragonCollection();
     private final LinkedHashSet<Dragon> collecion;
     private final String type = "LinkedHashSet";
     private final ArrayList<Integer> idList = new ArrayList<>();
@@ -19,7 +19,7 @@ public class DragonCollection {
     private int length;
     private int maxId;
 
-    private DragonCollection() {
+    public DragonCollection() {
         collecion = new LinkedHashSet<>();
         length = 0;
         maxId = 0;
@@ -43,7 +43,7 @@ public class DragonCollection {
 
     public void remove(int id) throws ObjectNotFoundException {
         boolean contains = false;
-        for (Dragon dragon : DragonCollection.instance.getItems()) {
+        for (Dragon dragon : Main.DRAGON_COLLECTION.getItems()) {
             if (dragon.getId() == id) {
                 remove(dragon);
                 contains = true;

@@ -1,5 +1,6 @@
 package org.application.lab5.commands;
 
+import org.application.lab5.Main;
 import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.dragons.Dragon;
@@ -16,7 +17,7 @@ public class RemoveGreaterCommand extends NonArgsCommand {
     @Override
     public void execute() {
         Dragon maxDragon = InputConsoleReader.readDragon();
-        Iterator<Dragon> iterator = DragonCollection.instance.getItems().iterator();
+        Iterator<Dragon> iterator = Main.DRAGON_COLLECTION.getItems().iterator();
         Dragon dragon;
         while (iterator.hasNext()) {
             dragon = iterator.next();

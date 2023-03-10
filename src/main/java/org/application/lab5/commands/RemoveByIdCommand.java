@@ -1,5 +1,6 @@
 package org.application.lab5.commands;
 
+import org.application.lab5.Main;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.exceptions.ObjectNotFoundException;
 
@@ -13,7 +14,7 @@ public class RemoveByIdCommand extends ArgsCommand {
     public void execute(String arg) {
         try {
             int id = Integer.parseInt(arg);
-            DragonCollection.instance.remove(id);
+            Main.DRAGON_COLLECTION.remove(id);
             System.out.println("Обект успешно удалён");
         } catch (NumberFormatException e) {
             System.out.println("Неверный аргумент");

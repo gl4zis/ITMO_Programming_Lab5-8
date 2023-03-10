@@ -61,6 +61,7 @@ public class JsonManager {
         } catch (IOException | NullPointerException e) {
             System.out.println("Что-то случилось с файликом =(\n" +
                     "Попробуйте перезапустить программу");
+            System.exit(0);
             return null;
         }
     }

@@ -1,5 +1,6 @@
 package org.application.lab5.collection;
 
+import org.application.lab5.Main;
 import org.application.lab5.parsers.DateParser;
 import org.application.lab5.parsers.JsonManager;
 import org.application.lab5.dragons.*;
@@ -21,12 +22,12 @@ public abstract class CollectionManager {
                 String creationDateString = (String) json.get("creationDate");
                 try {
                     Date creationDate = DateParser.stringToDate(creationDateString);
-                    DragonCollection.instance.setCreationDate(creationDate);
+                    Main.DRAGON_COLLECTION.setCreationDate(creationDate);
                 } catch (NullPointerException e) {
                     System.out.println("Утеряны данные о коллекции (Дата создания)");
                 } catch (ParseException e) {
                     System.out.println("Неверный формат даты (Коллекция)");
-                    DragonCollection.instance.setCreationDate(new Date());
+                    Main.DRAGON_COLLECTION.setCreationDate(new Date());
                 }
             } catch (ClassCastException e) {
                 System.out.println("Утеряны данные о коллекции (Дата создания)");
@@ -39,7 +40,7 @@ public abstract class CollectionManager {
                     int id = transferDragon(dragon);
                     if (id > maxId) maxId = id;
                 }
-                DragonCollection.instance.setMaxId(maxId);
+                Main.DRAGON_COLLECTION.setMaxId(maxId);
             } catch (ClassCastException | NullPointerException e) {
                 System.out.println("Утеряны данные о коллекции (Список объектов Dragon)");
             }
@@ -65,7 +66,7 @@ public abstract class CollectionManager {
             DragonHead head = new DragonHead(eyesCount);
 
             dragonObject = new Dragon(id, name, coordinates, creationDate, weight, color, character, head);
-            DragonCollection.instance.add(dragonObject);
+            Main.DRAGON_COLLECTION.add(dragonObject);
 
             returningId = id;
         } catch (ClassCastException | NullPointerException e) {
@@ -87,10 +88,10 @@ public abstract class CollectionManager {
 
     public static void saveCollection(JsonManager manager) throws IOException {
         JSONObject json = new JSONObject();
-        json.put("creationDate", DateParser.dateToString(DragonCollection.instance.getCreationDate()));
+        json.put("creationDate", DateParser.dateToString(Main.DRAGON_COLLECTION.getCreationDate()));
         JSONArray dragons = new JSONArray();
 
-        for (Dragon item : DragonCollection.instance.getItems()) {
+        for (Dragon item : Main.DRAGON_COLLECTION.getItems()) {
             JSONObject dragon = new JSONObject();
             JSONObject head = new JSONObject();
             head.put("eyesCount", item.getDragonHead().getEyesCount());

@@ -1,5 +1,7 @@
 package org.application.lab5.commands;
 
+import org.application.lab5.Main;
+
 public class HelpCommand extends NonArgsCommand {
 
     HelpCommand() {
@@ -8,7 +10,7 @@ public class HelpCommand extends NonArgsCommand {
 
     @Override
     public void execute() {
-        for (Command command : INVOKER.getCommands()) {
+        for (Command command : Main.COMMAND_MANAGER.getCommands()) {
             System.out.println("\t" + command.getDescription());
         }
     }

@@ -1,5 +1,6 @@
 package org.application.lab5.commands;
 
+import org.application.lab5.Main;
 import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.dragons.Dragon;
@@ -15,10 +16,10 @@ public class UpdateCommand extends ArgsCommand {
     public void execute(String arg) {
         try {
             int id = Integer.parseInt(arg);
-            DragonCollection.instance.remove(id);
+            Main.DRAGON_COLLECTION.remove(id);
             Dragon dragon = InputConsoleReader.readDragon();
             dragon.setId(id);
-            DragonCollection.instance.add(dragon);
+            Main.DRAGON_COLLECTION.add(dragon);
             System.out.println("Новый объект успешно добавлен");
         } catch (NumberFormatException e) {
             System.out.println("Неверный аргумент");

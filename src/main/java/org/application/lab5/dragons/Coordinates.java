@@ -1,13 +1,14 @@
 package org.application.lab5.dragons;
 
+import org.application.lab5.exceptions.IncorrectDataException;
 import org.application.lab5.exceptions.IncorrectFileDataException;
 
 public class Coordinates {
     private final double x; //Значение поля должно быть больше -497
     private final Float y; //Поле не может быть null
 
-    public Coordinates(double x, float y) throws IncorrectFileDataException {
-        if (x + 497 < -0.1E20) throw new IncorrectFileDataException("Неверные поля объекта Dragon");
+    public Coordinates(double x, float y) throws IncorrectDataException {
+        if (x + 497 < -0.1E20) throw new IncorrectDataException("Неверные поля объекта Dragon");
         if (x == Double.POSITIVE_INFINITY) this.x = Double.MAX_VALUE;
         else this.x = x;
         if (y == Double.POSITIVE_INFINITY) this.y = Float.MAX_VALUE;

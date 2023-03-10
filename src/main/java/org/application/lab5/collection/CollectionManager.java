@@ -1,6 +1,7 @@
 package org.application.lab5.collection;
 
 import org.application.lab5.Main;
+import org.application.lab5.exceptions.IncorrectDataException;
 import org.application.lab5.parsers.DateParser;
 import org.application.lab5.parsers.JsonManager;
 import org.application.lab5.dragons.*;
@@ -69,9 +70,9 @@ public abstract class CollectionManager {
             Main.DRAGON_COLLECTION.add(dragonObject);
 
             returningId = id;
-        } catch (ClassCastException | NullPointerException e) {
+        } catch (ClassCastException e) {
             System.out.println("Утеряны данные об объекте Dragon из-за некорректного файла");
-        } catch (IncorrectFileDataException e) {
+        } catch (IncorrectDataException e) {
             System.out.println(e.getMessage());
         } catch (IdCollisionException e) {
             System.out.println("Объект Dragon утерян: " + e.getMessage());
@@ -81,7 +82,7 @@ public abstract class CollectionManager {
         try {
             int age = ((Long) dragon.get("age")).intValue();
             dragonObject.setAge(age);
-        } catch (NullPointerException ignored) {
+        } catch (NullPointerException | IncorrectDataException ignored) {
         }
         return returningId;
     }

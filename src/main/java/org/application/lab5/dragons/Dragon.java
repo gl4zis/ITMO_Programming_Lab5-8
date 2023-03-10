@@ -1,5 +1,6 @@
 package org.application.lab5.dragons;
 
+import org.application.lab5.exceptions.IncorrectDataException;
 import org.application.lab5.parsers.DateParser;
 import org.application.lab5.exceptions.IncorrectFileDataException;
 
@@ -18,19 +19,21 @@ public class Dragon implements Comparable<Dragon> {
     private Integer age; //Значение поля должно быть больше 0, Поле может быть null
 
     public Dragon(int id, String name, Coordinates coordinates, Date creationDate, long weight, Color color, DragonCharacter character, DragonHead head)
-            throws IncorrectFileDataException {
+            throws IncorrectDataException {
         this(name, coordinates, weight, color, character, head);
-        if (creationDate == null) throw new NullPointerException();
-        if (id < 0) throw new IncorrectFileDataException("Неккоректный id объекта Dragon");
+        if (creationDate == null) throw new IncorrectDataException("Неккоректная дата создания объекта Dragon");
+        if (id < 0) throw new IncorrectDataException("Неккоректный id объекта Dragon");
         this.id = id;
+        uniqNumber--;
         this.creationDate = creationDate;
 
     }
 
-    public Dragon(String name, Coordinates coordinates, long weight, Color color, DragonCharacter character, DragonHead head) {
+    public Dragon(String name, Coordinates coordinates, long weight, Color color, DragonCharacter character, DragonHead head)
+            throws IncorrectDataException {
         if (name == null || coordinates == null || color == null || character == null || head == null)
-            throw new NullPointerException();
-        if (name.equals("") || weight <= 0) throw new IncorrectFileDataException("Некорректные поля объекта Dragon");
+            throw new IncorrectDataException("Не хватает инициализированных полей");
+        if (name.equals("") || weight <= 0) throw new IncorrectDataException("Некорректные поля объекта Dragon");
         this.id = uniqNumber++;
         this.name = name;
         this.coordinates = coordinates;

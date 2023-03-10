@@ -6,6 +6,7 @@ import org.application.lab5.parsers.InputScriptReader;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class CommandManager {
 
@@ -80,6 +81,10 @@ public class CommandManager {
 
     public Collection<Command> getCommands() {
         return commands.values();
+    }
+
+    public Set<String> getCommandNames() {
+        return commands.keySet();
     }
 
     public void addNewCommand(ArgsCommand newCommand) {

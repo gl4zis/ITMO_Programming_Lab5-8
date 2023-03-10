@@ -7,6 +7,7 @@ import org.application.lab5.exceptions.IncorrectDataException;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class InputScriptReader {
     private File script;
@@ -22,6 +23,19 @@ public class InputScriptReader {
         script = new File(filePath);
         FileInputStream in = new FileInputStream(script);
         reader = new InputStreamReader(in);
+    }
+
+    public String findNextCommand() {
+        Set<String> commands = Main.COMMAND_MANAGER.getCommandNames();
+        while (execution) {
+            String line = readNextLine();
+            try {
+                String command = line.split(" ")[0];
+                if (commands.contains(command)) return line;
+            } catch (ArrayIndexOutOfBoundsException ignored) {
+            }
+        }
+        return null;
     }
 
     public String readNextLine() {
@@ -43,7 +57,7 @@ public class InputScriptReader {
                     break;
                 }
             }
-            if (!comment) line.deleteCharAt(line.length() - 1);
+            if (!comment && nextSym != -1) line.deleteCharAt(line.length() - 1);
             if (nextSym == -1) execution = false;
         } catch (IOException e) {
             execution = false;

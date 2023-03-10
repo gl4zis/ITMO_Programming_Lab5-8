@@ -2,6 +2,7 @@ package org.application.lab5.commands;
 
 import org.application.lab5.Main;
 import org.application.lab5.parsers.InputConsoleReader;
+import org.application.lab5.parsers.InputScriptReader;
 import org.application.lab5.parsers.JsonManager;
 import org.application.lab5.collection.CollectionManager;
 import org.application.lab5.exceptions.IncorrectInputException;
@@ -24,7 +25,7 @@ public abstract class Command {
         return descr;
     }
 
-    public abstract void execute() throws IncorrectInputException;
+    public abstract void execute(InputScriptReader reader) throws IncorrectInputException;
 
-    public abstract void execute(String arg) throws IncorrectInputException;
+    public abstract void execute(InputScriptReader reader, String arg) throws IncorrectInputException;
 }

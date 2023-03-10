@@ -4,6 +4,7 @@ import org.application.lab5.Main;
 import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.dragons.Dragon;
+import org.application.lab5.parsers.InputScriptReader;
 
 import java.util.Iterator;
 
@@ -15,8 +16,13 @@ public class RemoveLowerCommand extends NonArgsCommand {
     }
 
     @Override
-    public void execute() {
-        Dragon minDragon = InputConsoleReader.readDragon();
+    public void execute(InputScriptReader reader) {
+        Dragon minDragon;
+        if (reader == null) {
+            minDragon = InputConsoleReader.readDragon();
+        } else {
+            minDragon = reader.readDragon();
+        }
         Iterator<Dragon> iterator = Main.DRAGON_COLLECTION.getItems().iterator();
         Dragon dragon;
         while (iterator.hasNext()) {

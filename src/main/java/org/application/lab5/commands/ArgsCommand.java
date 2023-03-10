@@ -1,6 +1,7 @@
 package org.application.lab5.commands;
 
 import org.application.lab5.exceptions.IncorrectInputException;
+import org.application.lab5.parsers.InputScriptReader;
 
 public abstract class ArgsCommand extends Command {
 
@@ -8,9 +9,11 @@ public abstract class ArgsCommand extends Command {
         super(name, descr);
     }
 
-    public abstract void execute(String arg);
+    @Override
+    public abstract void execute(InputScriptReader reader, String arg);
 
-    public void execute() throws IncorrectInputException {
+    @Override
+    public void execute(InputScriptReader reader) throws IncorrectInputException {
         throw new IncorrectInputException("Неизвестная команда. Введите команду help, чтобы посмотреть информацию о коммандах");
     }
 

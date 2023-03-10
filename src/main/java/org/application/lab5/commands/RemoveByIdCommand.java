@@ -3,6 +3,7 @@ package org.application.lab5.commands;
 import org.application.lab5.Main;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.exceptions.ObjectNotFoundException;
+import org.application.lab5.parsers.InputScriptReader;
 
 public class RemoveByIdCommand extends ArgsCommand {
 
@@ -11,7 +12,7 @@ public class RemoveByIdCommand extends ArgsCommand {
     }
 
     @Override
-    public void execute(String arg) {
+    public void execute(InputScriptReader reader, String arg) {
         try {
             int id = Integer.parseInt(arg);
             Main.DRAGON_COLLECTION.remove(id);

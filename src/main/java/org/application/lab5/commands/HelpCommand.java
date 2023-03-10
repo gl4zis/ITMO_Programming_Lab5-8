@@ -1,6 +1,7 @@
 package org.application.lab5.commands;
 
 import org.application.lab5.Main;
+import org.application.lab5.parsers.InputScriptReader;
 
 public class HelpCommand extends NonArgsCommand {
 
@@ -9,7 +10,7 @@ public class HelpCommand extends NonArgsCommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(InputScriptReader reader) {
         for (Command command : Main.COMMAND_MANAGER.getCommands()) {
             System.out.println("\t" + command.getDescription());
         }

@@ -2,6 +2,7 @@ package org.application.lab5.commands;
 
 import org.application.lab5.Main;
 import org.application.lab5.collection.CollectionManager;
+import org.application.lab5.parsers.InputScriptReader;
 
 import java.io.IOException;
 
@@ -12,7 +13,7 @@ public class SaveCommand extends NonArgsCommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(InputScriptReader reader) {
         try {
             CollectionManager.saveCollection(Main.JSON_MANAGER);
             System.out.println("Коллекция успешно сохранена в файл");

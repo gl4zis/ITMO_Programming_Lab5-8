@@ -3,6 +3,7 @@ package org.application.lab5.commands;
 import org.application.lab5.Main;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.dragons.Dragon;
+import org.application.lab5.parsers.InputScriptReader;
 
 
 public class ShowCommand extends NonArgsCommand {
@@ -12,7 +13,7 @@ public class ShowCommand extends NonArgsCommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(InputScriptReader reader) {
         if (Main.DRAGON_COLLECTION.getItems().size() == 0) {
             System.out.println("Нет элементов в коллекции");
         } else {

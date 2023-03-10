@@ -1,6 +1,7 @@
 package org.application.lab5.commands;
 
 import org.application.lab5.exceptions.IncorrectInputException;
+import org.application.lab5.parsers.InputScriptReader;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -52,7 +53,7 @@ public class CommandManager {
         }
     }
 
-    public void seekCommand(String line) throws IncorrectInputException {
+    public void seekCommand(InputScriptReader reader, String line) throws IncorrectInputException {
         if (commands == null)
             addStandartCommands();
         if (line.equals("")) {
@@ -66,9 +67,9 @@ public class CommandManager {
                 if (commands.containsKey(command)) {
                     try {
                         String arg = input[1];
-                        commands.get(command).execute(arg);
+                        commands.get(command).execute(reader, arg);
                     } catch (ArrayIndexOutOfBoundsException e) {
-                        commands.get(command).execute();
+                        commands.get(command).execute(reader);
                     }
                 } else {
                     throw new IncorrectInputException("Неизвестная команда. Введите команду help, чтобы посмотреть информацию о коммандах");

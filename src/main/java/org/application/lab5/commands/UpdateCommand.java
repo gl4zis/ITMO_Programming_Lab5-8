@@ -2,9 +2,9 @@ package org.application.lab5.commands;
 
 import org.application.lab5.Main;
 import org.application.lab5.parsers.InputConsoleReader;
-import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.dragons.Dragon;
 import org.application.lab5.exceptions.ObjectNotFoundException;
+import org.application.lab5.parsers.InputScriptReader;
 
 public class UpdateCommand extends ArgsCommand {
 
@@ -13,11 +13,16 @@ public class UpdateCommand extends ArgsCommand {
     }
 
     @Override
-    public void execute(String arg) {
+    public void execute(InputScriptReader reader, String arg) {
         try {
             int id = Integer.parseInt(arg);
             Main.DRAGON_COLLECTION.remove(id);
-            Dragon dragon = InputConsoleReader.readDragon();
+            Dragon dragon;
+            if (reader == null) {
+                dragon = InputConsoleReader.readDragon();
+            } else {
+                dragon = reader.readDragon();
+            }
             dragon.setId(id);
             Main.DRAGON_COLLECTION.add(dragon);
             System.out.println("Новый объект успешно добавлен");

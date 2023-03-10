@@ -1,6 +1,8 @@
 package org.application.lab5.commands;
 
 
+import org.application.lab5.parsers.InputScriptReader;
+
 public class ExitCommand extends NonArgsCommand {
 
     ExitCommand() {
@@ -8,7 +10,7 @@ public class ExitCommand extends NonArgsCommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(InputScriptReader reader) {
         System.exit(0);
     }
 }

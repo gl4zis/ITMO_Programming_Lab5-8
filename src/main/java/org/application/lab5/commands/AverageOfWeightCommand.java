@@ -2,6 +2,7 @@ package org.application.lab5.commands;
 
 import org.application.lab5.Main;
 import org.application.lab5.collection.DragonCollection;
+import org.application.lab5.parsers.InputScriptReader;
 
 public class AverageOfWeightCommand extends NonArgsCommand {
 
@@ -11,7 +12,7 @@ public class AverageOfWeightCommand extends NonArgsCommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(InputScriptReader reader) {
         System.out.println(Main.DRAGON_COLLECTION.getAverageWeight());
     }
 }

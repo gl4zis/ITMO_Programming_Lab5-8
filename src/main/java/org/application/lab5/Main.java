@@ -17,7 +17,7 @@ public class Main {
         while (true) {
             System.out.print("-> ");
             try {
-                Main.COMMAND_MANAGER.seekCommand(InputConsoleReader.readNextLine());
+                Main.COMMAND_MANAGER.seekCommand(null, InputConsoleReader.readNextLine());
             } catch (IncorrectInputException e) {
                 System.out.println(e.getMessage());
             }

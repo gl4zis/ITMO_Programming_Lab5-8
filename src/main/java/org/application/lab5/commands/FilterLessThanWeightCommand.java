@@ -3,6 +3,7 @@ package org.application.lab5.commands;
 import org.application.lab5.Main;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.dragons.Dragon;
+import org.application.lab5.parsers.InputScriptReader;
 
 public class FilterLessThanWeightCommand extends ArgsCommand {
 
@@ -12,7 +13,7 @@ public class FilterLessThanWeightCommand extends ArgsCommand {
     }
 
     @Override
-    public void execute(String arg) {
+    public void execute(InputScriptReader reader, String arg) {
         try {
             long weight = Long.parseLong(arg);
             for (Dragon dragon : Main.DRAGON_COLLECTION.getItems()) {

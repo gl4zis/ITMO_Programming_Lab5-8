@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="removed static methods from CommandManager">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="fixed encodings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/InputConsoleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/InputConsoleReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/JsonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/JsonManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/commands/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/dragons/Dragon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678360956043</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="fixed encodings">
+      <created>1678386424199</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1678386424200</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -319,7 +321,8 @@
     <MESSAGE value="some bugfix" />
     <MESSAGE value="added command descriptions" />
     <MESSAGE value="removed static methods from CommandManager" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed static methods from CommandManager" />
+    <MESSAGE value="fixed encodings" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed encodings" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

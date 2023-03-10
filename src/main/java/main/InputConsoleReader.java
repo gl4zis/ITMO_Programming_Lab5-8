@@ -1,5 +1,6 @@
 package main;
 
+import main.commands.Command;
 import main.commands.CommandManager;
 import main.dragons.*;
 
@@ -17,6 +18,9 @@ public abstract class InputConsoleReader {
         try {
             Scanner console = new Scanner(System.in);
             line = console.nextLine();
+            if (line.equals("exit 0")) {
+                System.exit(0);
+            }
         } catch (NoSuchElementException e) {
             System.exit(0);
         }

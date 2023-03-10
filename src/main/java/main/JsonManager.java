@@ -85,14 +85,14 @@ public class JsonManager {
             if (closeSym.contains(sym)) {
                 output.append("\n");
                 tabs--;
-                output.append("\t".repeat(Math.max(0, tabs)));
+                output.append("    ".repeat(Math.max(0, tabs)));
             }
             output.append(sym);
             if (sym.equals("\"")) inStr = !inStr;
             if (openSym.contains(sym) || sym.equals(",")) {
                 output.append("\n");
                 if (openSym.contains(sym)) tabs++;
-                output.append("\t".repeat(Math.max(0, tabs)));
+                output.append("    ".repeat(Math.max(0, tabs)));
             } else if (sym.equals(":") && !inStr) {
                 output.append(" ");
             }

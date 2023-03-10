@@ -7,7 +7,7 @@ import main.exceptions.IncorrectInputException;
 
 public abstract class Command {
 
-    protected static final JsonManager MANAGER = new JsonManager("ccc");
+    protected static final JsonManager MANAGER = new JsonManager("config");
     protected static final CommandManager INVOKER = new CommandManager();
     private final String name;
     private final String descr;

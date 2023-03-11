@@ -1,6 +1,6 @@
 package org.application.lab5.collection;
 
-import org.application.lab5.Main;
+import org.application.lab5.general.Main;
 import org.application.lab5.parsers.DateParser;
 import org.application.lab5.dragons.Dragon;
 import org.application.lab5.exceptions.IdCollisionException;
@@ -43,7 +43,7 @@ public class DragonCollection {
 
     public void remove(int id) throws ObjectNotFoundException {
         boolean contains = false;
-        for (Dragon dragon : Main.DRAGON_COLLECTION.getItems()) {
+        for (Dragon dragon : getItems()) {
             if (dragon.getId() == id) {
                 remove(dragon);
                 contains = true;

@@ -1,6 +1,6 @@
 package org.application.lab5.parsers;
 
-import org.application.lab5.Main;
+import org.application.lab5.commands.CommandManager;
 import org.application.lab5.dragons.*;
 import org.application.lab5.exceptions.IncorrectDataException;
 
@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class InputScriptReader {
-    private File script;
     private Reader reader;
     public boolean execution;
 
@@ -20,13 +19,13 @@ public class InputScriptReader {
     }
 
     private void initFile(String filePath) throws FileNotFoundException, SecurityException {
-        script = new File(filePath);
+        File script = new File(filePath);
         FileInputStream in = new FileInputStream(script);
         reader = new InputStreamReader(in);
     }
 
-    public String findNextCommand() {
-        Set<String> commands = Main.COMMAND_MANAGER.getCommandNames();
+    public String findNextCommand(CommandManager commandManager) {
+        Set<String> commands = commandManager.getCommandNames();
         while (execution) {
             String line = readNextLine();
             try {

@@ -1,6 +1,6 @@
 package org.application.lab5.commands;
 
-import org.application.lab5.Main;
+import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.dragons.Dragon;
 import org.application.lab5.exceptions.ObjectNotFoundException;
@@ -8,15 +8,18 @@ import org.application.lab5.parsers.InputScriptReader;
 
 public class UpdateCommand extends ArgsCommand {
 
-    UpdateCommand() {
+    private final DragonCollection collection;
+
+    UpdateCommand(DragonCollection collection) {
         super("update", "update id {element} : обновить значение элемента коллекции, id которого равен заданному");
+        this.collection = collection;
     }
 
     @Override
     public void execute(InputScriptReader reader, String arg) {
         try {
             int id = Integer.parseInt(arg);
-            Main.DRAGON_COLLECTION.remove(id);
+            collection.remove(id);
             Dragon dragon;
             if (reader == null) {
                 dragon = InputConsoleReader.readDragon();
@@ -24,7 +27,7 @@ public class UpdateCommand extends ArgsCommand {
                 dragon = reader.readDragon();
             }
             dragon.setId(id);
-            Main.DRAGON_COLLECTION.add(dragon);
+            collection.add(dragon);
             System.out.println("Новый объект успешно добавлен");
         } catch (NumberFormatException e) {
             System.out.println("Неверный аргумент");

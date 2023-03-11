@@ -1,16 +1,17 @@
 package org.application.lab5.commands;
 
-import org.application.lab5.Main;
-import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.collection.DragonCollection;
+import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.dragons.Dragon;
 import org.application.lab5.parsers.InputScriptReader;
 
 public class AddCommand extends NonArgsCommand {
 
+    private final DragonCollection collection;
 
-    AddCommand() {
+    AddCommand(DragonCollection collection) {
         super("add", "add {element} : добавить новый элемент в коллекцию");
+        this.collection = collection;
     }
 
     @Override
@@ -21,7 +22,7 @@ public class AddCommand extends NonArgsCommand {
         } else {
             dragon = reader.readDragon();
         }
-        Main.DRAGON_COLLECTION.add(dragon);
+        collection.add(dragon);
         System.out.println("Новый объект успешно добавлен");
     }
 }

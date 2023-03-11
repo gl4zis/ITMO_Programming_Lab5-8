@@ -1,7 +1,9 @@
 package org.application.lab5.commands;
 
+import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.exceptions.IncorrectInputException;
 import org.application.lab5.parsers.InputScriptReader;
+import org.application.lab5.parsers.JsonManager;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -12,29 +14,29 @@ public class CommandManager {
 
     private Map<String, Command> commands;
 
-    public CommandManager() {
-        addStandartCommands();
+    public CommandManager(JsonManager json, DragonCollection collection) {
+        addStandartCommands(json, collection);
     }
 
-    private void addStandartCommands() {
+    private void addStandartCommands(JsonManager jsonManager, DragonCollection collection) {
         if (commands == null) {
             commands = new HashMap<>();
-            Command add = new AddCommand();
-            Command addIfMin = new AddIfMinCommand();
-            Command averageOfWeight = new AverageOfWeightCommand();
-            Command clear = new ClearCommand();
-            Command executeScript = new ExecuteScriptCommand();
+            Command add = new AddCommand(collection);
+            Command addIfMin = new AddIfMinCommand(collection);
+            Command averageOfWeight = new AverageOfWeightCommand(collection);
+            Command clear = new ClearCommand(collection);
+            Command executeScript = new ExecuteScriptCommand(this);
             Command exit = new ExitCommand();
-            Command filterLessThanWeight = new FilterLessThanWeightCommand();
-            Command help = new HelpCommand();
-            Command info = new InfoCommand();
-            Command minByAge = new MinByAgeCommand();
-            Command removeById = new RemoveByIdCommand();
-            Command removeGreater = new RemoveGreaterCommand();
-            Command removeLower = new RemoveLowerCommand();
-            Command save = new SaveCommand();
-            Command show = new ShowCommand();
-            Command update = new UpdateCommand();
+            Command filterLessThanWeight = new FilterLessThanWeightCommand(collection);
+            Command help = new HelpCommand(this);
+            Command info = new InfoCommand(collection);
+            Command minByAge = new MinByAgeCommand(collection);
+            Command removeById = new RemoveByIdCommand(collection);
+            Command removeGreater = new RemoveGreaterCommand(collection);
+            Command removeLower = new RemoveLowerCommand(collection);
+            Command save = new SaveCommand(jsonManager, collection);
+            Command show = new ShowCommand(collection);
+            Command update = new UpdateCommand(collection);
             commands.put(add.getName(), add);
             commands.put(addIfMin.getName(), addIfMin);
             commands.put(averageOfWeight.getName(), averageOfWeight);
@@ -55,8 +57,6 @@ public class CommandManager {
     }
 
     public void seekCommand(InputScriptReader reader, String line) throws IncorrectInputException {
-        if (commands == null)
-            addStandartCommands();
         if (line.equals("")) {
         } else {
             String[] input = line.split(" ");
@@ -88,8 +88,6 @@ public class CommandManager {
     }
 
     public void addNewCommand(ArgsCommand newCommand) {
-        if (commands == null)
-            addStandartCommands();
         commands.put(newCommand.getName(), newCommand);
     }
 }

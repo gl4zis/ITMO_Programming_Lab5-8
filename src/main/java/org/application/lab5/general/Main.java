@@ -1,4 +1,4 @@
-package org.application.lab5;
+package org.application.lab5.general;
 
 import org.application.lab5.collection.CollectionManager;
 import org.application.lab5.collection.DragonCollection;
@@ -8,16 +8,15 @@ import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.parsers.JsonManager;
 
 public class Main {
-    public static final CommandManager COMMAND_MANAGER = new CommandManager();
-    public static final JsonManager JSON_MANAGER = new JsonManager("config");
-    public static final DragonCollection DRAGON_COLLECTION = new DragonCollection();
-
     public static void main(String[] args) {
-        CollectionManager.transferCollection(JSON_MANAGER.readJSON());
+        JsonManager jsonManager = new JsonManager("config");
+        DragonCollection collection = new DragonCollection();
+        CommandManager commandManager = new CommandManager(jsonManager, collection);
+        CollectionManager.transferCollection(jsonManager.readJSON(), collection);
         while (true) {
             System.out.print("-> ");
             try {
-                Main.COMMAND_MANAGER.seekCommand(null, InputConsoleReader.readNextLine());
+                commandManager.seekCommand(null, InputConsoleReader.readNextLine());
             } catch (IncorrectInputException e) {
                 System.out.println(e.getMessage());
             }

@@ -1,8 +1,7 @@
 package org.application.lab5.commands;
 
-import org.application.lab5.Main;
-import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.collection.DragonCollection;
+import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.dragons.Dragon;
 import org.application.lab5.parsers.InputScriptReader;
 
@@ -10,9 +9,12 @@ import java.util.Iterator;
 
 public class RemoveGreaterCommand extends NonArgsCommand {
 
-    RemoveGreaterCommand() {
+    private final DragonCollection collection;
+
+    RemoveGreaterCommand(DragonCollection collection) {
         super("remove_greater",
                 "remove_greater {element} : удалить из коллекции все элементы, превышающие заданный");
+        this.collection = collection;
     }
 
     @Override
@@ -23,7 +25,7 @@ public class RemoveGreaterCommand extends NonArgsCommand {
         } else {
             maxDragon = reader.readDragon();
         }
-        Iterator<Dragon> iterator = Main.DRAGON_COLLECTION.getItems().iterator();
+        Iterator<Dragon> iterator = collection.getItems().iterator();
         Dragon dragon;
         while (iterator.hasNext()) {
             dragon = iterator.next();

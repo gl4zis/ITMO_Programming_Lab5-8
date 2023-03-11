@@ -1,10 +1,6 @@
 package org.application.lab5.commands;
 
-import org.application.lab5.Main;
-import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.parsers.InputScriptReader;
-import org.application.lab5.parsers.JsonManager;
-import org.application.lab5.collection.CollectionManager;
 import org.application.lab5.exceptions.IncorrectInputException;
 
 public abstract class Command {

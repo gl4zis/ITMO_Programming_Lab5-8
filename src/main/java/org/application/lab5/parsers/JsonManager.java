@@ -11,48 +11,50 @@ import java.util.List;
 
 
 public class JsonManager {
-
-    private final String env;
-    private String filePath;
     private File file;
 
     public JsonManager(String env) {
-        this.env = env;
-        initJson();
+        initJson(env);
     }
 
-    private void initJson() {
+    private void initJson(String env) {
         try {
-            filePath = System.getenv(env);
+            String filePath = System.getenv(env);
             file = new File(filePath);
         } catch (NullPointerException e) {
             System.out.println("Переменной '" + env + "' не существует");
             System.out.println("Введите путь к JSON файлу коллекции");
-            while (true) {
-                try {
-                    filePath = InputConsoleReader.readNextLine();
-                    file = new File(filePath);
-                    break;
-                } catch (NullPointerException e2) {
-                    System.out.println("Файла не существует");
-                    System.out.println("Введите путь к JSON файлу коллекции");
-                }
+            initJson();
+        }
+    }
+
+    private void initJson() {
+        while (true) {
+            try {
+                String filePath = InputConsoleReader.readNextLine();
+                file = new File(filePath);
+                break;
+            } catch (NullPointerException e) {
+                System.out.println("Введена пустая строка");
             }
         }
     }
 
-    private Reader getNewReader(File file) {
-        try {
-            FileInputStream in = new FileInputStream(file);
-            return new InputStreamReader(in);
-        } catch (FileNotFoundException | SecurityException e) {
-            System.out.println("Нет доступа к файлу или файл не существует");
-            return null;
+    private Reader getNewReader() {
+        while (true) {
+            try {
+                FileInputStream in = new FileInputStream(file);
+                return new InputStreamReader(in);
+            } catch (FileNotFoundException | SecurityException e) {
+                System.out.println("Файла не существует или нет доступа к файлу");
+                System.out.println("Введите путь к JSON файлу коллекции");
+                initJson();
+            }
         }
     }
 
     public JSONObject readJSON() {
-        Reader reader = getNewReader(file);
+        Reader reader = getNewReader();
         try {
             return (JSONObject) new JSONParser().parse(reader);
         } catch (ParseException e) {

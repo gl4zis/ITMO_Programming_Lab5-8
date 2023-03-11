@@ -12,6 +12,7 @@ public abstract class InputConsoleReader {
     private static final String ERROR_MESSAGE = "Неверный ввод. Повторите еще раз";
 
     public static String readNextLine() {
+        System.out.print("-> ");
         String line = "";
         try {
             Scanner console = new Scanner(System.in);

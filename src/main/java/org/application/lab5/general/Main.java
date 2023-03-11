@@ -9,12 +9,11 @@ import org.application.lab5.parsers.JsonManager;
 
 public class Main {
     public static void main(String[] args) {
-        JsonManager jsonManager = new JsonManager("config");
+        JsonManager jsonManager = new JsonManager("ccc");
         DragonCollection collection = new DragonCollection();
         CommandManager commandManager = new CommandManager(jsonManager, collection);
         CollectionManager.transferCollection(jsonManager.readJSON(), collection);
         while (true) {
-            System.out.print("-> ");
             try {
                 commandManager.seekCommand(null, InputConsoleReader.readNextLine());
             } catch (IncorrectInputException e) {

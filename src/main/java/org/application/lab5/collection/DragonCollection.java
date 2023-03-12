@@ -1,18 +1,14 @@
 package org.application.lab5.collection;
 
-import org.application.lab5.general.Main;
 import org.application.lab5.parsers.DateParser;
 import org.application.lab5.dragons.Dragon;
 import org.application.lab5.exceptions.IdCollisionException;
 import org.application.lab5.exceptions.ObjectNotFoundException;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.LinkedHashSet;
+import java.util.*;
 
 public class DragonCollection {
-    private final LinkedHashSet<Dragon> collecion;
+    private LinkedHashSet<Dragon> collection;
     private final String type = "LinkedHashSet";
     private final ArrayList<Integer> idList = new ArrayList<>();
     private Date creationDate;
@@ -20,7 +16,7 @@ public class DragonCollection {
     private int maxId;
 
     public DragonCollection() {
-        collecion = new LinkedHashSet<>();
+        collection = new LinkedHashSet<>();
         length = 0;
         maxId = 0;
         creationDate = new Date();
@@ -30,14 +26,14 @@ public class DragonCollection {
         if (idList.contains(item.getId())) throw new IdCollisionException();
         idList.add(item.getId());
         maxId = arrayMaxInt(idList);
-        collecion.add(item);
+        collection.add(item);
         length++;
     }
 
     public void remove(Dragon dragon) {
         idList.remove((Integer) dragon.getId());
         maxId = arrayMaxInt(idList);
-        collecion.remove(dragon);
+        collection.remove(dragon);
         length--;
     }
 
@@ -63,11 +59,10 @@ public class DragonCollection {
 
     public void setMaxId(int maxId) {
         this.maxId = maxId;
-        Dragon.setUniqNumber(maxId);
     }
 
     public void clear() {
-        collecion.clear();
+        collection.clear();
         idList.clear();
         maxId = 0;
         length = 0;
@@ -82,24 +77,24 @@ public class DragonCollection {
     }
 
     public Collection<Dragon> getItems() {
-        return collecion;
+        return collection;
     }
 
 
     public long getAverageWeight() {
         long AverageWeight = 0;
-        for (Dragon dragon : collecion) {
+        for (Dragon dragon : collection) {
             long weight = dragon.getWeight();
             AverageWeight += weight;
         }
-        AverageWeight /= collecion.size();
+        AverageWeight /= collection.size();
         return AverageWeight;
     }
 
     public Dragon minByAge() {
         double minAge = Double.POSITIVE_INFINITY;
         Dragon minItem = null;
-        for (Dragon dragon : collecion) {
+        for (Dragon dragon : collection) {
             if (dragon.getAge() >= 0) {
                 int age = dragon.getAge();
                 if (age - minAge < 0) {
@@ -114,12 +109,18 @@ public class DragonCollection {
     public Dragon getMin() {
         if (length == 0) return null;
         else {
-            Dragon minDragon = (Dragon) collecion.toArray()[0];
-            for (Dragon dragon : collecion) {
+            Dragon minDragon = (Dragon) collection.toArray()[0];
+            for (Dragon dragon : collection) {
                 if (dragon.compareTo(minDragon) < 0) minDragon = dragon;
             }
             return minDragon;
         }
+    }
+
+    public void sort() {
+        ArrayList<Dragon> collectionList = new ArrayList<>(collection);
+        Collections.sort(collectionList);
+        collection = new LinkedHashSet<>(collectionList);
     }
 
     @Override

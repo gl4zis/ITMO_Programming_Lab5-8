@@ -36,6 +36,7 @@ public class CommandManager {
             Command removeLower = new RemoveLowerCommand(collection);
             Command save = new SaveCommand(jsonManager, collection);
             Command show = new ShowCommand(collection);
+            Command sort = new SortByNameCommand(collection);
             Command update = new UpdateCommand(collection);
             commands.put(add.getName(), add);
             commands.put(addIfMin.getName(), addIfMin);
@@ -52,6 +53,7 @@ public class CommandManager {
             commands.put(removeLower.getName(), removeLower);
             commands.put(save.getName(), save);
             commands.put(show.getName(), show);
+            commands.put(sort.getName(), sort);
             commands.put(update.getName(), update);
         }
     }
@@ -77,6 +79,10 @@ public class CommandManager {
                 }
             }
         }
+    }
+
+    public void seekCommand(String line) {
+        seekCommand(null, line);
     }
 
     public Collection<Command> getCommands() {

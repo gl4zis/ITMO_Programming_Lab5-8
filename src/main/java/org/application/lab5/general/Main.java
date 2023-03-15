@@ -7,7 +7,15 @@ import org.application.lab5.exceptions.IncorrectInputException;
 import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.parsers.JsonManager;
 
+/**
+ * Main class, that starts the application
+ */
+
 public class Main {
+    /** Executable method, that starts the application.
+     * Creates all necessary objects (JsonManager, DragonCollection, CommandManager),
+     * Fills out collection from JSON file and waits for command ind console line
+     */
     public static void main(String[] args) {
         JsonManager jsonManager = new JsonManager("config");
         DragonCollection collection = new DragonCollection();

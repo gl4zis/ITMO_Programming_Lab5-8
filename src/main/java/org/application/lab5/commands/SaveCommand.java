@@ -7,17 +7,29 @@ import org.application.lab5.parsers.JsonManager;
 
 import java.io.IOException;
 
-public class SaveCommand extends NonArgsCommand {
+/**
+ * Non-argument command "save". Saves collection to the JSON file
+ */
 
+public class SaveCommand extends NonArgsCommand {
     private final JsonManager jsonManager;
     private final DragonCollection collection;
 
+    /**
+     * Constructor, sets collection and json managers, that the command works with, name and description of command
+     */
     SaveCommand(JsonManager jsonManager, DragonCollection collection) {
         super("save", "save : сохранить коллекцию в файл");
         this.collection = collection;
         this.jsonManager = jsonManager;
     }
 
+    /**
+     * Saves collection in JSON file.
+     * If save failed, outputs error message
+     *
+     * @param reader reader of file from that gives data, if null data gives from console
+     */
     @Override
     public void execute(InputScriptReader reader) {
         try {

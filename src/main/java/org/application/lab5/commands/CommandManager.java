@@ -10,15 +10,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class CommandManager {
+/**
+ * Class for finding command by its name.
+ * (In console line or in script file line)
+ */
 
+public class CommandManager {
     private Map<String, Command> commands;
 
+    /** Constructor, sets JsonManager and DragonCollection with which commands will work
+     */
     public CommandManager(JsonManager json, DragonCollection collection) {
-        addStandartCommands(json, collection);
+        addStandardCommands(json, collection);
     }
 
-    private void addStandartCommands(JsonManager jsonManager, DragonCollection collection) {
+    /** Creates objects of standard command and adds it to the map
+     * @param jsonManager JsonManager, that commands will work with
+     * @param collection DragonCollection, that commands will work with
+     */
+    private void addStandardCommands(JsonManager jsonManager, DragonCollection collection) {
         if (commands == null) {
             commands = new HashMap<>();
             Command add = new AddCommand(collection);
@@ -58,6 +68,14 @@ public class CommandManager {
         }
     }
 
+    /**
+     * Finds command in input string line and executes it.
+     * Reader needs to transmit it to Command.execute for availability executing it from script
+     *
+     * @param reader reader of file from that gives data, if null data gives from console
+     * @param line   string input, where command will be seeking
+     * @throws IncorrectInputException if no such command in the line
+     */
     public void seekCommand(InputScriptReader reader, String line) throws IncorrectInputException {
         if (line.equals("")) {
         } else {
@@ -81,18 +99,38 @@ public class CommandManager {
         }
     }
 
+    /**
+     * Executes seekCommand with reader = null
+     *
+     * @param line string input, where command will be seeking
+     */
     public void seekCommand(String line) {
         seekCommand(null, line);
     }
 
+    /**
+     * Returns collection with command objects
+     *
+     * @return commands
+     */
     public Collection<Command> getCommands() {
         return commands.values();
     }
 
+    /**
+     * Returns set with command names
+     *
+     * @return names
+     */
     public Set<String> getCommandNames() {
         return commands.keySet();
     }
 
+    /**
+     * Adds new non-standard command in the map
+     *
+     * @param newCommand object of command, that will be added in the map
+     */
     public void addNewCommand(ArgsCommand newCommand) {
         commands.put(newCommand.getName(), newCommand);
     }

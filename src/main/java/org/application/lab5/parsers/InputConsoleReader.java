@@ -7,10 +7,18 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * Class for reading from console
+ */
+
 public abstract class InputConsoleReader {
 
     private static final String ERROR_MESSAGE = "Неверный ввод. Повторите еще раз";
 
+    /** Reads next line from the console.
+     * Stops the app, if input == "exit 0"
+     * @return inputLine
+     */
     public static String readNextLine() {
         String line = "";
         try {
@@ -25,6 +33,11 @@ public abstract class InputConsoleReader {
         return line;
     }
 
+    /** Reads String type var from console with limits.
+     * (can be null or not)
+     * @param canBeNull boolean param, true if var can be null
+     * @return stringVar
+     */
     private static String readStringVar(boolean canBeNull) {
         boolean mistake;
         String var;
@@ -38,6 +51,10 @@ public abstract class InputConsoleReader {
         return var;
     }
 
+    /** Reads Double type var from console
+     * @param canBeNull boolean param, true if var can be null
+     * @return doubleVar
+     */
     private static Double readDoubleVar(boolean canBeNull) {
         double var;
         do {
@@ -53,6 +70,13 @@ public abstract class InputConsoleReader {
         } while (true);
     }
 
+    /** Reads Double type of var from console with limits.
+     * (between min value and max value)
+     * @param canBeNull boolean param, true if var can be null
+     * @param minValue double param, minimum value of var
+     * @param maxValue double param, maximum value of var
+     * @return doubleVar
+     */
     private static Double readDoubleVar(boolean canBeNull, double minValue, double maxValue) {
         Double var;
         do {
@@ -66,6 +90,10 @@ public abstract class InputConsoleReader {
         return var;
     }
 
+    /** Reads Long type var from console
+     * @param canBeNull boolean param, true if var can be null
+     * @return longVar
+     */
     private static Long readLongVar(boolean canBeNull) {
         long var;
         do {
@@ -81,6 +109,13 @@ public abstract class InputConsoleReader {
         } while (true);
     }
 
+    /** Reads Double type of var from console with limits.
+     * (between min value and max value)
+     * @param canBeNull boolean param, true if var can be null
+     * @param minValue long param, minimum value of var
+     * @param maxValue long param, maximum value of var
+     * @return longVar
+     */
     private static Long readLongVar(boolean canBeNull, long minValue, long maxValue) {
         Long var;
         do {
@@ -94,11 +129,19 @@ public abstract class InputConsoleReader {
         return var;
     }
 
+    /** Reads dragon name from console
+     * @return dragonName
+     */
     private static String readDragonName() {
         System.out.print("Введите имя: ");
         return readStringVar(false);
     }
 
+    /** Reads dragon coordinates from console.
+     * (Two fractional numbers x and y.
+     * X should be more than -497)
+     * @return dragonCoordinates
+     */
     private static Coordinates readDragonCoordinates() {
         System.out.print("Введите координату x (дробное число >-497): ");
         double x = readDoubleVar(false, -497 + 1E-13, Double.POSITIVE_INFINITY);
@@ -107,6 +150,11 @@ public abstract class InputConsoleReader {
         return new Coordinates(x, y);
     }
 
+    /** Reads dragon age from console.
+     * Expects positive integral number.
+     * If input == "", returns -1
+     * @return dragonAge
+     */
     private static int readDragonAge() {
         System.out.print("Введите возраст (целое число от 1 до " + Integer.MAX_VALUE + "): ");
         Long age = readLongVar(true, 1, Long.MAX_VALUE);
@@ -116,11 +164,19 @@ public abstract class InputConsoleReader {
             return -1;
     }
 
+    /** Reads dragon weight from console.
+     * Expects positive integral number
+     * @return dragonWeight
+     */
     private static long readDragonWeight() {
         System.out.print("Введите вес (целое число от 1 до " + Long.MAX_VALUE + "): ");
         return readLongVar(false, 1, Long.MAX_VALUE);
     }
 
+    /** Reads dragon color from console.
+     * Expects integral number from 1 to 4 in console
+     * @return dragonColor
+     */
     private static Color readDragonColor() {
         Map<Integer, Color> colors = new HashMap<>();
         colors.put(1, Color.GREEN);
@@ -138,6 +194,10 @@ public abstract class InputConsoleReader {
         return colors.get(colorNum);
     }
 
+    /** Reads dragon character from console.
+     * Expects integral number from 1 to 3 in console
+     * @return dragonCharacter
+     */
     private static DragonCharacter readDragonCharacter() {
         Map<Integer, DragonCharacter> character = new HashMap<>();
         character.put(1, DragonCharacter.WISE);
@@ -153,12 +213,19 @@ public abstract class InputConsoleReader {
         return character.get(colorNum);
     }
 
+    /** Reads dragon head from console.
+     * Expects non-negative integral number in console as count of eyes
+     * @return dragonHead
+     */
     private static DragonHead readDragonHead() {
         System.out.print("Введите количество глаз (целое неотрицательное число): ");
         long eyesCount = readLongVar(false, 0, Long.MAX_VALUE);
         return new DragonHead(eyesCount);
     }
 
+    /** Reads whole dragon from console
+     * @return dragon
+     */
     public static Dragon readDragon() {
         System.out.println("""
                 Введите все поля объекта Dragon.

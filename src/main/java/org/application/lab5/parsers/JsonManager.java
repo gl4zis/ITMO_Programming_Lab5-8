@@ -1,7 +1,6 @@
 package org.application.lab5.parsers;
 
 
-import org.application.lab5.parsers.InputConsoleReader;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -9,15 +8,20 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.util.List;
 
+/**
+ * Class, what reads data from JSON file and writes data into it
+ */
 
 public class JsonManager {
+
+    /** JSON file object, that the class working with
+     */
     private File file;
 
+    /** Constructor, that creates object, trying to get file path from environment variable
+     * @param env environment variable, that have file path
+     */
     public JsonManager(String env) {
-        initJson(env);
-    }
-
-    private void initJson(String env) {
         try {
             String filePath = System.getenv(env);
             file = new File(filePath);
@@ -28,6 +32,8 @@ public class JsonManager {
         }
     }
 
+    /** Method, what gets file path from console line, if something wrong with environment var
+     */
     private void initJson() {
         while (true) {
             try {
@@ -40,6 +46,10 @@ public class JsonManager {
         }
     }
 
+    /** Gets new InputStreamReader.
+     * Reads new file path from console if something wrong with file
+     * @return reader
+     */
     private Reader getNewReader() {
         while (true) {
             try {
@@ -53,14 +63,21 @@ public class JsonManager {
         }
     }
 
+    /** Reads JSON file and convert it to the JSONObject.
+     * If file is incorrect json or file is empty, create new empty JSONObject.
+     * If something wrong with file, closes the app
+     * @return JSONObject
+     */
     public JSONObject readJSON() {
-        Reader reader = getNewReader();
         try {
-            return (JSONObject) new JSONParser().parse(reader);
+            if (getNewReader().read() == -1) return new JSONObject();
+            else {
+                return (JSONObject) new JSONParser().parse(getNewReader());
+            }
         } catch (ParseException e) {
             System.out.println("Некорректный файл");
             return new JSONObject();
-        } catch (IOException | NullPointerException e) {
+        } catch (IOException e) {
             System.out.println("Что-то случилось с файликом =(\n" +
                     "Попробуйте перезапустить программу");
             System.exit(0);
@@ -68,15 +85,22 @@ public class JsonManager {
         }
     }
 
-    public void writeJSON(JSONObject json) throws IOException {
+    /** Writes JSONObject in JSON file
+     * @param json JSONObject, that saves in the JSON file
+     */
+    public void writeJSON(JSONObject json) {
         try (FileOutputStream writer = new FileOutputStream(file)) {
             String output = jsonFormating(json.toJSONString());
             writer.write(output.getBytes());
-        } catch (FileNotFoundException | SecurityException e) {
+        } catch (IOException | SecurityException e) {
             System.out.println("Нет доступа к файлу");
         }
     }
 
+    /** Formats output string, what writes in file to have beautiful JSON =)
+     * @param json string, that will be formatting, expects one-line JSON
+     * @return output
+     */
     private String jsonFormating(String json) {
         String[] input = json.split("");
         StringBuilder output = new StringBuilder();

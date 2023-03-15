@@ -5,15 +5,23 @@ import org.application.lab5.dragons.Dragon;
 import org.application.lab5.parsers.InputScriptReader;
 
 
-public class ShowCommand extends NonArgsCommand {
+/**
+ * Non-argument command "show". Outputs info about all elements in the collection
+ */
 
+public class ShowCommand extends NonArgsCommand {
     private final DragonCollection collection;
 
+    /** Constructor, sets collection, that the command works with, name and description of command
+     */
     ShowCommand(DragonCollection collection) {
         super("show", "show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении");
         this.collection = collection;
     }
 
+    /** Outputs info about all elements in the collection or outputs message about empty collection
+     * @param reader reader of file from that gives data, if null data gives from console
+     */
     @Override
     public void execute(InputScriptReader reader) {
         if (collection.getItems().size() == 0) {

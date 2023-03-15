@@ -7,16 +7,25 @@ import org.application.lab5.parsers.InputScriptReader;
 
 import java.util.Iterator;
 
-public class RemoveGreaterCommand extends NonArgsCommand {
+/**
+ * Argument command "remove_greater {dragon}". Removes all dragons from collection, that more than inputted dragon
+ */
 
+public class RemoveGreaterCommand extends NonArgsCommand {
     private final DragonCollection collection;
 
+    /** Constructor, sets collection, that the command works with, name and description of command
+     */
     RemoveGreaterCommand(DragonCollection collection) {
         super("remove_greater",
-                "remove_greater {element} : удалить из коллекции все элементы, превышающие заданный");
+                "remove_greater {dragon} : удалить из коллекции все элементы, превышающие заданный");
         this.collection = collection;
     }
 
+    /** Removes all dragons from collection, that more than inputted dragon and output info about removed dragons.
+     * If there are no such elements in collection, outputs error message
+     * @param reader reader of file from that gives data, if null data gives from console
+     */
     @Override
     public void execute(InputScriptReader reader) {
         Dragon maxDragon;
@@ -27,12 +36,15 @@ public class RemoveGreaterCommand extends NonArgsCommand {
         }
         Iterator<Dragon> iterator = collection.getItems().iterator();
         Dragon dragon;
+        int counter = 0;
         while (iterator.hasNext()) {
             dragon = iterator.next();
             if (dragon.compareTo(maxDragon) > 0) {
                 iterator.remove();
                 System.out.println("Обект с id " + dragon.getId() + ", " + dragon.getName() + " был удален");
+                counter++;
             }
         }
+        if (counter == 0) System.out.println("Нет таких элементов в коллекции");
     }
 }

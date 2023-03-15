@@ -7,7 +7,15 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * Class for formatting date in 'dd.mm.yyyy hh.mm.ss' format
+ */
+
 public abstract class DateParser {
+    /** Parses Date object to the String
+     * @param date inputted Date object, parses into string
+     * @return stringDate
+     */
 
     public static String dateToString(Date date) {
         Map<String, String> months = new HashMap<>();
@@ -35,8 +43,15 @@ public abstract class DateParser {
         return day + "." + month + "." + year + " " + time;
     }
 
+    /**
+     * Parses String to the Date object
+     *
+     * @param str inputted line, parses into Date object
+     * @return dateObject
+     * @throws ParseException if date format in inputted string is incorrect
+     */
 
-    public static Date stringToDate(String input) throws ParseException {
-        return new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH).parse(input);
+    public static Date stringToDate(String str) throws ParseException {
+        return new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH).parse(str);
     }
 }

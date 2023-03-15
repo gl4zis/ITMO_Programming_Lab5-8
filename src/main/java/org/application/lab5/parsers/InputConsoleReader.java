@@ -15,8 +15,10 @@ public abstract class InputConsoleReader {
 
     private static final String ERROR_MESSAGE = "Неверный ввод. Повторите еще раз";
 
-    /** Reads next line from the console.
-     * Stops the app, if input == "exit 0"
+    /**
+     * Reads next line from the console.
+     * Stops the app, if input == "exit" or ctrl+D
+     *
      * @return inputLine
      */
     public static String readNextLine() {
@@ -24,7 +26,7 @@ public abstract class InputConsoleReader {
         try {
             Scanner console = new Scanner(System.in);
             line = console.nextLine();
-            if (line.equals("exit 0")) {
+            if (line.equals("exit")) {
                 System.exit(0);
             }
         } catch (NoSuchElementException e) {

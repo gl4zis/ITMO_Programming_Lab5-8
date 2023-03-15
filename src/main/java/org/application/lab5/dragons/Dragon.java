@@ -11,7 +11,6 @@ import java.util.Date;
  */
 
 public class Dragon implements Comparable<Dragon> {
-    private static int uniqNumber = 1;
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private long weight; //Значение поля должно быть больше 0
@@ -34,7 +33,6 @@ public class Dragon implements Comparable<Dragon> {
         if (creationDate == null) throw new IncorrectDataException("Неккоректная дата создания объекта Dragon");
         if (id < 0) throw new IncorrectDataException("Неккоректный id объекта Dragon");
         this.id = id;
-        uniqNumber--;
         this.creationDate = creationDate;
     }
 
@@ -49,7 +47,7 @@ public class Dragon implements Comparable<Dragon> {
         if (name == null || coordinates == null || color == null || character == null || head == null)
             throw new IncorrectDataException("Не хватает инициализированных полей");
         if (name.equals("") || weight <= 0) throw new IncorrectDataException("Некорректные поля объекта Dragon");
-        this.id = uniqNumber++;
+        this.id = UniqIdGenerator.getIntId();
         this.name = name;
         this.coordinates = coordinates;
         this.creationDate = new Date();
@@ -77,24 +75,7 @@ public class Dragon implements Comparable<Dragon> {
     }
 
     /**
-     * Decrements uniqNumber.
-     * Needs if dragon was created, but wasn't added in collection
-     */
-    public static void decUniqNumber() {
-        uniqNumber--;
-    }
-
-    /**
-     * Sets uniqNumber to correct id generation.
-     * Needs after filling collection from JSON
-     */
-    public static void setMaxId(int maxId) {
-        uniqNumber = ++maxId;
-    }
-
-    /**
      * Returns id
-     *
      * @return id
      */
     public int getId() {

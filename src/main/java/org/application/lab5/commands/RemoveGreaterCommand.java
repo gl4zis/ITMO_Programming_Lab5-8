@@ -34,7 +34,6 @@ public class RemoveGreaterCommand extends NonArgsCommand {
         } else {
             maxDragon = reader.readDragon();
         }
-        Dragon.decUniqNumber();
         Iterator<Dragon> iterator = collection.getItems().iterator();
         Dragon dragon;
         int counter = 0;

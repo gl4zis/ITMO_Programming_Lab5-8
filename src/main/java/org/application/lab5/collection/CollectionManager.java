@@ -47,7 +47,6 @@ public abstract class CollectionManager {
                 for (Object dragon : dragons) {
                     uploadDragon(dragon, collection);
                 }
-                Dragon.setMaxId(collection.getMaxId());
             } catch (ClassCastException | NullPointerException e) {
                 System.out.println("Утеряны данные о коллекции (Список объектов Dragon)");
             }

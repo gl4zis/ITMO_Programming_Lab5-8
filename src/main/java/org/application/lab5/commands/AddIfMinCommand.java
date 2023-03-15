@@ -36,7 +36,6 @@ public class AddIfMinCommand extends NonArgsCommand {
             collection.add(dragon);
             System.out.println("Новый объект успешно добавлен");
         } else {
-            Dragon.decUniqNumber();
             System.out.println("Объект не минимальный");
         }
     }

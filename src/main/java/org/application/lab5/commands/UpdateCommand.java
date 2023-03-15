@@ -29,6 +29,7 @@ public class UpdateCommand extends ArgsCommand {
     public void execute(InputScriptReader reader, String arg) {
         try {
             int id = Integer.parseInt(arg);
+            collection.find(id);
             Dragon dragon;
             if (reader == null) {
                 dragon = InputConsoleReader.readDragon();

@@ -17,7 +17,11 @@ public class Main {
      * Fills out collection from JSON file and waits for command ind console line
      */
     public static void main(String[] args) {
-        JsonManager jsonManager = new JsonManager("config");
+        JsonManager jsonManager;
+        if (args.length == 0) {
+            System.out.println("Не передан аргумент в командную строку");
+            jsonManager = new JsonManager("");
+        } else jsonManager = new JsonManager(args[0]);
         DragonCollection collection = new DragonCollection();
         CommandManager commandManager = new CommandManager(jsonManager, collection);
         CollectionManager.uploadCollection(jsonManager.readJSON(), collection);

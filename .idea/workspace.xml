@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="bugfix update command">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/UniqIdGenerator.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="added random id generator">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/collection/CollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/collection/CollectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/AddIfMinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/AddIfMinCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/RemoveGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/RemoveGreaterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/RemoveLowerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/RemoveLowerCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/UpdateCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/Dragon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputConsoleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputConsoleReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +81,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.application.lab5.general.Main" />
       <module name="lab5.main" />
+      <option name="PROGRAM_PARAMETERS" value="config" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.application.manager.collection.*" />
@@ -379,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678871977435</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="added random id generator">
+      <created>1678872883475</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1678872883476</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -407,7 +409,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="updated commands singleton" />
     <MESSAGE value="removed commands singleton :)" />
     <MESSAGE value="decompozed class command" />
     <MESSAGE value="decompozed readDragon method" />
@@ -432,7 +433,8 @@
     <MESSAGE value="fixed bug with incrementing id when dragon isn't added in collection" />
     <MESSAGE value="fixed build.gradle" />
     <MESSAGE value="bugfix update command" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix update command" />
+    <MESSAGE value="added random id generator" />
+    <option name="LAST_COMMIT_MESSAGE" value="added random id generator" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

@@ -57,7 +57,7 @@ public class InputScriptReader {
                     break;
                 }
             }
-            if (!comment && nextSym != -1) line.deleteCharAt(line.length() - 1);
+            //if (!comment && nextSym != -1) line.deleteCharAt(line.length() - 1);  //Закоментить, при запуске на винде
             if (nextSym == -1) execution = false;
         } catch (IOException e) {
             execution = false;

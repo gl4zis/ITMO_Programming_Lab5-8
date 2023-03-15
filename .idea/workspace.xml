@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="fixed bug with incrementing id when dragon isn't added in collection">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="fixed build.gradle">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/ExecuteScriptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/ExecuteScriptCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/Dragon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputScriptReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputScriptReader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,17 +59,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Roma/Desktop/ITMO/Programming/lab5&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/Roma/Desktop/ITMO/test",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.application.lab5.dragons" />
@@ -358,7 +360,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678866343060</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="fixed build.gradle">
+      <created>1678867355961</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1678867355961</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -386,7 +395,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="removed awful ExecuteScriptCommand" />
     <MESSAGE value="update commands singleton" />
     <MESSAGE value="updated commands singleton" />
     <MESSAGE value="removed commands singleton :)" />
@@ -411,7 +419,8 @@
     <MESSAGE value="changed command update to remove Dragon.setId()" />
     <MESSAGE value="bugfix with wrong upload collection" />
     <MESSAGE value="fixed bug with incrementing id when dragon isn't added in collection" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug with incrementing id when dragon isn't added in collection" />
+    <MESSAGE value="fixed build.gradle" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed build.gradle" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

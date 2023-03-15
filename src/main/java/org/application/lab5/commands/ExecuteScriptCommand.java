@@ -12,7 +12,7 @@ import java.util.Set;
  */
 
 public class ExecuteScriptCommand extends ArgsCommand {
-    private static final Set<String> files = new HashSet<>();
+    private final Set<String> files = new HashSet<>();
     private final CommandManager commandManager;
 
     /** Constructor, sets command manager, that the command works with, name and description of command
@@ -36,6 +36,7 @@ public class ExecuteScriptCommand extends ArgsCommand {
                 files.add(filePath);
                 String line = newReader.findNextCommand(commandManager);
                 while (line != null) {
+                    System.out.println();
                     System.out.print("Выполнение: ");
                     System.out.println(line);
                     try {

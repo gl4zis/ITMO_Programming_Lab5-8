@@ -68,7 +68,8 @@ public class Dragon implements Comparable<Dragon> {
     public void update(Dragon dragon) {
         name = dragon.getName();
         coordinates = dragon.getCoordinates();
-        age = dragon.getAge();
+        if (dragon.getAge() > -1) age = dragon.getAge();
+        else age = null;
         weight = dragon.getWeight();
         color = dragon.getColor();
         character = dragon.getDragonCharacter();

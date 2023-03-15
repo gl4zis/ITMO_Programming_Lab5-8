@@ -21,7 +21,7 @@ test {
 
 jar {
     manifest {
-        attributes 'Class-Path': 'libs/json-simple-1.1.1.jar', 'Main-Class': 'org.application.lab5.Main'
+        attributes 'Class-Path': 'libs/json-simple-1.1.1.jar', 'Main-Class': 'org.application.lab5.general.Main'
     }
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }

@@ -20,7 +20,7 @@ public class Main {
         JsonManager jsonManager = new JsonManager("config");
         DragonCollection collection = new DragonCollection();
         CommandManager commandManager = new CommandManager(jsonManager, collection);
-        CollectionManager.transferCollection(jsonManager.readJSON(), collection);
+        CollectionManager.uploadCollection(jsonManager.readJSON(), collection);
         while (true) {
             try {
                 System.out.print("-> ");

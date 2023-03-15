@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="changed command update to remove Dragon.setId()">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/collection/CollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/collection/CollectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/Main.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="bugfix with wrong upload collection">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/RemoveGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/RemoveGreaterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/RemoveLowerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/RemoveLowerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/Dragon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/JsonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/JsonManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -345,7 +346,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678865175101</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="bugfix with wrong upload collection">
+      <created>1678865680604</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1678865680604</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -373,7 +381,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="commit 4/27.02.2023&#10;Готовая версия (альфа)" />
     <MESSAGE value="execute script works" />
     <MESSAGE value="removed awful ExecuteScriptCommand" />
     <MESSAGE value="update commands singleton" />
@@ -398,7 +405,8 @@
     <MESSAGE value="added sort command" />
     <MESSAGE value="added javadoc and some bugfix" />
     <MESSAGE value="changed command update to remove Dragon.setId()" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed command update to remove Dragon.setId()" />
+    <MESSAGE value="bugfix with wrong upload collection" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix with wrong upload collection" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

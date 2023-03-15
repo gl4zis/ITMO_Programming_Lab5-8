@@ -34,6 +34,7 @@ public class RemoveLowerCommand extends NonArgsCommand {
         } else {
             minDragon = reader.readDragon();
         }
+        Dragon.decUniqNumber();
         Iterator<Dragon> iterator = collection.getItems().iterator();
         Dragon dragon;
         int counter = 0;

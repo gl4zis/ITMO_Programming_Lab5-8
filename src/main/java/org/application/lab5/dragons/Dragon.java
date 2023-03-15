@@ -11,7 +11,7 @@ import java.util.Date;
  */
 
 public class Dragon implements Comparable<Dragon> {
-    private static int uniqNumber;
+    private static int uniqNumber = 1;
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private long weight; //Значение поля должно быть больше 0

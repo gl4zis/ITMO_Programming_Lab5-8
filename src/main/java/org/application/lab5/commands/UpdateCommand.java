@@ -35,6 +35,7 @@ public class UpdateCommand extends ArgsCommand {
             } else {
                 dragon = reader.readDragon();
             }
+            Dragon.decUniqNumber();
             collection.find(id).update(dragon);
             System.out.println("Объект успешно обновлен");
         } catch (NumberFormatException e) {

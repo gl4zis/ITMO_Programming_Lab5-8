@@ -13,9 +13,6 @@ import java.util.List;
  */
 
 public class JsonManager {
-
-    /** JSON file object, that the class working with
-     */
     private File file;
 
     /** Constructor, that creates object, trying to get file path from environment variable
@@ -69,19 +66,19 @@ public class JsonManager {
      * @return JSONObject
      */
     public JSONObject readJSON() {
-        try {
-            if (getNewReader().read() == -1) return new JSONObject();
-            else {
-                return (JSONObject) new JSONParser().parse(getNewReader());
+        while (true) {
+            try {
+                if (getNewReader().read() == -1) return new JSONObject();
+                else {
+                    return (JSONObject) new JSONParser().parse(getNewReader());
+                }
+            } catch (ParseException e) {
+                System.out.println("Некорректный файл");
+                return new JSONObject();
+            } catch (IOException e) {
+                System.out.println("Что-то пошло не так =(");
+                initJson();
             }
-        } catch (ParseException e) {
-            System.out.println("Некорректный файл");
-            return new JSONObject();
-        } catch (IOException e) {
-            System.out.println("Что-то случилось с файликом =(\n" +
-                    "Попробуйте перезапустить программу");
-            System.exit(0);
-            return null;
         }
     }
 

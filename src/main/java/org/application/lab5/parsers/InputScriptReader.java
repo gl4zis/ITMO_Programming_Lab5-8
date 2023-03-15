@@ -26,6 +26,8 @@ public class InputScriptReader {
      * @throws SecurityException if app can't read something from file
      */
     public InputScriptReader(String filePath) throws FileNotFoundException, SecurityException {
+        if (filePath.length() > 0 && filePath.charAt(0) == '~')
+            filePath = System.getenv("HOME") + filePath.substring(1);
         File script = new File(filePath);
         FileInputStream in = new FileInputStream(script);
         reader = new InputStreamReader(in);
@@ -43,7 +45,7 @@ public class InputScriptReader {
         try {
             line = new StringBuilder();
             int nextSym = reader.read();
-            boolean comment = false;
+            boolean comment;
             while (nextSym != -1 && nextSym != 10) {
                 line.append((char) nextSym);
                 comment = (char) nextSym == '/';

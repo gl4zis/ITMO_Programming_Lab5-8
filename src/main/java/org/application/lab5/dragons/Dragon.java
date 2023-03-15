@@ -12,12 +12,12 @@ import java.util.Date;
 
 public class Dragon implements Comparable<Dragon> {
     private static int uniqNumber;
-    private final String name; //Поле не может быть null, Строка не может быть пустой
-    private final Coordinates coordinates; //Поле не может быть null
-    private final long weight; //Значение поля должно быть больше 0
-    private final Color color; //Поле не может быть null
-    private final DragonCharacter character; //Поле не может быть null
-    private final DragonHead head;
+    private String name; //Поле не может быть null, Строка не может быть пустой
+    private Coordinates coordinates; //Поле не может быть null
+    private long weight; //Значение поля должно быть больше 0
+    private Color color; //Поле не может быть null
+    private DragonCharacter character; //Поле не может быть null
+    private DragonHead head;
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private java.util.Date creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Integer age; //Значение поля должно быть больше 0, Поле может быть null
@@ -60,6 +60,22 @@ public class Dragon implements Comparable<Dragon> {
     }
 
     /**
+     * Updates this using vars from other dragon.
+     * Using in update command
+     *
+     * @param dragon object, on that swaps this, saving id and creationDate
+     */
+    public void update(Dragon dragon) {
+        name = dragon.getName();
+        coordinates = dragon.getCoordinates();
+        age = dragon.getAge();
+        weight = dragon.getWeight();
+        color = dragon.getColor();
+        character = dragon.getDragonCharacter();
+        head = dragon.getDragonHead();
+    }
+
+    /**
      * Decrements uniqNumber.
      * Needs if dragon was created, but wasn't added in collection
      */
@@ -82,14 +98,6 @@ public class Dragon implements Comparable<Dragon> {
      */
     public int getId() {
         return id;
-    }
-
-    /**
-     * Sets id
-     * Needs in update command
-     */
-    public void setId(int id) {
-        this.id = id;
     }
 
     /**

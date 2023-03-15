@@ -49,21 +49,18 @@ public class DragonCollection {
     }
 
     /**
-     * Removes dragon from collection by its id
+     * Finds dragon in collection by its id
      *
-     * @param id id of dragon, which will be removed from collection
+     * @param id id of dragon, which will be finds in collection
      * @throws ObjectNotFoundException if there is no dragon with this id in the collection
      */
-    public void remove(int id) throws ObjectNotFoundException {
-        boolean contains = false;
+    public Dragon find(int id) throws ObjectNotFoundException {
         for (Dragon dragon : getItems()) {
             if (dragon.getId() == id) {
-                remove(dragon);
-                contains = true;
-                break;
+                return dragon;
             }
         }
-        if (!contains) throw new ObjectNotFoundException();
+        throw new ObjectNotFoundException();
     }
 
     /**

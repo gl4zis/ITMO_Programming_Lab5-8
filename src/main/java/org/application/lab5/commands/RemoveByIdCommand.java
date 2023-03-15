@@ -27,7 +27,7 @@ public class RemoveByIdCommand extends ArgsCommand {
     public void execute(InputScriptReader reader, String arg) {
         try {
             int id = Integer.parseInt(arg);
-            collection.remove(id);
+            collection.remove(collection.find(id));
             System.out.println("Обект успешно удалён");
         } catch (NumberFormatException e) {
             System.out.println("Неверный аргумент");

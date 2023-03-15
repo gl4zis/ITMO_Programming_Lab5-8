@@ -29,16 +29,14 @@ public class UpdateCommand extends ArgsCommand {
     public void execute(InputScriptReader reader, String arg) {
         try {
             int id = Integer.parseInt(arg);
-            collection.remove(id);
             Dragon dragon;
             if (reader == null) {
                 dragon = InputConsoleReader.readDragon();
             } else {
                 dragon = reader.readDragon();
             }
-            dragon.setId(id);
-            collection.add(dragon);
-            System.out.println("Новый объект успешно добавлен");
+            collection.find(id).update(dragon);
+            System.out.println("Объект успешно обновлен");
         } catch (NumberFormatException e) {
             System.out.println("Неверный аргумент");
         } catch (ObjectNotFoundException e) {

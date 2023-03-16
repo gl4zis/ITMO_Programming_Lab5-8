@@ -91,18 +91,21 @@ public class JsonManager {
      */
     public void writeJSON(JSONObject json) {
         try (FileOutputStream writer = new FileOutputStream(file)) {
-            String output = jsonFormating(json.toJSONString());
+            String output = jsonFormatting(json.toJSONString());
             writer.write(output.getBytes());
+            System.out.println("Коллекция успешно сохранена в файл");
         } catch (IOException | SecurityException e) {
-            System.out.println("Нет доступа к файлу");
+            System.out.println("Ошибка доступа к файлу");
         }
     }
 
-    /** Formats output string, what writes in file to have beautiful JSON =)
+    /**
+     * Formats output string, what writes in file to have beautiful JSON =)
+     *
      * @param json string, that will be formatting, expects one-line JSON
      * @return output
      */
-    private String jsonFormating(String json) {
+    private String jsonFormatting(String json) {
         String[] input = json.split("");
         StringBuilder output = new StringBuilder();
         List<String> openSym = List.of(new String[]{"{", "["});

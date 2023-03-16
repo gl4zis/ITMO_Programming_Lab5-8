@@ -32,11 +32,6 @@ public class SaveCommand extends NonArgsCommand {
      */
     @Override
     public void execute(InputScriptReader reader) {
-        try {
-            CollectionManager.saveCollection(jsonManager, collection);
-            System.out.println("Коллекция успешно сохранена в файл");
-        } catch (IOException e) {
-            System.out.println("Ошибка доступа к файлу");
-        }
+        CollectionManager.saveCollection(jsonManager, collection);
     }
 }

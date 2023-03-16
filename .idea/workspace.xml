@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="processed ~ in file paths">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="fixed bug with wrong showing -&gt;">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/JsonParseException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/collection/DragonCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/collection/DragonCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputConsoleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputConsoleReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputScriptReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputScriptReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/collection/CollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/collection/CollectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/SaveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/UniqIdGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/UniqIdGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/IdCollisionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/IdCollisionException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/IncorrectDataException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/IncorrectDataException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/IncorrectInputException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/IncorrectInputException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/ObjectNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/ObjectNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/JsonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/JsonManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +86,9 @@
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="HOME" value="C:\Users\Roma\Desktop\ITMO\Programming" />
+      </envs>
       <option name="MAIN_CLASS_NAME" value="org.application.lab5.general.Main" />
       <module name="lab5.main" />
       <option name="PROGRAM_PARAMETERS" value="config" />
@@ -397,7 +405,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678874582209</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="fixed bug with wrong showing -&gt;">
+      <created>1678973327557</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1678973327557</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -425,7 +440,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="decompozed readDragon method" />
     <MESSAGE value="some changes in managers" />
     <MESSAGE value="reworked JsonManager class" />
     <MESSAGE value="some bugfix" />
@@ -450,7 +464,8 @@
     <MESSAGE value="added random id generator" />
     <MESSAGE value="added input env in commandline args" />
     <MESSAGE value="processed ~ in file paths" />
-    <option name="LAST_COMMIT_MESSAGE" value="processed ~ in file paths" />
+    <MESSAGE value="fixed bug with wrong showing -&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug with wrong showing -&gt;" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

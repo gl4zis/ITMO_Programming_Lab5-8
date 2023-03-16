@@ -16,7 +16,7 @@ public abstract class UniqIdGenerator {
      * @return id
      */
     public static int getIntId() {
-        long longId = Math.abs(new Date().getTime());
-        return new Random(longId).nextInt();
+        long longId = new Date().getTime();
+        return Math.abs(new Random(longId).nextInt());
     }
 }

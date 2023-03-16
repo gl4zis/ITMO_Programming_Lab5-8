@@ -45,7 +45,7 @@ public class InputScriptReader {
         try {
             line = new StringBuilder();
             int nextSym = reader.read();
-            boolean comment;
+            boolean comment = false;
             while (nextSym != -1 && nextSym != 10) {
                 line.append((char) nextSym);
                 comment = (char) nextSym == '/';
@@ -59,7 +59,7 @@ public class InputScriptReader {
                     break;
                 }
             }
-            //if (!comment && nextSym != -1) line.deleteCharAt(line.length() - 1);  //Закоментить, при запуске на винде
+            //if (!comment && nextSym != -1) line.deleteCharAt(line.length() - 1);  //Закоментить, при запуске на unix
             if (nextSym == -1) execution = false;
         } catch (IOException e) {
             execution = false;

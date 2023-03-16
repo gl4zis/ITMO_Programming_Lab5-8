@@ -18,17 +18,14 @@ public class DragonCollection {
     private final ArrayList<Integer> idList = new ArrayList<>();
     private Date creationDate;
 
-    /**
-     * Constructor creates new empty collection
+    /** Constructor creates new empty collection
      */
     public DragonCollection() {
         collection = new LinkedHashSet<>();
         creationDate = new Date();
     }
 
-    /**
-     * Adds new dragon in collection
-     *
+    /** Adds new dragon in collection
      * @param dragon will be added in collection
      * @throws IdCollisionException if dragon with this id already in the collection
      */
@@ -38,9 +35,7 @@ public class DragonCollection {
         collection.add(dragon);
     }
 
-    /**
-     * Removes dragon from collection
-     *
+    /** Removes dragon from collection
      * @param dragon will be removed from collection
      */
     public void remove(Dragon dragon) {
@@ -48,9 +43,7 @@ public class DragonCollection {
         collection.remove(dragon);
     }
 
-    /**
-     * Finds dragon in collection by its id
-     *
+    /** Finds dragon in collection by its id
      * @param id id of dragon, which will be finds in collection
      * @throws ObjectNotFoundException if there is no dragon with this id in the collection
      */
@@ -63,9 +56,7 @@ public class DragonCollection {
         throw new ObjectNotFoundException();
     }
 
-    /**
-     * Returns maximum id from all dragon's ids in collection
-     *
+    /** Returns maximum id from all dragon's ids in collection
      * @return maxId
      */
     public int getMaxId() {
@@ -76,8 +67,7 @@ public class DragonCollection {
         return maxId;
     }
 
-    /**
-     * Removes all objects from collection
+    /** Removes all objects from collection
      */
     public void clear() {
         collection.clear();
@@ -111,9 +101,7 @@ public class DragonCollection {
         return collection;
     }
 
-    /**
-     * Returns average of dragon's weights in collection
-     *
+    /** Returns average of dragon's weights in collection
      * @return averageWeight
      */
     public long getAverageWeight() {
@@ -126,9 +114,7 @@ public class DragonCollection {
         return averageWeight;
     }
 
-    /**
-     * Returns dragon with minimum age in collection
-     *
+    /** Returns dragon with minimum age in collection
      * @return minDragon
      */
     public Dragon minByAge() {
@@ -146,10 +132,8 @@ public class DragonCollection {
         return minDragon;
     }
 
-    /**
-     * Returns minimum of dragons in collection.
+    /** Returns minimum of dragons in collection.
      * (Compares by name and id)
-     *
      * @return minDragon
      */
     public Dragon getMinDragon() {
@@ -163,8 +147,7 @@ public class DragonCollection {
         }
     }
 
-    /**
-     * Sorts collection.
+    /** Sorts collection.
      * (By name and id)
      */
     public void sort() {
@@ -173,9 +156,7 @@ public class DragonCollection {
         collection = new LinkedHashSet<>(collectionList);
     }
 
-    /**
-     * Return string output with info about collection
-     *
+    /** Return string output with info about collection
      * @return output
      */
     @Override

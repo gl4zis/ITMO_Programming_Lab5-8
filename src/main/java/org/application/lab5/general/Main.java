@@ -27,7 +27,6 @@ public class Main {
         CollectionManager.uploadCollection(jsonManager.readJSON(), collection);
         while (true) {
             try {
-                System.out.print("-> ");
                 commandManager.seekCommand(InputConsoleReader.readNextLine());
             } catch (IncorrectInputException e) {
                 System.out.println(e.getMessage());

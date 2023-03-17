@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="fixed bug with wrong showing -&gt;">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/JsonParseException.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="decompozed methods in CollectionManager">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/OsUtilus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/collection/CollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/collection/CollectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/SaveCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/UniqIdGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/UniqIdGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/IdCollisionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/IdCollisionException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/IncorrectDataException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/IncorrectDataException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/IncorrectInputException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/IncorrectInputException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/ObjectNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/ObjectNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/JsonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/JsonManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputScriptReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputScriptReader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -412,7 +405,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678973327557</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="decompozed methods in CollectionManager">
+      <created>1678978454661</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1678978454661</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -440,7 +440,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="some changes in managers" />
     <MESSAGE value="reworked JsonManager class" />
     <MESSAGE value="some bugfix" />
     <MESSAGE value="added command descriptions" />
@@ -465,7 +464,8 @@
     <MESSAGE value="added input env in commandline args" />
     <MESSAGE value="processed ~ in file paths" />
     <MESSAGE value="fixed bug with wrong showing -&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug with wrong showing -&gt;" />
+    <MESSAGE value="decompozed methods in CollectionManager" />
+    <option name="LAST_COMMIT_MESSAGE" value="decompozed methods in CollectionManager" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

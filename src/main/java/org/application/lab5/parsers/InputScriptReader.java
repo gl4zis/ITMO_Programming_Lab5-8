@@ -4,6 +4,7 @@ import org.application.lab5.commands.CommandManager;
 import org.application.lab5.dragons.*;
 import org.application.lab5.exceptions.IncorrectDataException;
 import org.application.lab5.exceptions.IncorrectInputException;
+import org.application.lab5.general.OsUtilus;
 
 import java.io.*;
 import java.util.HashMap;
@@ -59,7 +60,7 @@ public class InputScriptReader {
                     break;
                 }
             }
-            //if (!comment && nextSym != -1) line.deleteCharAt(line.length() - 1);  //Закоментить, при запуске на unix
+            if (!comment && nextSym != -1 && OsUtilus.IsWindows()) line.deleteCharAt(line.length() - 1);
             if (nextSym == -1) execution = false;
         } catch (IOException e) {
             execution = false;
@@ -68,10 +69,8 @@ public class InputScriptReader {
         return line.toString();
     }
 
-    /**
-     * Finds next command in script and returns the hole line with command.
+    /** Finds next command in script and returns the hole line with command.
      * Returns null, if execution is false
-     *
      * @param commandManager CommandManager object, that this method works with (needs for having list of loaded commands)
      * @return line
      */
@@ -83,14 +82,12 @@ public class InputScriptReader {
                 String command = line.split(" ")[0];
                 if (commands.contains(command)) return line;
             } catch (ArrayIndexOutOfBoundsException ignored) {
-            }
+            } //Вылетает, если строка пустая => просто пропускаем строку
         }
         return null;
     }
 
-    /**
-     * Reads dragon name from script file
-     *
+    /** Reads dragon name from script file
      * @return dragonName
      * @throws IncorrectDataException if inputted value is empty
      */
@@ -100,11 +97,9 @@ public class InputScriptReader {
         else return name;
     }
 
-    /**
-     * Reads dragon coordinates from script file.
+    /** Reads dragon coordinates from script file.
      * Expected two fractional numbers x and y.
      * X should be more than -497
-     *
      * @return dragonCoordinates
      * @throws IncorrectDataException if some values are incorrect
      */
@@ -118,11 +113,9 @@ public class InputScriptReader {
         }
     }
 
-    /**
-     * Reads dragon age from script file.
+    /** Reads dragon age from script file.
      * Expected positive integral number.
      * If input line == "", returns -1
-     *
      * @return dragonAge
      * @throws IncorrectDataException if inputted var isn't integral number
      */
@@ -137,10 +130,8 @@ public class InputScriptReader {
         }
     }
 
-    /**
-     * Reads dragon weight from script file.
+    /** Reads dragon weight from script file.
      * Expects positive integral number
-     *
      * @return dragonWeight
      * @throws IncorrectDataException if inputted var isn't integral number
      */
@@ -152,10 +143,8 @@ public class InputScriptReader {
         }
     }
 
-    /**
-     * Reads dragon color from script file.
+    /** Reads dragon color from script file.
      * Expects integral number from 1 to 4
-     *
      * @return dragonColor
      * @throws IncorrectDataException if inputted var isn't integral number
      */
@@ -173,10 +162,8 @@ public class InputScriptReader {
         }
     }
 
-    /**
-     * Reads dragon character from script file.
+    /** Reads dragon character from script file.
      * Expects integral number from 1 to 3
-     *
      * @return dragonCharacter
      * @throws IncorrectDataException if inputted var isn't integral number
      */
@@ -193,10 +180,8 @@ public class InputScriptReader {
         }
     }
 
-    /**
-     * Reads dragon head from script file.
+    /** Reads dragon head from script file.
      * Expects non-negative integral number as eyes count
-     *
      * @return dragonHead
      * @throws IncorrectDataException if inputted var isn't integral number
      */
@@ -209,10 +194,8 @@ public class InputScriptReader {
         }
     }
 
-    /**
-     * Reads whole dragon object from script file.
+    /** Reads whole dragon object from script file.
      * Return null, if some data in file is incorrect
-     *
      * @return dragon
      */
     public Dragon readDragon() {

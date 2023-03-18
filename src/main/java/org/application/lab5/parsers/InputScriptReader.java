@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class InputScriptReader {
 
-    private static final String INCORRECT_DATA_MESSAGE = "v";
+    private static final String INCORRECT_DATA_MESSAGE = "Некорректные поля объекта Dragon";
     private final Reader reader;
     private boolean execution;
 
@@ -27,8 +27,6 @@ public class InputScriptReader {
      * @throws SecurityException if app can't read something from file
      */
     public InputScriptReader(String filePath) throws FileNotFoundException, SecurityException {
-        if (filePath.length() > 0 && filePath.charAt(0) == '~')
-            filePath = System.getenv("HOME") + filePath.substring(1);
         File script = new File(filePath);
         FileInputStream in = new FileInputStream(script);
         reader = new InputStreamReader(in);

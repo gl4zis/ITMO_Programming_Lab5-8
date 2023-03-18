@@ -2,6 +2,7 @@ package org.application.lab5.commands;
 
 import org.application.lab5.exceptions.IncorrectDataException;
 import org.application.lab5.parsers.InputScriptReader;
+import org.application.lab5.parsers.StringModificator;
 
 import java.io.FileNotFoundException;
 import java.util.HashSet;
@@ -25,11 +26,12 @@ public class ExecuteScriptCommand extends ArgsCommand {
     /** Read lines from file, finds commands in them and try to execute them.
      * If something wrong in command just skips it.
      * If catches recursion or there are no such file don't execute script and outputs error message
-     * @param reader reader of file from that gives data, if null data gives from console
+     * @param reader   reader of file from that gives data, if null data gives from console
      * @param filePath full path to the file which have script to execute
      */
     @Override
     public void execute(InputScriptReader reader, String filePath) {
+        filePath = StringModificator.filePathFormat(filePath);
         if (!files.contains(filePath)) {
             try {
                 InputScriptReader newReader = new InputScriptReader(filePath);
@@ -50,6 +52,7 @@ public class ExecuteScriptCommand extends ArgsCommand {
             } catch (FileNotFoundException | SecurityException e) {
                 System.out.println("Файл не найден или нет доступа к файлу");
             }
+            files.remove(filePath);
         } else System.out.println("Попытка вызова рекурсии! Команда не выполнена");
     }
 }

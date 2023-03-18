@@ -21,8 +21,7 @@ public class JsonManager {
     public JsonManager(String env) {
         try {
             String filePath = System.getenv(env);
-            if (filePath.length() > 0 && filePath.charAt(0) == '~')
-                filePath = System.getenv("HOME") + filePath.substring(1);
+            filePath = StringModificator.filePathFormat(filePath);
             file = new File(filePath);
         } catch (NullPointerException e) {
             System.out.println("Переменной '" + env + "' не существует");

@@ -39,6 +39,7 @@ public class UpdateCommand extends ArgsCommand {
                 dragon = reader.readDragon();
             }
             collection.find(id).update(dragon);
+            collection.saved = false;
             LOGGER.info("Dragon was updated");
         } catch (NumberFormatException e) {
             LOGGER.warn("Incorrect command argument");

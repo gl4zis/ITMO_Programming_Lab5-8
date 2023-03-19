@@ -32,6 +32,7 @@ public class SaveCommand extends NonArgsCommand {
     @Override
     public void execute(InputScriptReader reader) {
         CollectionManager.saveCollection(jsonManager, collection);
+        collection.saved = true;
         LOGGER.debug("Save command was successfully executed");
     }
 }

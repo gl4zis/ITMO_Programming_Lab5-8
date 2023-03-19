@@ -26,10 +26,6 @@ public abstract class InputConsoleReader {
             Scanner console = new Scanner(System.in);
             System.out.print("-> ");
             line = console.nextLine();
-            if (line.equals("exit")) {
-                LOGGER.debug("Correct exit");
-                System.exit(0);
-            }
         } catch (NoSuchElementException e) {
             LOGGER.debug("Correct exit");
             System.exit(0);

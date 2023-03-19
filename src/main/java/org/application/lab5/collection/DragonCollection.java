@@ -13,6 +13,7 @@ import java.util.*;
  * Class that contains collection of dragons, some vars and methods to work with it
  */
 public class DragonCollection {
+    public boolean saved = true;
     private static final Logger LOGGER = LogManager.getLogger(DragonCollection.class);
     private LinkedHashSet<Dragon> collection;
     private static final String TYPE = "LinkedHashSet";
@@ -34,6 +35,7 @@ public class DragonCollection {
         if (idList.contains(dragon.getId())) throw new IdCollisionException();
         idList.add(dragon.getId());
         collection.add(dragon);
+        saved = false;
     }
 
     /** Removes dragon from collection
@@ -42,6 +44,7 @@ public class DragonCollection {
     public void remove(Dragon dragon) {
         idList.remove((Integer) dragon.getId());
         collection.remove(dragon);
+        saved = false;
     }
 
     /** Finds dragon in collection by its id
@@ -74,6 +77,7 @@ public class DragonCollection {
         int dragonCount = idList.size();
         collection.clear();
         idList.clear();
+        saved = false;
         LOGGER.debug(dragonCount + " dragons removed from the collection");
     }
 
@@ -151,6 +155,7 @@ public class DragonCollection {
         ArrayList<Dragon> collectionList = new ArrayList<>(collection);
         Collections.sort(collectionList);
         collection = new LinkedHashSet<>(collectionList);
+        saved = false;
     }
 
     /** Return string output with info about collection

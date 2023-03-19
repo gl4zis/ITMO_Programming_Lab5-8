@@ -39,7 +39,7 @@ public class CommandManager {
             Command averageOfWeight = new AverageOfWeightCommand(collection);
             Command clear = new ClearCommand(collection);
             Command executeScript = new ExecuteScriptCommand(this);
-            Command exit = new ExitCommand();
+            Command exit = new ExitCommand(collection);
             Command filterLessThanWeight = new FilterLessThanWeightCommand(collection);
             Command help = new HelpCommand(this);
             Command info = new InfoCommand(collection);

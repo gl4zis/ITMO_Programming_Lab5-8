@@ -21,14 +21,17 @@ import java.util.stream.Collectors;
 
 public class Main {
 
-    // Sets system properties for logger configuration and logger filepath
+    // Sets system properties for logger configuration and for saving log files
     static {
         System.setProperty("log4j2.configurationFile", "logs.properties");
         String creationDate = new SimpleDateFormat("yyyy-MM-dd/HH-mm-ss").format(new Date());
         String jarPath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String userName;
+        if (OsUtilus.IsWindows()) userName = System.getenv("USERNAME");
+        else userName = System.getenv("USER");
         String dirPath = String.join("/", Arrays.stream(jarPath.split("/")).toList().subList(0, jarPath.split("/").length - 4));  //For debugging
         //String dirPath = String.join("/", Arrays.stream(jarPath.split("/")).toList().subList(0, jarPath.split("/").length - 1));  //For jar executing
-        System.setProperty("logs.path", dirPath + "/logs/" + creationDate + ".log");
+        System.setProperty("logs.path", dirPath + "/logs/" + userName + "/" + creationDate + ".log");
     }
 
     private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(Main.class);

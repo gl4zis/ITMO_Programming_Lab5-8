@@ -31,6 +31,6 @@ public class DragonHead {
      */
     @Override
     public String toString() {
-        return "Has " + eyesCount + " eyes";
+        return "Has " + eyesCount.intValue() + " eyes";
     }
 }

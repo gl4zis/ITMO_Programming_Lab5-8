@@ -26,8 +26,8 @@ public class Main {
         System.setProperty("log4j2.configurationFile", "logs.properties");
         String creationDate = new SimpleDateFormat("yyyy-MM-dd/HH-mm-ss").format(new Date());
         String jarPath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        String dirPath = String.join("/", Arrays.stream(jarPath.split("/")).toList().subList(1, jarPath.split("/").length - 4));  //For debugging
-        //String dirPath = String.join("/", Arrays.stream(jarPath.split("/")).toList().subList(1, jarPath.split("/").length - 1));  //For jar executing
+        String dirPath = String.join("/", Arrays.stream(jarPath.split("/")).toList().subList(0, jarPath.split("/").length - 4));  //For debugging
+        //String dirPath = String.join("/", Arrays.stream(jarPath.split("/")).toList().subList(0, jarPath.split("/").length - 1));  //For jar executing
         System.setProperty("logs.path", dirPath + "/logs/" + creationDate + ".log");
     }
 

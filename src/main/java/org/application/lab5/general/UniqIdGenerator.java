@@ -1,4 +1,4 @@
-package org.application.lab5.dragons;
+package org.application.lab5.general;
 
 import java.util.Date;
 import java.util.Random;
@@ -14,6 +14,8 @@ public abstract class UniqIdGenerator {
      */
     public static int getIntId() {
         long longId = new Date().getTime();
-        return Math.abs(new Random(longId).nextInt());
+        int id = Math.abs(new Random(longId).nextInt());
+        if (id == 0) return 1;
+        else return id;
     }
 }

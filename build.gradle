@@ -12,6 +12,8 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation files('libs/log4j-api-2.20.0.jar')
+    implementation files('libs/log4j-core-2.20.0.jar')
     implementation files('libs/json-simple-1.1.1.jar')
 }
 
@@ -20,8 +22,11 @@ test {
 }
 
 jar {
+    //duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest {
-        attributes 'Class-Path': 'libs/json-simple-1.1.1.jar', 'Main-Class': 'org.application.lab5.general.Main'
+        attributes 'Class-Path': configurations.runtimeClasspath.files.collect { it.getName() }.join(' '),
+                'Main-Class': 'org.application.lab5.general.Main'
+        //'Multi-Release': 'false'
     }
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }

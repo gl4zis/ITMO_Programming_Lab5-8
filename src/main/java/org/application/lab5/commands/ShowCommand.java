@@ -1,5 +1,7 @@
 package org.application.lab5.commands;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.dragons.Dragon;
 import org.application.lab5.parsers.InputScriptReader;
@@ -8,8 +10,8 @@ import org.application.lab5.parsers.InputScriptReader;
 /**
  * Non-argument command "show". Outputs info about all elements in the collection
  */
-
 public class ShowCommand extends NonArgsCommand {
+    private static final Logger LOGGER = LogManager.getLogger(ShowCommand.class);
     private final DragonCollection collection;
 
     /** Constructor, sets collection, that the command works with, name and description of command
@@ -25,7 +27,7 @@ public class ShowCommand extends NonArgsCommand {
     @Override
     public void execute(InputScriptReader reader) {
         if (collection.getItems().size() == 0) {
-            System.out.println("Нет элементов в коллекции");
+            System.out.println("Collection is empty");
         } else {
             int counter = 0;
             for (Dragon dragon : collection.getItems()) {
@@ -35,5 +37,6 @@ public class ShowCommand extends NonArgsCommand {
                 counter++;
             }
         }
+        LOGGER.debug("Show command was successfully executed");
     }
 }

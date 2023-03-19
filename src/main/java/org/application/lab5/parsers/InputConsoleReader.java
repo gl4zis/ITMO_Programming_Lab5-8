@@ -1,5 +1,7 @@
 package org.application.lab5.parsers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.application.lab5.dragons.*;
 
 import java.util.HashMap;
@@ -10,15 +12,12 @@ import java.util.Scanner;
 /**
  * Class for reading from console
  */
-
 public abstract class InputConsoleReader {
+    private static final Logger LOGGER = LogManager.getLogger(InputConsoleReader.class);
+    private static final String ERROR_MESSAGE = "Incorrect input. Try again";
 
-    private static final String ERROR_MESSAGE = "Неверный ввод. Повторите еще раз";
-
-    /**
-     * Reads next line from the console.
+    /** Reads next line from the console.
      * Stops the app, if input == "exit" or ctrl+D
-     *
      * @return inputLine
      */
     public static String readNextLine() {
@@ -28,11 +27,14 @@ public abstract class InputConsoleReader {
             System.out.print("-> ");
             line = console.nextLine();
             if (line.equals("exit")) {
+                LOGGER.debug("Correct exit");
                 System.exit(0);
             }
         } catch (NoSuchElementException e) {
+            LOGGER.debug("Correct exit");
             System.exit(0);
         }
+        LOGGER.trace("Entered console line: '" + line + "'");
         return line;
     }
 
@@ -48,7 +50,7 @@ public abstract class InputConsoleReader {
             var = readNextLine();
             if (var.equals("") && !canBeNull) {
                 mistake = true;
-                System.out.println(ERROR_MESSAGE);
+                LOGGER.warn(ERROR_MESSAGE);
             } else mistake = false;
         } while (mistake);
         return var;
@@ -68,7 +70,7 @@ public abstract class InputConsoleReader {
                 var = Double.parseDouble(strVar);
                 return var;
             } catch (NumberFormatException e) {
-                System.out.println(ERROR_MESSAGE);
+                LOGGER.warn(ERROR_MESSAGE);
             }
         } while (true);
     }
@@ -88,7 +90,7 @@ public abstract class InputConsoleReader {
                 return null;
             if (var - minValue > -1E-13 && var - maxValue < 1E-13)
                 break;
-            System.out.println(ERROR_MESSAGE);
+            LOGGER.warn(ERROR_MESSAGE);
         } while (true);
         return var;
     }
@@ -107,7 +109,7 @@ public abstract class InputConsoleReader {
                 var = Long.parseLong(strVar);
                 return var;
             } catch (NumberFormatException e) {
-                System.out.println(ERROR_MESSAGE);
+                LOGGER.warn(ERROR_MESSAGE);
             }
         } while (true);
     }
@@ -127,7 +129,7 @@ public abstract class InputConsoleReader {
                 return null;
             if (var >= minValue && var <= maxValue)
                 break;
-            System.out.println(ERROR_MESSAGE);
+            LOGGER.warn(ERROR_MESSAGE);
         } while (true);
         return var;
     }
@@ -136,7 +138,7 @@ public abstract class InputConsoleReader {
      * @return dragonName
      */
     private static String readDragonName() {
-        System.out.println("Введите имя: ");
+        System.out.println("Enter name:");
         return readStringVar(false);
     }
 
@@ -146,9 +148,9 @@ public abstract class InputConsoleReader {
      * @return dragonCoordinates
      */
     private static Coordinates readDragonCoordinates() {
-        System.out.println("Введите координату x (дробное число >-497): ");
+        System.out.println("Enter X coordinate (fractional number >497):");
         double x = readDoubleVar(false, -497 + 1E-13, Double.POSITIVE_INFINITY);
-        System.out.println("Введите координату y (дробное число): ");
+        System.out.println("Enter Y coordinate (fractional number):");
         float y = readDoubleVar(false).floatValue();
         return new Coordinates(x, y);
     }
@@ -159,7 +161,7 @@ public abstract class InputConsoleReader {
      * @return dragonAge
      */
     private static int readDragonAge() {
-        System.out.println("Введите возраст (целое число от 1 до " + Integer.MAX_VALUE + "): ");
+        System.out.println("Enter age (integral number from 1 to " + Integer.MAX_VALUE + "):");
         Long age = readLongVar(true, 1, Long.MAX_VALUE);
         if (age != null)
             return age.intValue();
@@ -172,7 +174,7 @@ public abstract class InputConsoleReader {
      * @return dragonWeight
      */
     private static long readDragonWeight() {
-        System.out.println("Введите вес (целое число от 1 до " + Long.MAX_VALUE + "): ");
+        System.out.println("Enter weight (integral number from 1 to " + Long.MAX_VALUE + "):");
         return readLongVar(false, 1, Long.MAX_VALUE);
     }
 
@@ -187,11 +189,11 @@ public abstract class InputConsoleReader {
         colors.put(3, Color.ORANGE);
         colors.put(4, Color.BROWN);
         System.out.print("""
-                Выберите цвет (введите цифру)
-                \t1: Зеленый
-                \t2: Красный
-                \t3: Оранжевый
-                \t4: Коричневый
+                Choose color (enter number)
+                \t1: Green
+                \t2: Red
+                \t3: Orange
+                \t4: Brown
                 """);
         int colorNum = readLongVar(false, 1, 4).intValue();
         return colors.get(colorNum);
@@ -207,10 +209,10 @@ public abstract class InputConsoleReader {
         character.put(2, DragonCharacter.CHAOTIC_EVIL);
         character.put(3, DragonCharacter.FICKLE);
         System.out.print("""
-                Выберите характер (введите цифру)
-                \t1: Рассудительный
-                \t2: Злой
-                \t3: Капризный
+                Choose character (enter number)
+                \t1: Wise
+                \t2: Evil
+                \t3: Fickle
                 """);
         int colorNum = readLongVar(false, 1, 3).intValue();
         return character.get(colorNum);
@@ -221,7 +223,7 @@ public abstract class InputConsoleReader {
      * @return dragonHead
      */
     private static DragonHead readDragonHead() {
-        System.out.println("Введите количество глаз (целое неотрицательное число): ");
+        System.out.println("Enter count of eyes (integral non-negative number):");
         long eyesCount = readLongVar(false, 0, Long.MAX_VALUE);
         return new DragonHead(eyesCount);
     }
@@ -231,8 +233,8 @@ public abstract class InputConsoleReader {
      */
     public static Dragon readDragon() {
         System.out.println("""
-                Введите все поля объекта Dragon.
-                Поле 'Возраст' можно оставить пустым.""");
+                Enter dragon profile.
+                You can leave age empty""");
         int age;
         String name = readDragonName();
         Coordinates coordinates = readDragonCoordinates();
@@ -244,6 +246,7 @@ public abstract class InputConsoleReader {
         Dragon dragon = new Dragon(name, coordinates, weight, color, character, head);
         if (age != -1)
             dragon.setAge(age);
+        LOGGER.debug("Dragon object has created");
         return dragon;
     }
 }

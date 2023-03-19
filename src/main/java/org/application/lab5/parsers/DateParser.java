@@ -19,7 +19,6 @@ public abstract class DateParser {
 
     public static String dateToString(Date date) {
         Map<String, String> months = new HashMap<>();
-
         months.put("Jan", "01");
         months.put("Feb", "02");
         months.put("Mar", "03");
@@ -43,9 +42,7 @@ public abstract class DateParser {
         return day + "." + month + "." + year + " " + time;
     }
 
-    /**
-     * Parses String to the Date object
-     *
+    /** Parses String to the Date object
      * @param str inputted line, parses into Date object
      * @return dateObject
      * @throws ParseException if date format in inputted string is incorrect

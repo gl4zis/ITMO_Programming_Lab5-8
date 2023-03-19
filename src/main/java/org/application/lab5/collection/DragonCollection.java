@@ -1,5 +1,7 @@
 package org.application.lab5.collection;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.application.lab5.parsers.DateParser;
 import org.application.lab5.dragons.Dragon;
 import org.application.lab5.exceptions.IdCollisionException;
@@ -8,11 +10,10 @@ import org.application.lab5.exceptions.ObjectNotFoundException;
 import java.util.*;
 
 /**
- * Class that contains collection of dragons, some vars and methods for work with it
+ * Class that contains collection of dragons, some vars and methods to work with it
  */
-
 public class DragonCollection {
-
+    private static final Logger LOGGER = LogManager.getLogger(DragonCollection.class);
     private LinkedHashSet<Dragon> collection;
     private static final String TYPE = "LinkedHashSet";
     private final ArrayList<Integer> idList = new ArrayList<>();
@@ -70,31 +71,27 @@ public class DragonCollection {
     /** Removes all objects from collection
      */
     public void clear() {
+        int dragonCount = idList.size();
         collection.clear();
         idList.clear();
+        LOGGER.debug(dragonCount + " dragons removed from the collection");
     }
 
-    /**
-     * Returns date of creation this collection
-     *
+    /** Returns date of creation this collection
      * @return creationDate
      */
     public Date getCreationDate() {
         return creationDate;
     }
 
-    /**
-     * Sets date of creation, read from JSON file
-     *
+    /** Sets date of creation, read from JSON file
      * @param date will be sets to this collection
      */
     void setCreationDate(Date date) {
         creationDate = date;
     }
 
-    /**
-     * Returns collection of dragons
-     *
+    /** Returns collection of dragons
      * @return collection
      */
     public Collection<Dragon> getItems() {
@@ -161,9 +158,9 @@ public class DragonCollection {
      */
     @Override
     public String toString() {
-        return "Тип коллекции: " + TYPE + "\n" +
-                "Количество элементов: " + collection.size() + "\n" +
-                "Дата создания: " + DateParser.dateToString(creationDate) + "\n" +
-                "Наибольший Id элементов: " + getMaxId();
+        return "Collection type: " + TYPE + "\n" +
+                "Collection size: " + collection.size() + "\n" +
+                "Date of creation: " + DateParser.dateToString(creationDate) + "\n" +
+                "Maximum dragon id: " + getMaxId();
     }
 }

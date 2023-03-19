@@ -1,5 +1,7 @@
 package org.application.lab5.commands;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.exceptions.ObjectNotFoundException;
 import org.application.lab5.parsers.InputScriptReader;
@@ -7,8 +9,8 @@ import org.application.lab5.parsers.InputScriptReader;
 /**
  * Argument command "remove_by_id id". Removes dragon from the collection by its id
  */
-
 public class RemoveByIdCommand extends ArgsCommand {
+    private static final Logger LOGGER = LogManager.getLogger(RemoveByIdCommand.class);
     private final DragonCollection collection;
 
     /** Constructor, sets collection, that the command works with, name and description of command
@@ -28,11 +30,12 @@ public class RemoveByIdCommand extends ArgsCommand {
         try {
             int id = Integer.parseInt(arg);
             collection.remove(collection.find(id));
-            System.out.println("Обект успешно удалён");
+            LOGGER.info("Dragon was successfully removed");
         } catch (NumberFormatException e) {
-            System.out.println("Неверный аргумент");
+            LOGGER.warn("Incorrect command argument");
         } catch (ObjectNotFoundException e) {
-            System.out.println("Такого объекта нет в коллекции");
+            System.out.println("There is no such element in the collection");
         }
+        LOGGER.debug("RemoveById command was successfully executed");
     }
 }

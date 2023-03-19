@@ -1,5 +1,7 @@
 package org.application.lab5.commands;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.dragons.Dragon;
@@ -9,8 +11,8 @@ import org.application.lab5.parsers.InputScriptReader;
 /**
  * Argument command "update id {dragon}". Change dragon vars on another. Finds dragon in collection by its id
  */
-
 public class UpdateCommand extends ArgsCommand {
+    private static final Logger LOGGER = LogManager.getLogger(UpdateCommand.class);
     private final DragonCollection collection;
 
     /** Constructor, sets collection, that the command works with, name and description of command
@@ -37,11 +39,12 @@ public class UpdateCommand extends ArgsCommand {
                 dragon = reader.readDragon();
             }
             collection.find(id).update(dragon);
-            System.out.println("Объект успешно обновлен");
+            LOGGER.info("Dragon was updated");
         } catch (NumberFormatException e) {
-            System.out.println("Неверный аргумент");
+            LOGGER.warn("Incorrect command argument");
         } catch (ObjectNotFoundException e) {
-            System.out.println("Такого объекта нет в коллекции");
+            System.out.println("No such element in the collection");
         }
+        LOGGER.debug("Update command successfully executed");
     }
 }

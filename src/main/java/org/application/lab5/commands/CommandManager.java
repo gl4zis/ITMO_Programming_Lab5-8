@@ -1,5 +1,7 @@
 package org.application.lab5.commands;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.exceptions.IncorrectInputException;
 import org.application.lab5.parsers.InputScriptReader;
@@ -14,8 +16,9 @@ import java.util.Set;
  * Class for finding command by its name.
  * (In console line or in script file line)
  */
-
 public class CommandManager {
+    private static final Logger LOGGER = LogManager.getLogger(CommandManager.class);
+    static final String UNKNOWN_COMMAND = "Unknown command. Type \"help\" for see information about commands";
     private Map<String, Command> commands;
 
     /** Constructor, sets JsonManager and DragonCollection with which commands will work
@@ -76,13 +79,13 @@ public class CommandManager {
      * @param line   string input, where command will be seeking
      * @throws IncorrectInputException if no such command in the line
      */
-    public void seekCommand(InputScriptReader reader, String line) throws IncorrectInputException {
+    public void seekCommand(InputScriptReader reader, String line) {
         if (line.equals("")) {
         } else {
             String[] input = line.split(" ");
             if (input.length == 0) {
             } else if (input.length > 2)
-                throw new IncorrectInputException("Неизвестная команда. Введите команду help, чтобы посмотреть информацию о коммандах");
+                LOGGER.warn(line + " - " + UNKNOWN_COMMAND);
             else {
                 String command = input[0];
                 if (commands.containsKey(command)) {
@@ -93,42 +96,34 @@ public class CommandManager {
                         commands.get(command).execute(reader);
                     }
                 } else {
-                    throw new IncorrectInputException("Неизвестная команда. Введите команду help, чтобы посмотреть информацию о коммандах");
+                    LOGGER.warn(line + " - " + UNKNOWN_COMMAND);
                 }
             }
         }
     }
 
-    /**
-     * Executes seekCommand with reader = null
-     *
+    /** Executes seekCommand with reader = null
      * @param line string input, where command will be seeking
      */
     public void seekCommand(String line) {
         seekCommand(null, line);
     }
 
-    /**
-     * Returns collection with command objects
-     *
+    /** Returns collection with command objects
      * @return commands
      */
     public Collection<Command> getCommands() {
         return commands.values();
     }
 
-    /**
-     * Returns set with command names
-     *
+    /** Returns set with command names
      * @return names
      */
     public Set<String> getCommandNames() {
         return commands.keySet();
     }
 
-    /**
-     * Adds new non-standard command in the map
-     *
+    /** Adds new non-standard command in the map
      * @param newCommand object of command, that will be added in the map
      */
     public void addNewCommand(ArgsCommand newCommand) {

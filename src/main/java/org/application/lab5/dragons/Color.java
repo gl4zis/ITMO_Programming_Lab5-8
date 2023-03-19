@@ -5,25 +5,21 @@ package org.application.lab5.dragons;
  * Can be one of Four variants
  */
 public enum Color {
-    GREEN("Зеленый"),
-    RED("Красный"),
-    ORANGE("Оранжевый"),
-    BROWN("Коричневый");
+    GREEN("Green"),
+    RED("Red"),
+    ORANGE("Orange"),
+    BROWN("Brown");
 
     private final String name;
 
-    /**
-     * Constructor sets name of color
-     *
+    /** Constructor sets name of color
      * @param name of this color
      */
     Color(String name) {
         this.name = name;
     }
 
-    /**
-     * Returns name of color
-     *
+    /** Returns name of color
      * @return name
      */
     @Override

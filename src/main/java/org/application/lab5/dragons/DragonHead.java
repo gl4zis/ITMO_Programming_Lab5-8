@@ -9,10 +9,8 @@ import org.application.lab5.exceptions.IncorrectDataException;
 public class DragonHead {
     private final Float eyesCount; //Поле не может быть null
 
-    /**
-     * Constructor sets count of eyes.
+    /** Constructor sets count of eyes.
      * Converts infinity to the max value
-     *
      * @param eyesCount count of eyes
      */
     public DragonHead(float eyesCount) {
@@ -21,22 +19,18 @@ public class DragonHead {
         else this.eyesCount = eyesCount;
     }
 
-    /**
-     * Returns count of eyes
-     *
+    /** Returns count of eyes
      * @return count of eyes
      */
     public float getEyesCount() {
         return eyesCount;
     }
 
-    /**
-     * Returns string output with information about this head
-     *
+    /** Returns string output with information about this head
      * @return output
      */
     @Override
     public String toString() {
-        return "На голове " + eyesCount + " глаза";
+        return "Has " + eyesCount + " eyes";
     }
 }

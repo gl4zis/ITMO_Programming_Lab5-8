@@ -8,6 +8,6 @@ public class IncorrectInputException extends IncorrectDataException {
      * @param message outputs, when this exception throws
      */
     public IncorrectInputException(String message) {
-        super("Данныe введены некорректно: " + message);
+        super("Incorrect data inputted: " + message);
     }
 }

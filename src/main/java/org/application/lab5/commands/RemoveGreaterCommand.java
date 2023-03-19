@@ -1,5 +1,7 @@
 package org.application.lab5.commands;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.dragons.Dragon;
@@ -10,8 +12,8 @@ import java.util.Iterator;
 /**
  * Argument command "remove_greater {dragon}". Removes all dragons from collection, that more than inputted dragon
  */
-
 public class RemoveGreaterCommand extends NonArgsCommand {
+    private static final Logger LOGGER = LogManager.getLogger(RemoveGreaterCommand.class);
     private final DragonCollection collection;
 
     /** Constructor, sets collection, that the command works with, name and description of command
@@ -41,10 +43,11 @@ public class RemoveGreaterCommand extends NonArgsCommand {
             dragon = iterator.next();
             if (dragon.compareTo(maxDragon) > 0) {
                 iterator.remove();
-                System.out.println("Обект с id " + dragon.getId() + ", " + dragon.getName() + " был удален");
+                LOGGER.info("Object with id " + dragon.getId() + ", named " + dragon.getName() + " was removed");
                 counter++;
             }
         }
-        if (counter == 0) System.out.println("Нет таких элементов в коллекции");
+        if (counter == 0) System.out.println("No such elements in the collection");
+        LOGGER.debug("RemoveGreater command was successfully executed");
     }
 }

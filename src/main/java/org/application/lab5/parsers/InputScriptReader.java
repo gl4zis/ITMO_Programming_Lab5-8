@@ -1,5 +1,7 @@
 package org.application.lab5.parsers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.application.lab5.commands.CommandManager;
 import org.application.lab5.dragons.*;
 import org.application.lab5.exceptions.IncorrectDataException;
@@ -15,8 +17,8 @@ import java.util.Set;
  * Class for reading something from script file
  */
 public class InputScriptReader {
-
-    private static final String INCORRECT_DATA_MESSAGE = "Некорректные поля объекта Dragon";
+    private static final Logger LOGGER = LogManager.getLogger(InputScriptReader.class);
+    private static final String INCORRECT_DATA_MESSAGE = "Incorrect dragon profile";
     private final Reader reader;
     private boolean execution;
 
@@ -62,7 +64,7 @@ public class InputScriptReader {
             if (nextSym == -1) execution = false;
         } catch (IOException e) {
             execution = false;
-            System.out.println("Что-то случилось с файликом =(");
+            LOGGER.error("Something wrong with script file =(");
         }
         return line.toString();
     }
@@ -80,7 +82,7 @@ public class InputScriptReader {
                 String command = line.split(" ")[0];
                 if (commands.contains(command)) return line;
             } catch (ArrayIndexOutOfBoundsException ignored) {
-            } //Вылетает, если строка пустая => просто пропускаем строку
+            } //Catches it if line is empty => just skip this line
         }
         return null;
     }
@@ -209,6 +211,7 @@ public class InputScriptReader {
             if (age > -1) dragon.setAge(age);
             return dragon;
         } catch (IncorrectDataException e) {
+            LOGGER.debug(INCORRECT_DATA_MESSAGE);
             return null;
         }
     }

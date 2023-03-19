@@ -1,5 +1,7 @@
 package org.application.lab5.commands;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.dragons.Dragon;
@@ -8,8 +10,8 @@ import org.application.lab5.parsers.InputScriptReader;
 /**
  * Non-argument command "add_if_min {dragon}"
  */
-
 public class AddIfMinCommand extends NonArgsCommand {
+    private static final Logger LOGGER = LogManager.getLogger(NonArgsCommand.class);
     private final DragonCollection collection;
 
     /** Constructor, sets collection, that the command works with, name and description of command
@@ -34,9 +36,10 @@ public class AddIfMinCommand extends NonArgsCommand {
         Dragon minDragon = collection.getMinDragon();
         if (minDragon == null || collection.getMinDragon().compareTo(dragon) > 0) {
             collection.add(dragon);
-            System.out.println("Новый объект успешно добавлен");
+            LOGGER.info("New dragon successfully added in the collection");
         } else {
-            System.out.println("Объект не минимальный");
+            System.out.println("Object is not minimal");
         }
+        LOGGER.debug("AddIfMin command was successfully executed");
     }
 }

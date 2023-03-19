@@ -1,5 +1,7 @@
 package org.application.lab5.commands;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.dragons.Dragon;
 import org.application.lab5.parsers.InputScriptReader;
@@ -8,8 +10,8 @@ import org.application.lab5.parsers.InputScriptReader;
  * Argument command "filter_less_than_weight weight".
  * Output all dragons in collection, which weight less than inputted weight
  */
-
 public class FilterLessThanWeightCommand extends ArgsCommand {
+    private final Logger LOGGER = LogManager.getLogger(FilterLessThanWeightCommand.class);
     private final DragonCollection collection;
 
     /** Constructor, sets collection, that the command works with, name and description of command
@@ -36,9 +38,10 @@ public class FilterLessThanWeightCommand extends ArgsCommand {
                     counter++;
                 }
             }
-            if (counter == 0) System.out.println("Нет таких элементов в коллекции");
+            if (counter == 0) System.out.println("Collection is empty");
         } catch (NumberFormatException e) {
-            System.out.println("Неверный аргумент комманды");
+            LOGGER.warn("Incorrect command argument");
         }
+        LOGGER.debug("FilterLessThanWeight command was successfully executed");
     }
 }

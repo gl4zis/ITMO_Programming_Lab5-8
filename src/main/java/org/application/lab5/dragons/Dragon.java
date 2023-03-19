@@ -1,6 +1,7 @@
 package org.application.lab5.dragons;
 
 import org.application.lab5.exceptions.IncorrectDataException;
+import org.application.lab5.general.UniqIdGenerator;
 import org.application.lab5.parsers.DateParser;
 
 import java.util.Date;
@@ -21,32 +22,29 @@ public class Dragon implements Comparable<Dragon> {
     private java.util.Date creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Integer age; //Значение поля должно быть больше 0, Поле может быть null
 
-    /**
-     * Constructor, sets all the params.
+    /** Constructor, sets all the params.
      * For creating dragon by data from JSON file
-     *
      * @throws IncorrectDataException if some params are incorrect
      */
     public Dragon(int id, String name, Coordinates coordinates, Date creationDate, long weight, Color color, DragonCharacter character, DragonHead head)
             throws IncorrectDataException {
         this(name, coordinates, weight, color, character, head);
-        if (creationDate == null) throw new IncorrectDataException("Неккоректная дата создания объекта Dragon");
-        if (id < 0) throw new IncorrectDataException("Неккоректный id объекта Dragon");
+        if (creationDate == null) throw new IncorrectDataException("Incorrect date of creation");
+        if (id < 0) throw new IncorrectDataException("Incorrect id");
         this.id = id;
         this.creationDate = creationDate;
     }
 
-    /**
-     * Constructor with auto-generated id and creation date.
+    /** Constructor with auto-generated id and creation date.
      * For create dragon by user
-     *
      * @throws IncorrectDataException if some params are incorrect
      */
     public Dragon(String name, Coordinates coordinates, long weight, Color color, DragonCharacter character, DragonHead head)
             throws IncorrectDataException {
         if (name == null || coordinates == null || color == null || character == null || head == null)
-            throw new IncorrectDataException("Не хватает инициализированных полей");
-        if (name.equals("") || weight <= 0) throw new IncorrectDataException("Некорректные поля объекта Dragon");
+            throw new IncorrectDataException("There are nulls in dragon characteristics");
+        if (name.equals("") || weight <= 0)
+            throw new IncorrectDataException("Incorrect dragon characteristics (name or weight)");
         this.id = UniqIdGenerator.getIntId();
         this.name = name;
         this.coordinates = coordinates;
@@ -57,10 +55,8 @@ public class Dragon implements Comparable<Dragon> {
         this.head = head;
     }
 
-    /**
-     * Updates this using vars from other dragon.
+    /** Updates this using vars from other dragon.
      * Using in update command
-     *
      * @param dragon object, on that swaps this, saving id and creationDate
      */
     public void update(Dragon dragon) {
@@ -74,44 +70,35 @@ public class Dragon implements Comparable<Dragon> {
         head = dragon.getDragonHead();
     }
 
-    /**
-     * Returns id
+    /** Returns id
      * @return id
      */
     public int getId() {
         return id;
     }
 
-    /**
-     * Returns name
-     *
+    /** Returns name
      * @return name
      */
     public String getName() {
         return name;
     }
 
-    /**
-     * Returns coordinates
-     *
+    /** Returns coordinates
      * @return coordinates
      */
     public Coordinates getCoordinates() {
         return coordinates;
     }
 
-    /**
-     * Returns date of creation
-     *
+    /** Returns date of creation
      * @return creationDate
      */
     public Date getCreationDate() {
         return creationDate;
     }
 
-    /**
-     * Returns age. If age == null, returns -1
-     *
+    /** Returns age. If age == null, returns -1
      * @return age
      */
     public int getAge() {
@@ -119,74 +106,60 @@ public class Dragon implements Comparable<Dragon> {
         else return age;
     }
 
-    /**
-     * Sets age
-     *
+    /** Sets age, expects positive integer
      * @param age positive integral number
      * @throws IncorrectDataException if it's not a number, or it's negative number
      */
     public void setAge(int age) throws IncorrectDataException {
-        if (age <= 0) throw new IncorrectDataException("Некорректные поля объекта Dragon");
+        if (age <= 0) throw new IncorrectDataException("Incorrect age for dragon");
         this.age = age;
     }
 
-    /**
-     * Returns weight
-     *
+    /** Returns weight
      * @return weight
      */
     public long getWeight() {
         return weight;
     }
 
-    /**
-     * Returns color
-     *
+    /** Returns color
      * @return color
      */
     public Color getColor() {
         return color;
     }
 
-    /**
-     * Returns character
-     *
+    /** Returns character
      * @return character
      */
     public DragonCharacter getDragonCharacter() {
         return character;
     }
 
-    /**
-     * Returns head
-     *
+    /** Returns head
      * @return head
      */
     public DragonHead getDragonHead() {
         return head;
     }
 
-    /**
-     * Returns string output with info about this dragon
-     *
+    /** Returns string output with info about this dragon
      * @return output
      */
     @Override
     public String toString() {
         return "Id - " + id + "\n" +
-                "имя - " + name + "\n" +
-                "Координаты:" + coordinates + "\n" +
-                "Дата создания - " + DateParser.dateToString(creationDate) + "\n" +
-                "Возраст - " + age + " лет\n" +
-                "Вес - " + weight + " кг\n" +
-                "Цвет - " + color + "\n" +
-                "Характер - " + character + "\n" +
-                "Голова - " + head;
+                "Name - " + name + "\n" +
+                "Coordinates:" + coordinates + "\n" +
+                "Date of creation - " + DateParser.dateToString(creationDate) + "\n" +
+                "Age - " + age + " years\n" +
+                "Weight - " + weight + " kg\n" +
+                "Color - " + color + "\n" +
+                "Character - " + character + "\n" +
+                "Head - " + head;
     }
 
-    /**
-     * Returns id as a hash code
-     *
+    /** Returns id as a hash code
      * @return id
      */
     @Override
@@ -194,9 +167,7 @@ public class Dragon implements Comparable<Dragon> {
         return id;
     }
 
-    /**
-     * Compares two dragons. Returns true if objects are equals, false if not
-     *
+    /** Compares two dragons. Returns true if objects are equals, false if not
      * @param obj other dragon, that compares with this
      * @return this.equals(object)
      */
@@ -209,11 +180,9 @@ public class Dragon implements Comparable<Dragon> {
         }
     }
 
-    /**
-     * Compares two dragons. Returns positive integral number if this dragon more than input dragon.
+    /** Compares two dragons. Returns positive integral number if this dragon more than input dragon.
      * Returns negative integral dragons if this dragon less than input dragon.
      * Returns 0 if this.equals(dragon) == true
-     *
      * @param dragon the object to be compared.
      */
     @Override

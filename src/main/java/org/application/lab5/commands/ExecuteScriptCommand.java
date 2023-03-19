@@ -1,5 +1,7 @@
 package org.application.lab5.commands;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.application.lab5.exceptions.IncorrectDataException;
 import org.application.lab5.parsers.InputScriptReader;
 import org.application.lab5.parsers.StringModificator;
@@ -11,8 +13,8 @@ import java.util.Set;
 /**
  * Argument command "execute_script file_path". Executes all commands from the script file
  */
-
 public class ExecuteScriptCommand extends ArgsCommand {
+    private static final Logger LOGGER = LogManager.getLogger(ExecuteScriptCommand.class);
     private final Set<String> files = new HashSet<>();
     private final CommandManager commandManager;
 
@@ -39,20 +41,20 @@ public class ExecuteScriptCommand extends ArgsCommand {
                 String line = newReader.findNextCommand(commandManager);
                 while (line != null) {
                     System.out.println();
-                    System.out.print("Выполнение: ");
-                    System.out.println(line);
+                    LOGGER.info("Executing: " + line);
                     try {
                         commandManager.seekCommand(newReader, line);
                     } catch (NullPointerException | IncorrectDataException e) {
-                        System.out.println("Ошибка! Команда не выполнена");
+                        LOGGER.warn("ERROR! Command didn't execute");
                     }
                     line = newReader.findNextCommand(commandManager);
                 }
-                System.out.println("Выполнение скрипта закончено");
+                LOGGER.info("End of executing script");
             } catch (FileNotFoundException | SecurityException e) {
-                System.out.println("Файл не найден или нет доступа к файлу");
+                LOGGER.error("File didn't find or there is no access to file");
             }
             files.remove(filePath);
-        } else System.out.println("Попытка вызова рекурсии! Команда не выполнена");
+        } else LOGGER.warn("Try of recursion! Script wouldn't execute");
+        LOGGER.debug("ExecuteScript command was successfully executed");
     }
 }

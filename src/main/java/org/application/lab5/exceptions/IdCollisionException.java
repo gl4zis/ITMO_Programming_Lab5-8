@@ -7,6 +7,6 @@ public class IdCollisionException extends RuntimeException {
     /** Constructor with standard message for this exception
      */
     public IdCollisionException() {
-        super("У объектов одинаковый Id");
+        super("Dragons have same id");
     }
 }

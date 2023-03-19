@@ -1,6 +1,8 @@
 package org.application.lab5.parsers;
 
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -14,7 +16,7 @@ import java.util.List;
 
 public class JsonManager {
     private File file;
-
+    private static final Logger LOGGER = LogManager.getLogger(JsonManager.class);
     /** Constructor, that creates object, trying to get file path from environment variable
      * @param env environment variable, that have file path
      */
@@ -24,13 +26,14 @@ public class JsonManager {
             filePath = StringModificator.filePathFormat(filePath);
             file = new File(filePath);
         } catch (NullPointerException e) {
-            System.out.println("Переменной '" + env + "' не существует");
-            System.out.println("Введите путь к JSON файлу коллекции");
+            if (!env.equals(""))
+                LOGGER.error("Environment '" + env + "' doesn't exist");
+            System.out.println("Enter file path to the JSON file:");
             initJson();
         }
     }
 
-    /** Method, what gets file path from console line, if something wrong with environment var
+    /** Gets file path from console line, if something wrong with environment var
      */
     private void initJson() {
         while (true) {
@@ -41,7 +44,7 @@ public class JsonManager {
                 file = new File(filePath);
                 break;
             } catch (NullPointerException e) {
-                System.out.println("Введена пустая строка");
+                LOGGER.warn("You entered empty string");
             }
         }
     }
@@ -56,8 +59,8 @@ public class JsonManager {
                 FileInputStream in = new FileInputStream(file);
                 return new InputStreamReader(in);
             } catch (FileNotFoundException | SecurityException e) {
-                System.out.println("Файла не существует или нет доступа к файлу");
-                System.out.println("Введите путь к JSON файлу коллекции");
+                LOGGER.error("File doesn't exist or there is no access to the file");
+                System.out.println("Enter file path to the JSON file:");
                 initJson();
             }
         }
@@ -76,10 +79,10 @@ public class JsonManager {
                     return (JSONObject) new JSONParser().parse(getNewReader());
                 }
             } catch (ParseException e) {
-                System.out.println("Некорректный файл");
+                LOGGER.debug("Incorrect format of file");
                 return new JSONObject();
             } catch (IOException e) {
-                System.out.println("Что-то пошло не так =(");
+                LOGGER.error("Something went wrong with collection file");
                 initJson();
             }
         }
@@ -92,15 +95,13 @@ public class JsonManager {
         try (FileOutputStream writer = new FileOutputStream(file)) {
             String output = jsonFormatting(json.toJSONString());
             writer.write(output.getBytes());
-            System.out.println("Коллекция успешно сохранена в файл");
+            LOGGER.info("Collection saved successfully");
         } catch (IOException | SecurityException e) {
-            System.out.println("Ошибка доступа к файлу");
+            LOGGER.warn("Error with access to the file");
         }
     }
 
-    /**
-     * Formats output string, what writes in file to have beautiful JSON =)
-     *
+    /** Formats output string, what writes in file to have beautiful JSON =)
      * @param json string, that will be formatting, expects one-line JSON
      * @return output
      */

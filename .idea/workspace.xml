@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="changed logs dir, now dependence on user.dir">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/ExitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/ExitCommand.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="fixed exit confirm and dragon entering">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputConsoleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputConsoleReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/logs.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logs.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,8 +175,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.ITMO_Programming_Lab5 [build]" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.lab5 [wrapper]" />
         <item itemvalue="Gradle.ITMO_Programming_Lab5 [jar]" />
       </list>
@@ -190,13 +190,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00002" summary="commit 1/16.02.2023">
-      <created>1676580205549</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1676580205549</updated>
     </task>
     <task id="LOCAL-00003" summary="commit 2/18.02.2023&#10;Реализованы все команды без аргументов и работа с JSON">
       <created>1676753125717</created>
@@ -534,7 +527,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679268846684</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="fixed exit confirm and dragon entering">
+      <created>1679302138009</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1679302138010</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -562,7 +562,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="reworked exceptions" />
     <MESSAGE value="realized execute_script command" />
     <MESSAGE value="execute_script command bugfix" />
     <MESSAGE value="removed public static objects" />
@@ -587,7 +586,8 @@
     <MESSAGE value="micro debug" />
     <MESSAGE value="debug for correct creating log files by different users" />
     <MESSAGE value="changed logs dir, now dependence on user.dir" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed logs dir, now dependence on user.dir" />
+    <MESSAGE value="fixed exit confirm and dragon entering" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed exit confirm and dragon entering" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

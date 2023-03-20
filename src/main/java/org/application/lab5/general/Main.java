@@ -35,7 +35,7 @@ public class Main {
 
         Так не получится без выдачи всем прав на запись в каталог, где находится jar =(
          */
-        System.setProperty("logs.path", "./logs/" + creationDate + ".log");
+        System.setProperty("logs.path", "./lab5-dev-logs/" + creationDate + ".log");
     }
 
     private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(Main.class);

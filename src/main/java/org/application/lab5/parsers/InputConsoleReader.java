@@ -24,7 +24,6 @@ public abstract class InputConsoleReader {
         String line = "";
         try {
             Scanner console = new Scanner(System.in);
-            System.out.print("-> ");
             line = console.nextLine();
         } catch (NoSuchElementException e) {
             LOGGER.debug("Correct exit");
@@ -134,7 +133,7 @@ public abstract class InputConsoleReader {
      * @return dragonName
      */
     private static String readDragonName() {
-        System.out.println("Enter name:");
+        System.out.print("Enter name: ");
         return readStringVar(false);
     }
 
@@ -144,9 +143,9 @@ public abstract class InputConsoleReader {
      * @return dragonCoordinates
      */
     private static Coordinates readDragonCoordinates() {
-        System.out.println("Enter X coordinate (fractional number >497):");
+        System.out.print("Enter X coordinate (fractional number > -497): ");
         double x = readDoubleVar(false, -497 + 1E-13, Double.POSITIVE_INFINITY);
-        System.out.println("Enter Y coordinate (fractional number):");
+        System.out.print("Enter Y coordinate (fractional number): ");
         float y = readDoubleVar(false).floatValue();
         return new Coordinates(x, y);
     }
@@ -157,8 +156,8 @@ public abstract class InputConsoleReader {
      * @return dragonAge
      */
     private static int readDragonAge() {
-        System.out.println("Enter age (integral number from 1 to " + Integer.MAX_VALUE + "):");
-        Long age = readLongVar(true, 1, Long.MAX_VALUE);
+        System.out.print("Enter age (integral number from 1 to " + Integer.MAX_VALUE + "): ");
+        Long age = readLongVar(true, 1, Integer.MAX_VALUE);
         if (age != null)
             return age.intValue();
         else
@@ -170,7 +169,7 @@ public abstract class InputConsoleReader {
      * @return dragonWeight
      */
     private static long readDragonWeight() {
-        System.out.println("Enter weight (integral number from 1 to " + Long.MAX_VALUE + "):");
+        System.out.print("Enter weight (integral number from 1 to " + Long.MAX_VALUE + "): ");
         return readLongVar(false, 1, Long.MAX_VALUE);
     }
 
@@ -185,12 +184,11 @@ public abstract class InputConsoleReader {
         colors.put(3, Color.ORANGE);
         colors.put(4, Color.BROWN);
         System.out.print("""
-                Choose color (enter number)
                 \t1: Green
                 \t2: Red
                 \t3: Orange
                 \t4: Brown
-                """);
+                Choose color (enter number):\040""");
         int colorNum = readLongVar(false, 1, 4).intValue();
         return colors.get(colorNum);
     }
@@ -205,11 +203,10 @@ public abstract class InputConsoleReader {
         character.put(2, DragonCharacter.CHAOTIC_EVIL);
         character.put(3, DragonCharacter.FICKLE);
         System.out.print("""
-                Choose character (enter number)
                 \t1: Wise
                 \t2: Evil
                 \t3: Fickle
-                """);
+                Choose character (enter number):\040""");
         int colorNum = readLongVar(false, 1, 3).intValue();
         return character.get(colorNum);
     }
@@ -219,7 +216,7 @@ public abstract class InputConsoleReader {
      * @return dragonHead
      */
     private static DragonHead readDragonHead() {
-        System.out.println("Enter count of eyes (integral non-negative number):");
+        System.out.print("Enter count of eyes (integral non-negative number): ");
         long eyesCount = readLongVar(false, 0, Long.MAX_VALUE);
         return new DragonHead(eyesCount);
     }

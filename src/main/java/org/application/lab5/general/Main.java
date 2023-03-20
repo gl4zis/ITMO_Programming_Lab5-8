@@ -56,6 +56,7 @@ public class Main {
             CommandManager commandManager = new CommandManager(jsonManager, collection);
             CollectionManager.uploadCollection(jsonManager.readJSON(), collection);
             while (true) {
+                System.out.print("-> ");
                 commandManager.seekCommand(InputConsoleReader.readNextLine());
             }
         } catch (Throwable e) {

@@ -32,8 +32,9 @@ public class ExitCommand extends NonArgsCommand {
             System.exit(0);
         } else {
             LOGGER.warn("Trying to exit without saving!");
-            System.out.println("Confirm exit (type 'exit' again)");
-            if (InputConsoleReader.readNextLine().equals("exit")) {
+            System.out.print("Type 'yes' or 'y' for confirm exit: ");
+            String confirmLine = InputConsoleReader.readNextLine();
+            if (confirmLine.equals("yes") || confirmLine.equals("y")) {
                 LOGGER.debug("Correct exit without saving collection");
                 System.exit(0);
             } else System.out.println("You was returned to app command-line");

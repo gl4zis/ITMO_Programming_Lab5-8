@@ -33,17 +33,20 @@ public abstract class InputConsoleReader {
         return line;
     }
 
-    /** Reads String type var from console with limits.
+    /**
+     * Reads String type var from console with limits.
      * (can be null or not)
+     *
      * @param canBeNull boolean param, true if var can be null
      * @return stringVar
      */
-    private static String readStringVar(boolean canBeNull) {
+    private static String readStringVar(boolean canBeNull, String message) {
         boolean mistake;
         String var;
         do {
-            var = readNextLine();
-            if (var.equals("") && !canBeNull) {
+            System.out.print(message);
+            var = readNextLine().trim();
+            if (var.trim().isEmpty() && !canBeNull) {
                 mistake = true;
                 LOGGER.warn(ERROR_MESSAGE);
             } else mistake = false;
@@ -51,15 +54,17 @@ public abstract class InputConsoleReader {
         return var;
     }
 
-    /** Reads Double type var from console
+    /**
+     * Reads Double type var from console
+     *
      * @param canBeNull boolean param, true if var can be null
      * @return doubleVar
      */
-    private static Double readDoubleVar(boolean canBeNull) {
+    private static Double readDoubleVar(boolean canBeNull, String message) {
         double var;
         do {
             try {
-                String strVar = readStringVar(canBeNull);
+                String strVar = readStringVar(canBeNull, message);
                 if (strVar.equals(""))
                     return null;
                 var = Double.parseDouble(strVar);
@@ -70,17 +75,19 @@ public abstract class InputConsoleReader {
         } while (true);
     }
 
-    /** Reads Double type of var from console with limits.
+    /**
+     * Reads Double type of var from console with limits.
      * (between min value and max value)
+     *
      * @param canBeNull boolean param, true if var can be null
-     * @param minValue double param, minimum value of var
-     * @param maxValue double param, maximum value of var
+     * @param minValue  double param, minimum value of var
+     * @param maxValue  double param, maximum value of var
      * @return doubleVar
      */
-    private static Double readDoubleVar(boolean canBeNull, double minValue, double maxValue) {
+    private static Double readDoubleVar(boolean canBeNull, String message, double minValue, double maxValue) {
         Double var;
         do {
-            var = readDoubleVar(canBeNull);
+            var = readDoubleVar(canBeNull, message);
             if (var == null)
                 return null;
             if (var - minValue > -1E-13 && var - maxValue < 1E-13)
@@ -90,15 +97,17 @@ public abstract class InputConsoleReader {
         return var;
     }
 
-    /** Reads Long type var from console
+    /**
+     * Reads Long type var from console
+     *
      * @param canBeNull boolean param, true if var can be null
      * @return longVar
      */
-    private static Long readLongVar(boolean canBeNull) {
+    private static Long readLongVar(boolean canBeNull, String message) {
         long var;
         do {
             try {
-                String strVar = readStringVar(canBeNull);
+                String strVar = readStringVar(canBeNull, message);
                 if (strVar.equals(""))
                     return null;
                 var = Long.parseLong(strVar);
@@ -109,17 +118,19 @@ public abstract class InputConsoleReader {
         } while (true);
     }
 
-    /** Reads Double type of var from console with limits.
+    /**
+     * Reads Double type of var from console with limits.
      * (between min value and max value)
+     *
      * @param canBeNull boolean param, true if var can be null
-     * @param minValue long param, minimum value of var
-     * @param maxValue long param, maximum value of var
+     * @param minValue  long param, minimum value of var
+     * @param maxValue  long param, maximum value of var
      * @return longVar
      */
-    private static Long readLongVar(boolean canBeNull, long minValue, long maxValue) {
+    private static Long readLongVar(boolean canBeNull, String message, long minValue, long maxValue) {
         Long var;
         do {
-            var = readLongVar(canBeNull);
+            var = readLongVar(canBeNull, message);
             if (var == null)
                 return null;
             if (var >= minValue && var <= maxValue)
@@ -133,8 +144,7 @@ public abstract class InputConsoleReader {
      * @return dragonName
      */
     private static String readDragonName() {
-        System.out.print("Enter name: ");
-        return readStringVar(false);
+        return readStringVar(false, "Enter name: ");
     }
 
     /** Reads dragon coordinates from console.
@@ -143,10 +153,9 @@ public abstract class InputConsoleReader {
      * @return dragonCoordinates
      */
     private static Coordinates readDragonCoordinates() {
-        System.out.print("Enter X coordinate (fractional number > -497): ");
-        double x = readDoubleVar(false, -497 + 1E-13, Double.POSITIVE_INFINITY);
-        System.out.print("Enter Y coordinate (fractional number): ");
-        float y = readDoubleVar(false).floatValue();
+        double x = readDoubleVar(false, "Enter X coordinate (fractional number > -497): ",
+                -497 + 1E-13, Double.POSITIVE_INFINITY);
+        float y = readDoubleVar(false, "Enter Y coordinate (fractional number): ").floatValue();
         return new Coordinates(x, y);
     }
 
@@ -156,8 +165,8 @@ public abstract class InputConsoleReader {
      * @return dragonAge
      */
     private static int readDragonAge() {
-        System.out.print("Enter age (integral number from 1 to " + Integer.MAX_VALUE + "): ");
-        Long age = readLongVar(true, 1, Integer.MAX_VALUE);
+        Long age = readLongVar(true, "Enter age (integral number from 1 to " + Integer.MAX_VALUE + "): ",
+                1, Integer.MAX_VALUE);
         if (age != null)
             return age.intValue();
         else
@@ -169,8 +178,8 @@ public abstract class InputConsoleReader {
      * @return dragonWeight
      */
     private static long readDragonWeight() {
-        System.out.print("Enter weight (integral number from 1 to " + Long.MAX_VALUE + "): ");
-        return readLongVar(false, 1, Long.MAX_VALUE);
+        return readLongVar(false, "Enter weight (integral number from 1 to " + Long.MAX_VALUE + "): ",
+                1, Long.MAX_VALUE);
     }
 
     /** Reads dragon color from console.
@@ -183,13 +192,13 @@ public abstract class InputConsoleReader {
         colors.put(2, Color.RED);
         colors.put(3, Color.ORANGE);
         colors.put(4, Color.BROWN);
-        System.out.print("""
+        String message = """
                 \t1: Green
                 \t2: Red
                 \t3: Orange
                 \t4: Brown
-                Choose color (enter number):\040""");
-        int colorNum = readLongVar(false, 1, 4).intValue();
+                Choose color (enter number):\040""";
+        int colorNum = readLongVar(false, message, 1, 4).intValue();
         return colors.get(colorNum);
     }
 
@@ -202,12 +211,12 @@ public abstract class InputConsoleReader {
         character.put(1, DragonCharacter.WISE);
         character.put(2, DragonCharacter.CHAOTIC_EVIL);
         character.put(3, DragonCharacter.FICKLE);
-        System.out.print("""
+        String message = """
                 \t1: Wise
                 \t2: Evil
                 \t3: Fickle
-                Choose character (enter number):\040""");
-        int colorNum = readLongVar(false, 1, 3).intValue();
+                Choose character (enter number):\040""";
+        int colorNum = readLongVar(false, message, 1, 3).intValue();
         return character.get(colorNum);
     }
 
@@ -216,8 +225,8 @@ public abstract class InputConsoleReader {
      * @return dragonHead
      */
     private static DragonHead readDragonHead() {
-        System.out.print("Enter count of eyes (integral non-negative number): ");
-        long eyesCount = readLongVar(false, 0, Long.MAX_VALUE);
+        long eyesCount = readLongVar(false, "Enter count of eyes (integral non-negative number): ",
+                0, Long.MAX_VALUE);
         return new DragonHead(eyesCount);
     }
 

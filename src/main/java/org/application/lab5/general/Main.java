@@ -4,16 +4,11 @@ import org.apache.logging.log4j.LogManager;
 import org.application.lab5.collection.CollectionManager;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.commands.CommandManager;
-import org.application.lab5.exceptions.IncorrectInputException;
 import org.application.lab5.parsers.InputConsoleReader;
 import org.application.lab5.parsers.JsonManager;
 
-import javax.swing.plaf.synth.SynthUI;
-import java.awt.*;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.stream.Collectors;
 
 /**
  * Main class, that starts the application
@@ -23,8 +18,8 @@ public class Main {
 
     // Sets system properties for logger configuration and for saving log files
     static {
-        System.setProperty("log4j2.configurationFile", "logs.properties");
         String creationDate = new SimpleDateFormat("yyyy-MM-dd/HH-mm-ss").format(new Date());
+        System.setProperty("logs.path", "./lab5-dev-logs/" + creationDate + ".log");
         /*String jarPath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         String userName;
         if (OsUtilus.IsWindows()) userName = System.getenv("USERNAME");
@@ -35,7 +30,6 @@ public class Main {
 
         Так не получится без выдачи всем прав на запись в каталог, где находится jar =(
          */
-        System.setProperty("logs.path", "./lab5-dev-logs/" + creationDate + ".log");
     }
 
     private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(Main.class);

@@ -34,6 +34,7 @@ public class RemoveByIdCommand extends ArgsCommand {
         } catch (NumberFormatException e) {
             LOGGER.warn("Incorrect command argument");
         } catch (ObjectNotFoundException e) {
+            LOGGER.debug(e.getMessage());
             System.out.println("There is no such element in the collection");
         }
         LOGGER.debug("RemoveById command was successfully executed");

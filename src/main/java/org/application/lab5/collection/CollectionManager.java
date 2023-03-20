@@ -39,6 +39,7 @@ public abstract class CollectionManager {
             } catch (JsonParseException e) {
                 LOGGER.debug(e.getMessage());
             }
+            collection.saved = true;
         }
     }
 

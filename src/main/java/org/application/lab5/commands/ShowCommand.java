@@ -14,14 +14,17 @@ public class ShowCommand extends NonArgsCommand {
     private static final Logger LOGGER = LogManager.getLogger(ShowCommand.class);
     private final DragonCollection collection;
 
-    /** Constructor, sets collection, that the command works with, name and description of command
+    /**
+     * Constructor, sets collection, that the command works with, name and description of command
      */
     ShowCommand(DragonCollection collection) {
         super("show", "show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении");
         this.collection = collection;
     }
 
-    /** Outputs info about all elements in the collection or outputs message about empty collection
+    /**
+     * Outputs info about all elements in the collection or outputs message about empty collection
+     *
      * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override

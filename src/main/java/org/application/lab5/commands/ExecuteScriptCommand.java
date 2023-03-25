@@ -18,16 +18,19 @@ public class ExecuteScriptCommand extends ArgsCommand {
     private final Set<String> files = new HashSet<>();
     private final CommandManager commandManager;
 
-    /** Constructor, sets command manager, that the command works with, name and description of command
+    /**
+     * Constructor, sets command manager, that the command works with, name and description of command
      */
     ExecuteScriptCommand(CommandManager commandManager) {
         super("execute_script", "execute_script file_name : считать и исполнить скрипт из указанного файла");
         this.commandManager = commandManager;
     }
 
-    /** Read lines from file, finds commands in them and try to execute them.
+    /**
+     * Read lines from file, finds commands in them and try to execute them.
      * If something wrong in command just skips it.
      * If catches recursion or there are no such file don't execute script and outputs error message
+     *
      * @param reader   reader of file from that gives data, if null data gives from console
      * @param filePath full path to the file which have script to execute
      */

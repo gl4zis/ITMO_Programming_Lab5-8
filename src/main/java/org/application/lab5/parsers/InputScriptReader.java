@@ -22,11 +22,13 @@ public class InputScriptReader {
     private final Reader reader;
     private boolean execution;
 
-    /** Constructor, that creates object for reading script.
+    /**
+     * Constructor, that creates object for reading script.
      * Each object creates before start reading one of the script files
+     *
      * @param filePath full path on script file
      * @throws FileNotFoundException if file doesn't exist
-     * @throws SecurityException if app can't read something from file
+     * @throws SecurityException     if app can't read something from file
      */
     public InputScriptReader(String filePath) throws FileNotFoundException, SecurityException {
         File script = new File(filePath);
@@ -35,10 +37,12 @@ public class InputScriptReader {
         execution = true;
     }
 
-    /** Reads next line from file using InputStreamReader.
+    /**
+     * Reads next line from file using InputStreamReader.
      * Read symbols until find \n or end of file.
      * Support single-line comments (<some command> //Comment).
      * If file ends, sets execution = false
+     *
      * @return line
      */
     public String readNextLine() {
@@ -69,8 +73,10 @@ public class InputScriptReader {
         return line.toString();
     }
 
-    /** Finds next command in script and returns the hole line with command.
+    /**
+     * Finds next command in script and returns the hole line with command.
      * Returns null, if execution is false
+     *
      * @param commandManager CommandManager object, that this method works with (needs for having list of loaded commands)
      * @return line
      */
@@ -87,7 +93,9 @@ public class InputScriptReader {
         return null;
     }
 
-    /** Reads dragon name from script file
+    /**
+     * Reads dragon name from script file
+     *
      * @return dragonName
      * @throws IncorrectDataException if inputted value is empty
      */
@@ -97,9 +105,11 @@ public class InputScriptReader {
         else return name;
     }
 
-    /** Reads dragon coordinates from script file.
+    /**
+     * Reads dragon coordinates from script file.
      * Expected two fractional numbers x and y.
      * X should be more than -497
+     *
      * @return dragonCoordinates
      * @throws IncorrectDataException if some values are incorrect
      */
@@ -113,9 +123,11 @@ public class InputScriptReader {
         }
     }
 
-    /** Reads dragon age from script file.
+    /**
+     * Reads dragon age from script file.
      * Expected positive integral number.
      * If input line == "", returns -1
+     *
      * @return dragonAge
      * @throws IncorrectDataException if inputted var isn't integral number
      */
@@ -130,8 +142,10 @@ public class InputScriptReader {
         }
     }
 
-    /** Reads dragon weight from script file.
+    /**
+     * Reads dragon weight from script file.
      * Expects positive integral number
+     *
      * @return dragonWeight
      * @throws IncorrectDataException if inputted var isn't integral number
      */
@@ -143,8 +157,10 @@ public class InputScriptReader {
         }
     }
 
-    /** Reads dragon color from script file.
+    /**
+     * Reads dragon color from script file.
      * Expects integral number from 1 to 4
+     *
      * @return dragonColor
      * @throws IncorrectDataException if inputted var isn't integral number
      */
@@ -162,8 +178,10 @@ public class InputScriptReader {
         }
     }
 
-    /** Reads dragon character from script file.
+    /**
+     * Reads dragon character from script file.
      * Expects integral number from 1 to 3
+     *
      * @return dragonCharacter
      * @throws IncorrectDataException if inputted var isn't integral number
      */
@@ -180,8 +198,10 @@ public class InputScriptReader {
         }
     }
 
-    /** Reads dragon head from script file.
+    /**
+     * Reads dragon head from script file.
      * Expects non-negative integral number as eyes count
+     *
      * @return dragonHead
      * @throws IncorrectDataException if inputted var isn't integral number
      */
@@ -194,8 +214,10 @@ public class InputScriptReader {
         }
     }
 
-    /** Reads whole dragon object from script file.
+    /**
+     * Reads whole dragon object from script file.
      * Return null, if some data in file is incorrect
+     *
      * @return dragon
      */
     public Dragon readDragon() {

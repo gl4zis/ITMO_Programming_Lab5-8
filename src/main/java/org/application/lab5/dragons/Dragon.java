@@ -4,6 +4,7 @@ import org.application.lab5.exceptions.IncorrectDataException;
 import org.application.lab5.general.UniqIdGenerator;
 import org.application.lab5.parsers.DateParser;
 
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -12,6 +13,49 @@ import java.util.Date;
  */
 
 public class Dragon implements Comparable<Dragon> {
+    public static Comparator<Dragon> idComp = Comparator.comparingInt(o -> o.id);
+    public static Comparator<Dragon> nameComp = (o1, o2) -> {
+        if (o1.name.compareTo(o2.name) == 0) {
+            return o1.id - o2.id;
+        } else return o1.name.compareTo(o2.name);
+    };
+    public static Comparator<Dragon> coordComp = (o1, o2) -> {
+        if (o1.coordinates.compareTo(o2.coordinates) == 0) {
+            return o1.id - o2.id;
+        } else return o1.coordinates.compareTo(o2.coordinates);
+    };
+    public static Comparator<Dragon> dateComp = (o1, o2) -> {
+        if (o1.creationDate.compareTo(o2.creationDate) == 0) {
+            return o1.id - o2.id;
+        } else return o1.creationDate.compareTo(o2.creationDate);
+    };
+    public static Comparator<Dragon> weightComp = (o1, o2) -> {
+        if (o1.weight - o2.weight == 0) {
+            return o1.id - o2.id;
+        } else return (int) (o1.weight - o2.weight);
+    };
+    public static Comparator<Dragon> ageComp = (o1, o2) -> {
+        if (o2.age == null) return Integer.MAX_VALUE;
+        else if (o1.age == null) return Integer.MIN_VALUE;
+        else if (o1.age - o2.age == 0) {
+            return o1.id - o2.id;
+        } else return o1.age - o2.age;
+    };
+    public static Comparator<Dragon> colorComp = (o1, o2) -> {
+        if (o1.color.compareTo(o2.color) == 0) {
+            return o1.id - o2.id;
+        } else return o1.color.compareTo(o2.color);
+    };
+    public static Comparator<Dragon> charComp = (o1, o2) -> {
+        if (o1.character.compareTo(o2.character) == 0) {
+            return o1.id - o2.id;
+        } else return o1.character.compareTo(o2.character);
+    };
+    public static Comparator<Dragon> headComp = (o1, o2) -> {
+        if (o1.head.compareTo(o2.head) == 0) {
+            return o1.id - o2.id;
+        } else return o1.head.compareTo(o2.head);
+    };
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private long weight; //Значение поля должно быть больше 0
@@ -22,8 +66,10 @@ public class Dragon implements Comparable<Dragon> {
     private java.util.Date creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Integer age; //Значение поля должно быть больше 0, Поле может быть null
 
-    /** Constructor, sets all the params.
+    /**
+     * Constructor, sets all the params.
      * For creating dragon by data from JSON file
+     *
      * @throws IncorrectDataException if some params are incorrect
      */
     public Dragon(int id, String name, Coordinates coordinates, Date creationDate, long weight, Color color, DragonCharacter character, DragonHead head)
@@ -35,8 +81,10 @@ public class Dragon implements Comparable<Dragon> {
         this.creationDate = creationDate;
     }
 
-    /** Constructor with auto-generated id and creation date.
+    /**
+     * Constructor with auto-generated id and creation date.
      * For create dragon by user
+     *
      * @throws IncorrectDataException if some params are incorrect
      */
     public Dragon(String name, Coordinates coordinates, long weight, Color color, DragonCharacter character, DragonHead head)
@@ -55,8 +103,10 @@ public class Dragon implements Comparable<Dragon> {
         this.head = head;
     }
 
-    /** Updates this using vars from other dragon.
+    /**
+     * Updates this using vars from other dragon.
      * Using in update command
+     *
      * @param dragon object, on that swaps this, saving id and creationDate
      */
     public void update(Dragon dragon) {
@@ -70,35 +120,45 @@ public class Dragon implements Comparable<Dragon> {
         head = dragon.getDragonHead();
     }
 
-    /** Returns id
+    /**
+     * Returns id
+     *
      * @return id
      */
     public int getId() {
         return id;
     }
 
-    /** Returns name
+    /**
+     * Returns name
+     *
      * @return name
      */
     public String getName() {
         return name;
     }
 
-    /** Returns coordinates
+    /**
+     * Returns coordinates
+     *
      * @return coordinates
      */
     public Coordinates getCoordinates() {
         return coordinates;
     }
 
-    /** Returns date of creation
+    /**
+     * Returns date of creation
+     *
      * @return creationDate
      */
     public Date getCreationDate() {
         return creationDate;
     }
 
-    /** Returns age. If age == null, returns -1
+    /**
+     * Returns age. If age == null, returns -1
+     *
      * @return age
      */
     public int getAge() {
@@ -106,7 +166,9 @@ public class Dragon implements Comparable<Dragon> {
         else return age;
     }
 
-    /** Sets age, expects positive integer
+    /**
+     * Sets age, expects positive integer
+     *
      * @param age positive integral number
      * @throws IncorrectDataException if it's not a number, or it's negative number
      */
@@ -115,35 +177,45 @@ public class Dragon implements Comparable<Dragon> {
         this.age = age;
     }
 
-    /** Returns weight
+    /**
+     * Returns weight
+     *
      * @return weight
      */
     public long getWeight() {
         return weight;
     }
 
-    /** Returns color
+    /**
+     * Returns color
+     *
      * @return color
      */
     public Color getColor() {
         return color;
     }
 
-    /** Returns character
+    /**
+     * Returns character
+     *
      * @return character
      */
     public DragonCharacter getDragonCharacter() {
         return character;
     }
 
-    /** Returns head
+    /**
+     * Returns head
+     *
      * @return head
      */
     public DragonHead getDragonHead() {
         return head;
     }
 
-    /** Returns string output with info about this dragon
+    /**
+     * Returns string output with info about this dragon
+     *
      * @return output
      */
     @Override
@@ -159,7 +231,9 @@ public class Dragon implements Comparable<Dragon> {
                 "Head - " + head;
     }
 
-    /** Returns id as a hash code
+    /**
+     * Returns id as a hash code
+     *
      * @return id
      */
     @Override
@@ -167,7 +241,9 @@ public class Dragon implements Comparable<Dragon> {
         return id;
     }
 
-    /** Compares two dragons. Returns true if objects are equals, false if not
+    /**
+     * Compares two dragons. Returns true if objects are equals, false if not
+     *
      * @param obj other dragon, that compares with this
      * @return this.equals(object)
      */
@@ -180,16 +256,16 @@ public class Dragon implements Comparable<Dragon> {
         }
     }
 
-    /** Compares two dragons. Returns positive integral number if this dragon more than input dragon.
+    /**
+     * Compares two dragons. Returns positive integral number if this dragon more than input dragon.
      * Returns negative integral dragons if this dragon less than input dragon.
      * Returns 0 if this.equals(dragon) == true
+     *
      * @param dragon the object to be compared.
      */
     @Override
     public int compareTo(Dragon dragon) {
-        if (dragon.equals(this)) {
-            return 0;
-        } else if (name.compareTo(dragon.name) == 0) {
+        if (name.compareTo(dragon.name) == 0) {
             return id - dragon.getId();
         } else return name.compareTo(dragon.name);
     }

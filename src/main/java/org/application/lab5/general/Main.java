@@ -15,26 +15,16 @@ import java.util.Date;
  */
 
 public class Main {
+    private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(Main.class);
 
     // Sets system properties for logger configuration and for saving log files
     static {
         String creationDate = new SimpleDateFormat("yyyy-MM-dd/HH-mm-ss").format(new Date());
         System.setProperty("logs.path", "./lab5-dev-logs/" + creationDate + ".log");
-        /*String jarPath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        String userName;
-        if (OsUtilus.IsWindows()) userName = System.getenv("USERNAME");
-        else userName = System.getenv("USER");
-        String dirPath = String.join("/", Arrays.stream(jarPath.split("/")).toList().subList(0, jarPath.split("/").length - 4));  //For debugging
-        String dirPath = String.join("/", Arrays.stream(jarPath.split("/")).toList().subList(0, jarPath.split("/").length - 1));  //For jar executing
-        System.setProperty("logs.path", dirPath + "/logs/" + userName + "/" + creationDate + ".log");
-
-        Так не получится без выдачи всем прав на запись в каталог, где находится jar =(
-         */
     }
 
-    private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(Main.class);
-
-    /** Executable method, that starts the application.
+    /**
+     * Executable method, that starts the application.
      * Creates all necessary objects (JsonManager, DragonCollection, CommandManager),
      * Fills out collection from JSON file and waits for command input in console line
      */
@@ -54,6 +44,7 @@ public class Main {
                 commandManager.seekCommand(InputConsoleReader.readNextLine());
             }
         } catch (Throwable e) {
+            e.printStackTrace();
             LOGGER.fatal("Incorrect exit from app (crash): " + e.getMessage());
         }
     }

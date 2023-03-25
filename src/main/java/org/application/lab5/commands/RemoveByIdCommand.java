@@ -13,17 +13,20 @@ public class RemoveByIdCommand extends ArgsCommand {
     private static final Logger LOGGER = LogManager.getLogger(RemoveByIdCommand.class);
     private final DragonCollection collection;
 
-    /** Constructor, sets collection, that the command works with, name and description of command
+    /**
+     * Constructor, sets collection, that the command works with, name and description of command
      */
     RemoveByIdCommand(DragonCollection collection) {
         super("remove_by_id", "remove_by_id id : удалить элемент из коллекции по его id");
         this.collection = collection;
     }
 
-    /** Removes dragon from the collection by its id.
+    /**
+     * Removes dragon from the collection by its id.
      * If there is incorrect argument or there is no dragon with such id in collection, outputs error messages
+     *
      * @param reader reader of file from that gives data, if null data gives from console
-     * @param arg id of dragon, which you want to remove
+     * @param arg    id of dragon, which you want to remove
      */
     @Override
     public void execute(InputScriptReader reader, String arg) {

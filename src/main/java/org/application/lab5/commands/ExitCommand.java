@@ -22,7 +22,9 @@ public class ExitCommand extends NonArgsCommand {
         this.collection = collection;
     }
 
-    /** Closes this app
+    /**
+     * Closes this app
+     *
      * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override

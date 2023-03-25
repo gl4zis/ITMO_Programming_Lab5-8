@@ -12,7 +12,9 @@ import java.util.Map;
  */
 
 public abstract class DateParser {
-    /** Parses Date object to the String
+    /**
+     * Parses Date object to the String
+     *
      * @param date inputted Date object, parses into string
      * @return stringDate
      */
@@ -42,7 +44,9 @@ public abstract class DateParser {
         return day + "." + month + "." + year + " " + time;
     }
 
-    /** Parses String to the Date object
+    /**
+     * Parses String to the Date object
+     *
      * @param str inputted line, parses into Date object
      * @return dateObject
      * @throws ParseException if date format in inputted string is incorrect

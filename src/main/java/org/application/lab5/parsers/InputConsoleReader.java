@@ -16,8 +16,10 @@ public abstract class InputConsoleReader {
     private static final Logger LOGGER = LogManager.getLogger(InputConsoleReader.class);
     private static final String ERROR_MESSAGE = "Incorrect input. Try again";
 
-    /** Reads next line from the console.
+    /**
+     * Reads next line from the console.
      * Stops the app, if input == "exit" or ctrl+D
+     *
      * @return inputLine
      */
     public static String readNextLine() {
@@ -127,7 +129,7 @@ public abstract class InputConsoleReader {
      * @param maxValue  long param, maximum value of var
      * @return longVar
      */
-    private static Long readLongVar(boolean canBeNull, String message, long minValue, long maxValue) {
+    public static Long readLongVar(boolean canBeNull, String message, long minValue, long maxValue) {
         Long var;
         do {
             var = readLongVar(canBeNull, message);
@@ -140,16 +142,20 @@ public abstract class InputConsoleReader {
         return var;
     }
 
-    /** Reads dragon name from console
+    /**
+     * Reads dragon name from console
+     *
      * @return dragonName
      */
     private static String readDragonName() {
         return readStringVar(false, "Enter name: ");
     }
 
-    /** Reads dragon coordinates from console.
+    /**
+     * Reads dragon coordinates from console.
      * (Two fractional numbers x and y.
      * X should be more than -497)
+     *
      * @return dragonCoordinates
      */
     private static Coordinates readDragonCoordinates() {
@@ -159,9 +165,11 @@ public abstract class InputConsoleReader {
         return new Coordinates(x, y);
     }
 
-    /** Reads dragon age from console.
+    /**
+     * Reads dragon age from console.
      * Expects positive integral number.
      * If input == "", returns -1
+     *
      * @return dragonAge
      */
     private static int readDragonAge() {
@@ -173,8 +181,10 @@ public abstract class InputConsoleReader {
             return -1;
     }
 
-    /** Reads dragon weight from console.
+    /**
+     * Reads dragon weight from console.
      * Expects positive integral number
+     *
      * @return dragonWeight
      */
     private static long readDragonWeight() {
@@ -182,8 +192,10 @@ public abstract class InputConsoleReader {
                 1, Long.MAX_VALUE);
     }
 
-    /** Reads dragon color from console.
+    /**
+     * Reads dragon color from console.
      * Expects integral number from 1 to 4 in console
+     *
      * @return dragonColor
      */
     private static Color readDragonColor() {
@@ -202,8 +214,10 @@ public abstract class InputConsoleReader {
         return colors.get(colorNum);
     }
 
-    /** Reads dragon character from console.
+    /**
+     * Reads dragon character from console.
      * Expects integral number from 1 to 3 in console
+     *
      * @return dragonCharacter
      */
     private static DragonCharacter readDragonCharacter() {
@@ -220,8 +234,10 @@ public abstract class InputConsoleReader {
         return character.get(colorNum);
     }
 
-    /** Reads dragon head from console.
+    /**
+     * Reads dragon head from console.
      * Expects non-negative integral number in console as count of eyes
+     *
      * @return dragonHead
      */
     private static DragonHead readDragonHead() {
@@ -230,7 +246,9 @@ public abstract class InputConsoleReader {
         return new DragonHead(eyesCount);
     }
 
-    /** Reads whole dragon from console
+    /**
+     * Reads whole dragon from console
+     *
      * @return dragon
      */
     public static Dragon readDragon() {

@@ -12,15 +12,18 @@ public class InfoCommand extends NonArgsCommand {
     private static final Logger LOGGER = LogManager.getLogger(InfoCommand.class);
     private final DragonCollection collection;
 
-    /** Constructor, sets collection, that the command works with, name and description of command
+    /**
+     * Constructor, sets collection, that the command works with, name and description of command
      */
     InfoCommand(DragonCollection collection) {
         super("info", "info : вывести в стандартный поток вывода информацию о коллекции");
         this.collection = collection;
     }
 
-    /**Outputs info about collection, that application works with
+    /**
+     * Outputs info about collection, that application works with
      * (Size, type, date of creation and maximum dragon id)
+     *
      * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override

@@ -14,7 +14,8 @@ public class FilterLessThanWeightCommand extends ArgsCommand {
     private final Logger LOGGER = LogManager.getLogger(FilterLessThanWeightCommand.class);
     private final DragonCollection collection;
 
-    /** Constructor, sets collection, that the command works with, name and description of command
+    /**
+     * Constructor, sets collection, that the command works with, name and description of command
      */
     FilterLessThanWeightCommand(DragonCollection collection) {
         super("filter_less_than_weight",
@@ -22,10 +23,12 @@ public class FilterLessThanWeightCommand extends ArgsCommand {
         this.collection = collection;
     }
 
-    /** Output all dragons in collection, which weight less than inputted weight
+    /**
+     * Output all dragons in collection, which weight less than inputted weight
      * If inputted arg is not number, outputs error message
+     *
      * @param reader reader of file from that gives data, if null data gives from console
-     * @param arg weight, to compare dragon weights with it
+     * @param arg    weight, to compare dragon weights with it
      */
     @Override
     public void execute(InputScriptReader reader, String arg) {

@@ -12,7 +12,8 @@ public class AverageOfWeightCommand extends NonArgsCommand {
     private static final Logger LOGGER = LogManager.getLogger(AverageOfWeightCommand.class);
     private final DragonCollection collection;
 
-    /** Constructor, sets collection, that the command works with, name and description of command
+    /**
+     * Constructor, sets collection, that the command works with, name and description of command
      */
     AverageOfWeightCommand(DragonCollection collection) {
         super("average_of_weight",
@@ -20,7 +21,9 @@ public class AverageOfWeightCommand extends NonArgsCommand {
         this.collection = collection;
     }
 
-    /** Output average value of all dragon's weight in collection
+    /**
+     * Output average value of all dragon's weight in collection
+     *
      * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override

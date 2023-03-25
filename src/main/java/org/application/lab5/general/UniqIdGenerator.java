@@ -8,8 +8,10 @@ import java.util.Random;
  */
 public abstract class UniqIdGenerator {
 
-    /** Returns positive integer random number.
+    /**
+     * Returns positive integer random number.
      * Random based on timestamp
+     *
      * @return id
      */
     public static int getIntId() {

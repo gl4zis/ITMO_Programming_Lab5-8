@@ -13,7 +13,8 @@ public class MinByAgeCommand extends NonArgsCommand {
     private static final Logger LOGGER = LogManager.getLogger(MinByAgeCommand.class);
     private final DragonCollection collection;
 
-    /** Constructor, sets collection, that command works with, name and description of this command
+    /**
+     * Constructor, sets collection, that command works with, name and description of this command
      */
     MinByAgeCommand(DragonCollection collection) {
         super("min_by_age",
@@ -21,7 +22,9 @@ public class MinByAgeCommand extends NonArgsCommand {
         this.collection = collection;
     }
 
-    /** Outputs one dragon from collection, which have minimum age or outputs message about empty collection
+    /**
+     * Outputs one dragon from collection, which have minimum age or outputs message about empty collection
+     *
      * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override

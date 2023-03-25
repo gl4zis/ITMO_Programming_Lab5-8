@@ -15,9 +15,12 @@ import java.util.List;
  */
 
 public class JsonManager {
-    private File file;
     private static final Logger LOGGER = LogManager.getLogger(JsonManager.class);
-    /** Constructor, that creates object, trying to get file path from environment variable
+    private File file;
+
+    /**
+     * Constructor, that creates object, trying to get file path from environment variable
+     *
      * @param env environment variable, that have file path
      */
     public JsonManager(String env) {
@@ -33,7 +36,8 @@ public class JsonManager {
         }
     }
 
-    /** Gets file path from console line, if something wrong with environment var
+    /**
+     * Gets file path from console line, if something wrong with environment var
      */
     private void initJson() {
         while (true) {
@@ -49,8 +53,10 @@ public class JsonManager {
         }
     }
 
-    /** Gets new InputStreamReader.
+    /**
+     * Gets new InputStreamReader.
      * Reads new file path from console if something wrong with file
+     *
      * @return reader
      */
     private Reader getNewReader() {
@@ -66,9 +72,11 @@ public class JsonManager {
         }
     }
 
-    /** Reads JSON file and convert it to the JSONObject.
+    /**
+     * Reads JSON file and convert it to the JSONObject.
      * If file is incorrect json or file is empty, create new empty JSONObject.
      * If something wrong with file, closes the app
+     *
      * @return JSONObject
      */
     public JSONObject readJSON() {
@@ -88,7 +96,9 @@ public class JsonManager {
         }
     }
 
-    /** Writes JSONObject in JSON file
+    /**
+     * Writes JSONObject in JSON file
+     *
      * @param json JSONObject, that saves in the JSON file
      */
     public void writeJSON(JSONObject json) {
@@ -101,7 +111,9 @@ public class JsonManager {
         }
     }
 
-    /** Formats output string, what writes in file to have beautiful JSON =)
+    /**
+     * Formats output string, what writes in file to have beautiful JSON =)
+     *
      * @param json string, that will be formatting, expects one-line JSON
      * @return output
      */

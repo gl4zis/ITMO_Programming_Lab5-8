@@ -11,14 +11,18 @@ public enum DragonCharacter {
 
     private final String name;
 
-    /** Constructor sets name of character
+    /**
+     * Constructor sets name of character
+     *
      * @param name of this character
      */
     DragonCharacter(String name) {
         this.name = name;
     }
 
-    /** Returns name of character
+    /**
+     * Returns name of character
+     *
      * @return name
      */
     @Override

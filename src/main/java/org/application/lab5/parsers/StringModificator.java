@@ -4,7 +4,9 @@ package org.application.lab5.parsers;
  * Modificator for strings in correct form
  */
 public abstract class StringModificator {
-    /** Formatting file paths to processing ~ and different slashes (\, /)
+    /**
+     * Formatting file paths to processing ~ and different slashes (\, /)
+     *
      * @return formatted filePath
      */
     public static String filePathFormat(String filePath) {

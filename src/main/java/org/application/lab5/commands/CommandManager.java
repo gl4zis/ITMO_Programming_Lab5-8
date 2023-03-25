@@ -17,19 +17,22 @@ import java.util.Set;
  * (In console line or in script file line)
  */
 public class CommandManager {
-    private static final Logger LOGGER = LogManager.getLogger(CommandManager.class);
     static final String UNKNOWN_COMMAND = "Unknown command. Type \"help\" for see information about commands";
+    private static final Logger LOGGER = LogManager.getLogger(CommandManager.class);
     private Map<String, Command> commands;
 
-    /** Constructor, sets JsonManager and DragonCollection with which commands will work
+    /**
+     * Constructor, sets JsonManager and DragonCollection with which commands will work
      */
     public CommandManager(JsonManager json, DragonCollection collection) {
         addStandardCommands(json, collection);
     }
 
-    /** Creates objects of standard command and adds it to the map
+    /**
+     * Creates objects of standard command and adds it to the map
+     *
      * @param jsonManager JsonManager, that commands will work with
-     * @param collection DragonCollection, that commands will work with
+     * @param collection  DragonCollection, that commands will work with
      */
     private void addStandardCommands(JsonManager jsonManager, DragonCollection collection) {
         if (commands == null) {
@@ -49,7 +52,7 @@ public class CommandManager {
             Command removeLower = new RemoveLowerCommand(collection);
             Command save = new SaveCommand(jsonManager, collection);
             Command show = new ShowCommand(collection);
-            Command sort = new SortByNameCommand(collection);
+            Command sort = new SortCommand(collection);
             Command update = new UpdateCommand(collection);
             commands.put(add.getName(), add);
             commands.put(addIfMin.getName(), addIfMin);
@@ -80,11 +83,9 @@ public class CommandManager {
      * @throws IncorrectInputException if no such command in the line
      */
     public void seekCommand(InputScriptReader reader, String line) {
-        if (line.equals("")) {
-        } else {
+        if (!line.trim().isEmpty()) {
             String[] input = line.split(" ");
-            if (input.length == 0) {
-            } else if (input.length > 2)
+            if (input.length > 2)
                 LOGGER.warn(line + " - " + UNKNOWN_COMMAND);
             else {
                 String command = input[0];
@@ -102,28 +103,36 @@ public class CommandManager {
         }
     }
 
-    /** Executes seekCommand with reader = null
+    /**
+     * Executes seekCommand with reader = null
+     *
      * @param line string input, where command will be seeking
      */
     public void seekCommand(String line) {
         seekCommand(null, line);
     }
 
-    /** Returns collection with command objects
+    /**
+     * Returns collection with command objects
+     *
      * @return commands
      */
     public Collection<Command> getCommands() {
         return commands.values();
     }
 
-    /** Returns set with command names
+    /**
+     * Returns set with command names
+     *
      * @return names
      */
     public Set<String> getCommandNames() {
         return commands.keySet();
     }
 
-    /** Adds new non-standard command in the map
+    /**
+     * Adds new non-standard command in the map
+     *
      * @param newCommand object of command, that will be added in the map
      */
     public void addNewCommand(ArgsCommand newCommand) {

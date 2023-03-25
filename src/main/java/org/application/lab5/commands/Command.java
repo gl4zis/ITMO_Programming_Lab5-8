@@ -1,7 +1,7 @@
 package org.application.lab5.commands;
 
-import org.application.lab5.parsers.InputScriptReader;
 import org.application.lab5.exceptions.IncorrectInputException;
+import org.application.lab5.parsers.InputScriptReader;
 
 /**
  * Abstract class which are extending all commands classes
@@ -10,21 +10,26 @@ public abstract class Command {
     private final String name;
     private final String descr;
 
-    /** Constructor, sets name and description of this command
+    /**
+     * Constructor, sets name and description of this command
      */
     protected Command(String name, String descr) {
         this.name = name;
         this.descr = descr;
     }
 
-    /** Returns name
+    /**
+     * Returns name
+     *
      * @return name
      */
     public String getName() {
         return name;
     }
 
-    /** Returns description of command for "help" command
+    /**
+     * Returns description of command for "help" command
+     *
      * @return description
      */
     public String getDescription() {

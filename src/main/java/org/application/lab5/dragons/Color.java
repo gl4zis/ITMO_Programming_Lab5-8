@@ -12,14 +12,18 @@ public enum Color {
 
     private final String name;
 
-    /** Constructor sets name of color
+    /**
+     * Constructor sets name of color
+     *
      * @param name of this color
      */
     Color(String name) {
         this.name = name;
     }
 
-    /** Returns name of color
+    /**
+     * Returns name of color
+     *
      * @return name
      */
     @Override

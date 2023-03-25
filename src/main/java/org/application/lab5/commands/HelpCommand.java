@@ -11,14 +11,17 @@ public class HelpCommand extends NonArgsCommand {
     private static final Logger LOGGER = LogManager.getLogger(HelpCommand.class);
     private final CommandManager commandManager;
 
-    /** Constructor, sets command manager, that the command works with, name and description of command
+    /**
+     * Constructor, sets command manager, that the command works with, name and description of command
      */
     HelpCommand(CommandManager commandManager) {
         super("help", "help : вывести справку по доступным командам");
         this.commandManager = commandManager;
     }
 
-    /** Outputs info about all commands loaded in command manager
+    /**
+     * Outputs info about all commands loaded in command manager
+     *
      * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override

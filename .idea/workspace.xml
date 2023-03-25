@@ -4,24 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="bugfix with console outputs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="now collection can be sorted by any parameter">
       <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/collection/DragonCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/collection/DragonCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/SortByNameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/SortCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/Color.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/Coordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/Dragon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/DragonCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/DragonCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/DragonHead.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/dragons/DragonHead.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/OsUtilus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/OsUtilus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/UniqIdGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/UniqIdGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/DateParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/DateParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputConsoleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputConsoleReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputScriptReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/InputScriptReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/JsonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/JsonManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/StringModificator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/parsers/StringModificator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,13 +189,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00005" summary="commit 4/27.02.2023&#10;Готовая версия (альфа)">
-      <created>1677501109846</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1677501109846</updated>
     </task>
     <task id="LOCAL-00006" summary="removed awful ExecuteScriptCommand">
       <created>1677923195991</created>
@@ -548,7 +526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679318814301</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="now collection can be sorted by any parameter">
+      <created>1679705304341</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1679705304343</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -576,7 +561,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="removed public static objects" />
     <MESSAGE value="file init bugfix" />
     <MESSAGE value="added sort command" />
     <MESSAGE value="added javadoc and some bugfix" />
@@ -601,7 +585,8 @@
     <MESSAGE value="fixed exit confirm and dragon entering" />
     <MESSAGE value="colors in console" />
     <MESSAGE value="bugfix with console outputs" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix with console outputs" />
+    <MESSAGE value="now collection can be sorted by any parameter" />
+    <option name="LAST_COMMIT_MESSAGE" value="now collection can be sorted by any parameter" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

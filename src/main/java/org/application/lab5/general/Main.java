@@ -15,13 +15,14 @@ import java.util.Date;
  */
 
 public class Main {
-    private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(Main.class);
 
     // Sets system properties for logger configuration and for saving log files
     static {
         String creationDate = new SimpleDateFormat("yyyy-MM-dd/HH-mm-ss").format(new Date());
         System.setProperty("logs.path", "./lab5-dev-logs/" + creationDate + ".log");
     }
+
+    private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(Main.class);
 
     /**
      * Executable method, that starts the application.

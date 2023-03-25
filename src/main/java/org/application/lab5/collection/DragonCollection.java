@@ -60,7 +60,7 @@ public class DragonCollection {
      */
     public Dragon find(int id) throws ObjectNotFoundException {
         for (Dragon dragon : getItems()) {
-            if (dragon.getId() == id) {
+            if (dragon.getId() == id || (id >= 100000 && Integer.toString(dragon.getId()).startsWith(Integer.toString(id)))) {
                 return dragon;
             }
         }

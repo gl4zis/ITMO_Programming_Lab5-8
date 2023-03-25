@@ -3,6 +3,7 @@ package org.application.lab5.commands;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.application.lab5.collection.DragonCollection;
+import org.application.lab5.exceptions.NonUniqueValueException;
 import org.application.lab5.exceptions.ObjectNotFoundException;
 import org.application.lab5.parsers.InputScriptReader;
 
@@ -39,6 +40,9 @@ public class RemoveByIdCommand extends ArgsCommand {
         } catch (ObjectNotFoundException e) {
             LOGGER.debug(e.getMessage());
             System.out.println("There is no such element in the collection");
+        } catch (NonUniqueValueException e) {
+            LOGGER.info(e.getMessage());
+            System.out.println("Try to input more numbers");
         }
         LOGGER.debug("RemoveById command was successfully executed");
     }

@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="now collection can be sorted by any parameter">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="added ability to type first six numbers in id">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/exceptions/NonUniqueValueException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/collection/DragonCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/collection/DragonCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/general/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/RemoveByIdCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/application/lab5/commands/UpdateCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,13 +192,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00006" summary="removed awful ExecuteScriptCommand">
-      <created>1677923195991</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1677923195991</updated>
     </task>
     <task id="LOCAL-00007" summary="updated commands singleton">
       <created>1677930143644</created>
@@ -533,7 +529,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679705304343</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="added ability to type first six numbers in id">
+      <created>1679705704603</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1679705704603</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -561,7 +564,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="file init bugfix" />
     <MESSAGE value="added sort command" />
     <MESSAGE value="added javadoc and some bugfix" />
     <MESSAGE value="changed command update to remove Dragon.setId()" />
@@ -586,7 +588,8 @@
     <MESSAGE value="colors in console" />
     <MESSAGE value="bugfix with console outputs" />
     <MESSAGE value="now collection can be sorted by any parameter" />
-    <option name="LAST_COMMIT_MESSAGE" value="now collection can be sorted by any parameter" />
+    <MESSAGE value="added ability to type first six numbers in id" />
+    <option name="LAST_COMMIT_MESSAGE" value="added ability to type first six numbers in id" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.application.lab5.dragons.Dragon;
 import org.application.lab5.exceptions.IdCollisionException;
+import org.application.lab5.exceptions.NonUniqueValueException;
 import org.application.lab5.exceptions.ObjectNotFoundException;
 import org.application.lab5.parsers.DateParser;
 
@@ -58,13 +59,22 @@ public class DragonCollection {
      * @param id id of dragon, which will be finds in collection
      * @throws ObjectNotFoundException if there is no dragon with this id in the collection
      */
-    public Dragon find(int id) throws ObjectNotFoundException {
-        for (Dragon dragon : getItems()) {
-            if (dragon.getId() == id || (id >= 100000 && Integer.toString(dragon.getId()).startsWith(Integer.toString(id)))) {
+    public Dragon find(int id) throws ObjectNotFoundException, NonUniqueValueException {
+        for (Dragon dragon : collection) {
+            if (dragon.getId() == id) {
                 return dragon;
             }
         }
-        throw new ObjectNotFoundException();
+        if (id >= 100000) {
+            List<Dragon> idMatch = new ArrayList<>();
+            for (Dragon dragon : collection) {
+                if (Integer.toString(dragon.getId()).startsWith(Integer.toString(id))) {
+                    idMatch.add(dragon);
+                }
+            }
+            if (idMatch.size() == 1) return idMatch.get(0);
+            else throw new NonUniqueValueException();
+        } else throw new ObjectNotFoundException();
     }
 
     /**

@@ -73,7 +73,8 @@ public class DragonCollection {
                 }
             }
             if (idMatch.size() == 1) return idMatch.get(0);
-            else throw new NonUniqueValueException();
+            else if (idMatch.size() > 1) throw new NonUniqueValueException();
+            else throw new ObjectNotFoundException();
         } else throw new ObjectNotFoundException();
     }
 

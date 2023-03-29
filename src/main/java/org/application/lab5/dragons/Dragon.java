@@ -13,45 +13,45 @@ import java.util.Date;
  */
 
 public class Dragon implements Comparable<Dragon> {
-    public static Comparator<Dragon> idComp = Comparator.comparingInt(o -> o.id);
-    public static Comparator<Dragon> nameComp = (o1, o2) -> {
+    public static final Comparator<Dragon> idComp = Comparator.comparingInt(o -> o.id);
+    public static final Comparator<Dragon> nameComp = (o1, o2) -> {
         if (o1.name.compareTo(o2.name) == 0) {
             return o1.id - o2.id;
         } else return o1.name.compareTo(o2.name);
     };
-    public static Comparator<Dragon> coordComp = (o1, o2) -> {
+    public static final Comparator<Dragon> coordComp = (o1, o2) -> {
         if (o1.coordinates.compareTo(o2.coordinates) == 0) {
             return o1.id - o2.id;
         } else return o1.coordinates.compareTo(o2.coordinates);
     };
-    public static Comparator<Dragon> dateComp = (o1, o2) -> {
+    public static final Comparator<Dragon> dateComp = (o1, o2) -> {
         if (o1.creationDate.compareTo(o2.creationDate) == 0) {
             return o1.id - o2.id;
         } else return o1.creationDate.compareTo(o2.creationDate);
     };
-    public static Comparator<Dragon> weightComp = (o1, o2) -> {
+    public static final Comparator<Dragon> weightComp = (o1, o2) -> {
         if (o1.weight - o2.weight == 0) {
             return o1.id - o2.id;
         } else return (int) (o1.weight - o2.weight);
     };
-    public static Comparator<Dragon> ageComp = (o1, o2) -> {
+    public static final Comparator<Dragon> ageComp = (o1, o2) -> {
         if (o2.age == null) return Integer.MAX_VALUE;
         else if (o1.age == null) return Integer.MIN_VALUE;
         else if (o1.age - o2.age == 0) {
             return o1.id - o2.id;
         } else return o1.age - o2.age;
     };
-    public static Comparator<Dragon> colorComp = (o1, o2) -> {
+    public static final Comparator<Dragon> colorComp = (o1, o2) -> {
         if (o1.color.compareTo(o2.color) == 0) {
             return o1.id - o2.id;
         } else return o1.color.compareTo(o2.color);
     };
-    public static Comparator<Dragon> charComp = (o1, o2) -> {
+    public static final Comparator<Dragon> charComp = (o1, o2) -> {
         if (o1.character.compareTo(o2.character) == 0) {
             return o1.id - o2.id;
         } else return o1.character.compareTo(o2.character);
     };
-    public static Comparator<Dragon> headComp = (o1, o2) -> {
+    public static final Comparator<Dragon> headComp = (o1, o2) -> {
         if (o1.head.compareTo(o2.head) == 0) {
             return o1.id - o2.id;
         } else return o1.head.compareTo(o2.head);

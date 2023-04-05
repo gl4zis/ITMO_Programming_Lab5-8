@@ -15,7 +15,7 @@ import java.text.ParseException;
 import java.util.Date;
 
 /**
- * Class for transferring collection from JSONObject to the DragonCollection and conversely
+ * Class for transferring collection from JSONObject to the DragonCollection
  */
 public abstract class CollectionManager {
     private static final Logger LOGGER = LogManager.getLogger(CollectionManager.class);
@@ -222,52 +222,5 @@ public abstract class CollectionManager {
         } catch (NullPointerException | ParseException | ClassCastException e) {
             throw new JsonParseException("Incorrect date of creation");
         }
-    }
-
-    /**
-     * Serializes DragonCollection to the JSONObject for save it in JSON file
-     *
-     * @param manager    collection saves by this JsonManager
-     * @param collection this collection saves
-     */
-    public static void saveCollection(JsonManager manager, DragonCollection collection) {
-        JSONObject json = new JSONObject();
-        json.put("creationDate", DateParser.dateToString(collection.getCreationDate()));
-        JSONArray dragons = new JSONArray();
-        for (Dragon dragon : collection.getItems()) {
-            JSONObject jsonDragon = serializeDragon(dragon);
-            dragons.add(jsonDragon);
-        }
-        json.put("dragons", dragons);
-        manager.writeJSON(json);
-    }
-
-    /**
-     * Serializes one dragon to the JSONObject
-     *
-     * @return jsonDragon
-     */
-    private static JSONObject serializeDragon(Dragon dragon) {
-        JSONObject jsonDragon = new JSONObject();
-        JSONObject head = new JSONObject();
-        head.put("eyesCount", dragon.getDragonHead().getEyesCount());
-        jsonDragon.put("head", head);
-
-        jsonDragon.put("character", dragon.getDragonCharacter().name());
-        jsonDragon.put("color", dragon.getColor().name());
-        jsonDragon.put("weight", dragon.getWeight());
-        try {
-            jsonDragon.put("age", dragon.getAge());
-        } catch (NullPointerException e) {
-            jsonDragon.put("age", null);
-        }
-        jsonDragon.put("creationDate", DateParser.dateToString(dragon.getCreationDate()));
-        JSONObject coordinates = new JSONObject();
-        coordinates.put("x", dragon.getCoordinates().getX());
-        coordinates.put("y", dragon.getCoordinates().getY());
-        jsonDragon.put("coordinates", coordinates);
-        jsonDragon.put("name", dragon.getName());
-        jsonDragon.put("id", dragon.getId());
-        return jsonDragon;
     }
 }

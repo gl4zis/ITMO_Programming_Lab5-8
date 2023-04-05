@@ -7,6 +7,8 @@ import org.application.lab5.exceptions.IdCollisionException;
 import org.application.lab5.exceptions.NonUniqueValueException;
 import org.application.lab5.exceptions.ObjectNotFoundException;
 import org.application.lab5.parsers.DateParser;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.util.*;
 
@@ -201,5 +203,23 @@ public class DragonCollection {
                 "Collection size: " + collection.size() + "\n" +
                 "Date of creation: " + DateParser.dateToString(creationDate) + "\n" +
                 "Maximum dragon id: " + getMaxId();
+    }
+
+    /**
+     * Serializes all collection to the JSON
+     *
+     * @return jsonCollection
+     */
+    @SuppressWarnings("unchecked")
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("creationDate", DateParser.dateToString(creationDate));
+        JSONArray dragons = new JSONArray();
+        for (Dragon dragon : collection) {
+            JSONObject jsonDragon = dragon.toJson();
+            dragons.add(jsonDragon);
+        }
+        json.put("dragons", dragons);
+        return json;
     }
 }

@@ -6,6 +6,7 @@ import org.application.lab5.collection.CollectionManager;
 import org.application.lab5.collection.DragonCollection;
 import org.application.lab5.parsers.InputScriptReader;
 import org.application.lab5.parsers.JsonManager;
+import org.json.simple.JSONObject;
 
 /**
  * Non-argument command "save". Saves collection to the JSON file
@@ -32,7 +33,8 @@ public class SaveCommand extends NonArgsCommand {
      */
     @Override
     public void execute(InputScriptReader reader) {
-        CollectionManager.saveCollection(jsonManager, collection);
+        JSONObject jsonCOll = collection.toJson();
+        jsonManager.writeJSON(jsonCOll);
         collection.saved = true;
         LOGGER.debug("Save command was successfully executed");
     }

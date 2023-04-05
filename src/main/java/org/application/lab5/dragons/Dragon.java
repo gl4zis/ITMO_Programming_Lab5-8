@@ -3,6 +3,7 @@ package org.application.lab5.dragons;
 import org.application.lab5.exceptions.IncorrectDataException;
 import org.application.lab5.general.UniqIdGenerator;
 import org.application.lab5.parsers.DateParser;
+import org.json.simple.JSONObject;
 
 import java.util.Comparator;
 import java.util.Date;
@@ -268,5 +269,31 @@ public class Dragon implements Comparable<Dragon> {
         if (name.compareTo(dragon.name) == 0) {
             return id - dragon.getId();
         } else return name.compareTo(dragon.name);
+    }
+
+    /**
+     * Serializes Dragon object to JSONObject
+     *
+     * @return jsonDragon
+     */
+    @SuppressWarnings("unchecked")
+    public JSONObject toJson() {
+        JSONObject jsonDragon = new JSONObject();
+        JSONObject jsonHead = new JSONObject();
+        jsonHead.put("eyesCount", head.getEyesCount());
+        jsonDragon.put("head", jsonHead);
+
+        jsonDragon.put("character", character.name());
+        jsonDragon.put("color", color.name());
+        jsonDragon.put("weight", weight);
+        jsonDragon.put("age", age);
+        jsonDragon.put("creationDate", DateParser.dateToString(creationDate));
+        JSONObject jsonCoordinates = new JSONObject();
+        jsonCoordinates.put("x", coordinates.getX());
+        jsonCoordinates.put("y", coordinates.getY());
+        jsonDragon.put("coordinates", jsonCoordinates);
+        jsonDragon.put("name", name);
+        jsonDragon.put("id", id);
+        return jsonDragon;
     }
 }

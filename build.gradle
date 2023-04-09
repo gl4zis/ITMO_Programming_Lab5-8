@@ -1,43 +1,67 @@
-plugins {
-    id 'java'
-}
-
-group 'main'
-version 'v1.0.1'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    implementation files('libs/log4j-api-2.20.0.jar')
-    implementation files('libs/log4j-core-2.20.0.jar')
-    implementation files('libs/json-simple-1.1.1.jar')
-}
-
-test {
-    useJUnitPlatform()
-}
-
-jar {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    manifest {
-        attributes 'Class-Path': configurations.runtimeClasspath.files.collect { it.getName() }.join(' '),
-                'Main-Class': 'org.application.lab5.general.Main'
+project(':server') {
+    apply plugin: 'application'
+    application {
+        mainClass = 'server.Main'
     }
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+
+    dependencies {
+        implementation project(':common')
+    }
+
+    jar {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        manifest {
+            attributes 'Main-Class': 'server.Main'
+        }
+        from {
+            configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+        }
     }
 }
+project(':client') {
+    apply plugin: 'application'
+    application {
+        mainClass = 'client.Main'
+    }
 
-compileJava.options.encoding = 'UTF-8'
+    dependencies {
+        implementation project(':common')
+    }
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+    jar {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        manifest {
+            attributes 'Main-Class': 'client.Main'
+        }
+        from {
+            configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+        }
+    }
 }
+allprojects {
+    apply plugin: 'java'
 
-javadoc {
-    options.encoding = 'UTF-8'
+    group 'ru.ifmo.se'
+    version '1.2.0'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.19.0'
+        implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.19.0'
+        implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+        implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+    }
+
+    compileJava.options.encoding = 'UTF-8'
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    javadoc {
+        options.encoding = 'UTF-8'
+    }
 }

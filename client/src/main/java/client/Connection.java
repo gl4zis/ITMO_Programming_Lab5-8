@@ -2,10 +2,10 @@ package client;
 
 import exceptions.EmptyInputException;
 import exceptions.IncorrectInputException;
+import network.Request;
 import network.Response;
 import org.apache.commons.lang3.SerializationUtils;
 import parsers.InputConsoleReader;
-import network.Request;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -13,10 +13,7 @@ import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
-import java.nio.channels.SocketChannel;
-import java.sql.Time;
 import java.util.Date;
-import java.util.Scanner;
 
 public class Connection {
     private final InetAddress host;
@@ -29,7 +26,7 @@ public class Connection {
 
     public void run() {
         SocketAddress address = new InetSocketAddress(host, port);
-        ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
+        ByteBuffer buffer = null;
 
         outerLoop:
         while (true) {
@@ -45,7 +42,7 @@ public class Connection {
                     long requestTime = new Date().getTime();
 
                     while (!respond) {
-                        buffer = ByteBuffer.allocate(1024 * 1024);
+                        buffer = ByteBuffer.allocate(100 * 1024);
                         from = dataChan.receive(buffer);
                         respond = from != null;
                         if (new Date().getTime() - requestTime > 1000) {
@@ -53,12 +50,11 @@ public class Connection {
                             continue outerLoop;
                         }
                     }
+                    Response response = SerializationUtils.deserialize(buffer.array());
+                    System.out.println(response.message());
                 } catch (IOException e) {
                     System.out.println("Something went wrong: " + e.getMessage());
                 }
-
-                Response response = SerializationUtils.deserialize(buffer.array());
-                System.out.println(response.message());
             }
         }
     }

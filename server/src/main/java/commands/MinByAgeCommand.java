@@ -4,7 +4,6 @@ import collection.DragonCollection;
 import dragons.Dragon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputScriptReader;
 
 /**
  * Non-argument command "min_by_age". Outputs one dragon from collection, which have minimum age
@@ -24,11 +23,9 @@ public class MinByAgeCommand extends NonArgsCommand {
 
     /**
      * Outputs one dragon from collection, which have minimum age or outputs message about empty collection
-     *
-     * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override
-    public String execute(InputScriptReader reader) {
+    public String execute() {
         Dragon minDragon = collection.minByAge();
         LOGGER.debug("MinByAge command was successfully executed");
         if (minDragon == null) {

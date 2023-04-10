@@ -5,7 +5,6 @@ import exceptions.NonUniqueValueException;
 import exceptions.ObjectNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputScriptReader;
 
 /**
  * Argument command "remove_by_id id". Removes dragon from the collection by its id
@@ -26,11 +25,10 @@ public class RemoveByIdCommand extends ArgsCommand {
      * Removes dragon from the collection by its id.
      * If there is incorrect argument or there is no dragon with such id in collection, outputs error messages
      *
-     * @param reader reader of file from that gives data, if null data gives from console
-     * @param arg    id of dragon, which you want to remove
+     * @param arg id of dragon, which you want to remove
      */
     @Override
-    public String execute(InputScriptReader reader, String arg) {
+    public String execute(String arg) {
         try {
             int id = Integer.parseInt(arg);
             collection.remove(collection.find(id));

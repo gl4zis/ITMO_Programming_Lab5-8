@@ -4,8 +4,6 @@ import collection.DragonCollection;
 import dragons.Dragon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputConsoleReader;
-import parsers.InputScriptReader;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,40 +31,12 @@ public class RemoveGreaterCommand extends NonArgsCommand {
      * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override
-    public String execute(InputScriptReader reader) {
-        Dragon maxDragon;
-        if (reader == null) {
-            maxDragon = InputConsoleReader.readDragon();
-        } else {
-            maxDragon = reader.readDragon();
-        }
-        Iterator<Dragon> iterator = collection.getItems().iterator();
-        int counter = 0;
-        ArrayList<Dragon> dragons = new ArrayList<>();
-        while (iterator.hasNext()) {
-            Dragon dragon = iterator.next();
-            if (dragon.compareTo(maxDragon) > 0) {
-                iterator.remove();
-                dragons.add(dragon);
-                LOGGER.info("Object with id " + dragon.getId() + ", named " + dragon.getName() + " was removed");
-                counter++;
-            }
-        }
-        if (counter == 0) {
-            LOGGER.debug("RemoveGreater command was successfully executed");
-            return "No such elements in the collection";
-        } else {
-            StringBuilder line = new StringBuilder();
-            for (Dragon dragon : dragons) {
-                line.append("Object with id " + dragon.getId() + ", named " + dragon.getName() + " was removed");
-            }
-            LOGGER.debug("RemoveGreater command was successfully executed");
-            return line.toString();
-        }
+    public String execute() {
+        return "WTF?? No dragon!!";
     }
 
     @Override
-    public String execute(InputScriptReader reader, Dragon maxDragon) {
+    public String execute(Dragon maxDragon) {
         Iterator<Dragon> iterator = collection.getItems().iterator();
         int counter = 0;
         ArrayList<Dragon> dragons = new ArrayList<>();
@@ -85,7 +55,7 @@ public class RemoveGreaterCommand extends NonArgsCommand {
         } else {
             StringBuilder line = new StringBuilder();
             for (Dragon dragon : dragons) {
-                line.append("Object with id " + dragon.getId() + ", named " + dragon.getName() + " was removed");
+                line.append("Object with id ").append(dragon.getId()).append(", named ").append(dragon.getName()).append(" was removed");
             }
             LOGGER.debug("RemoveGreater command was successfully executed");
             return line.toString();

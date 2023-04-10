@@ -2,7 +2,6 @@ package commands;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputScriptReader;
 
 /**
  * Non-argument command "help". Outputs info about all commands
@@ -21,11 +20,9 @@ public class HelpCommand extends NonArgsCommand {
 
     /**
      * Outputs info about all commands loaded in command manager
-     *
-     * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override
-    public String execute(InputScriptReader reader) {
+    public String execute() {
         StringBuilder line = new StringBuilder();
         int counter = 0;
         for (Command command : commandManager.getCommands()) {

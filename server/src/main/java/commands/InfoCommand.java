@@ -3,7 +3,6 @@ package commands;
 import collection.DragonCollection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputScriptReader;
 
 /**
  * Non-argument command "info". Outputs info about collection, that application works with
@@ -23,11 +22,9 @@ public class InfoCommand extends NonArgsCommand {
     /**
      * Outputs info about collection, that application works with
      * (Size, type, date of creation and maximum dragon id)
-     *
-     * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override
-    public String execute(InputScriptReader reader) {
+    public String execute() {
         LOGGER.debug("Info command was successfully executed");
         return collection.toString();
     }

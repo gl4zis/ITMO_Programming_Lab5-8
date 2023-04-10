@@ -4,7 +4,6 @@ import collection.DragonCollection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
-import parsers.InputScriptReader;
 import parsers.JsonManager;
 
 /**
@@ -27,11 +26,9 @@ public class SaveCommand extends NonArgsCommand {
     /**
      * Saves collection in JSON file.
      * If save failed, outputs error message
-     *
-     * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override
-    public String execute(InputScriptReader reader) {
+    public String execute() {
         JSONObject jsonCOll = collection.toJson();
         jsonManager.writeJSON(jsonCOll);
         collection.saved = true;

@@ -1,8 +1,5 @@
 package client;
 
-import parsers.InputConsoleReader;
-
-import java.io.IOException;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;

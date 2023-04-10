@@ -1,15 +1,5 @@
 package commands;
 
-import exceptions.IncorrectDataException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import parsers.InputScriptReader;
-import parsers.StringModificator;
-
-import java.io.FileNotFoundException;
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Argument command "execute_script file_path". Executes all commands from the script file
  */

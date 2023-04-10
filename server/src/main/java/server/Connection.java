@@ -1,23 +1,22 @@
 package server;
 
 import commands.CommandManager;
-import commands.SaveCommand;
-import exceptions.IncorrectInputException;
 import network.Request;
 import network.Response;
 import org.apache.commons.lang3.SerializationUtils;
 import parsers.InputConsoleReader;
 
 import java.io.IOException;
-import java.net.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 
 public class Connection {
 
-    private ByteBuffer buffer;
-    private DatagramSocket dataSock;
-    private DatagramPacket dataPack;
     private final CommandManager manager;
+    private DatagramSocket dataSock;
     private int port;
 
     public Connection(CommandManager manager) {
@@ -26,7 +25,6 @@ public class Connection {
 
     public void open(int port) {
         this.port = port;
-        buffer = ByteBuffer.allocate(1024 * 1024);
         try {
             dataSock = new DatagramSocket(port);
             dataSock.setSoTimeout(100);
@@ -51,7 +49,8 @@ public class Connection {
                 }
             } else System.out.println("Unknown server command");
         }
-        buffer = ByteBuffer.allocate(1024 * 1024);
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        DatagramPacket dataPack;
         try {
             dataPack = new DatagramPacket(buffer.array(), buffer.capacity());
             dataSock.receive(dataPack);

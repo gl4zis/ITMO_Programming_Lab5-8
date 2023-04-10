@@ -4,7 +4,6 @@ import dragons.Dragon;
 import exceptions.IncorrectInputException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputScriptReader;
 
 /**
  * Class for commands, having arguments in its line.
@@ -23,24 +22,23 @@ public abstract class ArgsCommand extends Command {
     /**
      * Execute method for all commands, which extending this class
      *
-     * @param reader reader of file from that gives data, if null data gives from console
-     * @param arg    argument of command
+     * @param arg argument of command
      */
     @Override
-    public abstract String execute(InputScriptReader reader, String arg);
+    public abstract String execute(String arg);
 
     /**
      * Wrong Execute method.
      * Needs to not execute some like this: "update" with null argument
      */
     @Override
-    public String execute(InputScriptReader reader) throws IncorrectInputException {
+    public String execute() throws IncorrectInputException {
         LOGGER.warn(CommandManager.UNKNOWN_COMMAND);
         return CommandManager.UNKNOWN_COMMAND;
     }
 
     @Override
-    public String execute(InputScriptReader reader, Dragon dragon) throws IncorrectInputException {
-        return execute(reader);
+    public String execute(Dragon dragon) throws IncorrectInputException {
+        return execute();
     }
 }

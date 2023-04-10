@@ -4,7 +4,6 @@ import collection.DragonCollection;
 import dragons.Dragon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputScriptReader;
 
 import java.util.ArrayList;
 
@@ -29,11 +28,10 @@ public class FilterLessThanWeightCommand extends ArgsCommand {
      * Output all dragons in collection, which weight less than inputted weight
      * If inputted arg is not number, outputs error message
      *
-     * @param reader reader of file from that gives data, if null data gives from console
-     * @param arg    weight, to compare dragon weights with it
+     * @param arg weight, to compare dragon weights with it
      */
     @Override
-    public String execute(InputScriptReader reader, String arg) {
+    public String execute(String arg) {
         try {
             ArrayList<Dragon> dragons = new ArrayList<>();
             long weight = Long.parseLong(arg);

@@ -4,7 +4,6 @@ import collection.DragonCollection;
 import dragons.Dragon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputScriptReader;
 
 
 /**
@@ -24,11 +23,9 @@ public class ShowCommand extends NonArgsCommand {
 
     /**
      * Outputs info about all elements in the collection or outputs message about empty collection
-     *
-     * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override
-    public String execute(InputScriptReader reader) {
+    public String execute() {
         if (collection.getItems().size() == 0) {
             LOGGER.debug("Show command was successfully executed");
             return "Collection is empty";

@@ -10,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Class for reading something from script file

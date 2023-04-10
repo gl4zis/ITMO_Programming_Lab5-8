@@ -6,7 +6,7 @@ import java.util.Random;
 /**
  * Generator unique numbers for dragon id
  */
-public abstract class UniqIdGenerator {
+public abstract class UniqueIdGenerator {
 
     /**
      * Returns positive integer random number.

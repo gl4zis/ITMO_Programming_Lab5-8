@@ -3,7 +3,6 @@ package commands;
 import collection.DragonCollection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputScriptReader;
 
 /**
  * Non-argument command "average_of_weight". Outputs average value of all dragon's weight in collection
@@ -23,11 +22,9 @@ public class AverageOfWeightCommand extends NonArgsCommand {
 
     /**
      * Output average value of all dragon's weight in collection
-     *
-     * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override
-    public String execute(InputScriptReader reader) {
+    public String execute() {
         LOGGER.debug("AverageOfWeight command was successfully executed");
         return "Average weight = " + collection.getAverageWeight();
     }

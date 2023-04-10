@@ -4,8 +4,6 @@ import collection.DragonCollection;
 import dragons.Dragon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputConsoleReader;
-import parsers.InputScriptReader;
 
 /**
  * Non-argument command "add {dragon}". Adds new dragon object in collection.
@@ -25,25 +23,14 @@ public class AddCommand extends NonArgsCommand {
 
     /**
      * Reads all dragon vars, creates new dragon object and adds it in the collection
-     *
-     * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override
-    public String execute(InputScriptReader reader) {
-        Dragon dragon;
-        if (reader == null) {
-            dragon = InputConsoleReader.readDragon();
-        } else {
-            dragon = reader.readDragon();
-        }
-        collection.add(dragon);
-        LOGGER.info("Dragon successfully added in the collection");
-        LOGGER.debug("Add command was successfully executed");
-        return "Dragon successfully added in the collection";
+    public String execute() {
+        return "WTF?? No dragon!!";
     }
 
     @Override
-    public String execute(InputScriptReader reader, Dragon dragon) {
+    public String execute(Dragon dragon) {
         collection.add(dragon);
         LOGGER.info("Dragon successfully added in the collection");
         LOGGER.debug("Add command was successfully executed");

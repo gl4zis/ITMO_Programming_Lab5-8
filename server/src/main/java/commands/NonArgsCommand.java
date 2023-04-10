@@ -4,7 +4,6 @@ import dragons.Dragon;
 import exceptions.IncorrectInputException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputScriptReader;
 
 /**
  * Class for commands, without arguments in its line.
@@ -22,11 +21,9 @@ public abstract class NonArgsCommand extends Command {
 
     /**
      * Execute method for all commands, extending this class
-     *
-     * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override
-    public abstract String execute(InputScriptReader reader);
+    public abstract String execute();
 
     /**
      * Wrong execute method.
@@ -34,12 +31,12 @@ public abstract class NonArgsCommand extends Command {
      * There are arguments in line with non-arg command
      */
     @Override
-    public String execute(InputScriptReader reader, String arg) throws IncorrectInputException {
+    public String execute(String arg) throws IncorrectInputException {
         LOGGER.warn(CommandManager.UNKNOWN_COMMAND);
         return CommandManager.UNKNOWN_COMMAND;
     }
 
-    public String execute(InputScriptReader reader, String arg, Dragon dragon) throws IncorrectInputException {
-        return execute(reader, arg);
+    public String execute(String arg, Dragon dragon) throws IncorrectInputException {
+        return execute(arg);
     }
 }

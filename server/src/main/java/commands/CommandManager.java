@@ -42,7 +42,7 @@ public class CommandManager {
             Command addIfMin = new AddIfMinCommand(collection);
             Command averageOfWeight = new AverageOfWeightCommand(collection);
             Command clear = new ClearCommand(collection);
-            Command exit = new ExitCommand(collection);
+            Command exit = new ExitCommand();
             Command filterLessThanWeight = new FilterLessThanWeightCommand(collection);
             Command help = new HelpCommand(this);
             Command info = new InfoCommand(collection);
@@ -78,14 +78,14 @@ public class CommandManager {
         Dragon dragon = request.getDragon();
         if (!commandType.isNeedReadDragon()) {
             if (commandType.isHaveArgs())
-                return commands.get(command).execute(null, arg);
+                return commands.get(command).execute(arg);
             else
-                return commands.get(command).execute(null);
+                return commands.get(command).execute();
         } else {
             if (commandType.isHaveArgs())
-                return commands.get(command).execute(null, arg, dragon);
+                return commands.get(command).execute(arg, dragon);
             else
-                return commands.get(command).execute(null, dragon);
+                return commands.get(command).execute(dragon);
         }
     }
 

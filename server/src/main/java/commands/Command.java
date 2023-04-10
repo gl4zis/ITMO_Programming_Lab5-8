@@ -2,7 +2,6 @@ package commands;
 
 import dragons.Dragon;
 import exceptions.IncorrectInputException;
-import parsers.InputScriptReader;
 
 /**
  * Abstract class which are extending all commands classes
@@ -40,25 +39,23 @@ public abstract class Command {
     /**
      * Execute method for commands without arguments
      *
-     * @param reader reader of file from that gives data, if null data gives from console
      * @throws IncorrectInputException if there is no such non-argument command
      */
-    public abstract String execute(InputScriptReader reader);
+    public abstract String execute();
 
-    public String execute(InputScriptReader reader, Dragon dragon) {
-        return execute(reader);
+    public String execute(Dragon dragon) {
+        return execute();
     }
 
     /**
      * Execute method for commands with arguments
      *
-     * @param reader reader of file from that gives data, if null data gives from console
-     * @param arg    command argument
+     * @param arg command argument
      * @throws IncorrectInputException if there is no such argument command
      */
-    public abstract String execute(InputScriptReader reader, String arg);
+    public abstract String execute(String arg);
 
-    public String execute(InputScriptReader reader, String arg, Dragon dragon) {
-        return execute(reader, arg);
+    public String execute(String arg, Dragon dragon) {
+        return execute(arg);
     }
 }

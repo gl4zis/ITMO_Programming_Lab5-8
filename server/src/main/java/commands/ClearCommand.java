@@ -3,7 +3,6 @@ package commands;
 import collection.DragonCollection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputScriptReader;
 
 /**
  * Non-argument command "clear". Removes all dragons from the collection
@@ -22,11 +21,9 @@ public class ClearCommand extends NonArgsCommand {
 
     /**
      * Removes all dragons from the collection
-     *
-     * @param reader reader of file from that gives data, if null data gives from console
      */
     @Override
-    public String execute(InputScriptReader reader) {
+    public String execute() {
         collection.clear();
         LOGGER.debug("Clear command was successfully executed");
         return "Collection was cleared";

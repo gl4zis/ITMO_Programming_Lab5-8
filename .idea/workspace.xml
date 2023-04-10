@@ -4,18 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="client-server architecture init">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="changed protocol to UDP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/exceptions/EmptyInputException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/exceptions/EmptyInputException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/general/UniqIdGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/general/UniqueIdGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/network/CommandType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/network/CommandType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/network/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/network/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/InputScriptReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/parsers/InputScriptReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/JsonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/parsers/JsonManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/StringModificator.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/parsers/StringModificator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AddCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AddIfMinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AddIfMinCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ArgsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ArgsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AverageOfWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AverageOfWeightCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ClearCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ExecuteScriptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ExecuteScriptCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ExitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ExitCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/FilterLessThanWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/FilterLessThanWeightCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/HelpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/InfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/InfoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/MinByAgeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/MinByAgeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/NonArgsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/NonArgsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveByIdCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveGreaterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveLowerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveLowerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/SaveCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ShowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ShowCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/SortCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/UpdateCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Connection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,13 +194,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00011" summary="some changes in managers">
-      <created>1677961885211</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1677961885212</updated>
     </task>
     <task id="LOCAL-00012" summary="reworked JsonManager class">
       <created>1678014391075</created>
@@ -517,7 +531,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681036179679</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="changed protocol to UDP">
+      <created>1681132364168</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1681132364169</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -545,7 +566,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="bugfix with wrong upload collection" />
     <MESSAGE value="fixed bug with incrementing id when dragon isn't added in collection" />
     <MESSAGE value="fixed build.gradle" />
     <MESSAGE value="added random id generator" />
@@ -570,7 +590,8 @@
     <MESSAGE value="bugfix update command" />
     <MESSAGE value="change serializing to JSON" />
     <MESSAGE value="client-server architecture init" />
-    <option name="LAST_COMMIT_MESSAGE" value="client-server architecture init" />
+    <MESSAGE value="changed protocol to UDP" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed protocol to UDP" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

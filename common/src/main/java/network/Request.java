@@ -2,7 +2,6 @@ package network;
 
 import dragons.Dragon;
 import exceptions.EmptyInputException;
-import exceptions.IncorrectDataException;
 import exceptions.IncorrectInputException;
 import parsers.InputConsoleReader;
 

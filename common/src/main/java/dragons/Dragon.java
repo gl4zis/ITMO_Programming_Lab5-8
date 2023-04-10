@@ -1,11 +1,10 @@
 package dragons;
 
 import exceptions.IncorrectDataException;
-import general.UniqIdGenerator;
+import general.UniqueIdGenerator;
 import org.json.simple.JSONObject;
 import parsers.DateParser;
 
-import javax.sound.midi.Sequence;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Date;
@@ -96,7 +95,7 @@ public class Dragon implements Comparable<Dragon>, Serializable {
             throw new IncorrectDataException("There are nulls in dragon characteristics");
         if (name.equals("") || weight <= 0)
             throw new IncorrectDataException("Incorrect dragon characteristics (name or weight)");
-        this.id = UniqIdGenerator.getIntId();
+        this.id = UniqueIdGenerator.getIntId();
         this.name = name;
         this.coordinates = coordinates;
         this.creationDate = new Date();

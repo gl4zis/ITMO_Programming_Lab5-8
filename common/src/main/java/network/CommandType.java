@@ -32,6 +32,15 @@ public enum CommandType implements Serializable {
         this.needReadDragon = needReadDragon;
     }
 
+    public static CommandType getByName(String name) {
+        for (CommandType command : CommandType.values()) {
+            if (command.name.equals(name)) {
+                return command;
+            }
+        }
+        throw new IncorrectInputException("Unknown command");
+    }
+
     public boolean isHaveArgs() {
         return haveArgs;
     }
@@ -43,14 +52,5 @@ public enum CommandType implements Serializable {
     @Override
     public String toString() {
         return name;
-    }
-
-    public static CommandType getByName(String name) {
-        for (CommandType command : CommandType.values()) {
-            if (command.name.equals(name)) {
-                return command;
-            }
-        }
-        throw new IncorrectInputException("Unknown command");
     }
 }

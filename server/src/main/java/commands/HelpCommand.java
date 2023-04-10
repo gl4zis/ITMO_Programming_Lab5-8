@@ -27,7 +27,7 @@ public class HelpCommand extends NonArgsCommand {
         for (Command command : commandManager.getCommands()) {
             output.append('\t').append(command.getDescription()).append('\n');
         }
-        output.append("exit : terminate the program");
+        output.append("\texit : terminate the program");
         return output.toString();
     }
 }

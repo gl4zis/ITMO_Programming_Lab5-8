@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            Connection connection = new Connection(InetAddress.getLocalHost(), 6789);
+            Connection connection = new Connection(InetAddress.getByName("localhost"), 6789);
             connection.run();
         } catch (Throwable e) {
             e.printStackTrace();

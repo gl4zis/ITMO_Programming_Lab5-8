@@ -35,7 +35,7 @@ public class ShowCommand extends NonArgsCommand {
             int counter = 0;
             StringBuilder output = new StringBuilder();
             for (Dragon dragon : collection.sorted()) {
-                if (counter >= 1)
+                if (++counter >= 1)
                     output.append("----------------------------------------------------------------\n");
                 output.append(dragon).append('\n');
             }

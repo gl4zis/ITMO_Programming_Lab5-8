@@ -25,6 +25,7 @@ public class Connection {
 
     public void run() {
         while (true) {
+            System.out.print("-> ");
             String line = InputConsoleReader.readNextLine();
             if (line.equals("exit")) System.exit(0);
             Request request = getRequest(line);

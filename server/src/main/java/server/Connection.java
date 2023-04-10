@@ -28,7 +28,7 @@ public class Connection {
         this.port = port;
         try {
             dataSock = new DatagramSocket(port);
-            dataSock.setSoTimeout(100);
+            dataSock.setSoTimeout(10);
             while (true)
                 run();
         } catch (IOException e) {
@@ -50,6 +50,7 @@ public class Connection {
     }
 
     private void checkConsole() throws IOException {
+        System.out.print("- ");
         if (System.in.available() > 0) {
             String line = InputConsoleReader.readNextLine();
             switch (line) {

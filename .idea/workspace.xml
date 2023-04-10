@@ -4,27 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="repackaging and reworking commands in server(removed reader)">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerCommand.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="added server commands, translated commands to english">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/collection/CollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/collection/CollectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/collection/DragonCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/collection/DragonCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AddCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AddIfMinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AddIfMinCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AverageOfWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AverageOfWeightCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ClearCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ExitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ExitCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/FilterLessThanWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/FilterLessThanWeightCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/HelpCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/InfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/InfoCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/MinByAgeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/MinByAgeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveByIdCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveGreaterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveLowerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveLowerCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/SaveCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ShowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ShowCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/UpdateCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Connection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -183,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00013" summary="some bugfix">
-      <created>1678350366660</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1678350366660</updated>
     </task>
     <task id="LOCAL-00014" summary="added command descriptions">
       <created>1678355327907</created>
@@ -527,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681143894211</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="added server commands, translated commands to english">
+      <created>1681145773420</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1681145773421</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -555,7 +537,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="fixed build.gradle" />
     <MESSAGE value="added random id generator" />
     <MESSAGE value="added input env in commandline args" />
     <MESSAGE value="processed ~ in file paths" />
@@ -580,7 +561,8 @@
     <MESSAGE value="client-server architecture init" />
     <MESSAGE value="changed protocol to UDP" />
     <MESSAGE value="repackaging and reworking commands in server(removed reader)" />
-    <option name="LAST_COMMIT_MESSAGE" value="repackaging and reworking commands in server(removed reader)" />
+    <MESSAGE value="added server commands, translated commands to english" />
+    <option name="LAST_COMMIT_MESSAGE" value="added server commands, translated commands to english" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

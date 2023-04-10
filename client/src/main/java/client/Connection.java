@@ -16,42 +16,25 @@ import java.nio.channels.DatagramChannel;
 import java.util.Date;
 
 public class Connection {
-    private final InetAddress host;
-    private final int port;
+    private final InetSocketAddress address;
+    private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
 
     public Connection(InetAddress host, int port) {
-        this.host = host;
-        this.port = port;
+        address = new InetSocketAddress(host, port);
     }
 
     public void run() {
-        SocketAddress address = new InetSocketAddress(host, port);
-        ByteBuffer buffer = null;
-
-        outerLoop:
         while (true) {
             String line = InputConsoleReader.readNextLine();
+            if (line.equals("exit")) System.exit(0);
             Request request = getRequest(line);
             if (request != null) {
-                try (DatagramChannel dataChan = DatagramChannel.open()) {
-                    dataChan.configureBlocking(false);
-                    SocketAddress from;
-                    boolean respond = false;
-                    buffer = ByteBuffer.wrap(SerializationUtils.serialize(request));
-                    dataChan.send(buffer, address);
-                    long requestTime = new Date().getTime();
-
-                    while (!respond) {
-                        buffer = ByteBuffer.allocate(100 * 1024);
-                        from = dataChan.receive(buffer);
-                        respond = from != null;
-                        if (new Date().getTime() - requestTime > 1000) {
-                            System.out.println("Server can't respond. Try request later");
-                            continue outerLoop;
-                        }
+                try (DatagramChannel channel = DatagramChannel.open()) {
+                    sendRequest(request, channel);
+                    if (waitResponse(channel)) {
+                        Response response = SerializationUtils.deserialize(buffer.array());
+                        System.out.println(response.message());
                     }
-                    Response response = SerializationUtils.deserialize(buffer.array());
-                    System.out.println(response.message());
                 } catch (IOException e) {
                     System.out.println("Something went wrong: " + e.getMessage());
                 }
@@ -68,5 +51,27 @@ public class Connection {
             System.out.println(e.getMessage());
         }
         return request;
+    }
+
+    private void sendRequest(Request request, DatagramChannel channel) throws IOException {
+        channel.configureBlocking(false);
+        buffer = ByteBuffer.wrap(SerializationUtils.serialize(request));
+        channel.send(buffer, address);
+    }
+
+    private boolean waitResponse(DatagramChannel channel) throws IOException {
+        long requestTime = new Date().getTime();
+        boolean respond = false;
+        SocketAddress from;
+        while (!respond) {
+            buffer = ByteBuffer.allocate(100 * 1024);
+            from = channel.receive(buffer);
+            respond = from != null;
+            if (new Date().getTime() - requestTime > 1000) {
+                System.out.println("Server is unavailable. Try request later");
+                return false;
+            }
+        }
+        return true;
     }
 }

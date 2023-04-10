@@ -17,6 +17,8 @@ public class Connection {
     private final CommandManager manager;
     private DatagramSocket dataSock;
     private int port;
+    private ByteBuffer buffer = ByteBuffer.allocate(1024);
+    private DatagramPacket dataPack;
 
     public Connection(CommandManager manager) {
         this.manager = manager;
@@ -37,6 +39,17 @@ public class Connection {
     }
 
     private void run() throws IOException {
+        checkConsole();
+        if (readChannel()) {
+            Request request = SerializationUtils.deserialize(buffer.array());
+            System.out.printf("Request command: %s, with args: %s\n",
+                    request.getCommand(), request.getArg());
+            Response response = new Response(manager.seekCommand(request));
+            sendResponse(response);
+        }
+    }
+
+    private void checkConsole() throws IOException {
         if (System.in.available() > 0) {
             String line = InputConsoleReader.readNextLine();
             switch (line) {
@@ -46,18 +59,20 @@ public class Connection {
                 default -> System.out.println("Unknown server command");
             }
         }
-        ByteBuffer buffer = ByteBuffer.allocate(1024);
-        DatagramPacket dataPack;
+    }
+
+    private boolean readChannel() throws IOException {
+        buffer = ByteBuffer.allocate(1024);
         try {
             dataPack = new DatagramPacket(buffer.array(), buffer.capacity());
             dataSock.receive(dataPack);
+            return true;
         } catch (SocketTimeoutException ignored) {
-            return;
+            return false;
         }
-        Request request = SerializationUtils.deserialize(buffer.array());
-        System.out.printf("Request command: %s, with args: %s\n%s\n",
-                request.getCommand(), request.getArg(), request.getDragon());
-        Response response = new Response(manager.seekCommand(request));
+    }
+
+    private void sendResponse(Response response) throws IOException {
         buffer = ByteBuffer.wrap(SerializationUtils.serialize(response));
         InetAddress host = dataPack.getAddress();
         port = dataPack.getPort();

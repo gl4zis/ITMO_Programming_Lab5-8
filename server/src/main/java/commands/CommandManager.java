@@ -44,7 +44,6 @@ public class CommandManager {
             Command addIfMin = new AddIfMinCommand(collection);
             Command averageOfWeight = new AverageOfWeightCommand(collection);
             Command clear = new ClearCommand(collection);
-            Command exit = new ExitCommand();
             Command filterLessThanWeight = new FilterLessThanWeightCommand(collection);
             Command help = new HelpCommand(this);
             Command info = new InfoCommand(collection);
@@ -58,7 +57,6 @@ public class CommandManager {
             commands.put(addIfMin.getName(), addIfMin);
             commands.put(averageOfWeight.getName(), averageOfWeight);
             commands.put(clear.getName(), clear);
-            commands.put(exit.getName(), exit);
             commands.put(filterLessThanWeight.getName(), filterLessThanWeight);
             commands.put(help.getName(), help);
             commands.put(info.getName(), info);
@@ -97,15 +95,6 @@ public class CommandManager {
      */
     public Collection<Command> getCommands() {
         return commands.values();
-    }
-
-    /**
-     * Returns set with command names
-     *
-     * @return names
-     */
-    public Set<String> getCommandNames() {
-        return commands.keySet();
     }
 
     /**

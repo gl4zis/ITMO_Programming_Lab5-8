@@ -34,29 +34,24 @@ public class FilterLessThanWeightCommand extends ArgsCommand {
     @Override
     public String execute(String arg) {
         try {
-            ArrayList<Dragon> dragons = new ArrayList<>();
             long weight = Long.parseLong(arg);
             int counter = 0;
+            StringBuilder output = new StringBuilder();
             for (Dragon dragon : collection.getItems()) {
                 if (dragon.getWeight() < weight) {
-                    dragons.add(dragon);
-                    counter++;
+                    if (++counter > 1)
+                        output.append("----------------------------------------------------------------\n");
+                    output.append(dragon).append('\n');
                 }
             }
             if (counter == 0) {
-                LOGGER.debug("FilterLessThanWeight command was successfully executed");
-                return "Collection is empty";
+                return "No such elements in collection";
             } else {
-                StringBuilder line = new StringBuilder();
-                for (Dragon dragon : dragons) {
-                    line.append(dragon.toString());
-                }
-                LOGGER.debug("FilterLessThanWeight command was successfully executed");
-                return line.toString();
+                output.deleteCharAt(output.length() - 1);
+                return output.toString();
             }
         } catch (NumberFormatException e) {
             LOGGER.warn("Incorrect command argument");
-            LOGGER.debug("FilterLessThanWeight command was successfully executed");
             return "Incorrect command argument";
         }
     }

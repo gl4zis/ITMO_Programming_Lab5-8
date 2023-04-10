@@ -20,7 +20,7 @@ public class DragonCollection {
     private static final Logger LOGGER = LogManager.getLogger(DragonCollection.class);
     private static final String TYPE = "LinkedHashSet";
     private final ArrayList<Integer> idList = new ArrayList<>();
-    private LinkedHashSet<Dragon> collection;
+    private final LinkedHashSet<Dragon> collection;
     private Date creationDate;
 
     /**
@@ -128,13 +128,10 @@ public class DragonCollection {
         return collection;
     }
 
-    /**
-     * Sorts collection using comparator through ArrayList
-     */
-    public void sort(Comparator<Dragon> comp) {
+    public List<Dragon> sorted() {
         List<Dragon> listColl = new ArrayList<>(collection);
-        listColl.sort(comp);
-        collection = new LinkedHashSet<>(listColl);
+        listColl.sort(Dragon.coordComp);
+        return listColl;
     }
 
     /**

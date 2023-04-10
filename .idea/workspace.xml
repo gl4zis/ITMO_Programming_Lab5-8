@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="added server commands, translated commands to english">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="command optimizing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Connection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Connection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/collection/DragonCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/collection/DragonCollection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,20 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00014" summary="added command descriptions">
-      <created>1678355327907</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1678355327907</updated>
-    </task>
-    <task id="LOCAL-00015" summary="removed static methods from CommandManager">
-      <created>1678360956043</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1678360956043</updated>
     </task>
     <task id="LOCAL-00016" summary="fixed encodings">
       <created>1678386424199</created>
@@ -509,7 +495,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681145773421</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Connects methods decomposed">
+      <created>1681147462727</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1681147462727</updated>
+    </task>
+    <task id="LOCAL-00064" summary="command optimizing">
+      <created>1681149090466</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1681149090466</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -537,8 +537,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="added random id generator" />
-    <MESSAGE value="added input env in commandline args" />
     <MESSAGE value="processed ~ in file paths" />
     <MESSAGE value="fixed bug with wrong showing -&gt;" />
     <MESSAGE value="decompozed methods in CollectionManager" />
@@ -562,7 +560,9 @@
     <MESSAGE value="changed protocol to UDP" />
     <MESSAGE value="repackaging and reworking commands in server(removed reader)" />
     <MESSAGE value="added server commands, translated commands to english" />
-    <option name="LAST_COMMIT_MESSAGE" value="added server commands, translated commands to english" />
+    <MESSAGE value="Connects methods decomposed" />
+    <MESSAGE value="command optimizing" />
+    <option name="LAST_COMMIT_MESSAGE" value="command optimizing" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

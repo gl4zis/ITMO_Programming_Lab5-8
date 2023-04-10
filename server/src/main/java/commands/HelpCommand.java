@@ -23,14 +23,11 @@ public class HelpCommand extends NonArgsCommand {
      */
     @Override
     public String execute() {
-        StringBuilder line = new StringBuilder();
-        int counter = 0;
+        StringBuilder output = new StringBuilder();
         for (Command command : commandManager.getCommands()) {
-            line.append("\t").append(command.getDescription());
-            if (++counter < commandManager.getCommands().size())
-                line.append("\n");
+            output.append('\t').append(command.getDescription()).append('\n');
         }
-        LOGGER.debug("Help command was successfully executed");
-        return line.toString();
+        output.append("exit : terminate the program");
+        return output.toString();
     }
 }

@@ -33,7 +33,6 @@ public class AddCommand extends NonArgsCommand {
     public String execute(Dragon dragon) {
         collection.add(dragon);
         LOGGER.info("Dragon successfully added in the collection");
-        LOGGER.debug("Add command was successfully executed");
         return "Dragon successfully added in the collection";
     }
 }

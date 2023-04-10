@@ -25,7 +25,6 @@ public class AverageOfWeightCommand extends NonArgsCommand {
      */
     @Override
     public String execute() {
-        LOGGER.debug("AverageOfWeight command was successfully executed");
         return "Average weight = " + collection.getAverageWeight();
     }
 }

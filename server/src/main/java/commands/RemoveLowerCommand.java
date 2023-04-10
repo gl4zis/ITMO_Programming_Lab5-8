@@ -37,26 +37,22 @@ public class RemoveLowerCommand extends NonArgsCommand {
     public String execute(Dragon minDragon) {
         Iterator<Dragon> iterator = collection.getItems().iterator();
         int counter = 0;
-        ArrayList<Dragon> dragons = new ArrayList<>();
+        StringBuilder output = new StringBuilder();
         while (iterator.hasNext()) {
             Dragon dragon = iterator.next();
             if (dragon.compareTo(minDragon) < 0) {
                 iterator.remove();
-                dragons.add(dragon);
-                LOGGER.info("Object with id " + dragon.getId() + ", named " + dragon.getName() + " was removed");
+                String message = "Object with id " + dragon.getId() + ", named " + dragon.getName() + " was removed";
+                LOGGER.info(message);
+                output.append(message).append('\n');
                 counter++;
             }
         }
         if (counter == 0) {
-            LOGGER.debug("RemoveLower command was successfully executed");
             return "No such elements in the collection";
         } else {
-            StringBuilder line = new StringBuilder();
-            for (Dragon dragon : dragons) {
-                line.append("Object with id ").append(dragon.getId()).append(", named ").append(dragon.getName()).append(" was removed");
-            }
-            LOGGER.debug("RemoveLower command was successfully executed");
-            return line.toString();
+            output.deleteCharAt(output.length() - 1);
+            return output.toString();
         }
     }
 }

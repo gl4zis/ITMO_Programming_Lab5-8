@@ -25,7 +25,6 @@ public class ClearCommand extends NonArgsCommand {
     @Override
     public String execute() {
         collection.clear();
-        LOGGER.debug("Clear command was successfully executed");
         return "Collection was cleared";
     }
 }

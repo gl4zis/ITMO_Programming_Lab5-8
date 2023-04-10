@@ -25,7 +25,6 @@ public class InfoCommand extends NonArgsCommand {
      */
     @Override
     public String execute() {
-        LOGGER.debug("Info command was successfully executed");
         return collection.toString();
     }
 }

@@ -36,10 +36,8 @@ public class AddIfMinCommand extends NonArgsCommand {
         if (minDragon == null || collection.getMinDragon().compareTo(dragon) > 0) {
             collection.add(dragon);
             LOGGER.info("New dragon successfully added in the collection");
-            LOGGER.debug("AddIfMin command was successfully executed");
             return "New dragon successfully added in the collection";
         } else {
-            LOGGER.debug("AddIfMin command was successfully executed");
             return "Object is not minimal";
         }
     }

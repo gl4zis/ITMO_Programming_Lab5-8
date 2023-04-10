@@ -27,7 +27,6 @@ public class MinByAgeCommand extends NonArgsCommand {
     @Override
     public String execute() {
         Dragon minDragon = collection.minByAge();
-        LOGGER.debug("MinByAge command was successfully executed");
         if (minDragon == null) {
             return "Collection is empty";
         } else {

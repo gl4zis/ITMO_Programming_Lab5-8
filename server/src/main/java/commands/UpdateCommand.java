@@ -40,19 +40,15 @@ public class UpdateCommand extends ArgsCommand {
             int id = Integer.parseInt(arg);
             collection.find(id).update(dragon);
             LOGGER.info("Dragon was updated");
-            LOGGER.debug("Update command successfully executed");
             return "Dragon was updated";
         } catch (NumberFormatException e) {
             LOGGER.warn("Incorrect command argument");
-            LOGGER.debug("Update command successfully executed");
             return "Incorrect command argument";
         } catch (ObjectNotFoundException e) {
             LOGGER.debug(e.getMessage());
-            LOGGER.debug("Update command successfully executed");
             return "No such element in the collection";
         } catch (NonUniqueValueException e) {
             LOGGER.info(e.getMessage());
-            LOGGER.debug("Update command successfully executed");
             return e.getMessage() + "\nTry to input more numbers";
         }
     }

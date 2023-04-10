@@ -5,6 +5,8 @@ import dragons.Dragon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collection;
+
 
 /**
  * Non-argument command "show". Outputs info about all elements in the collection
@@ -28,21 +30,17 @@ public class ShowCommand extends NonArgsCommand {
     @Override
     public String execute() {
         if (collection.getItems().size() == 0) {
-            LOGGER.debug("Show command was successfully executed");
             return "Collection is empty";
         } else {
             int counter = 0;
-            StringBuilder line = new StringBuilder();
-            for (Dragon dragon : collection.getItems()) {
+            StringBuilder output = new StringBuilder();
+            for (Dragon dragon : collection.sorted()) {
                 if (counter >= 1)
-                    line.append("----------------------------------------------------------------\n");
-                line.append(dragon);
-                if (counter < collection.getItems().size() - 1)
-                    line.append("\n");
-                counter++;
+                    output.append("----------------------------------------------------------------\n");
+                output.append(dragon).append('\n');
             }
-            LOGGER.debug("Show command was successfully executed");
-            return line.toString();
+            output.deleteCharAt(output.length() - 1);
+            return output.toString();
         }
     }
 }

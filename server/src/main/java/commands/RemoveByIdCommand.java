@@ -32,19 +32,15 @@ public class RemoveByIdCommand extends ArgsCommand {
         try {
             int id = Integer.parseInt(arg);
             collection.remove(collection.find(id));
-            LOGGER.debug("RemoveById command was successfully executed");
             return "Dragon was successfully removed";
         } catch (NumberFormatException e) {
             LOGGER.warn("Incorrect command argument");
-            LOGGER.debug("RemoveById command was successfully executed");
             return "Incorrect command argument";
         } catch (ObjectNotFoundException e) {
             LOGGER.debug(e.getMessage());
-            LOGGER.debug("RemoveById command was successfully executed");
             return "There is no such element in the collection";
         } catch (NonUniqueValueException e) {
             LOGGER.info(e.getMessage());
-            LOGGER.debug("RemoveById command was successfully executed");
             return e.getMessage() + "Try to input more numbers";
         }
     }

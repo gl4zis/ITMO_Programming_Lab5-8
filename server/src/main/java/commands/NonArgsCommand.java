@@ -36,6 +36,7 @@ public abstract class NonArgsCommand extends Command {
         return CommandManager.UNKNOWN_COMMAND;
     }
 
+    @Override
     public String execute(String arg, Dragon dragon) throws IncorrectInputException {
         return execute(arg);
     }

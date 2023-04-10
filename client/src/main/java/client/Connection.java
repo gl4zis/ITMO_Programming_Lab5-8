@@ -10,45 +10,60 @@ import network.Request;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.nio.ByteBuffer;
+import java.nio.channels.DatagramChannel;
 import java.nio.channels.SocketChannel;
+import java.sql.Time;
+import java.util.Date;
+import java.util.Scanner;
 
 public class Connection {
+    private final InetAddress host;
     private final int port;
-    private boolean message = false;
 
-    public Connection(int port) {
+    public Connection(InetAddress host, int port) {
+        this.host = host;
         this.port = port;
     }
 
     public void run() {
-        try (SocketChannel client = SocketChannel.open(new InetSocketAddress("localhost", port))) {
-            message = false;
-            System.out.printf("Connected to server. Port: %s, Host: %s\n", port, InetAddress.getLocalHost());
-            while (true) {
-                System.out.print("-> ");
-                String line = InputConsoleReader.readNextLine();
-                if (!client.isConnected()) break;
-                Request request = getRequest(line);
-                if (request != null) {
-                    ByteBuffer buffer = ByteBuffer.wrap(SerializationUtils.serialize(request));
-                    client.write(buffer);
-                    buffer = ByteBuffer.allocate(1048576);
-                    client.read(buffer);
-                    Response response = SerializationUtils.deserialize(buffer.array());
-                    System.out.print(response.message());
+        SocketAddress address = new InetSocketAddress(host, port);
+        ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
+
+        outerLoop:
+        while (true) {
+            String line = InputConsoleReader.readNextLine();
+            Request request = getRequest(line);
+            if (request != null) {
+                try (DatagramChannel dataChan = DatagramChannel.open()) {
+                    dataChan.configureBlocking(false);
+                    SocketAddress from;
+                    boolean respond = false;
+                    buffer = ByteBuffer.wrap(SerializationUtils.serialize(request));
+                    dataChan.send(buffer, address);
+                    long requestTime = new Date().getTime();
+
+                    while (!respond) {
+                        buffer = ByteBuffer.allocate(1024 * 1024);
+                        from = dataChan.receive(buffer);
+                        respond = from != null;
+                        if (new Date().getTime() - requestTime > 1000) {
+                            System.out.println("Server can't respond. Try request later");
+                            continue outerLoop;
+                        }
+                    }
+                } catch (IOException e) {
+                    System.out.println("Something went wrong: " + e.getMessage());
                 }
-            }
-        } catch (IOException e) {
-            if (!message) {
-                System.out.println("Can't connect to server");
-                System.out.println("Waiting for server");
-                message = true;
+
+                Response response = SerializationUtils.deserialize(buffer.array());
+                System.out.println(response.message());
             }
         }
     }
 
-    public Request getRequest(String line) {
+    private Request getRequest(String line) {
         Request request = null;
         try {
             request = new Request(line);

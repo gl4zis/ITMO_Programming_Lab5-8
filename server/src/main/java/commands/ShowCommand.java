@@ -38,7 +38,9 @@ public class ShowCommand extends NonArgsCommand {
             for (Dragon dragon : collection.getItems()) {
                 if (counter >= 1)
                     line.append("----------------------------------------------------------------\n");
-                line.append(dragon + "\n");
+                line.append(dragon);
+                if (counter < collection.getItems().size() - 1)
+                    line.append("\n");
                 counter++;
             }
             LOGGER.debug("Show command was successfully executed");

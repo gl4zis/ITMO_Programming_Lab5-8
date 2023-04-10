@@ -19,6 +19,7 @@ public enum CommandType implements Serializable {
     REMOVE_GREATER("remove_greater", false, true),
     REMOVE_LOWER("remove_lower", false, true),
     SHOW("show", false, false),
+    SAVE("save", false, false),
     UPDATE("update", true, true);
 
     private final String name;

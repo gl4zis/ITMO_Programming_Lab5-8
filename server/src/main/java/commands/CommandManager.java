@@ -51,6 +51,7 @@ public class CommandManager {
             Command removeGreater = new RemoveGreaterCommand(collection);
             Command removeLower = new RemoveLowerCommand(collection);
             Command show = new ShowCommand(collection);
+            Command save = new SaveCommand(jsonManager, collection);
             Command update = new UpdateCommand(collection);
             commands.put(add.getName(), add);
             commands.put(addIfMin.getName(), addIfMin);
@@ -65,6 +66,7 @@ public class CommandManager {
             commands.put(removeGreater.getName(), removeGreater);
             commands.put(removeLower.getName(), removeLower);
             commands.put(show.getName(), show);
+            commands.put(save.getName(), save);
             commands.put(update.getName(), update);
         }
     }

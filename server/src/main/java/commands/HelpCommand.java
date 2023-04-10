@@ -27,8 +27,11 @@ public class HelpCommand extends NonArgsCommand {
     @Override
     public String execute(InputScriptReader reader) {
         StringBuilder line = new StringBuilder();
+        int counter = 0;
         for (Command command : commandManager.getCommands()) {
-            line.append("\t" + command.getDescription());
+            line.append("\t").append(command.getDescription());
+            if (++counter < commandManager.getCommands().size())
+                line.append("\n");
         }
         LOGGER.debug("Help command was successfully executed");
         return line.toString();

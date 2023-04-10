@@ -17,7 +17,7 @@ public class RemoveByIdCommand extends ArgsCommand {
      * Constructor, sets collection, that the command works with, name and description of command
      */
     RemoveByIdCommand(DragonCollection collection) {
-        super("remove_by_id", "remove_by_id id : удалить элемент из коллекции по его id");
+        super("remove_by_id", "remove_by_id id : remove an item from the collection by its id");
         this.collection = collection;
     }
 

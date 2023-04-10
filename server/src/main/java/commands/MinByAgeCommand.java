@@ -16,8 +16,8 @@ public class MinByAgeCommand extends NonArgsCommand {
      * Constructor, sets collection, that command works with, name and description of this command
      */
     MinByAgeCommand(DragonCollection collection) {
-        super("min_by_age",
-                "min_by_age : вывести любой объект из коллекции, значение поля age которого является минимальным");
+        super("min_by_age", "min_by_age : " +
+                "output any object from the collection, the value of the age field of which is the minimum");
         this.collection = collection;
     }
 

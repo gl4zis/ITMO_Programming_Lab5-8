@@ -18,7 +18,8 @@ public class UpdateCommand extends ArgsCommand {
      * Constructor, sets collection, that the command works with, name and description of command
      */
     UpdateCommand(DragonCollection collection) {
-        super("update", "update id {element} : обновить значение элемента коллекции, id которого равен заданному");
+        super("update", "update id {element} : " +
+                "refresh the value of the collection item whose id is equal to the given one");
         this.collection = collection;
     }
 
@@ -38,7 +39,6 @@ public class UpdateCommand extends ArgsCommand {
         try {
             int id = Integer.parseInt(arg);
             collection.find(id).update(dragon);
-            collection.saved = false;
             LOGGER.info("Dragon was updated");
             LOGGER.debug("Update command successfully executed");
             return "Dragon was updated";

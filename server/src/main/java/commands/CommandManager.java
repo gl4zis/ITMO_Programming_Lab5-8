@@ -6,6 +6,7 @@ import network.CommandType;
 import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.simple.JSONObject;
 import parsers.JsonManager;
 
 import java.util.Collection;
@@ -21,21 +22,22 @@ public class CommandManager {
     static final String UNKNOWN_COMMAND = "Unknown command. Type \"help\" for see information about commands";
     private static final Logger LOGGER = LogManager.getLogger(CommandManager.class);
     private Map<String, Command> commands;
+    private final JsonManager json;
+    private final DragonCollection collection;
 
     /**
      * Constructor, sets JsonManager and DragonCollection with which commands will work
      */
     public CommandManager(JsonManager json, DragonCollection collection) {
-        addStandardCommands(json, collection);
+        this.json = json;
+        this.collection = collection;
+        addStandardCommands();
     }
 
     /**
      * Creates objects of standard command and adds it to the map
-     *
-     * @param jsonManager JsonManager, that commands will work with
-     * @param collection  DragonCollection, that commands will work with
      */
-    private void addStandardCommands(JsonManager jsonManager, DragonCollection collection) {
+    private void addStandardCommands() {
         if (commands == null) {
             commands = new HashMap<>();
             Command add = new AddCommand(collection);
@@ -51,7 +53,6 @@ public class CommandManager {
             Command removeGreater = new RemoveGreaterCommand(collection);
             Command removeLower = new RemoveLowerCommand(collection);
             Command show = new ShowCommand(collection);
-            Command save = new SaveCommand(jsonManager, collection);
             Command update = new UpdateCommand(collection);
             commands.put(add.getName(), add);
             commands.put(addIfMin.getName(), addIfMin);
@@ -66,7 +67,6 @@ public class CommandManager {
             commands.put(removeGreater.getName(), removeGreater);
             commands.put(removeLower.getName(), removeLower);
             commands.put(show.getName(), show);
-            commands.put(save.getName(), save);
             commands.put(update.getName(), update);
         }
     }
@@ -115,5 +115,13 @@ public class CommandManager {
      */
     public void addNewCommand(ArgsCommand newCommand) {
         commands.put(newCommand.getName(), newCommand);
+    }
+
+    public JsonManager getJson() {
+        return json;
+    }
+
+    public DragonCollection getCollection() {
+        return collection;
     }
 }

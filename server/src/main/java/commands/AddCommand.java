@@ -17,7 +17,7 @@ public class AddCommand extends NonArgsCommand {
      * Constructor, sets collection, that the command works with, name and description of command
      */
     AddCommand(DragonCollection collection) {
-        super("add", "add {dragon} : добавить новый элемент в коллекцию");
+        super("add", "add {dragon} : add a new item to the collection");
         this.collection = collection;
     }
 

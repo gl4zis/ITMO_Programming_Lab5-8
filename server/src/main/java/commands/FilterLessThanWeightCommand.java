@@ -20,7 +20,8 @@ public class FilterLessThanWeightCommand extends ArgsCommand {
      */
     FilterLessThanWeightCommand(DragonCollection collection) {
         super("filter_less_than_weight",
-                "filter_less_than_weight weight : вывести элементы, значение поля weight которых меньше заданного");
+                "filter_less_than_weight weight : " +
+                        "output the elements whose value of the weight field is less than the given one");
         this.collection = collection;
     }
 

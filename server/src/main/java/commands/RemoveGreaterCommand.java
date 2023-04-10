@@ -20,7 +20,7 @@ public class RemoveGreaterCommand extends NonArgsCommand {
      */
     RemoveGreaterCommand(DragonCollection collection) {
         super("remove_greater",
-                "remove_greater {dragon} : удалить из коллекции все элементы, превышающие заданный");
+                "remove_greater {dragon} : remove from the collection all items exceeding the specified");
         this.collection = collection;
     }
 

@@ -14,7 +14,6 @@ import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 
 public class Connection {
-
     private final CommandManager manager;
     private DatagramSocket dataSock;
     private int port;
@@ -40,14 +39,12 @@ public class Connection {
     private void run() throws IOException {
         if (System.in.available() > 0) {
             String line = InputConsoleReader.readNextLine();
-            if (line.equals("save") || line.equals("exit")) {
-                Request request = new Request("save");
-                manager.seekCommand(request);
-                if (line.equals("exit")) {
-                    request = new Request("exit");
-                    manager.seekCommand(request);
-                }
-            } else System.out.println("Unknown server command");
+            switch (line) {
+                case "help" -> ServerCommand.help();
+                case "exit" -> ServerCommand.exit(manager);
+                case "save" -> ServerCommand.save(manager);
+                default -> System.out.println("Unknown server command");
+            }
         }
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         DatagramPacket dataPack;

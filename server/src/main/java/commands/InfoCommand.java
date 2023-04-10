@@ -15,7 +15,7 @@ public class InfoCommand extends NonArgsCommand {
      * Constructor, sets collection, that the command works with, name and description of command
      */
     InfoCommand(DragonCollection collection) {
-        super("info", "info : вывести в стандартный поток вывода информацию о коллекции");
+        super("info", "info : display information about the collection");
         this.collection = collection;
     }
 

@@ -15,7 +15,7 @@ public class ClearCommand extends NonArgsCommand {
      * Constructor, sets collection, that the command works with, name and description of command
      */
     ClearCommand(DragonCollection collection) {
-        super("clear", "clear : очистить коллекцию");
+        super("clear", "clear : clear the collection");
         this.collection = collection;
     }
 

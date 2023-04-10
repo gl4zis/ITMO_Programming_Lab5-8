@@ -20,7 +20,7 @@ public class RemoveLowerCommand extends NonArgsCommand {
      */
     RemoveLowerCommand(DragonCollection collection) {
         super("remove_lower",
-                "remove_lower {dragon} : удалить из коллекции все элементы, меньшие, чем заданный");
+                "remove_lower {dragon} : remove all items from the collection that are smaller than the specified");
         this.collection = collection;
     }
 

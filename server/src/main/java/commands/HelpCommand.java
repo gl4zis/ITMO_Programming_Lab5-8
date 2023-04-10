@@ -14,7 +14,7 @@ public class HelpCommand extends NonArgsCommand {
      * Constructor, sets command manager, that the command works with, name and description of command
      */
     HelpCommand(CommandManager commandManager) {
-        super("help", "help : вывести справку по доступным командам");
+        super("help", "help : display help for available commands");
         this.commandManager = commandManager;
     }
 

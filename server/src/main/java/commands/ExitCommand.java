@@ -11,10 +11,10 @@ public class ExitCommand extends NonArgsCommand {
     private static final Logger LOGGER = LogManager.getLogger(ExitCommand.class);
 
     /**
-     * Standard constructor, sets collection,  name and description of command
+     * Standard constructor, sets collection, name and description of command
      */
     public ExitCommand() {
-        super("exit", "exit : завершить программу (без сохранения в файл)");
+        super("exit", "exit : terminate the program");
     }
 
     /**

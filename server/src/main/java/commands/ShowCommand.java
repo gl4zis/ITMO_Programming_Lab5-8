@@ -17,7 +17,8 @@ public class ShowCommand extends NonArgsCommand {
      * Constructor, sets collection, that the command works with, name and description of command
      */
     ShowCommand(DragonCollection collection) {
-        super("show", "show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении");
+        super("show", "show : " +
+                "output all elements of the collection in string representation");
         this.collection = collection;
     }
 

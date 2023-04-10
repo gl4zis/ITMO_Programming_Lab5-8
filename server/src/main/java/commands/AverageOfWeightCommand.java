@@ -16,7 +16,7 @@ public class AverageOfWeightCommand extends NonArgsCommand {
      */
     AverageOfWeightCommand(DragonCollection collection) {
         super("average_of_weight",
-                "average_of_weight : вывести среднее значение поля weight для всех элементов коллекции");
+                "average_of_weight : display the average value of the weight field for all items in the collection");
         this.collection = collection;
     }
 

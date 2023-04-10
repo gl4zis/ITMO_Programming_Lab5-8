@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import parsers.DateParser;
+import parsers.JsonManager;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -40,7 +41,6 @@ public abstract class CollectionManager {
             } catch (JsonParseException e) {
                 LOGGER.debug(e.getMessage());
             }
-            collection.saved = true;
         }
     }
 
@@ -221,5 +221,9 @@ public abstract class CollectionManager {
         } catch (NullPointerException | ParseException | ClassCastException e) {
             throw new JsonParseException("Incorrect date of creation");
         }
+    }
+
+    public static void saveCollection(JsonManager json, DragonCollection collection) {
+        json.writeJSON(collection.toJson());
     }
 }

@@ -17,7 +17,8 @@ public class AddIfMinCommand extends NonArgsCommand {
      */
     AddIfMinCommand(DragonCollection collection) {
         super("add_if_min",
-                "add_if_min {dragon} : добавить новый элемент в коллекцию, если его значение меньше, чем у наименьшего элемента этой коллекции");
+                "add_if_min {dragon} : " +
+                        "add a new item to the collection if its value is smaller than the smallest item in the collection");
         this.collection = collection;
     }
 

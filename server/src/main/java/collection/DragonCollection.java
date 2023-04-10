@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import parsers.DateParser;
+import parsers.JsonManager;
 
 import java.util.*;
 
@@ -19,7 +20,6 @@ public class DragonCollection {
     private static final Logger LOGGER = LogManager.getLogger(DragonCollection.class);
     private static final String TYPE = "LinkedHashSet";
     private final ArrayList<Integer> idList = new ArrayList<>();
-    public boolean saved = true;
     private LinkedHashSet<Dragon> collection;
     private Date creationDate;
 
@@ -41,7 +41,6 @@ public class DragonCollection {
         if (idList.contains(dragon.getId())) throw new IdCollisionException();
         idList.add(dragon.getId());
         collection.add(dragon);
-        saved = false;
     }
 
     /**
@@ -52,7 +51,6 @@ public class DragonCollection {
     public void remove(Dragon dragon) {
         idList.remove((Integer) dragon.getId());
         collection.remove(dragon);
-        saved = false;
     }
 
     /**
@@ -100,7 +98,6 @@ public class DragonCollection {
         int dragonCount = idList.size();
         collection.clear();
         idList.clear();
-        saved = false;
         LOGGER.debug(dragonCount + " dragons removed from the collection");
     }
 

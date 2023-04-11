@@ -1,5 +1,9 @@
+package client;
+
 import exceptions.IncorrectInputException;
 import exceptions.UnavailableServerException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import parsers.InputScriptReader;
 import parsers.StringModificator;
 
@@ -7,6 +11,8 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 
 public abstract class CommandProcessor {
+    private static final Logger LOGGER = LogManager.getLogger(CommandProcessor.class);
+
     public static String execute(Connection conn, String line) {
         if (line.trim().isEmpty())
             return "";
@@ -65,10 +71,10 @@ public abstract class CommandProcessor {
                         validateScript(conn, files, line);
                     } else {
                         String output = execute(conn, line, reader);
-                        System.out.println("Executing: " + line);
+                        LOGGER.info("Executing: " + line);
                         if (output == null)
                             return false;
-                        System.out.println(output);
+                        LOGGER.info(output);
                     }
                 } catch (IncorrectInputException ignored) {
                 }
@@ -86,9 +92,9 @@ public abstract class CommandProcessor {
             if (!files.contains(filePath)) {
                 files.add(filePath);
                 reader = new InputScriptReader(filePath);
-                System.out.println("Executing script: " + filePath);
+                LOGGER.info("Executing script: " + filePath);
             } else {
-                System.out.println("Try of recursion! Script wouldn't execute");
+                LOGGER.warn("Try of recursion! Script wouldn't execute");
                 return false;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -100,7 +106,7 @@ public abstract class CommandProcessor {
         boolean exit = !ex_script(conn, files, reader);
 
         files.remove(filePath);
-        System.out.printf("Script: %s executing ended\n", filePath);
+        LOGGER.info(String.format("Script: %s executing ended\n", filePath));
         return exit;
     }
 }

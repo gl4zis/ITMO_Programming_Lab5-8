@@ -4,6 +4,8 @@ import commands.CommandManager;
 import network.Request;
 import network.Response;
 import org.apache.commons.lang3.SerializationUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import parsers.InputConsoleReader;
 
 import java.io.IOException;
@@ -14,6 +16,7 @@ import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 
 public class Connection {
+    private static final Logger LOGGER = LogManager.getLogger(Connection.class);
     private final CommandManager manager;
     private DatagramSocket dataSock;
     private int port;
@@ -29,36 +32,45 @@ public class Connection {
         try {
             dataSock = new DatagramSocket(port);
             dataSock.setSoTimeout(10);
+            LOGGER.debug("Connection opened");
             while (true)
-                run();
+                if (!run())
+                    break;
         } catch (IOException e) {
-            System.out.println("Something went wrong =( " + e.getMessage());
+            LOGGER.error("Something went wrong =( " + e.getMessage());
         } finally {
             dataSock.close();
         }
     }
 
-    private void run() throws IOException {
-        checkConsole();
+    private boolean run() throws IOException {
+        boolean exit = checkConsole();
+        if (exit)
+            return false;
         if (readChannel()) {
             Request request = SerializationUtils.deserialize(buffer.array());
-            System.out.printf("Request command: %s, with args: %s\n",
-                    request.getCommand(), request.getArg());
+            LOGGER.info(String.format("Request command: %s, with args: %s",
+                    request.getCommand(), request.getArg()));
             Response response = new Response(manager.seekCommand(request));
             sendResponse(response);
         }
+        return true;
     }
 
-    private void checkConsole() throws IOException {
+    private boolean checkConsole() throws IOException {
         if (System.in.available() > 0) {
             String line = InputConsoleReader.readNextLine();
             switch (line) {
                 case "help" -> ServerCommand.help();
-                case "exit" -> ServerCommand.exit(manager);
+                case "exit" -> {
+                    ServerCommand.save(manager);
+                    return true;
+                }
                 case "save" -> ServerCommand.save(manager);
                 default -> System.out.println("Unknown server command");
             }
         }
+        return false;
     }
 
     private boolean readChannel() throws IOException {
@@ -66,6 +78,7 @@ public class Connection {
         try {
             dataPack = new DatagramPacket(buffer.array(), buffer.capacity());
             dataSock.receive(dataPack);
+            LOGGER.debug("Request received");
             return true;
         } catch (SocketTimeoutException ignored) {
             return false;
@@ -78,6 +91,6 @@ public class Connection {
         port = dataPack.getPort();
         dataPack = new DatagramPacket(buffer.array(), buffer.capacity(), host, port);
         dataSock.send(dataPack);
-        System.out.println("Sent response to the client: " + host.toString().substring(1));
+        LOGGER.info("Sent response to the client: " + host.toString().substring(1));
     }
 }

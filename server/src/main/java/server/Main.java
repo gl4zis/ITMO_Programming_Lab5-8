@@ -4,6 +4,8 @@ package server;
 import collection.CollectionManager;
 import collection.DragonCollection;
 import commands.CommandManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import parsers.JsonManager;
 
 import java.text.SimpleDateFormat;
@@ -17,7 +19,10 @@ public class Main {
         System.setProperty("logs.path", "./lab5-8-server-logs/" + creationDate + ".log");
     }
 
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
+        LOGGER.debug("Server startup");
         try {
             JsonManager jsonManager;
             if (args.length == 0) {
@@ -27,9 +32,13 @@ public class Main {
             CommandManager commandManager = new CommandManager(jsonManager, collection);
             CollectionManager.uploadCollection(jsonManager.readJSON(), collection);
             Connection con = new Connection(commandManager);
-            con.open(6789);
+            int port = 8812;
+            LOGGER.info("Waiting connection on port: " + port);
+            con.open(port);
+            LOGGER.debug("Correct exit");
         } catch (Throwable e) {
-            e.printStackTrace();
+            LOGGER.fatal("Something very strange happened =0 " + e.getMessage());
+            LOGGER.debug("Incorrect exit (client crashed)");
         }
     }
 }

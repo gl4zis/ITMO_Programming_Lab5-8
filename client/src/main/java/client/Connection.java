@@ -1,8 +1,12 @@
+package client;
+
 import exceptions.IncorrectInputException;
 import exceptions.UnavailableServerException;
 import network.Request;
 import network.Response;
 import org.apache.commons.lang3.SerializationUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import parsers.InputConsoleReader;
 import parsers.InputScriptReader;
 
@@ -15,6 +19,7 @@ import java.nio.channels.DatagramChannel;
 import java.util.Date;
 
 public class Connection {
+    private static final Logger LOGGER = LogManager.getLogger(Connection.class);
     private final InetSocketAddress address;
     private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
 
@@ -47,6 +52,7 @@ public class Connection {
         channel.configureBlocking(false);
         buffer = ByteBuffer.wrap(SerializationUtils.serialize(request));
         channel.send(buffer, address);
+        LOGGER.debug("Request was sent");
     }
 
     private boolean waitResponse(DatagramChannel channel) throws IOException {
@@ -61,6 +67,7 @@ public class Connection {
                 return false;
             }
         }
+        LOGGER.debug("Reply was received");
         return true;
     }
 

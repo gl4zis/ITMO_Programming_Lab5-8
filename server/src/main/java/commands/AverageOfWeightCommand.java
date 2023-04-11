@@ -1,13 +1,14 @@
 package commands;
 
 import collection.DragonCollection;
+import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
  * Non-argument command "average_of_weight". Outputs average value of all dragon's weight in collection
  */
-public class AverageOfWeightCommand extends NonArgsCommand {
+public class AverageOfWeightCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(AverageOfWeightCommand.class);
     private final DragonCollection collection;
 
@@ -24,7 +25,7 @@ public class AverageOfWeightCommand extends NonArgsCommand {
      * Output average value of all dragon's weight in collection
      */
     @Override
-    public String execute() {
+    public String execute(Request request) {
         return "Average weight = " + collection.getAverageWeight();
     }
 }

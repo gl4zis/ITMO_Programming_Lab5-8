@@ -1,12 +1,15 @@
 package commands;
 
+import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.stream.Collectors;
 
 /**
  * Non-argument command "help". Outputs info about all commands
  */
-public class HelpCommand extends NonArgsCommand {
+public class HelpCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(HelpCommand.class);
     private final CommandManager commandManager;
 
@@ -22,12 +25,10 @@ public class HelpCommand extends NonArgsCommand {
      * Outputs info about all commands loaded in command manager
      */
     @Override
-    public String execute() {
-        StringBuilder output = new StringBuilder();
-        for (Command command : commandManager.getCommands()) {
-            output.append('\t').append(command.getDescription()).append('\n');
-        }
-        output.append("\texit : terminate the program");
-        return output.toString();
+    public String execute(Request request) {
+        return commandManager.getCommands().stream()
+                .map(Command::getDescription).
+                collect(Collectors.joining("\n\t")) +
+                "\texit : terminate the program";
     }
 }

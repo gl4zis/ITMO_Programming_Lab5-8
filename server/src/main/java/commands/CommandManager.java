@@ -72,19 +72,7 @@ public class CommandManager {
     public String seekCommand(Request request) {
         CommandType commandType = request.getCommand();
         String command = commandType.toString();
-        String arg = request.getArg();
-        Dragon dragon = request.getDragon();
-        if (!commandType.isNeedReadDragon()) {
-            if (commandType.isHaveArgs())
-                return commands.get(command).execute(arg);
-            else
-                return commands.get(command).execute();
-        } else {
-            if (commandType.isHaveArgs())
-                return commands.get(command).execute(arg, dragon);
-            else
-                return commands.get(command).execute(dragon);
-        }
+        return commands.get(command).execute(request);
     }
 
 
@@ -102,7 +90,7 @@ public class CommandManager {
      *
      * @param newCommand object of command, that will be added in the map
      */
-    public void addNewCommand(ArgsCommand newCommand) {
+    public void addNewCommand(Command newCommand) {
         commands.put(newCommand.getName(), newCommand);
     }
 

@@ -1,13 +1,14 @@
 package commands;
 
 import collection.DragonCollection;
+import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
  * Non-argument command "info". Outputs info about collection, that application works with
  */
-public class InfoCommand extends NonArgsCommand {
+public class InfoCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(InfoCommand.class);
     private final DragonCollection collection;
 
@@ -24,7 +25,7 @@ public class InfoCommand extends NonArgsCommand {
      * (Size, type, date of creation and maximum dragon id)
      */
     @Override
-    public String execute() {
+    public String execute(Request request) {
         return collection.toString();
     }
 }

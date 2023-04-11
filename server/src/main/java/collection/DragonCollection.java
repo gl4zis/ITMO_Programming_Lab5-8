@@ -9,9 +9,9 @@ import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import parsers.DateParser;
-import parsers.JsonManager;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Class that contains collection of dragons, some vars and methods to work with it
@@ -57,25 +57,9 @@ public class DragonCollection {
      * Finds dragon in collection by its id
      *
      * @param id id of dragon, which will be finds in collection
-     * @throws ObjectNotFoundException if there is no dragon with this id in the collection
      */
-    public Dragon find(int id) throws ObjectNotFoundException, NonUniqueValueException {
-        for (Dragon dragon : collection) {
-            if (dragon.getId() == id) {
-                return dragon;
-            }
-        }
-        if (id >= 100000) {
-            List<Dragon> idMatch = new ArrayList<>();
-            for (Dragon dragon : collection) {
-                if (Integer.toString(dragon.getId()).startsWith(Integer.toString(id))) {
-                    idMatch.add(dragon);
-                }
-            }
-            if (idMatch.size() == 1) return idMatch.get(0);
-            else if (idMatch.size() > 1) throw new NonUniqueValueException();
-            else throw new ObjectNotFoundException();
-        } else throw new ObjectNotFoundException();
+    public Dragon find(int id) {
+        return collection.stream().filter(p -> p.getId() == id).findAny().get();
     }
 
     /**
@@ -140,13 +124,7 @@ public class DragonCollection {
      * @return averageWeight
      */
     public long getAverageWeight() {
-        long averageWeight = 0;
-        for (Dragon dragon : collection) {
-            long weight = dragon.getWeight();
-            averageWeight += weight;
-        }
-        averageWeight /= collection.size();
-        return averageWeight;
+        return collection.stream().collect(Collectors.averagingLong(Dragon::getWeight)).longValue();
     }
 
     /**
@@ -155,18 +133,8 @@ public class DragonCollection {
      * @return minDragon
      */
     public Dragon minByAge() {
-        double minAge = Double.POSITIVE_INFINITY;
-        Dragon minDragon = null;
-        for (Dragon dragon : collection) {
-            if (dragon.getAge() >= 0) {
-                int age = dragon.getAge();
-                if (age - minAge < 0) {
-                    minAge = age;
-                    minDragon = dragon;
-                }
-            }
-        }
-        return minDragon;
+        Optional<Dragon> minDragon = collection.stream().min(Dragon.ageComp);
+        return minDragon.get();
     }
 
     /**

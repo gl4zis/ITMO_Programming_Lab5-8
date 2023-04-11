@@ -1,15 +1,15 @@
 package commands;
 
 import collection.DragonCollection;
-import exceptions.NonUniqueValueException;
-import exceptions.ObjectNotFoundException;
+import dragons.Dragon;
+import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
  * Argument command "remove_by_id id". Removes dragon from the collection by its id
  */
-public class RemoveByIdCommand extends ArgsCommand {
+public class RemoveByIdCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(RemoveByIdCommand.class);
     private final DragonCollection collection;
 
@@ -24,24 +24,20 @@ public class RemoveByIdCommand extends ArgsCommand {
     /**
      * Removes dragon from the collection by its id.
      * If there is incorrect argument or there is no dragon with such id in collection, outputs error messages
-     *
-     * @param arg id of dragon, which you want to remove
      */
     @Override
-    public String execute(String arg) {
+    public String execute(Request request) {
         try {
-            int id = Integer.parseInt(arg);
-            collection.remove(collection.find(id));
-            return "Dragon was successfully removed";
+            int id = Integer.parseInt(request.getArg());
+            Dragon dragon = collection.find(id);
+            if (dragon != null) {
+                collection.remove(collection.find(id));
+                LOGGER.info("Dragon was successfully removed");
+                return "Dragon was successfully removed";
+            } else return "No such elements in collection";
         } catch (NumberFormatException e) {
             LOGGER.warn("Incorrect command argument");
             return "Incorrect command argument";
-        } catch (ObjectNotFoundException e) {
-            LOGGER.debug(e.getMessage());
-            return "There is no such element in the collection";
-        } catch (NonUniqueValueException e) {
-            LOGGER.info(e.getMessage());
-            return e.getMessage() + "Try to input more numbers";
         }
     }
 }

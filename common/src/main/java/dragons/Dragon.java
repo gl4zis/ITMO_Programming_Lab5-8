@@ -16,9 +16,14 @@ import java.util.Date;
 
 public class Dragon implements Comparable<Dragon>, Serializable {
     public static final Comparator<Dragon> coordComp = (o1, o2) -> {
-        if (o1.coordinates.compareTo(o2.coordinates) == 0) {
+        if (o1.coordinates.compareTo(o2.coordinates) == 0)
             return o1.id - o2.id;
-        } else return o1.coordinates.compareTo(o2.coordinates);
+        else return o1.coordinates.compareTo(o2.coordinates);
+    };
+    public static final Comparator<Dragon> ageComp = (o1, o2) -> {
+        if (o1.getAge() == o2.getAge())
+            return o1.id - o2.id;
+        else return o1.getAge() - o2.getAge();
     };
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null

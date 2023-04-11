@@ -2,6 +2,7 @@ package commands;
 
 import dragons.Dragon;
 import exceptions.IncorrectInputException;
+import network.Request;
 
 /**
  * Abstract class which are extending all commands classes
@@ -41,21 +42,5 @@ public abstract class Command {
      *
      * @throws IncorrectInputException if there is no such non-argument command
      */
-    public abstract String execute();
-
-    public String execute(Dragon dragon) {
-        return execute();
-    }
-
-    /**
-     * Execute method for commands with arguments
-     *
-     * @param arg command argument
-     * @throws IncorrectInputException if there is no such argument command
-     */
-    public abstract String execute(String arg);
-
-    public String execute(String arg, Dragon dragon) {
-        return execute(arg);
-    }
+    public abstract String execute(Request request);
 }

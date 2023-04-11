@@ -50,7 +50,6 @@ public class Connection {
     }
 
     private void checkConsole() throws IOException {
-        System.out.print("- ");
         if (System.in.available() > 0) {
             String line = InputConsoleReader.readNextLine();
             switch (line) {

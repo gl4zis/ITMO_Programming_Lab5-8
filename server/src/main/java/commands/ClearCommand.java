@@ -1,13 +1,14 @@
 package commands;
 
 import collection.DragonCollection;
+import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
  * Non-argument command "clear". Removes all dragons from the collection
  */
-public class ClearCommand extends NonArgsCommand {
+public class ClearCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(ClearCommand.class);
     private final DragonCollection collection;
 
@@ -23,7 +24,7 @@ public class ClearCommand extends NonArgsCommand {
      * Removes all dragons from the collection
      */
     @Override
-    public String execute() {
+    public String execute(Request request) {
         collection.clear();
         return "Collection was cleared";
     }

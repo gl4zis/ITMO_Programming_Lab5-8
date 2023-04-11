@@ -2,14 +2,15 @@ package commands;
 
 import collection.DragonCollection;
 import dragons.Dragon;
+import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
  * Non-argument command "add_if_min {dragon}"
  */
-public class AddIfMinCommand extends NonArgsCommand {
-    private static final Logger LOGGER = LogManager.getLogger(NonArgsCommand.class);
+public class AddIfMinCommand extends Command {
+    private static final Logger LOGGER = LogManager.getLogger(AddIfMinCommand.class);
     private final DragonCollection collection;
 
     /**
@@ -26,12 +27,8 @@ public class AddIfMinCommand extends NonArgsCommand {
      * Reads all dragon vars, creates new dragon object and adds it in the collection if there are no dragons less that this
      */
     @Override
-    public String execute() {
-        return "WTF?? No dragon!!";
-    }
-
-    @Override
-    public String execute(Dragon dragon) {
+    public String execute(Request request) {
+        Dragon dragon = request.getDragon();
         Dragon minDragon = collection.getMinDragon();
         if (minDragon == null || collection.getMinDragon().compareTo(dragon) > 0) {
             collection.add(dragon);

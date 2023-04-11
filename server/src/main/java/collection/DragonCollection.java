@@ -59,7 +59,11 @@ public class DragonCollection {
      * @param id id of dragon, which will be finds in collection
      */
     public Dragon find(int id) {
-        return collection.stream().filter(p -> p.getId() == id).findAny().get();
+        try {
+            return collection.stream().filter(p -> p.getId() == id).findAny().get();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
     }
 
     /**
@@ -68,11 +72,11 @@ public class DragonCollection {
      * @return maxId
      */
     public int getMaxId() {
-        int maxId = 0;
-        for (Integer id : idList) {
-            if (id > maxId) maxId = id;
+        try {
+            return idList.stream().mapToInt(p -> p).max().getAsInt();
+        } catch (NoSuchElementException e) {
+            return 0;
         }
-        return maxId;
     }
 
     /**
@@ -83,15 +87,6 @@ public class DragonCollection {
         collection.clear();
         idList.clear();
         LOGGER.debug(dragonCount + " dragons removed from the collection");
-    }
-
-    /**
-     * Returns date of creation this collection
-     *
-     * @return creationDate
-     */
-    public Date getCreationDate() {
-        return creationDate;
     }
 
     /**
@@ -112,12 +107,6 @@ public class DragonCollection {
         return collection;
     }
 
-    public List<Dragon> sorted() {
-        List<Dragon> listColl = new ArrayList<>(collection);
-        listColl.sort(Dragon.coordComp);
-        return listColl;
-    }
-
     /**
      * Returns average of dragon's weights in collection
      *
@@ -133,8 +122,11 @@ public class DragonCollection {
      * @return minDragon
      */
     public Dragon minByAge() {
-        Optional<Dragon> minDragon = collection.stream().min(Dragon.ageComp);
-        return minDragon.get();
+        try {
+            return collection.stream().min(Dragon.ageComp).get();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
     }
 
     /**
@@ -144,13 +136,10 @@ public class DragonCollection {
      * @return minDragon
      */
     public Dragon getMinDragon() {
-        if (collection.size() == 0) return null;
-        else {
-            Dragon minDragon = (Dragon) collection.toArray()[0];
-            for (Dragon dragon : collection) {
-                if (dragon.compareTo(minDragon) < 0) minDragon = dragon;
-            }
-            return minDragon;
+        try {
+            return collection.stream().min(Dragon::compareTo).get();
+        } catch (NoSuchElementException e) {
+            return null;
         }
     }
 

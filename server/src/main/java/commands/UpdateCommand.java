@@ -29,7 +29,7 @@ public class UpdateCommand extends Command {
     @Override
     public String execute(Request request) {
         try {
-            int id = Integer.parseInt(request.getArg());
+            int id = (int) request.getArg();
             Dragon dragon = collection.find(id);
             if (dragon != null) {
                 dragon.update(request.getDragon());

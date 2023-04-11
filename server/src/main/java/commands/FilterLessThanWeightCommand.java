@@ -34,7 +34,7 @@ public class FilterLessThanWeightCommand extends Command {
     @Override
     public String execute(Request request) {
         try {
-            long weight = Long.parseLong(request.getArg());
+            long weight = (long) request.getArg();
             String output = collection.getItems().stream()
                     .filter(p -> p.getWeight() < weight).sorted(Dragon.coordComp).map(Dragon::toString).collect(Collectors.joining(
                             "\n----------------------------------------------------------------\n"));

@@ -1,5 +1,6 @@
 package network;
 
+import com.sun.source.tree.BreakTree;
 import dragons.Dragon;
 import exceptions.EmptyInputException;
 import exceptions.IncorrectInputException;
@@ -9,7 +10,7 @@ import java.io.Serializable;
 
 public class Request implements Serializable {
     private final CommandType command;
-    private final String arg;
+    private final Object arg;
     private final Dragon dragon;
 
     public Request(String line) throws EmptyInputException {
@@ -25,17 +26,24 @@ public class Request implements Serializable {
         return CommandType.getByName(input[0]);
     }
 
-    private String getArg(String line) {
+    private Object getArg(String line) {
         String[] input = line.split(" ");
         try {
             if (command.isHaveArgs()) {
-                return input[1];
+                String argStr = input[1].trim();
+                return switch (command.argClass().getSimpleName()) {
+                    case "int" -> Integer.parseInt(argStr);
+                    case "long" -> Long.parseLong(argStr);
+                    default -> argStr;
+                };
             } else {
                 if (input.length > 1) throw new IncorrectInputException("Unknown command");
                 return null;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new IncorrectInputException("Unknown command");
+        } catch (NumberFormatException e) {
+            throw new IncorrectInputException("Incorrect command argument");
         }
     }
 
@@ -49,7 +57,7 @@ public class Request implements Serializable {
         return command;
     }
 
-    public String getArg() {
+    public Object getArg() {
         return arg;
     }
 

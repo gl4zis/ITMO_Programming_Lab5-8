@@ -1,37 +1,53 @@
 package network;
 
 import dragons.Dragon;
-import exceptions.EmptyInputException;
 import exceptions.IncorrectInputException;
 import parsers.InputConsoleReader;
 import parsers.InputScriptReader;
 
 import java.io.Serializable;
 
+/**
+ * Request from client to server.
+ * Includes commandType, argument, dragon object
+ */
 public class Request implements Serializable {
     private final CommandType command;
     private final Object arg;
     private final Dragon dragon;
 
+    /**
+     * For sending commands from console
+     */
     public Request(String line) {
         command = genCommandType(line);
         arg = genArg(line);
         dragon = genDragon();
     }
 
+    /**
+     * For sending commands from script file
+     *
+     * @param reader script parser
+     */
     public Request(String line, InputScriptReader reader) {
         command = genCommandType(line);
         arg = genArg(line);
         dragon = genDragon(reader);
     }
 
-    private CommandType genCommandType(String line) throws EmptyInputException {
+    /**
+     * Generates commandType from line
+     */
+    private CommandType genCommandType(String line) {
         String[] input = line.split(" ");
         if (input.length > 2) throw new IncorrectInputException("Unknown command");
-        else if (input.length == 0) throw new EmptyInputException();
         return CommandType.getByName(input[0]);
     }
 
+    /**
+     * Generates argument from line
+     */
     private Object genArg(String line) {
         String[] input = line.split(" ");
         try {
@@ -53,12 +69,18 @@ public class Request implements Serializable {
         }
     }
 
+    /**
+     * Generates dragon from line (console command)
+     */
     private Dragon genDragon() {
         if (command.isNeedReadDragon()) {
             return InputConsoleReader.readDragon();
         } else return null;
     }
 
+    /**
+     * Generates dragon from line (script command)
+     */
     private Dragon genDragon(InputScriptReader reader) {
         if (command.isNeedReadDragon()) {
             return reader.readDragon();

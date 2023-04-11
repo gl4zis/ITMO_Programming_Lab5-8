@@ -36,8 +36,8 @@ public class DragonCollection {
      * @throws IdCollisionException if dragon with this id already in the collection
      */
     public void add(Dragon dragon) throws IdCollisionException {
-        if (idList.contains(dragon.getId())) throw new IdCollisionException();
-        idList.add(dragon.getId());
+        if (idList.contains(dragon.hashCode())) throw new IdCollisionException();
+        idList.add(dragon.hashCode());
         collection.add(dragon);
     }
 
@@ -47,7 +47,7 @@ public class DragonCollection {
      * @param dragon will be removed from collection
      */
     public void remove(Dragon dragon) {
-        idList.remove((Integer) dragon.getId());
+        idList.remove((Integer) dragon.hashCode());
         collection.remove(dragon);
     }
 
@@ -57,7 +57,7 @@ public class DragonCollection {
      * @param id id of dragon, which will be finds in collection
      */
     public Dragon find(int id) {
-        Optional<Dragon> dragon = collection.stream().filter(p -> p.getId() == id).findAny();
+        Optional<Dragon> dragon = collection.stream().filter(p -> p.hashCode() == id).findAny();
         return dragon.orElse(null);
     }
 

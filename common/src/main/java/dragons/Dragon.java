@@ -52,7 +52,7 @@ public class Dragon implements Comparable<Dragon>, Serializable {
 
     /**
      * Constructor with auto-generated id and creation date.
-     * For create dragon by user
+     * For creating dragon by user
      *
      * @throws IncorrectDataException if some params are incorrect
      */
@@ -89,40 +89,12 @@ public class Dragon implements Comparable<Dragon>, Serializable {
         head = dragon.getDragonHead();
     }
 
-    /**
-     * Returns id
-     *
-     * @return id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Returns name
-     *
-     * @return name
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * Returns coordinates
-     *
-     * @return coordinates
-     */
     public Coordinates getCoordinates() {
         return coordinates;
-    }
-
-    /**
-     * Returns date of creation
-     *
-     * @return creationDate
-     */
-    public Date getCreationDate() {
-        return creationDate;
     }
 
     /**
@@ -135,49 +107,23 @@ public class Dragon implements Comparable<Dragon>, Serializable {
         else return age;
     }
 
-    /**
-     * Sets age, expects positive integer
-     *
-     * @param age positive integral number
-     * @throws IncorrectDataException if it's not a number, or it's negative number
-     */
-    public void setAge(int age) throws IncorrectDataException {
+    public void setAge(int age) {
         if (age <= 0) throw new IncorrectDataException("Incorrect age for dragon");
         this.age = age;
     }
 
-    /**
-     * Returns weight
-     *
-     * @return weight
-     */
     public long getWeight() {
         return weight;
     }
 
-    /**
-     * Returns color
-     *
-     * @return color
-     */
     public Color getColor() {
         return color;
     }
 
-    /**
-     * Returns character
-     *
-     * @return character
-     */
     public DragonCharacter getDragonCharacter() {
         return character;
     }
 
-    /**
-     * Returns head
-     *
-     * @return head
-     */
     public DragonHead getDragonHead() {
         return head;
     }
@@ -235,7 +181,7 @@ public class Dragon implements Comparable<Dragon>, Serializable {
     @Override
     public int compareTo(Dragon dragon) {
         if (name.compareTo(dragon.name) == 0) {
-            return id - dragon.getId();
+            return id - dragon.hashCode();
         } else return name.compareTo(dragon.name);
     }
 

@@ -33,7 +33,9 @@ public class RemoveLowerCommand extends Command {
         collection.getItems().stream()
                 .filter(p -> p.compareTo(minDragon) < 0).sorted(Dragon.coordComp).forEach(p -> {
                     collection.remove(p);
-                    output.append("Removed dragon ").append(p.getName()).append(" with id: ").append(p.getId()).append('\n');
+                    String outLine = "Removed dragon " + p.getName() + " with id: " + p.hashCode();
+                    LOGGER.info(outLine);
+                    output.append(outLine).append('\n');
                 });
         if (output.length() > 0) {
             output.deleteCharAt(-1);

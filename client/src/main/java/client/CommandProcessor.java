@@ -10,15 +10,28 @@ import parsers.StringModificator;
 import java.io.FileNotFoundException;
 import java.util.HashSet;
 
+/**
+ * Preprocessing commands on client
+ */
 public abstract class CommandProcessor {
     private static final Logger LOGGER = LogManager.getLogger(CommandProcessor.class);
 
+    /**
+     * Processes string line. Finds there special commands, processes it, sends requests and return response
+     *
+     * @param conn by this, realizes requests and responses
+     * @param line there you want to find command
+     * @return responded message from the server
+     */
     public static String execute(Connection conn, String line) {
         if (line.trim().isEmpty())
             return "";
         return execute(conn, line, null);
     }
 
+    /**
+     * Similarly execute(Connection, String), but can execute commands from script
+     */
     private static String execute(Connection conn, String line, InputScriptReader reader) {
         try {
             switch (line.split(" ")[0]) {
@@ -40,6 +53,9 @@ public abstract class CommandProcessor {
         }
     }
 
+    /**
+     * Special client command 'help'
+     */
     private static String help(Connection conn) throws UnavailableServerException {
         String output = conn.sendReqGetResp("help");
         output += """
@@ -49,6 +65,9 @@ public abstract class CommandProcessor {
         return output;
     }
 
+    /**
+     * Special client command 'update'
+     */
     private static String update(Connection conn, String line, InputScriptReader reader) throws UnavailableServerException {
         String find = "find" + line.substring(6);
         String output = conn.sendReqGetResp(find);
@@ -57,10 +76,16 @@ public abstract class CommandProcessor {
         } else return output;
     }
 
+    /**
+     * Special client command 'execute_script'
+     */
     private static boolean ex_script(Connection conn, String line) throws UnavailableServerException {
         return validateScript(conn, new HashSet<>(), line);
     }
 
+    /**
+     * Executes command from reader
+     */
     private static boolean ex_script(Connection conn, HashSet<String> files, InputScriptReader reader)
             throws UnavailableServerException {
         String line = reader.readNextLine();
@@ -84,6 +109,9 @@ public abstract class CommandProcessor {
         return true;
     }
 
+    /**
+     * Validates script file, checks recursion etc
+     */
     private static boolean validateScript(Connection conn, HashSet<String> files, String line) throws UnavailableServerException {
         String filePath;
         InputScriptReader reader;

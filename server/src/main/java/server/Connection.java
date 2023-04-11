@@ -15,6 +15,9 @@ import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 
+/**
+ * Does all works with clients interaction
+ */
 public class Connection {
     private static final Logger LOGGER = LogManager.getLogger(Connection.class);
     private final CommandManager manager;
@@ -23,10 +26,16 @@ public class Connection {
     private ByteBuffer buffer = ByteBuffer.allocate(1024);
     private DatagramPacket dataPack;
 
+    /**
+     * Sets command manager, using for saving collection
+     */
     public Connection(CommandManager manager) {
         this.manager = manager;
     }
 
+    /**
+     * Opens socket, configure it and starts listening port
+     */
     public void open(int port) {
         this.port = port;
         try {
@@ -43,6 +52,10 @@ public class Connection {
         }
     }
 
+    /**
+     * Listening port.
+     * If there are data package, unpacks request, processes it and sends response to the client
+     */
     private boolean run() throws IOException {
         boolean exit = checkConsole();
         if (exit)
@@ -57,6 +70,9 @@ public class Connection {
         return true;
     }
 
+    /**
+     * Checks if admin typed something in console and processes it, executing server commands
+     */
     private boolean checkConsole() throws IOException {
         if (System.in.available() > 0) {
             String line = InputConsoleReader.readNextLine();
@@ -73,6 +89,9 @@ public class Connection {
         return false;
     }
 
+    /**
+     * Listens port and receives data packets from clients
+     */
     private boolean readChannel() throws IOException {
         buffer = ByteBuffer.allocate(1024);
         try {
@@ -85,6 +104,9 @@ public class Connection {
         }
     }
 
+    /**
+     * Sends response to the client
+     */
     private void sendResponse(Response response) throws IOException {
         buffer = ByteBuffer.wrap(SerializationUtils.serialize(response));
         InetAddress host = dataPack.getAddress();

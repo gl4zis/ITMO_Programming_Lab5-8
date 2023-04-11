@@ -21,6 +21,9 @@ public class Main {
 
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
+    /**
+     * Creates managers, creates collection, loads it from JSON and opens connection on the fixed port
+     */
     public static void main(String[] args) {
         LOGGER.debug("Server startup");
         try {

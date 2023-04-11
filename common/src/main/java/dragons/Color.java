@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Color of dragon.
- * Can be one of Four variants
+ * Can be one of four variants
  */
 public enum Color implements Serializable {
     GREEN("Green"),
@@ -14,11 +14,6 @@ public enum Color implements Serializable {
 
     private final String name;
 
-    /**
-     * Constructor sets name of color
-     *
-     * @param name of this color
-     */
     Color(String name) {
         this.name = name;
     }

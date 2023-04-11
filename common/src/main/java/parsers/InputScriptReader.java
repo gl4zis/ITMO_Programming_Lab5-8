@@ -36,7 +36,7 @@ public class InputScriptReader {
     /**
      * Reads next line from file using InputStreamReader.
      * Read symbols until find \n or end of file.
-     * Support single-line comments (<some command> //Comment).
+     * Support single-line comments ('command' //Comment).
      * If file ends, sets execution = false
      *
      * @return line

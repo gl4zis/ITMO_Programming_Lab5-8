@@ -1,6 +1,5 @@
 package client;
 
-import exceptions.IncorrectInputException;
 import exceptions.UnavailableServerException;
 import network.Request;
 import network.Response;
@@ -18,15 +17,28 @@ import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.util.Date;
 
+/**
+ * Realization of connection to the server.
+ * Requests, responses etc
+ */
 public class Connection {
     private static final Logger LOGGER = LogManager.getLogger(Connection.class);
     private final InetSocketAddress address;
     private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
 
+    /**
+     * Standard constructor
+     *
+     * @param host localhost
+     * @param port server port
+     */
     public Connection(InetAddress host, int port) {
         address = new InetSocketAddress(host, port);
     }
 
+    /**
+     * Reads console and execute command in console line, throw server
+     */
     public void run() {
         while (true) {
             System.out.print("-> ");
@@ -39,22 +51,17 @@ public class Connection {
         }
     }
 
-    private Request getRequest(String line, InputScriptReader reader) {
-        try {
-            if (reader == null) return new Request(line);
-            else return new Request(line, reader);
-        } catch (IncorrectInputException e) {
-            return null;
-        }
-    }
-
     private void sendRequest(Request request, DatagramChannel channel) throws IOException {
-        channel.configureBlocking(false);
         buffer = ByteBuffer.wrap(SerializationUtils.serialize(request));
         channel.send(buffer, address);
         LOGGER.debug("Request was sent");
     }
 
+    /**
+     * Reads channel for a second and receives response if server replied
+     *
+     * @return true if server replied
+     */
     private boolean waitResponse(DatagramChannel channel) throws IOException {
         long requestTime = new Date().getTime();
         boolean respond = false;
@@ -71,28 +78,44 @@ public class Connection {
         return true;
     }
 
+    /**
+     * Opens channel, sends request and gets response from server
+     *
+     * @return message from request
+     */
     private String sendReqGetResp(Request request) throws UnavailableServerException {
-        if (request != null) {
-            try (DatagramChannel channel = DatagramChannel.open()) {
-                sendRequest(request, channel);
-                if (waitResponse(channel)) {
-                    Response response = SerializationUtils.deserialize(buffer.array());
-                    return response.message();
-                } else throw new UnavailableServerException();
-            } catch (IOException e) {
-                return "Something went wrong: " + e.getMessage();
-            }
+        try (DatagramChannel channel = DatagramChannel.open()) {
+            channel.configureBlocking(false);
+            sendRequest(request, channel);
+            if (waitResponse(channel)) {
+                Response response = SerializationUtils.deserialize(buffer.array());
+                return response.message();
+            } else throw new UnavailableServerException();
+        } catch (IOException e) {
+            return "Something went wrong: " + e.getMessage();
         }
-        throw new IncorrectInputException("Unknown command");
     }
 
+    /**
+     * Gathers request from a line, opens channel, sends request and gets response from server
+     *
+     * @return message from response
+     * @throws UnavailableServerException if server didn't reply
+     */
     public String sendReqGetResp(String line) throws UnavailableServerException {
-        Request request = getRequest(line, null);
+        Request request = new Request(line);
         return sendReqGetResp(request);
     }
 
+    /**
+     * Gathers request from a line, opens channel, sends request and gets response from server.
+     * Using for executing commands from script
+     *
+     * @return message from response
+     * @throws UnavailableServerException if server didn't reply
+     */
     public String sendReqGetResp(String line, InputScriptReader reader) throws UnavailableServerException {
-        Request request = getRequest(line, reader);
+        Request request = new Request(line, reader);
         return sendReqGetResp(request);
     }
 }

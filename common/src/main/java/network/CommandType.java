@@ -4,6 +4,10 @@ import exceptions.IncorrectInputException;
 
 import java.io.Serializable;
 
+/**
+ * Types of all commands, what should be sent on the server.
+ * Includes command name, having argument, its type and having need of read dragon
+ */
 public enum CommandType implements Serializable {
     ADD("add", false, null, true),
     ADD_IF_MIN("add_if_min", false, null, true),
@@ -32,6 +36,12 @@ public enum CommandType implements Serializable {
         this.needReadDragon = needReadDragon;
     }
 
+    /**
+     * Returns commandType objects, by its name
+     *
+     * @param name string name of command
+     * @return commandType
+     */
     public static CommandType getByName(String name) {
         for (CommandType command : CommandType.values()) {
             if (command.name.equals(name)) {
@@ -41,18 +51,30 @@ public enum CommandType implements Serializable {
         throw new IncorrectInputException("Unknown command");
     }
 
+    /**
+     * Flag, signals if this command must have argument
+     */
     public boolean isHaveArgs() {
         return haveArgs;
     }
 
+    /**
+     * Class of command argument. If command have no argument, returns null
+     */
     public Class argClass() {
         return argClass;
     }
 
+    /**
+     * Flag, signals if this command must read new dragon object
+     */
     public boolean isNeedReadDragon() {
         return needReadDragon;
     }
 
+    /**
+     * Returns string name of command
+     */
     @Override
     public String toString() {
         return name;

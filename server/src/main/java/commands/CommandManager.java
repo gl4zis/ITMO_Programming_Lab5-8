@@ -3,8 +3,6 @@ package commands;
 import collection.DragonCollection;
 import network.CommandType;
 import network.Request;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import parsers.JsonManager;
 
 import java.util.Collection;
@@ -16,7 +14,6 @@ import java.util.Map;
  * (In console line or in script file line)
  */
 public class CommandManager {
-    private static final Logger LOGGER = LogManager.getLogger(CommandManager.class);
     private final JsonManager json;
     private final DragonCollection collection;
     private Map<String, Command> commands;
@@ -67,12 +64,14 @@ public class CommandManager {
         }
     }
 
+    /**
+     * Processes request. Finds command and executes it
+     */
     public String seekCommand(Request request) {
         CommandType commandType = request.getCommand();
         String command = commandType.toString();
         return commands.get(command).execute(request);
     }
-
 
     /**
      * Returns collection with command objects
@@ -92,10 +91,16 @@ public class CommandManager {
         commands.put(newCommand.getName(), newCommand);
     }
 
+    /**
+     * @return JsonManager
+     */
     public JsonManager getJson() {
         return json;
     }
 
+    /**
+     * @return Collection of dragons
+     */
     public DragonCollection getCollection() {
         return collection;
     }

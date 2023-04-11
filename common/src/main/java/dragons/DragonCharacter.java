@@ -13,11 +13,6 @@ public enum DragonCharacter implements Serializable {
 
     private final String name;
 
-    /**
-     * Constructor sets name of character
-     *
-     * @param name of this character
-     */
     DragonCharacter(String name) {
         this.name = name;
     }

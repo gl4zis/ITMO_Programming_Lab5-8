@@ -17,6 +17,9 @@ public class Main {
 
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
+    /**
+     * Opens connection, on localhost and fixed port
+     */
     public static void main(String[] args) {
         LOGGER.debug("Client startup");
         try {

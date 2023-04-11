@@ -223,6 +223,12 @@ public abstract class CollectionManager {
         }
     }
 
+    /**
+     * Saves collection to the JSON file
+     *
+     * @param json       manager, what parses data to the file
+     * @param collection what will be saved
+     */
     public static void saveCollection(JsonManager json, DragonCollection collection) {
         json.writeJSON(collection.toJson());
     }

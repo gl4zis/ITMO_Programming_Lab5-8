@@ -1,6 +1,5 @@
 package commands;
 
-import dragons.Dragon;
 import exceptions.IncorrectInputException;
 import network.Request;
 

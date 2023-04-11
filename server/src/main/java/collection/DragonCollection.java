@@ -2,8 +2,6 @@ package collection;
 
 import dragons.Dragon;
 import exceptions.IdCollisionException;
-import exceptions.NonUniqueValueException;
-import exceptions.ObjectNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
@@ -59,11 +57,8 @@ public class DragonCollection {
      * @param id id of dragon, which will be finds in collection
      */
     public Dragon find(int id) {
-        try {
-            return collection.stream().filter(p -> p.getId() == id).findAny().get();
-        } catch (NoSuchElementException e) {
-            return null;
-        }
+        Optional<Dragon> dragon = collection.stream().filter(p -> p.getId() == id).findAny();
+        return dragon.orElse(null);
     }
 
     /**
@@ -72,11 +67,8 @@ public class DragonCollection {
      * @return maxId
      */
     public int getMaxId() {
-        try {
-            return idList.stream().mapToInt(p -> p).max().getAsInt();
-        } catch (NoSuchElementException e) {
-            return 0;
-        }
+        OptionalInt maxId = idList.stream().mapToInt(p -> p).max();
+        return maxId.orElse(0);
     }
 
     /**
@@ -122,11 +114,8 @@ public class DragonCollection {
      * @return minDragon
      */
     public Dragon minByAge() {
-        try {
-            return collection.stream().min(Dragon.ageComp).get();
-        } catch (NoSuchElementException e) {
-            return null;
-        }
+        Optional<Dragon> dragon = collection.stream().min(Dragon.ageComp);
+        return dragon.orElse(null);
     }
 
     /**
@@ -136,11 +125,8 @@ public class DragonCollection {
      * @return minDragon
      */
     public Dragon getMinDragon() {
-        try {
-            return collection.stream().min(Dragon::compareTo).get();
-        } catch (NoSuchElementException e) {
-            return null;
-        }
+        Optional<Dragon> minDragon = collection.stream().min(Dragon::compareTo);
+        return minDragon.orElse(null);
     }
 
     /**

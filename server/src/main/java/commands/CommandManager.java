@@ -1,29 +1,25 @@
 package commands;
 
 import collection.DragonCollection;
-import dragons.Dragon;
 import network.CommandType;
 import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.simple.JSONObject;
 import parsers.JsonManager;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Class for finding command by its name.
  * (In console line or in script file line)
  */
 public class CommandManager {
-    static final String UNKNOWN_COMMAND = "Unknown command. Type \"help\" for see information about commands";
     private static final Logger LOGGER = LogManager.getLogger(CommandManager.class);
-    private Map<String, Command> commands;
     private final JsonManager json;
     private final DragonCollection collection;
+    private Map<String, Command> commands;
 
     /**
      * Constructor, sets JsonManager and DragonCollection with which commands will work

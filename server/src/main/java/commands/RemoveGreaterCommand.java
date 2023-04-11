@@ -6,9 +6,6 @@ import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 /**
  * Argument command "remove_greater {dragon}". Removes all dragons from collection, that more than inputted dragon
  */

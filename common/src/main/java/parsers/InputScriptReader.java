@@ -18,7 +18,6 @@ public class InputScriptReader {
     private static final Logger LOGGER = LogManager.getLogger(InputScriptReader.class);
     private static final String INCORRECT_DATA_MESSAGE = "Incorrect dragon profile";
     private final Reader reader;
-    private boolean execution;
 
     /**
      * Constructor, that creates object for reading script.
@@ -32,7 +31,6 @@ public class InputScriptReader {
         File script = new File(filePath);
         FileInputStream in = new FileInputStream(script);
         reader = new InputStreamReader(in);
-        execution = true;
     }
 
     /**
@@ -44,9 +42,8 @@ public class InputScriptReader {
      * @return line
      */
     public String readNextLine() {
-        StringBuilder line = null;
+        StringBuilder line = new StringBuilder();
         try {
-            line = new StringBuilder();
             int nextSym = reader.read();
             boolean comment = false;
             while (nextSym != -1 && nextSym != 10) {
@@ -63,35 +60,13 @@ public class InputScriptReader {
                 }
             }
             if (!comment && nextSym != -1 && OsUtilus.IsWindows()) line.deleteCharAt(line.length() - 1);
-            if (nextSym == -1) execution = false;
+            if (nextSym == -1 && line.length() == 0) return null;
         } catch (IOException e) {
-            execution = false;
             LOGGER.error("Something wrong with script file =(");
+            return null;
         }
         return line.toString();
     }
-
-    /**
-     * Finds next command in script and returns the hole line with command.
-     * Returns null, if execution is false
-     *
-     * @param commandManager commands.CommandManager object, that this method works with (needs for having list of loaded commands)
-     * @return line
-     */
-   /*
-   public String findNextCommand(CommandManager commandManager) {
-        Set<String> commands = commandManager.getCommandNames();
-        while (execution) {
-            String line = readNextLine();
-            try {
-                String command = line.split(" ")[0];
-                if (commands.contains(command)) return line;
-            } catch (ArrayIndexOutOfBoundsException ignored) {
-            } //Catches it if line is empty => just skip this line
-        }
-        return null;
-    }
-    */
 
     /**
      * Reads dragon name from script file

@@ -28,7 +28,6 @@ public class HelpCommand extends Command {
     public String execute(Request request) {
         return commandManager.getCommands().stream()
                 .map(Command::getDescription).
-                collect(Collectors.joining("\n\t")) +
-                "\texit : terminate the program";
+                collect(Collectors.joining("\n\t"));
     }
 }

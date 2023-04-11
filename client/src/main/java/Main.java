@@ -1,5 +1,3 @@
-package client;
-
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -5,6 +5,7 @@ import dragons.Dragon;
 import exceptions.EmptyInputException;
 import exceptions.IncorrectInputException;
 import parsers.InputConsoleReader;
+import parsers.InputScriptReader;
 
 import java.io.Serializable;
 
@@ -13,10 +14,16 @@ public class Request implements Serializable {
     private final Object arg;
     private final Dragon dragon;
 
-    public Request(String line) throws EmptyInputException {
+    public Request(String line) {
         command = getCommandType(line);
         arg = getArg(line);
         dragon = getDragon(line);
+    }
+
+    public Request(String line, InputScriptReader reader) {
+        command = getCommandType(line);
+        arg = getArg(line);
+        dragon = getDragon(reader);
     }
 
     private CommandType getCommandType(String line) throws EmptyInputException {
@@ -50,6 +57,12 @@ public class Request implements Serializable {
     private Dragon getDragon(String line) {
         if (command.isNeedReadDragon()) {
             return InputConsoleReader.readDragon();
+        } else return null;
+    }
+
+    private Dragon getDragon(InputScriptReader reader) {
+        if (command.isNeedReadDragon()) {
+            return reader.readDragon();
         } else return null;
     }
 

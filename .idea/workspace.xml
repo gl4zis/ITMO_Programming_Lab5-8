@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="reworked commands, using stream API">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="command argument validating on the client">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/Connection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/commands/FindCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Connection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/parsers/InputScriptReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/InputScriptReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/network/CommandType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/network/CommandType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/network/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/network/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/collection/DragonCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/collection/DragonCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/FilterLessThanWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/FilterLessThanWeightCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveByIdCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/UpdateCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/HelpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/parsers/StringModificator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/StringModificator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +116,7 @@
   </component>
   <component name="RunManager" selected="Application.server">
     <configuration name="client" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="client.Main" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="lab5-8.client.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -169,13 +173,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00019" summary="relocated constants, removed singletons">
-      <created>1678448566619</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1678448566619</updated>
     </task>
     <task id="LOCAL-00020" summary="reworked exceptions">
       <created>1678449391060</created>
@@ -513,7 +510,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681219765702</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="command argument validating on the client">
+      <created>1681221733434</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1681221733434</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -541,7 +545,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="decompozed methods in CollectionManager" />
     <MESSAGE value="added class for checking OS on that app was started" />
     <MESSAGE value="fixed bug in execute_script command" />
     <MESSAGE value="fixed bugs in execute_script command with file paths" />
@@ -566,7 +569,8 @@
     <MESSAGE value="command optimizing" />
     <MESSAGE value="micro bugfix" />
     <MESSAGE value="reworked commands, using stream API" />
-    <option name="LAST_COMMIT_MESSAGE" value="reworked commands, using stream API" />
+    <MESSAGE value="command argument validating on the client" />
+    <option name="LAST_COMMIT_MESSAGE" value="command argument validating on the client" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

@@ -7,20 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="added javaDoc">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="big bugfix&#10;added ability to send huge data from server&#10;now if server doesn't reply, client repeats request each second until gets the reply&#10;fixed null pointer in commands, which needs read dragon from console&#10;etc...">
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/commands/PingCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/CommandProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/exceptions/UnavailableServerException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/exceptions/UnavailableServerException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/network/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/network/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/InputConsoleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/InputConsoleReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AddCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Connection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/network/CommandType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/network/CommandType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +122,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.build">
+  <component name="RunManager" selected="Application.client">
     <configuration name="client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.Main" />
       <module name="lab5-8.client.main" />
@@ -185,13 +181,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00024" summary="file init bugfix">
-      <created>1678577310026</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1678577310026</updated>
     </task>
     <task id="LOCAL-00025" summary="added sort command">
       <created>1678580713651</created>
@@ -529,7 +518,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681252874016</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="big bugfix&#10;added ability to send huge data from server&#10;now if server doesn't reply, client repeats request each second until gets the reply&#10;fixed null pointer in commands, which needs read dragon from console&#10;etc...">
+      <created>1681328376628</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1681328376628</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -557,7 +553,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="added logging and translated into english" />
     <MESSAGE value="micro debug" />
     <MESSAGE value="debug for correct creating log files by different users" />
     <MESSAGE value="changed logs dir, now dependence on user.dir" />
@@ -582,7 +577,8 @@
     <MESSAGE value="reworked processing commands on client" />
     <MESSAGE value="added logger" />
     <MESSAGE value="added javaDoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="added javaDoc" />
+    <MESSAGE value="big bugfix&#10;added ability to send huge data from server&#10;now if server doesn't reply, client repeats request each second until gets the reply&#10;fixed null pointer in commands, which needs read dragon from console&#10;etc..." />
+    <option name="LAST_COMMIT_MESSAGE" value="big bugfix&#10;added ability to send huge data from server&#10;now if server doesn't reply, client repeats request each second until gets the reply&#10;fixed null pointer in commands, which needs read dragon from console&#10;etc..." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

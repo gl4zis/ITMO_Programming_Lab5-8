@@ -4,6 +4,7 @@ package server;
 import collection.CollectionManager;
 import collection.DragonCollection;
 import commands.CommandManager;
+import general.OsUtilus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import parsers.JsonManager;
@@ -16,7 +17,10 @@ public class Main {
     // Sets system properties for logger configuration and for saving log files
     static {
         String creationDate = new SimpleDateFormat("yyyy-MM-dd/HH-mm-ss").format(new Date());
-        System.setProperty("logs.path", "./lab5-8-server-logs/" + creationDate + ".log");
+        if (OsUtilus.IsWindows())
+            System.setProperty("logs.path", "C:/Windows/Temp/lab5-8-server-logs/" + creationDate + ".log");
+        else
+            System.setProperty("logs.path", "/tmp/lab5-8-server-logs/" + creationDate + ".log");
     }
 
     private static final Logger LOGGER = LogManager.getLogger(Main.class);

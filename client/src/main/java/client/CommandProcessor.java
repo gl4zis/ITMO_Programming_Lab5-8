@@ -9,6 +9,7 @@ import parsers.InputScriptReader;
 import parsers.StringModificator;
 
 import java.io.FileNotFoundException;
+import java.util.Date;
 import java.util.HashSet;
 
 /**
@@ -35,22 +36,45 @@ public abstract class CommandProcessor {
      */
     private static String execute(Connection conn, String line, InputScriptReader reader) throws UnavailableServerException {
         try {
-            switch (line.split(" ")[0]) {
-                case "exit":
-                    return null;
-                case "help":
-                    return help(conn);
-                case "update":
-                    return update(conn, line, reader);
-                case "execute_script":
-                    if (ex_script(conn, line))
+            if (!ping(conn, 1).equals("No connection")) {
+                switch (line.split(" ")[0]) {
+                    case "exit":
                         return null;
-                    return "";
-                default:
-                    return conn.sendReqGetResp(line, reader);
-            }
+                    case "help":
+                        return help(conn);
+                    case "update":
+                        return update(conn, line, reader);
+                    case "ping":
+                        return ping(conn, 10);
+                    case "execute_script":
+                        if (ex_script(conn, line))
+                            return null;
+                        return "";
+                    default:
+                        return conn.sendReqGetResp(line, reader);
+                }
+            } else
+                throw new UnavailableServerException("Repeat command, when server will start reply\n(...Trying connect...)");
         } catch (IncorrectInputException e) {
             return e.getMessage();
+        }
+    }
+
+    /**
+     * Special client command 'ping'
+     * Checks connection to server
+     */
+    private static String ping(Connection conn, int reqNumber) {
+        try {
+            long startTime = new Date().getTime();
+            String output = "";
+            for (int i = 0; i < reqNumber; i++) {
+                output = conn.sendReqGetResp("ping");
+            }
+            long endTime = new Date().getTime() - startTime;
+            return output + "\nAverage reply time: " + endTime / reqNumber + " ms";
+        } catch (UnavailableServerException e) {
+            return "No connection";
         }
     }
 

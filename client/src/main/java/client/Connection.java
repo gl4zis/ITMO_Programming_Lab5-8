@@ -155,7 +155,7 @@ public class Connection {
                 Response response = SerializationUtils.deserialize(buffer.array());
                 lastRequest = null;
                 return response.message();
-            } else throw new UnavailableServerException();
+            } else throw new UnavailableServerException("Reply will be shown, when server starts reply");
         } catch (IOException e) {
             return "Something went wrong: " + e.getMessage();
         }

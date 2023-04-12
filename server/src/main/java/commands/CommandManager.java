@@ -47,6 +47,7 @@ public class CommandManager {
             Command show = new ShowCommand(collection);
             Command update = new UpdateCommand(collection);
             Command find = new FindCommand(collection);
+            Command ping = new PingCommand();
             commands.put(add.getName(), add);
             commands.put(addIfMin.getName(), addIfMin);
             commands.put(averageOfWeight.getName(), averageOfWeight);
@@ -61,6 +62,7 @@ public class CommandManager {
             commands.put(show.getName(), show);
             commands.put(update.getName(), update);
             commands.put(find.getName(), find);
+            commands.put(ping.getName(), ping);
         }
     }
 

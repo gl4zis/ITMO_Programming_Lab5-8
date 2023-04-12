@@ -14,9 +14,9 @@ public class Main {
     static {
         String creationDate = new SimpleDateFormat("yyyy-MM-dd/HH-mm-ss").format(new Date());
         if (OsUtilus.IsWindows())
-            System.setProperty("logs.path", "C:/Windows/Temp/lab5-8-server-logs/" + creationDate + ".log");
+            System.setProperty("logs.path", "C:/Windows/Temp/lab5-8-client-logs/" + creationDate + ".log");
         else
-            System.setProperty("logs.path", "/tmp/lab5-8-server-logs/" + creationDate + ".log");
+            System.setProperty("logs.path", "/tmp/lab5-8-client-logs/" + creationDate + ".log");
     }
 
     private static final Logger LOGGER = LogManager.getLogger(Main.class);

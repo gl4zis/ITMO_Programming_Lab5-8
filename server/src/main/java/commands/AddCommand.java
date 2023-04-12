@@ -2,6 +2,8 @@ package commands;
 
 import collection.DragonCollection;
 import dragons.Dragon;
+import exceptions.IdCollisionException;
+import general.UniqueIdGenerator;
 import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,7 +30,14 @@ public class AddCommand extends Command {
     @Override
     public String execute(Request request) {
         Dragon dragon = request.getDragon();
-        collection.add(dragon);
+        while (true) {
+            try {
+                collection.add(dragon);
+                break;
+            } catch (IdCollisionException ignored) {
+                dragon.setId(UniqueIdGenerator.getIntId());
+            }
+        }
         LOGGER.info("Dragon successfully added in the collection");
         return "Dragon successfully added in the collection";
     }

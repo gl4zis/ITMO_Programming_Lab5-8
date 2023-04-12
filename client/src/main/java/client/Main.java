@@ -24,7 +24,7 @@ public class Main {
         LOGGER.debug("Client startup");
         try {
             InetAddress host = InetAddress.getByName("localhost");
-            int port = 8812;
+            int port = 9812;
             Connection connection = new Connection(host, port);
             LOGGER.info(String.format("client.Connection parameters. Host: %s, port: %d", host, port));
             connection.run();

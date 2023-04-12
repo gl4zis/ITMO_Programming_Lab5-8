@@ -9,6 +9,6 @@ public class UnavailableServerException extends Exception {
      * Standard constructor
      */
     public UnavailableServerException() {
-        super("Server is unavailable. Repeat request later");
+        super("Server is unavailable. Reply will be shown, when server starts reply");
     }
 }

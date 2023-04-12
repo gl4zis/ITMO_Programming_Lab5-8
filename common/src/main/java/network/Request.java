@@ -1,6 +1,7 @@
 package network;
 
 import dragons.Dragon;
+import exceptions.IncorrectDataException;
 import exceptions.IncorrectInputException;
 import parsers.InputConsoleReader;
 import parsers.InputScriptReader;
@@ -17,23 +18,17 @@ public class Request implements Serializable {
     private final Dragon dragon;
 
     /**
-     * For sending commands from console
-     */
-    public Request(String line) {
-        command = genCommandType(line);
-        arg = genArg(line);
-        dragon = genDragon();
-    }
-
-    /**
-     * For sending commands from script file
+     * For sending commands from script file | Request(line, null) if commands executes from console
      *
      * @param reader script parser
      */
     public Request(String line, InputScriptReader reader) {
         command = genCommandType(line);
         arg = genArg(line);
-        dragon = genDragon(reader);
+        if (reader == null) {
+            dragon = genDragon();
+        } else
+            dragon = genDragon(reader);
     }
 
     /**
@@ -83,7 +78,9 @@ public class Request implements Serializable {
      */
     private Dragon genDragon(InputScriptReader reader) {
         if (command.isNeedReadDragon()) {
-            return reader.readDragon();
+            Dragon dragon = reader.readDragon();
+            if (dragon != null) return dragon;
+            else throw new IncorrectDataException("Incorrect dragon profile");
         } else return null;
     }
 

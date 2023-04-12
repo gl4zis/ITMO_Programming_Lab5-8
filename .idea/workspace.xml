@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AnalysisUIOptions">
-    <option name="SCOPE_TYPE" value="3" />
+    <option name="SCOPE_TYPE" value="4" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="added logger">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="added javaDoc">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/CommandProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Color.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/DragonCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/DragonCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/exceptions/EmptyInputException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/exceptions/NonUniqueValueException.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/exceptions/UnavailableServerException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/exceptions/UnavailableServerException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/network/CommandType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/network/CommandType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/network/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/network/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/network/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/network/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/collection/CollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/collection/CollectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/collection/DragonCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/collection/DragonCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/FindCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/FindCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveGreaterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveLowerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveLowerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/InputConsoleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/InputConsoleReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AddCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerCommand.java" afterDir="false" />
@@ -92,6 +82,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2LoodPmTv5xYaI7FX4yb3CNuoi1" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -107,7 +100,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "jdk.selected.JAVA_MODULE": "17",
     "last.edited.regexp": "Sample Text",
-    "last_opened_file_path": "C:/Users/Roma/Desktop/ITMO/test",
+    "last_opened_file_path": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -192,13 +185,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00023" summary="removed public static objects">
-      <created>1678574073751</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1678574073751</updated>
     </task>
     <task id="LOCAL-00024" summary="file init bugfix">
       <created>1678577310026</created>
@@ -536,7 +522,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681249335460</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="added javaDoc">
+      <created>1681252874016</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1681252874016</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -564,7 +557,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="fixed bugs in execute_script command with file paths formatting" />
     <MESSAGE value="added logging and translated into english" />
     <MESSAGE value="micro debug" />
     <MESSAGE value="debug for correct creating log files by different users" />
@@ -589,7 +581,8 @@
     <MESSAGE value="execute_script realization" />
     <MESSAGE value="reworked processing commands on client" />
     <MESSAGE value="added logger" />
-    <option name="LAST_COMMIT_MESSAGE" value="added logger" />
+    <MESSAGE value="added javaDoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="added javaDoc" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

@@ -6,7 +6,6 @@ import network.Response;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputConsoleReader;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -14,6 +13,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 /**
  * Does all works with clients interaction
@@ -22,7 +23,6 @@ public class Connection {
     private static final Logger LOGGER = LogManager.getLogger(Connection.class);
     private final CommandManager manager;
     private DatagramSocket dataSock;
-    private int port;
     private ByteBuffer buffer = ByteBuffer.allocate(1024);
     private DatagramPacket dataPack;
 
@@ -37,7 +37,6 @@ public class Connection {
      * Opens socket, configure it and starts listening port
      */
     public void open(int port) {
-        this.port = port;
         try {
             dataSock = new DatagramSocket(port);
             dataSock.setSoTimeout(10);
@@ -47,6 +46,7 @@ public class Connection {
                     break;
         } catch (IOException e) {
             LOGGER.error("Something went wrong =( " + e.getMessage());
+        } catch (NoSuchElementException ignored) {
         } finally {
             dataSock.close();
         }
@@ -57,7 +57,7 @@ public class Connection {
      * If there are data package, unpacks request, processes it and sends response to the client
      */
     private boolean run() throws IOException {
-        boolean exit = checkConsole();
+        boolean exit = ServerCommand.execute(manager);
         if (exit)
             return false;
         if (readChannel()) {
@@ -71,25 +71,6 @@ public class Connection {
     }
 
     /**
-     * Checks if admin typed something in console and processes it, executing server commands
-     */
-    private boolean checkConsole() throws IOException {
-        if (System.in.available() > 0) {
-            String line = InputConsoleReader.readNextLine();
-            switch (line) {
-                case "help" -> ServerCommand.help();
-                case "exit" -> {
-                    ServerCommand.save(manager);
-                    return true;
-                }
-                case "save" -> ServerCommand.save(manager);
-                default -> System.out.println("Unknown server command");
-            }
-        }
-        return false;
-    }
-
-    /**
      * Listens port and receives data packets from clients
      */
     private boolean readChannel() throws IOException {
@@ -99,7 +80,7 @@ public class Connection {
             dataSock.receive(dataPack);
             LOGGER.debug("Request received");
             return true;
-        } catch (SocketTimeoutException ignored) {
+        } catch (SocketTimeoutException e) {
             return false;
         }
     }
@@ -109,10 +90,38 @@ public class Connection {
      */
     private void sendResponse(Response response) throws IOException {
         buffer = ByteBuffer.wrap(SerializationUtils.serialize(response));
+        int bytes = 65507; //Maximum weight of data in packet for UDP
+        int packsNumber = buffer.capacity() / bytes + 1;
+        for (int i = 0; i < packsNumber; i++) {
+            byte[] partOfBuffer = Arrays.copyOfRange(buffer.array(), i * bytes, Math.min(buffer.capacity(), (i + 1) * bytes));
+            sendDataPack(partOfBuffer);
+            LOGGER.debug(String.format("Pack number %d, was sent (%d bytes)", i + 1, partOfBuffer.length));
+            if (packsNumber > 3)
+                wait(8);
+        }
+        LOGGER.info("Sent response (" + buffer.capacity() + " bytes) to the client: " +
+                dataPack.getAddress().toString().substring(1));
+    }
+
+    /**
+     * Sends one DatagramPacket to the client.
+     * data.length must be <= 65507
+     */
+    private void sendDataPack(byte[] data) throws IOException {
+        int port = dataPack.getPort();
         InetAddress host = dataPack.getAddress();
-        port = dataPack.getPort();
-        dataPack = new DatagramPacket(buffer.array(), buffer.capacity(), host, port);
+        dataPack = new DatagramPacket(data, data.length, host, port);
         dataSock.send(dataPack);
-        LOGGER.info("Sent response to the client: " + host.toString().substring(1));
+    }
+
+    /**
+     * Waiting for inputted number of milliseconds
+     */
+    private void wait(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }

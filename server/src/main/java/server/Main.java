@@ -35,7 +35,7 @@ public class Main {
             CommandManager commandManager = new CommandManager(jsonManager, collection);
             CollectionManager.uploadCollection(jsonManager.readJSON(), collection);
             Connection con = new Connection(commandManager);
-            int port = 8812;
+            int port = 9812;
             LOGGER.info("Waiting connection on port: " + port);
             con.open(port);
             LOGGER.debug("Correct exit");

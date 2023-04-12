@@ -1,5 +1,6 @@
 package client;
 
+import exceptions.IncorrectDataException;
 import exceptions.IncorrectInputException;
 import exceptions.UnavailableServerException;
 import org.apache.logging.log4j.LogManager;
@@ -23,7 +24,7 @@ public abstract class CommandProcessor {
      * @param line there you want to find command
      * @return responded message from the server
      */
-    public static String execute(Connection conn, String line) {
+    public static String execute(Connection conn, String line) throws UnavailableServerException {
         if (line.trim().isEmpty())
             return "";
         return execute(conn, line, null);
@@ -32,7 +33,7 @@ public abstract class CommandProcessor {
     /**
      * Similarly execute(Connection, String), but can execute commands from script
      */
-    private static String execute(Connection conn, String line, InputScriptReader reader) {
+    private static String execute(Connection conn, String line, InputScriptReader reader) throws UnavailableServerException {
         try {
             switch (line.split(" ")[0]) {
                 case "exit":
@@ -48,7 +49,7 @@ public abstract class CommandProcessor {
                 default:
                     return conn.sendReqGetResp(line, reader);
             }
-        } catch (IncorrectInputException | UnavailableServerException e) {
+        } catch (IncorrectInputException e) {
             return e.getMessage();
         }
     }
@@ -102,6 +103,8 @@ public abstract class CommandProcessor {
                         LOGGER.info(output);
                     }
                 } catch (IncorrectInputException ignored) {
+                } catch (IncorrectDataException e) {
+                    LOGGER.warn(e.getMessage());
                 }
             }
             line = reader.readNextLine();
@@ -134,7 +137,7 @@ public abstract class CommandProcessor {
         boolean exit = !ex_script(conn, files, reader);
 
         files.remove(filePath);
-        LOGGER.info(String.format("Script: %s executing ended\n", filePath));
+        LOGGER.info(String.format("Script: %s executing ended", filePath));
         return exit;
     }
 }

@@ -4,6 +4,7 @@ import dragons.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -33,6 +34,21 @@ public abstract class InputConsoleReader {
         }
         LOGGER.trace("Entered console line: '" + line + "'");
         return line;
+    }
+
+    /**
+     * Non-blocking console parser
+     *
+     * @return string from console or null, if console is empty
+     */
+    public static String checkConsole() {
+        try {
+            if (System.in.available() > 0) {
+                return readNextLine();
+            }
+        } catch (IOException | NoSuchElementException ignored) {
+        }
+        return null;
     }
 
     /**

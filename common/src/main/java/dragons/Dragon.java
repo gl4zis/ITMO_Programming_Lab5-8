@@ -171,6 +171,10 @@ public class Dragon implements Comparable<Dragon>, Serializable {
         }
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     /**
      * Compares two dragons. Returns positive integral number if this dragon more than input dragon.
      * Returns negative integral dragons if this dragon less than input dragon.

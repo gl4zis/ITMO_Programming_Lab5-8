@@ -29,7 +29,7 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(Request request) {
-        Dragon dragon = request.getDragon();
+        Dragon dragon = request.dragon();
         while (true) {
             try {
                 collection.add(dragon);

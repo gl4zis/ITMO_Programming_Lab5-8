@@ -28,7 +28,7 @@ public class RemoveLowerCommand extends Command {
      */
     @Override
     public String execute(Request request) {
-        Dragon minDragon = request.getDragon();
+        Dragon minDragon = request.dragon();
         StringBuilder output = new StringBuilder();
         collection.getItems().stream()
                 .filter(p -> p.compareTo(minDragon) < 0).sorted(Dragon.coordComp).forEach(p -> {

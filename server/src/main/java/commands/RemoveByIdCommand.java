@@ -28,7 +28,7 @@ public class RemoveByIdCommand extends Command {
     @Override
     public String execute(Request request) {
         try {
-            int id = (int) request.getArg();
+            int id = (int) request.arg();
             Dragon dragon = collection.find(id);
             if (dragon != null) {
                 collection.remove(collection.find(id));

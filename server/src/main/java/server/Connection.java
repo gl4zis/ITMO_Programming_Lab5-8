@@ -1,6 +1,8 @@
 package server;
 
 import commands.CommandManager;
+import general.OsUtilus;
+import commands.CommandValidator;
 import network.Request;
 import network.Response;
 import org.apache.commons.lang3.SerializationUtils;
@@ -45,6 +47,7 @@ public class Connection {
                 if (!run())
                     break;
         } catch (IOException e) {
+            e.printStackTrace();
             LOGGER.error("Something went wrong =( " + e.getMessage());
         } catch (NoSuchElementException ignored) {
         } finally {
@@ -63,8 +66,12 @@ public class Connection {
         if (readChannel()) {
             Request request = SerializationUtils.deserialize(buffer.array());
             LOGGER.info(String.format("Request command: %s, with args: %s",
-                    request.getCommand(), request.getArg()));
-            Response response = new Response(manager.seekCommand(request));
+                    request.command(), request.arg()));
+            Response response;
+            if (CommandValidator.validCommand(request))
+                response = new Response(manager.seekCommand(request));
+            else
+                response = new Response("Incorrect request!!");
             sendResponse(response);
         }
         return true;
@@ -90,7 +97,9 @@ public class Connection {
      */
     private void sendResponse(Response response) throws IOException {
         buffer = ByteBuffer.wrap(SerializationUtils.serialize(response));
-        int bytes = 65507; //Maximum weight of data in packet for UDP
+        int bytes; //Maximum weight of data in packet for UDP
+        if (OsUtilus.IsWindows()) bytes = 65507;
+        else bytes = 9216;
         int packsNumber = buffer.capacity() / bytes + 1;
         for (int i = 0; i < packsNumber; i++) {
             byte[] partOfBuffer = Arrays.copyOfRange(buffer.array(), i * bytes, Math.min(buffer.capacity(), (i + 1) * bytes));

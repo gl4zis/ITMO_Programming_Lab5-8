@@ -1,6 +1,8 @@
 package client;
 
 import exceptions.UnavailableServerException;
+import general.OsUtilus;
+import commands.CommandValidator;
 import network.Request;
 import network.Response;
 import org.apache.commons.lang3.ArrayUtils;
@@ -18,6 +20,8 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Realization of connection to the server.
@@ -26,6 +30,7 @@ import java.util.Date;
 public class Connection {
     private static final Logger LOGGER = LogManager.getLogger(Connection.class);
     private final InetSocketAddress address;
+    private final Queue<Request> requests;
     private Request lastRequest;
     private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
 
@@ -37,6 +42,7 @@ public class Connection {
      */
     public Connection(InetAddress host, int port) {
         address = new InetSocketAddress(host, port);
+        requests = new LinkedList<>();
     }
 
     /**
@@ -76,8 +82,11 @@ public class Connection {
     private boolean receivePacks(DatagramChannel channel, boolean consoleBlock) throws IOException {
         int packNumber = 0;
         byte[] replyArr = null;
+        int bytes; //Maximum weight of data in packet for UDP
+        if (OsUtilus.IsWindows()) bytes = 65507;
+        else bytes = 9216;
         do {
-            ByteBuffer partOfBuffer = ByteBuffer.allocate(65507);
+            ByteBuffer partOfBuffer = ByteBuffer.allocate(bytes);
             if (!waitResponse(channel, consoleBlock, partOfBuffer))
                 return false;
             LOGGER.debug(String.format("Pack number %d, was received (%d bytes)", packNumber + 1, partOfBuffer.capacity()));
@@ -98,7 +107,7 @@ public class Connection {
             SerializationUtils.deserialize(summator);
             buffer = ByteBuffer.wrap(summator);
             return true;
-        } catch (SerializationException ignored) {
+        } catch (SerializationException e) {
             return false;
         }
     }
@@ -177,25 +186,13 @@ public class Connection {
     }
 
     /**
-     * Gathers request from a line, opens channel, sends request and gets response from server
-     *
-     * @return message from response
-     * @throws UnavailableServerException if server didn't reply
-     */
-    public String sendReqGetResp(String line) throws UnavailableServerException {
-        Request request = new Request(line, null);
-        return sendReqGetResp(request, true);
-    }
-
-    /**
      * Gathers request from a line, opens channel, sends request and gets response from server.
-     * Using for executing commands from script
      *
      * @return message from response
      * @throws UnavailableServerException if server didn't reply
      */
     public String sendReqGetResp(String line, InputScriptReader reader) throws UnavailableServerException {
-        Request request = new Request(line, reader);
+        Request request = CommandValidator.validCommand(line, reader);
         return sendReqGetResp(request, true);
     }
 }

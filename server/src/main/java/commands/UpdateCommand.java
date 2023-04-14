@@ -29,10 +29,10 @@ public class UpdateCommand extends Command {
     @Override
     public String execute(Request request) {
         try {
-            int id = (int) request.getArg();
+            int id = (int) request.arg();
             Dragon dragon = collection.find(id);
             if (dragon != null) {
-                dragon.update(request.getDragon());
+                dragon.update(request.dragon());
                 LOGGER.info("Dragon was updated");
                 return "Dragon was updated";
             } else return "No such element in collection";

@@ -36,25 +36,22 @@ public abstract class CommandProcessor {
      */
     private static String execute(Connection conn, String line, InputScriptReader reader) throws UnavailableServerException {
         try {
-            if (!ping(conn, 1).equals("No connection")) {
-                switch (line.split(" ")[0]) {
-                    case "exit":
+            switch (line.split(" ")[0]) {
+                case "exit":
+                    return null;
+                case "help":
+                    return help(conn);
+                case "update":
+                    return update(conn, line, reader);
+                case "ping":
+                    return ping(conn, 10);
+                case "execute_script":
+                    if (ex_script(conn, line))
                         return null;
-                    case "help":
-                        return help(conn);
-                    case "update":
-                        return update(conn, line, reader);
-                    case "ping":
-                        return ping(conn, 10);
-                    case "execute_script":
-                        if (ex_script(conn, line))
-                            return null;
-                        return "";
-                    default:
-                        return conn.sendReqGetResp(line, reader);
-                }
-            } else
-                throw new UnavailableServerException("Repeat command, when server will start reply\n(...Trying connect...)");
+                    return "";
+                default:
+                    return conn.sendReqGetResp(line, reader);
+            }
         } catch (IncorrectInputException e) {
             return e.getMessage();
         }
@@ -69,7 +66,7 @@ public abstract class CommandProcessor {
             long startTime = new Date().getTime();
             String output = "";
             for (int i = 0; i < reqNumber; i++) {
-                output = conn.sendReqGetResp("ping");
+                output = conn.sendReqGetResp("ping", null);
             }
             long endTime = new Date().getTime() - startTime;
             return output + "\nAverage reply time: " + endTime / reqNumber + " ms";
@@ -82,7 +79,7 @@ public abstract class CommandProcessor {
      * Special client command 'help'
      */
     private static String help(Connection conn) throws UnavailableServerException {
-        String output = conn.sendReqGetResp("help");
+        String output = conn.sendReqGetResp("help", null);
         output += """
                         
                 \texit : terminate the program
@@ -95,7 +92,7 @@ public abstract class CommandProcessor {
      */
     private static String update(Connection conn, String line, InputScriptReader reader) throws UnavailableServerException {
         String find = "find" + line.substring(6);
-        String output = conn.sendReqGetResp(find);
+        String output = conn.sendReqGetResp(find, null);
         if (!output.startsWith("No such")) {
             return conn.sendReqGetResp(line, reader);
         } else return output;

@@ -28,7 +28,7 @@ public class RemoveGreaterCommand extends Command {
      */
     @Override
     public String execute(Request request) {
-        Dragon maxDragon = request.getDragon();
+        Dragon maxDragon = request.dragon();
         StringBuilder output = new StringBuilder();
         collection.getItems().stream()
                 .filter(p -> p.compareTo(maxDragon) > 0).sorted(Dragon.coordComp).forEach(p -> {

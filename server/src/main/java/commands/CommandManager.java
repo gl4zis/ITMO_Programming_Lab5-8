@@ -1,7 +1,6 @@
 package commands;
 
 import collection.DragonCollection;
-import network.CommandType;
 import network.Request;
 import parsers.JsonManager;
 
@@ -70,7 +69,7 @@ public class CommandManager {
      * Processes request. Finds command and executes it
      */
     public String seekCommand(Request request) {
-        CommandType commandType = request.getCommand();
+        CommandType commandType = request.command();
         String command = commandType.toString();
         return commands.get(command).execute(request);
     }

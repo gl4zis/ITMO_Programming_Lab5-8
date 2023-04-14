@@ -24,7 +24,7 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(Request request) {
-        Dragon dragon = collection.find((int) request.getArg());
+        Dragon dragon = collection.find((int) request.arg());
         if (dragon != null) return dragon.toString();
         else return "No such element in collection";
     }

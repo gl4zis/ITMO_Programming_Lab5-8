@@ -1,4 +1,4 @@
-package network;
+package commands;
 
 import exceptions.IncorrectInputException;
 

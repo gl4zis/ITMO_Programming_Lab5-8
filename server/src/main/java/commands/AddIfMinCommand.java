@@ -28,7 +28,7 @@ public class AddIfMinCommand extends Command {
      */
     @Override
     public String execute(Request request) {
-        Dragon dragon = request.getDragon();
+        Dragon dragon = request.dragon();
         Dragon minDragon = collection.getMinDragon();
         if (minDragon == null || collection.getMinDragon().compareTo(dragon) > 0) {
             collection.add(dragon);

@@ -30,8 +30,6 @@ import java.util.Queue;
 public class Connection {
     private static final Logger LOGGER = LogManager.getLogger(Connection.class);
     private final InetSocketAddress address;
-    private final Queue<Request> requests;
-    private Request lastRequest;
     private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
 
     /**
@@ -42,7 +40,6 @@ public class Connection {
      */
     public Connection(InetAddress host, int port) {
         address = new InetSocketAddress(host, port);
-        requests = new LinkedList<>();
     }
 
     /**
@@ -50,18 +47,13 @@ public class Connection {
      */
     public void run() {
         while (true) {
-            try {
-                System.out.print("-> ");
-                String line = InputConsoleReader.readNextLine();
-                String output = CommandProcessor.execute(this, line);
-                if (output == null)
-                    break;
-                if (!output.equals(""))
-                    System.out.println(output);
-            } catch (UnavailableServerException e) {
-                System.out.println(e.getMessage());
-                System.out.println(sendReqGetResp());
-            }
+            System.out.print("-> ");
+            String line = InputConsoleReader.readNextLine();
+            String output = CommandProcessor.execute(this, line);
+            if (output == null)
+                break;
+            if (!output.isEmpty())
+                System.out.println(output);
         }
     }
 
@@ -79,7 +71,7 @@ public class Connection {
      *
      * @return true if server replied
      */
-    private boolean receivePacks(DatagramChannel channel, boolean consoleBlock) throws IOException {
+    private boolean receivePacks(DatagramChannel channel) throws IOException {
         int packNumber = 0;
         byte[] replyArr = null;
         int bytes; //Maximum weight of data in packet for UDP
@@ -87,7 +79,7 @@ public class Connection {
         else bytes = 9216;
         do {
             ByteBuffer partOfBuffer = ByteBuffer.allocate(bytes);
-            if (!waitResponse(channel, consoleBlock, partOfBuffer))
+            if (!waitResponse(channel, partOfBuffer))
                 return false;
             LOGGER.debug(String.format("Pack number %d, was received (%d bytes)", packNumber + 1, partOfBuffer.capacity()));
             packNumber++;
@@ -131,16 +123,11 @@ public class Connection {
      * @param packBuffer where will be received response
      * @return true if server replied
      */
-    private boolean waitResponse(DatagramChannel channel, boolean consoleBlock, ByteBuffer packBuffer) throws IOException {
+    private boolean waitResponse(DatagramChannel channel, ByteBuffer packBuffer) throws IOException {
         long requestTime = new Date().getTime();
         SocketAddress from;
         boolean respond = false;
         while (!respond) {
-            if (!consoleBlock) {
-                String line = InputConsoleReader.checkConsole();
-                if (line != null && line.equals("exit"))
-                    System.exit(0);
-            }
             from = channel.receive(packBuffer);
             respond = (from != null);
             if (new Date().getTime() - requestTime > 1000) {
@@ -155,44 +142,58 @@ public class Connection {
      *
      * @return message from request
      */
-    private String sendReqGetResp(Request request, boolean consoleBlock) throws UnavailableServerException {
+    private String sendReqGetResp(Request request) throws UnavailableServerException {
         try (DatagramChannel channel = DatagramChannel.open()) {
             channel.configureBlocking(false);
-            lastRequest = request;
             sendRequest(request, channel);
-            if (receivePacks(channel, consoleBlock)) {
+            if (receivePacks(channel)) {
                 Response response = SerializationUtils.deserialize(buffer.array());
-                lastRequest = null;
                 return response.message();
             } else throw new UnavailableServerException("Reply will be shown, when server starts reply");
         } catch (IOException e) {
-            return "Something went wrong: " + e.getMessage();
-        }
-    }
-
-    /**
-     * Opens channel, sends request and gets response from server.
-     * Needs for repeats requests, if server didn't reply
-     */
-    private String sendReqGetResp() {
-        while (true) {
-            try {
-                String message = sendReqGetResp(lastRequest, false);
-                System.out.println("Server alive again!");
-                return message;
-            } catch (UnavailableServerException ignored) {
-            }
+            LOGGER.fatal("Something went wrong: " + e.getMessage());
+            return "";
         }
     }
 
     /**
      * Gathers request from a line, opens channel, sends request and gets response from server.
+     * If server is unavailable, waits until it reply
      *
      * @return message from response
-     * @throws UnavailableServerException if server didn't reply
      */
-    public String sendReqGetResp(String line, InputScriptReader reader) throws UnavailableServerException {
-        Request request = CommandValidator.validCommand(line, reader);
-        return sendReqGetResp(request, true);
+    public String sendReqGetResp(String line, InputScriptReader reader) {
+        String output;
+        boolean message = true;
+        while (true) {
+            try {
+                output = sendReqGetResp(CommandValidator.validCommand(line, reader));
+                break;
+            } catch (UnavailableServerException e) {
+                waitingServer(message, e);
+                message = false;
+            }
+        }
+        return output;
+    }
+
+    /**
+     * Processes waiting reply from server
+     * (Prints messages, checks console)
+     */
+    public static void waitingServer(boolean printMessage, Exception e) {
+        if (printMessage) {
+            System.out.println(e.getMessage());
+            System.out.println("You can only exit from the app");
+            System.out.print("-> ");
+        }
+        String line = InputConsoleReader.checkConsole();
+        if (line != null) {
+            if (line.equals("exit")) {
+                System.exit(0);
+            }
+            System.out.println("I can't execute commands now =(");
+            System.out.print("-> ");
+        }
     }
 }

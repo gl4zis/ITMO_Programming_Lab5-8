@@ -46,7 +46,7 @@ public abstract class InputConsoleReader {
             if (System.in.available() > 0) {
                 return readNextLine();
             }
-        } catch (IOException | NoSuchElementException ignored) {
+        } catch (IOException ignored) {
         }
         return null;
     }

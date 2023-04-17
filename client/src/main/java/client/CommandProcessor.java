@@ -2,7 +2,6 @@ package client;
 
 import exceptions.IncorrectDataException;
 import exceptions.IncorrectInputException;
-import exceptions.UnavailableServerException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import parsers.InputScriptReader;
@@ -25,7 +24,7 @@ public abstract class CommandProcessor {
      * @param line there you want to find command
      * @return responded message from the server
      */
-    public static String execute(Connection conn, String line) throws UnavailableServerException {
+    public static String execute(Connection conn, String line) {
         if (line.trim().isEmpty())
             return "";
         return execute(conn, line, null);
@@ -34,7 +33,7 @@ public abstract class CommandProcessor {
     /**
      * Similarly execute(Connection, String), but can execute commands from script
      */
-    private static String execute(Connection conn, String line, InputScriptReader reader) throws UnavailableServerException {
+    private static String execute(Connection conn, String line, InputScriptReader reader) {
         try {
             switch (line.split(" ")[0]) {
                 case "exit":
@@ -44,7 +43,7 @@ public abstract class CommandProcessor {
                 case "update":
                     return update(conn, line, reader);
                 case "ping":
-                    return ping(conn, 10);
+                    return ping(conn);
                 case "execute_script":
                     if (ex_script(conn, line))
                         return null;
@@ -61,24 +60,20 @@ public abstract class CommandProcessor {
      * Special client command 'ping'
      * Checks connection to server
      */
-    private static String ping(Connection conn, int reqNumber) {
-        try {
-            long startTime = new Date().getTime();
-            String output = "";
-            for (int i = 0; i < reqNumber; i++) {
-                output = conn.sendReqGetResp("ping", null);
-            }
-            long endTime = new Date().getTime() - startTime;
-            return output + "\nAverage reply time: " + endTime / reqNumber + " ms";
-        } catch (UnavailableServerException e) {
-            return "No connection";
+    private static String ping(Connection conn) {
+        long startTime = new Date().getTime();
+        String output = "";
+        for (int i = 0; i < 10; i++) {
+            output = conn.sendReqGetResp("ping", null);
         }
+        long endTime = new Date().getTime() - startTime;
+        return output + "\nAverage reply time: " + endTime / 10 + " ms";
     }
 
     /**
      * Special client command 'help'
      */
-    private static String help(Connection conn) throws UnavailableServerException {
+    private static String help(Connection conn) {
         String output = conn.sendReqGetResp("help", null);
         output += """
                         
@@ -90,26 +85,26 @@ public abstract class CommandProcessor {
     /**
      * Special client command 'update'
      */
-    private static String update(Connection conn, String line, InputScriptReader reader) throws UnavailableServerException {
+    private static String update(Connection conn, String line, InputScriptReader reader) {
         String find = "find" + line.substring(6);
         String output = conn.sendReqGetResp(find, null);
         if (!output.startsWith("No such")) {
-            return conn.sendReqGetResp(line, reader);
-        } else return output;
+            output = conn.sendReqGetResp(line, reader);
+        }
+        return output;
     }
 
     /**
      * Special client command 'execute_script'
      */
-    private static boolean ex_script(Connection conn, String line) throws UnavailableServerException {
+    private static boolean ex_script(Connection conn, String line) {
         return validateScript(conn, new HashSet<>(), line);
     }
 
     /**
      * Executes command from reader
      */
-    private static boolean ex_script(Connection conn, HashSet<String> files, InputScriptReader reader)
-            throws UnavailableServerException {
+    private static boolean ex_script(Connection conn, HashSet<String> files, InputScriptReader reader) {
         String line = reader.readNextLine();
         while (line != null) {
             if (!line.trim().isEmpty()) {
@@ -136,7 +131,7 @@ public abstract class CommandProcessor {
     /**
      * Validates script file, checks recursion etc
      */
-    private static boolean validateScript(Connection conn, HashSet<String> files, String line) throws UnavailableServerException {
+    private static boolean validateScript(Connection conn, HashSet<String> files, String line) {
         String filePath;
         InputScriptReader reader;
         try {

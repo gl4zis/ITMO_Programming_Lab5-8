@@ -5,7 +5,8 @@ import exceptions.IncorrectDataException;
 import exceptions.IncorrectInputException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputScriptReader;
+import parsers.MyScanner;
+import parsers.ScriptParser;
 import parsers.StringModificator;
 
 import java.io.FileNotFoundException;
@@ -17,6 +18,7 @@ import java.util.HashSet;
  */
 public abstract class CommandProcessor {
     private static final Logger LOGGER = LogManager.getLogger(CommandProcessor.class);
+    private static final MyScanner CONSOLE = new MyScanner(System.in);
 
     /**
      * Processes string line. Finds there special commands, processes it, sends requests and return response
@@ -28,7 +30,7 @@ public abstract class CommandProcessor {
     public static String execute(Connection conn, String line) {
         if (line.trim().isEmpty())
             return "";
-        String output = execute(conn, line, null);
+        String output = execute(conn, line, CONSOLE);
         if (output == null) throw new ExitException();
         else return output;
     }
@@ -36,7 +38,7 @@ public abstract class CommandProcessor {
     /**
      * Similarly execute(Connection, String), but can execute commands from script
      */
-    private static String execute(Connection conn, String line, InputScriptReader reader) {
+    private static String execute(Connection conn, String line, MyScanner reader) {
         try {
             return switch (line.split(" ")[0]) {
                 case "exit" -> throw new ExitException();
@@ -59,7 +61,7 @@ public abstract class CommandProcessor {
         long startTime = new Date().getTime();
         String output = "";
         for (int i = 0; i < 10; i++) {
-            output = conn.sendReqGetResp("ping", null);
+            output = conn.sendReqGetResp("ping", CONSOLE);
         }
         long endTime = new Date().getTime() - startTime;
         return output + "\nAverage reply time: " + endTime / 10 + " ms";
@@ -69,7 +71,7 @@ public abstract class CommandProcessor {
      * Special client command 'help'
      */
     private static String help(Connection conn) {
-        String output = conn.sendReqGetResp("help", null);
+        String output = conn.sendReqGetResp("help", CONSOLE);
         output += """
                         
                 \texit : terminate the program
@@ -80,9 +82,9 @@ public abstract class CommandProcessor {
     /**
      * Special client command 'update'
      */
-    private static String update(Connection conn, String line, InputScriptReader reader) {
+    private static String update(Connection conn, String line, MyScanner reader) {
         String find = "find" + line.substring(6);
-        String output = conn.sendReqGetResp(find, null);
+        String output = conn.sendReqGetResp(find, CONSOLE);
         if (!output.startsWith("No such")) {
             output = conn.sendReqGetResp(line, reader);
         }
@@ -100,8 +102,8 @@ public abstract class CommandProcessor {
     /**
      * Executes command from reader
      */
-    private static void ex_script(Connection conn, HashSet<String> files, InputScriptReader reader) {
-        String line = reader.readNextLine();
+    private static void ex_script(Connection conn, HashSet<String> files, MyScanner reader) {
+        String line = reader.nextLine();
         while (line != null) {
             if (!line.trim().isEmpty()) {
                 try {
@@ -117,7 +119,7 @@ public abstract class CommandProcessor {
                     LOGGER.warn(e.getMessage());
                 }
             }
-            line = reader.readNextLine();
+            line = reader.nextLine();
         }
     }
 
@@ -126,12 +128,12 @@ public abstract class CommandProcessor {
      */
     private static void validateScript(Connection conn, HashSet<String> files, String line) {
         String filePath;
-        InputScriptReader reader;
+        MyScanner reader;
         try {
             filePath = StringModificator.filePathFormat(line.split(" ")[1]);
             if (!files.contains(filePath)) {
                 files.add(filePath);
-                reader = new InputScriptReader(filePath);
+                reader = new MyScanner(ScriptParser.readLines(filePath));
                 LOGGER.info("Executing script: " + filePath);
             } else {
                 LOGGER.warn("Try of recursion! Script wouldn't execute");

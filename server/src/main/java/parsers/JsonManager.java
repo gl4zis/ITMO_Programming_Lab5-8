@@ -42,9 +42,7 @@ public class JsonManager {
     private void initJson() {
         while (true) {
             try {
-                String filePath = InputConsoleReader.readNextLine();
-                if (filePath.length() > 0 && filePath.charAt(0) == '~')
-                    filePath = System.getenv("HOME") + filePath.substring(1);
+                String filePath = StringModificator.filePathFormat(new MyScanner(System.in).nextLine());
                 file = new File(filePath);
                 break;
             } catch (NullPointerException e) {

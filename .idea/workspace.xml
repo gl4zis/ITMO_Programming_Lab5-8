@@ -4,19 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="now logs saves in /tmp or Windows/Temp">
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/exceptions/ExitException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/CommandProcessor.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="big rework of console and script parsers">
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/InputConsoleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/InputConsoleReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/StringModificator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/StringModificator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/MyScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/MyScanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/ScriptParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/parsers/ScriptParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +117,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.server">
+  <component name="RunManager" selected="Application.client">
     <configuration name="client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.Main" />
       <module name="lab5-8.client.main" />
@@ -182,20 +176,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00027" summary="changed command update to remove Dragon.setId()">
-      <created>1678865175101</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1678865175101</updated>
-    </task>
-    <task id="LOCAL-00028" summary="bugfix with wrong upload collection">
-      <created>1678865680604</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1678865680604</updated>
     </task>
     <task id="LOCAL-00029" summary="fixed bug with incrementing id when dragon isn't added in collection">
       <created>1678866343060</created>
@@ -526,7 +506,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681331069207</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="reworked exiting from the app">
+      <created>1682433863629</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1682433863630</updated>
+    </task>
+    <task id="LOCAL-00077" summary="big rework of console and script parsers">
+      <created>1682440812937</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1682440812937</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -554,8 +548,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="changed logs dir, now dependence on user.dir" />
-    <MESSAGE value="fixed exit confirm and dragon entering" />
     <MESSAGE value="colors in console" />
     <MESSAGE value="bugfix with console outputs" />
     <MESSAGE value="now collection can be sorted by any parameter" />
@@ -579,7 +571,9 @@
     <MESSAGE value="big bugfix&#10;added ability to send huge data from server&#10;now if server doesn't reply, client repeats request each second until gets the reply&#10;fixed null pointer in commands, which needs read dragon from console&#10;etc..." />
     <MESSAGE value="added ping command" />
     <MESSAGE value="now logs saves in /tmp or Windows/Temp" />
-    <option name="LAST_COMMIT_MESSAGE" value="now logs saves in /tmp or Windows/Temp" />
+    <MESSAGE value="reworked exiting from the app" />
+    <MESSAGE value="big rework of console and script parsers" />
+    <option name="LAST_COMMIT_MESSAGE" value="big rework of console and script parsers" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

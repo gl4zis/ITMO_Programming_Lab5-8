@@ -19,17 +19,16 @@ public class Main {
     static {
         String creationDate = new SimpleDateFormat("yyyy-MM-dd/HH-mm-ss").format(new Date());
         if (OsUtilus.IsWindows())
-            System.setProperty("logs.path", "C:/Windows/Temp/lab5-8-server-logs/" + creationDate + ".log");
+            System.setProperty("logs.path", "C:/Windows/Temp/Logs(5-8)/server/" + creationDate + ".log");
         else
-            System.setProperty("logs.path", "/tmp/lab5-8-server-logs/" + creationDate + ".log");
+            System.setProperty("logs.path", "/tmp/Logs(5-8)/server/" + creationDate + ".log");
     }
-
-    private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     /**
      * Creates managers, creates collection, loads it from JSON and opens connection on the fixed port
      */
     public static void main(String[] args) {
+        Logger LOGGER = LogManager.getLogger(Main.class);
         LOGGER.debug("Server startup");
         try {
             JsonManager jsonManager;

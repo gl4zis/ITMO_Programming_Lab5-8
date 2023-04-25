@@ -1,8 +1,8 @@
 package server;
 
 import commands.CommandManager;
-import general.OsUtilus;
 import commands.CommandValidator;
+import general.OsUtilus;
 import network.Request;
 import network.Response;
 import org.apache.commons.lang3.SerializationUtils;
@@ -16,7 +16,6 @@ import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 /**
  * Does all works with clients interaction

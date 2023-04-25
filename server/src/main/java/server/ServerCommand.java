@@ -3,7 +3,7 @@ package server;
 import collection.CollectionManager;
 import commands.CommandManager;
 import exceptions.ExitException;
-import parsers.InputConsoleReader;
+import parsers.MyScanner;
 
 /**
  * Utility for executing commands in server console
@@ -14,7 +14,7 @@ public abstract class ServerCommand {
      * Checks console line and execute command if console is not empty
      */
     public static void execute(CommandManager manager) {
-        String line = InputConsoleReader.checkConsole();
+        String line = new MyScanner(System.in).checkConsole();
         if (line != null) {
             switch (line) {
                 case "help" -> ServerCommand.help();

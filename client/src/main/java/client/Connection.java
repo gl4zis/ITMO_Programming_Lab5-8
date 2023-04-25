@@ -1,9 +1,9 @@
 package client;
 
+import commands.CommandValidator;
 import exceptions.ExitException;
 import exceptions.UnavailableServerException;
 import general.OsUtilus;
-import commands.CommandValidator;
 import network.Request;
 import network.Response;
 import org.apache.commons.lang3.ArrayUtils;
@@ -11,8 +11,7 @@ import org.apache.commons.lang3.SerializationException;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.InputConsoleReader;
-import parsers.InputScriptReader;
+import parsers.MyScanner;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -21,8 +20,6 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * Realization of connection to the server.
@@ -30,6 +27,7 @@ import java.util.Queue;
  */
 public class Connection {
     private static final Logger LOGGER = LogManager.getLogger(Connection.class);
+    private static final MyScanner CONSOLE = new MyScanner(System.in);
     private final InetSocketAddress address;
     private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
 
@@ -44,12 +42,34 @@ public class Connection {
     }
 
     /**
+     * Processes waiting reply from server
+     * (Prints messages, checks console)
+     */
+    public static void waitingServer(boolean printMessage, Exception e) {
+        if (printMessage) {
+            System.out.println(e.getMessage());
+            System.out.println("You can only exit from the app");
+            System.out.print("-> ");
+        }
+        String line = CONSOLE.checkConsole();
+        if (line != null) {
+            line = line.split("\n")[0].trim();
+            if (line.equals("exit")) {
+                throw new ExitException();
+            }
+            if (!line.isEmpty())
+                System.out.println("Can't execute commands now =(");
+            System.out.print("-> ");
+        }
+    }
+
+    /**
      * Reads console and execute command in console line, throw server
      */
     public void run() {
         while (true) {
             System.out.print("-> ");
-            String line = InputConsoleReader.readNextLine();
+            String line = CONSOLE.nextLine();
             String output = CommandProcessor.execute(this, line);
             if (!output.isEmpty())
                 System.out.println(output);
@@ -161,7 +181,7 @@ public class Connection {
      *
      * @return message from response
      */
-    public String sendReqGetResp(String line, InputScriptReader reader) {
+    public String sendReqGetResp(String line, MyScanner reader) {
         String output;
         boolean message = true;
         while (true) {
@@ -174,27 +194,5 @@ public class Connection {
             }
         }
         return output;
-    }
-
-    /**
-     * Processes waiting reply from server
-     * (Prints messages, checks console)
-     */
-    public static void waitingServer(boolean printMessage, Exception e) {
-        if (printMessage) {
-            System.out.println(e.getMessage());
-            System.out.println("You can only exit from the app");
-            System.out.print("-> ");
-        }
-        String line = InputConsoleReader.checkConsole();
-        if (line != null) {
-            line = line.split("\n")[0].trim();
-            if (line.equals("exit")) {
-                throw new ExitException();
-            }
-            if (!line.isEmpty())
-                System.out.println("Can't execute commands now =(");
-            System.out.print("-> ");
-        }
     }
 }

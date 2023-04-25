@@ -3,8 +3,7 @@ package commands;
 import dragons.Dragon;
 import exceptions.IncorrectInputException;
 import network.Request;
-import parsers.InputConsoleReader;
-import parsers.InputScriptReader;
+import parsers.MyScanner;
 
 public abstract class CommandValidator {
 
@@ -14,7 +13,7 @@ public abstract class CommandValidator {
      * @return request, built from line
      * @throws IncorrectInputException if something wrong with inputted line
      */
-    public static Request validCommand(String line, InputScriptReader reader) throws IncorrectInputException {
+    public static Request validCommand(String line, MyScanner reader) throws IncorrectInputException {
         String[] input = line.split(" ");
         if (input.length > 2) throw new IncorrectInputException("Unknown command");
         CommandType command = CommandType.getByName(input[0]);
@@ -52,9 +51,8 @@ public abstract class CommandValidator {
      *
      * @return generated dragon object
      */
-    private static Dragon genDragon(InputScriptReader reader) {
-        if (reader == null) return InputConsoleReader.readDragon();
-        else return reader.readDragon();
+    private static Dragon genDragon(MyScanner reader) {
+        return reader.readDragon();
     }
 
     /**

@@ -1,5 +1,6 @@
 package client;
 
+import exceptions.ExitException;
 import exceptions.IncorrectDataException;
 import exceptions.IncorrectInputException;
 import org.apache.logging.log4j.LogManager;
@@ -27,7 +28,9 @@ public abstract class CommandProcessor {
     public static String execute(Connection conn, String line) {
         if (line.trim().isEmpty())
             return "";
-        return execute(conn, line, null);
+        String output = execute(conn, line, null);
+        if (output == null) throw new ExitException();
+        else return output;
     }
 
     /**
@@ -35,22 +38,14 @@ public abstract class CommandProcessor {
      */
     private static String execute(Connection conn, String line, InputScriptReader reader) {
         try {
-            switch (line.split(" ")[0]) {
-                case "exit":
-                    return null;
-                case "help":
-                    return help(conn);
-                case "update":
-                    return update(conn, line, reader);
-                case "ping":
-                    return ping(conn);
-                case "execute_script":
-                    if (ex_script(conn, line))
-                        return null;
-                    return "";
-                default:
-                    return conn.sendReqGetResp(line, reader);
-            }
+            return switch (line.split(" ")[0]) {
+                case "exit" -> throw new ExitException();
+                case "help" -> help(conn);
+                case "update" -> update(conn, line, reader);
+                case "ping" -> ping(conn);
+                case "execute_script" -> ex_script(conn, line);
+                default -> conn.sendReqGetResp(line, reader);
+            };
         } catch (IncorrectInputException e) {
             return e.getMessage();
         }
@@ -97,14 +92,15 @@ public abstract class CommandProcessor {
     /**
      * Special client command 'execute_script'
      */
-    private static boolean ex_script(Connection conn, String line) {
-        return validateScript(conn, new HashSet<>(), line);
+    private static String ex_script(Connection conn, String line) {
+        validateScript(conn, new HashSet<>(), line);
+        return "";
     }
 
     /**
      * Executes command from reader
      */
-    private static boolean ex_script(Connection conn, HashSet<String> files, InputScriptReader reader) {
+    private static void ex_script(Connection conn, HashSet<String> files, InputScriptReader reader) {
         String line = reader.readNextLine();
         while (line != null) {
             if (!line.trim().isEmpty()) {
@@ -114,8 +110,6 @@ public abstract class CommandProcessor {
                     } else {
                         String output = execute(conn, line, reader);
                         LOGGER.info("Executing: " + line);
-                        if (output == null)
-                            return false;
                         LOGGER.info(output);
                     }
                 } catch (IncorrectInputException ignored) {
@@ -125,13 +119,12 @@ public abstract class CommandProcessor {
             }
             line = reader.readNextLine();
         }
-        return true;
     }
 
     /**
      * Validates script file, checks recursion etc
      */
-    private static boolean validateScript(Connection conn, HashSet<String> files, String line) {
+    private static void validateScript(Connection conn, HashSet<String> files, String line) {
         String filePath;
         InputScriptReader reader;
         try {
@@ -142,7 +135,7 @@ public abstract class CommandProcessor {
                 LOGGER.info("Executing script: " + filePath);
             } else {
                 LOGGER.warn("Try of recursion! Script wouldn't execute");
-                return false;
+                return;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new IncorrectInputException("Unknown command");
@@ -150,10 +143,9 @@ public abstract class CommandProcessor {
             throw new IncorrectInputException("File don't exist or there are no enough rights");
         }
 
-        boolean exit = !ex_script(conn, files, reader);
+        ex_script(conn, files, reader);
 
         files.remove(filePath);
         LOGGER.info(String.format("Script: %s executing ended", filePath));
-        return exit;
     }
 }

@@ -1,5 +1,6 @@
 package client;
 
+import exceptions.ExitException;
 import exceptions.UnavailableServerException;
 import general.OsUtilus;
 import commands.CommandValidator;
@@ -50,8 +51,6 @@ public class Connection {
             System.out.print("-> ");
             String line = InputConsoleReader.readNextLine();
             String output = CommandProcessor.execute(this, line);
-            if (output == null)
-                break;
             if (!output.isEmpty())
                 System.out.println(output);
         }
@@ -189,10 +188,12 @@ public class Connection {
         }
         String line = InputConsoleReader.checkConsole();
         if (line != null) {
+            line = line.split("\n")[0].trim();
             if (line.equals("exit")) {
-                System.exit(0);
+                throw new ExitException();
             }
-            System.out.println("I can't execute commands now =(");
+            if (!line.isEmpty())
+                System.out.println("Can't execute commands now =(");
             System.out.print("-> ");
         }
     }

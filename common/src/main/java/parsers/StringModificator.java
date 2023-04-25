@@ -1,5 +1,7 @@
 package parsers;
 
+import general.OsUtilus;
+
 /**
  * Modificator for strings in correct form
  */
@@ -12,9 +14,17 @@ public abstract class StringModificator {
     public static String filePathFormat(String filePath) {
         if (filePath.length() > 0) {
             if (filePath.charAt(0) == '~')
-                filePath = System.getenv("HOME") + filePath.substring(1);
+                filePath = getHome() + filePath.substring(1);
             filePath = filePath.replaceAll("\\\\", "/");
         }
         return filePath;
+    }
+
+    private static String getHome() {
+        if (OsUtilus.IsWindows()) {
+            String homeDrive = System.getenv("HOMEDRIVE");
+            String homePath = System.getenv("HOMEPATH");
+            return homeDrive + homePath;
+        } else return System.getenv("HOME");
     }
 }

@@ -1,6 +1,7 @@
 package parsers;
 
 import dragons.*;
+import exceptions.ExitException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +17,7 @@ import java.util.Scanner;
 public abstract class InputConsoleReader {
     private static final Logger LOGGER = LogManager.getLogger(InputConsoleReader.class);
     private static final String ERROR_MESSAGE = "Incorrect input. Try again";
+    private static final Scanner CONSOLE = new Scanner(System.in);
 
     /**
      * Reads next line from the console.
@@ -24,16 +26,13 @@ public abstract class InputConsoleReader {
      * @return inputLine
      */
     public static String readNextLine() {
-        String line = "";
         try {
-            Scanner console = new Scanner(System.in);
-            line = console.nextLine();
+            String line = CONSOLE.nextLine();
+            LOGGER.trace("Entered console line: '" + line + "'");
+            return line;
         } catch (NoSuchElementException e) {
-            LOGGER.debug("Correct exit");
-            System.exit(0);
+            throw new ExitException();
         }
-        LOGGER.trace("Entered console line: '" + line + "'");
-        return line;
     }
 
     /**
@@ -43,9 +42,8 @@ public abstract class InputConsoleReader {
      */
     public static String checkConsole() {
         try {
-            if (System.in.available() > 0) {
+            if (System.in.available() > 0)
                 return readNextLine();
-            }
         } catch (IOException ignored) {
         }
         return null;

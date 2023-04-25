@@ -1,5 +1,6 @@
 package client;
 
+import exceptions.ExitException;
 import general.OsUtilus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,6 +33,7 @@ public class Main {
             Connection connection = new Connection(host, port);
             LOGGER.info(String.format("client.Connection parameters. Host: %s, port: %d", host, port));
             connection.run();
+        } catch (ExitException e) {
             LOGGER.debug("Correct exit");
         } catch (Throwable e) {
             LOGGER.fatal("Something very strange happened =0 " + e.getMessage());

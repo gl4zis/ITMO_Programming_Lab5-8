@@ -44,12 +44,9 @@ public class Connection {
             dataSock.setSoTimeout(10);
             LOGGER.debug("Connection opened");
             while (true)
-                if (!run())
-                    break;
+                run();
         } catch (IOException e) {
-            e.printStackTrace();
             LOGGER.error("Something went wrong =( " + e.getMessage());
-        } catch (NoSuchElementException ignored) {
         } finally {
             dataSock.close();
         }
@@ -59,10 +56,8 @@ public class Connection {
      * Listening port.
      * If there are data package, unpacks request, processes it and sends response to the client
      */
-    private boolean run() throws IOException {
-        boolean exit = ServerCommand.execute(manager);
-        if (exit)
-            return false;
+    private void run() throws IOException {
+        ServerCommand.execute(manager);
         if (readChannel()) {
             Request request = SerializationUtils.deserialize(buffer.array());
             LOGGER.info(String.format("Request command: %s, with args: %s",
@@ -74,7 +69,6 @@ public class Connection {
                 response = new Response("Incorrect request!!");
             sendResponse(response);
         }
-        return true;
     }
 
     /**

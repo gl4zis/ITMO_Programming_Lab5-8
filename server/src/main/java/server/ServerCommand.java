@@ -2,6 +2,7 @@ package server;
 
 import collection.CollectionManager;
 import commands.CommandManager;
+import exceptions.ExitException;
 import parsers.InputConsoleReader;
 
 /**
@@ -11,23 +12,20 @@ public abstract class ServerCommand {
 
     /**
      * Checks console line and execute command if console is not empty
-     *
-     * @return true if it needs to terminate the app
      */
-    public static boolean execute(CommandManager manager) {
+    public static void execute(CommandManager manager) {
         String line = InputConsoleReader.checkConsole();
         if (line != null) {
             switch (line) {
                 case "help" -> ServerCommand.help();
                 case "exit" -> {
                     ServerCommand.save(manager);
-                    return true;
+                    throw new ExitException();
                 }
                 case "save" -> ServerCommand.save(manager);
                 default -> System.out.println("Unknown server command");
             }
         }
-        return false;
     }
 
     /**

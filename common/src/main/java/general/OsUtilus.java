@@ -8,7 +8,7 @@ public abstract class OsUtilus {
     /**
      * Returns name of OS
      */
-    public static String getOsName() {
+    private static String getOsName() {
         return System.getProperty("os.name");
     }
 

@@ -84,15 +84,6 @@ public class CommandManager {
     }
 
     /**
-     * Adds new non-standard command in the map
-     *
-     * @param newCommand object of command, that will be added in the map
-     */
-    public void addNewCommand(Command newCommand) {
-        commands.put(newCommand.getName(), newCommand);
-    }
-
-    /**
      * @return JsonManager
      */
     public JsonManager getJson() {

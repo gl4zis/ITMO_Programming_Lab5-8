@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
  * Non-argument command "show". Outputs info about all elements in the collection
  */
 public class ShowCommand extends Command {
-    private static final Logger LOGGER = LogManager.getLogger(ShowCommand.class);
     private final DragonCollection collection;
 
     /**

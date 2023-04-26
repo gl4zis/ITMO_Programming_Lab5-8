@@ -50,7 +50,7 @@ public abstract class CollectionManager {
      * @param objectDragon dragon, that adds in the collection
      * @param collection   in this collection adds dragon
      */
-    public static void uploadDragon(Object objectDragon, DragonCollection collection) {
+    private static void uploadDragon(Object objectDragon, DragonCollection collection) {
         try {
             JSONObject jsonDragon = (JSONObject) objectDragon;
 

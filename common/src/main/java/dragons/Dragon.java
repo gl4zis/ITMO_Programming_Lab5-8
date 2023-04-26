@@ -45,7 +45,7 @@ public class Dragon implements Comparable<Dragon>, Serializable {
             throws IncorrectDataException {
         this(name, coordinates, weight, color, character, head);
         if (creationDate == null) throw new IncorrectDataException("Incorrect date of creation");
-        if (id < 0) throw new IncorrectDataException("Incorrect id");
+        if (id <= 0) throw new IncorrectDataException("Incorrect id");
         this.id = id;
         this.creationDate = creationDate;
     }

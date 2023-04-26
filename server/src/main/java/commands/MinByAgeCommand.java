@@ -10,8 +10,7 @@ import org.apache.logging.log4j.Logger;
  * Non-argument command "min_by_age". Outputs one dragon from collection, which have minimum age
  */
 public class MinByAgeCommand extends Command {
-    private static final Logger LOGGER = LogManager.getLogger(MinByAgeCommand.class);
-    private final DragonCollection collection;
+     private final DragonCollection collection;
 
     /**
      * Constructor, sets collection, that command works with, name and description of this command

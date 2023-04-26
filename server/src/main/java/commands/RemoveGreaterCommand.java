@@ -38,7 +38,7 @@ public class RemoveGreaterCommand extends Command {
                     output.append(outLine).append('\n');
                 });
         if (output.length() > 0) {
-            output.deleteCharAt(-1);
+            output.deleteCharAt(output.length() - 1);
             return output.toString();
         } else return "No such elements in collection";
     }

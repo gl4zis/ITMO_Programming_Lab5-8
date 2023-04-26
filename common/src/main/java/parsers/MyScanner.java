@@ -8,10 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * For processing any input stream and reads something from it
@@ -122,7 +119,8 @@ public class MyScanner {
                 return -1;
             }
             try {
-                return Integer.parseInt(ageStr);
+                if (Integer.parseInt(ageStr) > 0)
+                    return Integer.parseInt(ageStr);
             } catch (NumberFormatException e) {
                 throwIncInput("Incorrect age");
             }
@@ -134,7 +132,9 @@ public class MyScanner {
         do {
             print("Enter weight: ");
             try {
-                return Long.parseLong(nextLine());
+                long weight = Long.parseLong(nextLine());
+                if (weight > 0)
+                    return weight;
             } catch (NumberFormatException e) {
                 throwIncInput("Incorrect weight");
             }
@@ -232,7 +232,7 @@ public class MyScanner {
             if (age > -1)
                 dragon.setAge(age);
             return dragon;
-        } catch (IncorrectInputException e) {
+        } catch (IncorrectInputException | NullPointerException | ClassCastException e) {
             LOGGER.debug(e.getMessage());
             return null;
         }

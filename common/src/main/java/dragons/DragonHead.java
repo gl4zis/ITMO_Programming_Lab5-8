@@ -16,8 +16,8 @@ public class DragonHead implements Comparable<DragonHead>, Serializable {
      * @param eyesCount count of eyes
      */
     public DragonHead(float eyesCount) {
-        if (eyesCount == Double.POSITIVE_INFINITY) this.eyesCount = Float.MAX_VALUE;
-        else if (eyesCount == Double.NEGATIVE_INFINITY) this.eyesCount = Float.MIN_VALUE;
+        if (eyesCount == Float.POSITIVE_INFINITY) this.eyesCount = Float.MAX_VALUE;
+        else if (eyesCount == Float.NEGATIVE_INFINITY) this.eyesCount = Float.MIN_VALUE;
         else this.eyesCount = eyesCount;
     }
 

@@ -68,6 +68,7 @@ public abstract class CommandValidator {
         if (command.isHaveArgs()) {
             Class type = command.argClass();
             if (type == null) return false;
+            if (arg == null) return false;
             if (!checkType(arg, type)) return false;
         }
         return !command.isNeedReadDragon() || dragon != null;

@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
  * Non-argument command "clear". Removes all dragons from the collection
  */
 public class ClearCommand extends Command {
-    private static final Logger LOGGER = LogManager.getLogger(ClearCommand.class);
     private final DragonCollection collection;
 
     /**

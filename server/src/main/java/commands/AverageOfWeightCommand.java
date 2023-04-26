@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
  * Non-argument command "average_of_weight". Outputs average value of all dragon's weight in collection
  */
 public class AverageOfWeightCommand extends Command {
-    private static final Logger LOGGER = LogManager.getLogger(AverageOfWeightCommand.class);
     private final DragonCollection collection;
 
     /**

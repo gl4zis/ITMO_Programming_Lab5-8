@@ -35,7 +35,7 @@ public class RemoveByIdCommand extends Command {
                 LOGGER.info("Dragon was successfully removed");
                 return "Dragon was successfully removed";
             } else return "No such elements in collection";
-        } catch (NumberFormatException e) {
+        } catch (ClassCastException | NullPointerException e) {
             LOGGER.warn("Incorrect command argument");
             return "Incorrect command argument";
         }

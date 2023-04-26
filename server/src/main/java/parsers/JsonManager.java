@@ -17,6 +17,7 @@ import java.util.List;
 public class JsonManager {
     private static final Logger LOGGER = LogManager.getLogger(JsonManager.class);
     private File file;
+    private static final MyScanner CONSOLE = new MyScanner(System.in);
 
     /**
      * Constructor, that creates object, trying to get file path from environment variable
@@ -41,13 +42,10 @@ public class JsonManager {
      */
     private void initJson() {
         while (true) {
-            try {
-                String filePath = StringModificator.filePathFormat(new MyScanner(System.in).nextLine());
-                file = new File(filePath);
+            String filePath = StringModificator.filePathFormat(CONSOLE.nextLine());
+            file = new File(filePath);
+            if (!filePath.isEmpty())
                 break;
-            } catch (NullPointerException e) {
-                LOGGER.warn("You entered empty string");
-            }
         }
     }
 

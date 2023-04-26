@@ -31,7 +31,7 @@ public abstract class ServerCommand {
     /**
      * Prints help about server commands
      */
-    public static void help() {
+    private static void help() {
         System.out.println("""
                 exit : terminate server (collection will be saved)
                 save : save collection to the file
@@ -41,7 +41,7 @@ public abstract class ServerCommand {
     /**
      * Saves collection to the JSON
      */
-    public static void save(CommandManager manager) {
+    private static void save(CommandManager manager) {
         CollectionManager.saveCollection(manager.getJson(), manager.getCollection());
     }
 }

@@ -36,7 +36,7 @@ public class UpdateCommand extends Command {
                 LOGGER.info("Dragon was updated");
                 return "Dragon was updated";
             } else return "No such element in collection";
-        } catch (NumberFormatException e) {
+        } catch (ClassCastException | NullPointerException e) {
             LOGGER.warn("Incorrect command argument");
             return "Incorrect command argument";
         }

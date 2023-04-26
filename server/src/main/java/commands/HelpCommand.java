@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
  * Non-argument command "help". Outputs info about all commands
  */
 public class HelpCommand extends Command {
-    private static final Logger LOGGER = LogManager.getLogger(HelpCommand.class);
     private final CommandManager commandManager;
 
     /**

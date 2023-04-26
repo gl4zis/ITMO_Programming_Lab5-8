@@ -39,7 +39,7 @@ public class FilterLessThanWeightCommand extends Command {
                             "\n----------------------------------------------------------------\n"));
             if (output.length() > 0) return output;
             else return "No such elements in collection";
-        } catch (NumberFormatException e) {
+        } catch (ClassCastException | NullPointerException e) {
             LOGGER.warn("Incorrect command argument");
             return "Incorrect command argument";
         }

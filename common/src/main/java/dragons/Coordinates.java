@@ -24,7 +24,7 @@ public class Coordinates implements Comparable<Coordinates>, Serializable {
      * @throws IncorrectDataException if incorrect params inputted
      */
     public Coordinates(double x, float y) throws IncorrectDataException {
-        if (x + 497 < -0.1E20) throw new IncorrectDataException("Incorrect coordinates");
+        if (x + 497 < 1E-20) throw new IncorrectDataException("Incorrect coordinates");
         if (x == Double.POSITIVE_INFINITY) this.x = Double.MAX_VALUE;
         else this.x = x;
         if (y == Double.POSITIVE_INFINITY) this.y = Float.MAX_VALUE;

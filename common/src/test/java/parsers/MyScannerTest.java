@@ -1,14 +1,15 @@
 package parsers;
 
-import dragons.*;
+import dragons.Color;
+import dragons.Coordinates;
+import dragons.Dragon;
+import dragons.DragonCharacter;
 import exceptions.ExitException;
-import exceptions.IncorrectInputException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 

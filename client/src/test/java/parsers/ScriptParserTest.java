@@ -3,12 +3,14 @@ package parsers;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledOnOs;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ScriptParserTest {
 
@@ -26,6 +28,11 @@ class ScriptParserTest {
         }
     }
 
+    @AfterAll
+    static void removeFile() {
+        temp.delete();
+    }
+
     @Test
     void readLines() throws IOException {
         InputStream is = ScriptParser.readLines("C:/Windows/Temp/testFile.txt");
@@ -33,10 +40,5 @@ class ScriptParserTest {
         StringBuilder output = new StringBuilder();
         while (scanner.hasNext()) output.append(scanner.nextLine()).append('\n');
         assertEquals("line1\nline2\n\nline3", output.substring(0, output.length() - 1));
-    }
-
-    @AfterAll
-    static void removeFile() {
-        temp.delete();
     }
 }

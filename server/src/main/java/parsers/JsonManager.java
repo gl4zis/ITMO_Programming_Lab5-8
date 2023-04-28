@@ -16,8 +16,8 @@ import java.util.List;
 
 public class JsonManager {
     private static final Logger LOGGER = LogManager.getLogger(JsonManager.class);
-    private File file;
     private static final MyScanner CONSOLE = new MyScanner(System.in);
+    private File file;
 
     /**
      * Constructor, that creates object, trying to get file path from environment variable

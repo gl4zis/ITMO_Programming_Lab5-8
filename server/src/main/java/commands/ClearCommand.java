@@ -2,8 +2,6 @@ package commands;
 
 import collection.DragonCollection;
 import network.Request;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 /**
  * Non-argument command "clear". Removes all dragons from the collection

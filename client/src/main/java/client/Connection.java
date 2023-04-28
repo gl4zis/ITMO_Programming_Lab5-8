@@ -27,6 +27,8 @@ import java.util.Date;
  */
 public class Connection {
     private static final Logger LOGGER = LogManager.getLogger(Connection.class);
+    private static final int MAX_UDP_BYTES_WINDOWS = 65507;
+    private static final int MAX_UDP_BYTES_UNIX = 9216;
     private static final MyScanner CONSOLE = new MyScanner(System.in);
     private final InetSocketAddress address;
     private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
@@ -93,9 +95,9 @@ public class Connection {
     private boolean receivePacks(DatagramChannel channel) throws IOException {
         int packNumber = 0;
         byte[] replyArr = null;
-        int bytes; //Maximum weight of data in packet for UDP
-        if (OsUtilus.IsWindows()) bytes = 65507;
-        else bytes = 9216;
+        int bytes;
+        if (OsUtilus.IsWindows()) bytes = MAX_UDP_BYTES_WINDOWS;
+        else bytes = MAX_UDP_BYTES_UNIX;
         do {
             ByteBuffer partOfBuffer = ByteBuffer.allocate(bytes);
             if (!waitResponse(channel, partOfBuffer))

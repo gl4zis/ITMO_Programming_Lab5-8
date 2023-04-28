@@ -22,6 +22,8 @@ import java.util.Arrays;
  */
 public class Connection {
     private static final Logger LOGGER = LogManager.getLogger(Connection.class);
+    private static final int MAX_UDP_BYTES_WINDOWS = 65507;
+    private static final int MAX_UDP_BYTES_UNIX = 9216;
     private final CommandManager manager;
     private DatagramSocket dataSock;
     private ByteBuffer buffer = ByteBuffer.allocate(1024);
@@ -90,9 +92,9 @@ public class Connection {
      */
     private void sendResponse(Response response) throws IOException {
         buffer = ByteBuffer.wrap(SerializationUtils.serialize(response));
-        int bytes; //Maximum weight of data in packet for UDP
-        if (OsUtilus.IsWindows()) bytes = 65507;
-        else bytes = 9216;
+        int bytes;
+        if (OsUtilus.IsWindows()) bytes = MAX_UDP_BYTES_WINDOWS;
+        else bytes = MAX_UDP_BYTES_UNIX;
         int packsNumber = buffer.capacity() / bytes + 1;
         for (int i = 0; i < packsNumber; i++) {
             byte[] partOfBuffer = Arrays.copyOfRange(buffer.array(), i * bytes, Math.min(buffer.capacity(), (i + 1) * bytes));

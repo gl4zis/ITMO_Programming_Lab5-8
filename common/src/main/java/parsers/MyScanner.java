@@ -8,7 +8,10 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 /**
  * For processing any input stream and reads something from it
@@ -89,22 +92,22 @@ public class MyScanner {
     private Coordinates readCoordinates() {
         double X;
         float Y;
-        X = readCoordinate(-497, "X");
-        Y = (float) readCoordinate(Double.NEGATIVE_INFINITY, "Y");
+        X = readCoordinate(-497, "Enter X coordinate (fractional number > -497): ");
+        Y = (float) readCoordinate(Double.NEGATIVE_INFINITY, "Enter Y coordinate: ");
         return new Coordinates(X, Y);
     }
 
-    private double readCoordinate(double minValue, String nameOfCoord) {
+    private double readCoordinate(double minValue, String message) {
         double X;
         do {
-            print("Enter " + nameOfCoord + " coordinate (fractional number > -497): ");
+            print(message);
             try {
                 X = Double.parseDouble(nextLine());
                 if (X <= minValue) {
-                    throwIncInput("Incorrect " + nameOfCoord);
+                    throwIncInput("Incorrect coordinate");
                 } else break;
             } catch (NumberFormatException e) {
-                throwIncInput("Incorrect " + nameOfCoord);
+                throwIncInput("Incorrect coordinate");
             }
             print("Incorrect data inputted!\n");
         } while (true);
@@ -144,18 +147,15 @@ public class MyScanner {
 
     private Color readColor() {
         Map<Integer, Color> colors = new HashMap<>();
-        colors.put(1, Color.GREEN);
-        colors.put(2, Color.RED);
-        colors.put(3, Color.ORANGE);
-        colors.put(4, Color.BROWN);
+        for (Color color : Color.values()) {
+            colors.put(color.ordinal() + 1, color);
+        }
         int colorNum;
         do {
-            print("""
-                    \t1: Green
-                    \t2: Red
-                    \t3: Orange
-                    \t4: Brown
-                    Choose color (enter number):\040""");
+            for (Color color : Color.values()) {
+                print(String.format("\t%d: %s\n", color.ordinal() + 1, color.name()));
+            }
+            print("Choose color (enter number):");
             try {
                 colorNum = Integer.parseInt(nextLine());
                 if (colorNum >= 1 && colorNum <= 4) break;
@@ -170,16 +170,15 @@ public class MyScanner {
 
     private DragonCharacter readCharacter() {
         Map<Integer, DragonCharacter> characters = new HashMap<>();
-        characters.put(1, DragonCharacter.WISE);
-        characters.put(2, DragonCharacter.CHAOTIC_EVIL);
-        characters.put(3, DragonCharacter.FICKLE);
+        for (DragonCharacter character : DragonCharacter.values()) {
+            characters.put(character.ordinal() + 1, character);
+        }
         int colorNum;
         do {
-            print("""
-                    \t1: Wise
-                    \t2: Evil
-                    \t3: Fickle
-                    Choose character (enter number):\040""");
+            for (DragonCharacter character : DragonCharacter.values()) {
+                print(String.format("\t%d: %s\n", character.ordinal() + 1, character.name()));
+            }
+            print("Choose character (enter number): ");
             try {
                 colorNum = Integer.parseInt(nextLine());
                 if (colorNum >= 1 && colorNum <= 3) break;

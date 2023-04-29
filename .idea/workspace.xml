@@ -4,16 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="connection to database and accounts">
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/commands/CommandValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/commands/CommandValidator.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="user generates for each dragon">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/parsers/ScriptParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/parsers/ScriptParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/commands/CommandType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/commands/CommandType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/MyScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/MyScanner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/test/java/dragons/DragonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/test/java/dragons/DragonTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/test/java/parsers/MyScannerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/test/java/parsers/MyScannerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/collection/CollectionManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/collection/DragonCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/collection/DragonCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/parsers/JsonManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AddCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/SignInCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/SignInCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/SignUpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/SignUpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/database/DataBaseParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/AddCommandTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/commands/AddCommandTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,13 +203,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00033" summary="added input env in commandline args">
-      <created>1678873598612</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1678873598612</updated>
     </task>
     <task id="LOCAL-00034" summary="processed ~ in file paths">
       <created>1678874582209</created>
@@ -543,7 +540,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682773473911</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="user generates for each dragon">
+      <created>1682774988311</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1682774988311</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -571,7 +575,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="added ability to type first six numbers in id" />
     <MESSAGE value="fixed finding dragon by id" />
     <MESSAGE value="bugfix update command" />
     <MESSAGE value="change serializing to JSON" />
@@ -596,7 +599,8 @@
     <MESSAGE value="JUnit5 and some bugfix" />
     <MESSAGE value="code cleanup" />
     <MESSAGE value="connection to database and accounts" />
-    <option name="LAST_COMMIT_MESSAGE" value="connection to database and accounts" />
+    <MESSAGE value="user generates for each dragon" />
+    <option name="LAST_COMMIT_MESSAGE" value="user generates for each dragon" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

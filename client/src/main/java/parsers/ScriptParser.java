@@ -35,7 +35,8 @@ public abstract class ScriptParser {
             return null;
         }
         String processedLines = lines.toString() + '\n';
-        processedLines = processedLines.replaceAll("\r\n", "\n").replaceAll("\s*//.*\n", "\n");
+        processedLines = processedLines.replaceAll("\r\n", "\n")
+                .replaceAll("\s*//.*\n", "\n").replaceAll("\n\n", "\n");
         return new ByteArrayInputStream(processedLines.getBytes());
     }
 }

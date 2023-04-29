@@ -3,7 +3,7 @@ package server;
 
 import collection.DragonCollection;
 import commands.CommandManager;
-import database.DataBaseParser;
+import database.DataBaseManager;
 import database.MyBaseConnection;
 import exceptions.ExitException;
 import general.OsUtilus;
@@ -34,7 +34,7 @@ public class Main {
         try {
             DragonCollection collection = new DragonCollection();
             Connection baseConn = MyBaseConnection.connect();
-            DataBaseParser.uploadCollection(baseConn, collection);
+            DataBaseManager.uploadCollection(baseConn, collection);
             CommandManager manager = new CommandManager(baseConn, collection);
 
             ServerConnection con = new ServerConnection(manager);

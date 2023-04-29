@@ -1,6 +1,6 @@
 package commands;
 
-import database.DataBaseParser;
+import database.DataBaseManager;
 import exceptions.NoSuchUserException;
 import exceptions.WrongPasswordException;
 import network.Request;
@@ -22,7 +22,7 @@ public class SignInCommand extends Command {
     public String execute(Request request) {
         User user = request.user();
         try {
-            DataBaseParser.signInUser(baseConn, user);
+            DataBaseManager.signInUser(baseConn, user);
             return "User was signed in";
         } catch (SQLException e) {
             return "No connection with data base (";

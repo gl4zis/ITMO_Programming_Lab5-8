@@ -32,7 +32,7 @@ public class CommandManager {
     private void addStandardCommands() {
         if (commands == null) {
             commands = new HashMap<>();
-            Command add = new AddCommand(collection);
+            Command add = new AddCommand(collection, baseConn);
             Command addIfMin = new AddIfMinCommand(collection);
             Command averageOfWeight = new AverageOfWeightCommand(collection);
             Command clear = new ClearCommand(collection);

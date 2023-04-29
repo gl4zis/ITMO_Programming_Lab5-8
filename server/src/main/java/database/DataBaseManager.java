@@ -14,8 +14,8 @@ import java.sql.*;
 import java.text.ParseException;
 import java.util.Date;
 
-public abstract class DataBaseParser {
-    private static final Logger LOGGER = LogManager.getLogger(DataBaseParser.class);
+public abstract class DataBaseManager {
+    private static final Logger LOGGER = LogManager.getLogger(DataBaseManager.class);
 
     public static void uploadCollection(Connection conn, DragonCollection collection) {
         String query = "SELECT * FROM dragons JOIN users ON creator = login;";
@@ -73,5 +73,37 @@ public abstract class DataBaseParser {
         String dbPasswd = dbUser.getString("passwd");
         if (!dbLogin.equals(user.getLogin()) || !dbPasswd.equals(user.getHashedPasswd()))
             throw new WrongPasswordException();
+    }
+
+    public static int addDragon(Connection conn, Dragon dragon) throws SQLException {
+        PreparedStatement stat = conn.prepareStatement("INSERT INTO dragons" +
+                "(name, x, y, creation_date, age, weight, color, character, eyes_count, creator)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?::color, ?::dr_char, ?, ?) RETURNING id");
+        String name = dragon.getName();
+        double x = dragon.getCoordinates().getX();
+        float y = dragon.getCoordinates().getY();
+        java.sql.Date creationDate = new java.sql.Date(dragon.getCreationDate().getTime());
+        Integer age = dragon.getAge();
+        if (age == -1) age = null;
+        long weight = dragon.getWeight();
+        Color color = dragon.getColor();
+        DragonCharacter character = dragon.getDragonCharacter();
+        float eyesCount = dragon.getDragonHead().getEyesCount();
+        User creator = dragon.getCreator();
+
+        stat.setString(1, name);
+        stat.setDouble(2, x);
+        stat.setFloat(3, y);
+        stat.setDate(4, creationDate);
+        stat.setInt(5, age);
+        stat.setLong(6, weight);
+        stat.setString(7, color.name());
+        stat.setString(8, character.name());
+        stat.setFloat(9, eyesCount);
+        stat.setString(10, creator.getLogin());
+
+        ResultSet set = stat.executeQuery();
+        set.next();
+        return set.getInt("id");
     }
 }

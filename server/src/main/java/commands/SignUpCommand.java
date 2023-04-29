@@ -1,6 +1,6 @@
 package commands;
 
-import database.DataBaseParser;
+import database.DataBaseManager;
 import exceptions.LoginCollisionException;
 import network.Request;
 import user.User;
@@ -21,7 +21,7 @@ public class SignUpCommand extends Command {
     public String execute(Request request) {
         try {
             User user = request.user();
-            DataBaseParser.addUser(baseConn, user);
+            DataBaseManager.addUser(baseConn, user);
             return "User was signed up";
         } catch (SQLException e) {
             return "No connection with data base (";

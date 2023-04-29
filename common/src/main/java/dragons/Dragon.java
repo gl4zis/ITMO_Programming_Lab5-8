@@ -132,6 +132,14 @@ public class Dragon implements Comparable<Dragon>, Serializable {
         return head;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
     /**
      * Returns string output with info about this dragon
      *

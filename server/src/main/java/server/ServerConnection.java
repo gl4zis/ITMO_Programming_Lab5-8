@@ -26,7 +26,7 @@ public class ServerConnection {
     private static final int MAX_UDP_BYTES_UNIX = 9216;
     private final CommandManager manager;
     private DatagramSocket dataSock;
-    private ByteBuffer buffer = ByteBuffer.allocate(1024);
+    private ByteBuffer buffer;
     private DatagramPacket dataPack;
 
     /**
@@ -76,7 +76,7 @@ public class ServerConnection {
      * Listens port and receives data packets from clients
      */
     private boolean readChannel() throws IOException {
-        buffer = ByteBuffer.allocate(1024);
+        buffer = ByteBuffer.allocate(2048);
         try {
             dataPack = new DatagramPacket(buffer.array(), buffer.capacity());
             dataSock.receive(dataPack);

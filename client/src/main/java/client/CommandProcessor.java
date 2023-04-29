@@ -27,7 +27,7 @@ public abstract class CommandProcessor {
      * @param line there you want to find command
      * @return responded message from the server
      */
-    public static String execute(Connection conn, String line) {
+    public static String execute(ClientConnection conn, String line) {
         if (line.trim().isEmpty())
             return "";
         String output = execute(conn, line, CONSOLE);
@@ -38,7 +38,7 @@ public abstract class CommandProcessor {
     /**
      * Similarly execute(Connection, String), but can execute commands from script
      */
-    private static String execute(Connection conn, String line, MyScanner reader) {
+    private static String execute(ClientConnection conn, String line, MyScanner reader) {
         try {
             return switch (line.split(" ")[0]) {
                 case "exit" -> throw new ExitException();
@@ -46,6 +46,7 @@ public abstract class CommandProcessor {
                 case "update" -> update(conn, line, reader);
                 case "ping" -> ping(conn);
                 case "execute_script" -> ex_script(conn, line);
+                case "sign_out" -> signOut(conn);
                 default -> conn.sendReqGetResp(line, reader);
             };
         } catch (IncorrectInputException e) {
@@ -53,11 +54,17 @@ public abstract class CommandProcessor {
         }
     }
 
+    private static String signOut(ClientConnection conn) {
+        LOGGER.info("User was signed out");
+        conn.setUser();
+        return "";
+    }
+
     /**
      * Special client command 'ping'
      * Checks connection to server
      */
-    private static String ping(Connection conn) {
+    private static String ping(ClientConnection conn) {
         long startTime = new Date().getTime();
         String output = "";
         for (int i = 0; i < 10; i++) {
@@ -70,10 +77,11 @@ public abstract class CommandProcessor {
     /**
      * Special client command 'help'
      */
-    private static String help(Connection conn) {
+    private static String help(ClientConnection conn) {
         String output = conn.sendReqGetResp("help", CONSOLE);
         output += """
                         
+                \tsign_out : sign out from the account
                 \texit : terminate the program
                 \texecute_script filepath : execute script in the file, by its filepath""";
         return output;
@@ -82,7 +90,7 @@ public abstract class CommandProcessor {
     /**
      * Special client command 'update'
      */
-    private static String update(Connection conn, String line, MyScanner reader) {
+    private static String update(ClientConnection conn, String line, MyScanner reader) {
         String find = "find" + line.substring(6);
         String output = conn.sendReqGetResp(find, CONSOLE);
         if (!output.startsWith("No such")) {
@@ -94,7 +102,7 @@ public abstract class CommandProcessor {
     /**
      * Special client command 'execute_script'
      */
-    private static String ex_script(Connection conn, String line) {
+    private static String ex_script(ClientConnection conn, String line) {
         validateScript(conn, new HashSet<>(), line);
         return "";
     }
@@ -102,7 +110,7 @@ public abstract class CommandProcessor {
     /**
      * Executes command from reader
      */
-    private static void ex_script(Connection conn, HashSet<String> files, MyScanner reader) {
+    private static void ex_script(ClientConnection conn, HashSet<String> files, MyScanner reader) {
         String line = reader.nextLine();
         while (line != null) {
             if (!line.trim().isEmpty()) {
@@ -126,7 +134,7 @@ public abstract class CommandProcessor {
     /**
      * Validates script file, checks recursion etc
      */
-    private static void validateScript(Connection conn, HashSet<String> files, String line) {
+    private static void validateScript(ClientConnection conn, HashSet<String> files, String line) {
         String filePath;
         MyScanner reader;
         try {

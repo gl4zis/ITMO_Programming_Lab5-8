@@ -41,7 +41,7 @@ public abstract class DateParser {
         String year = data[5];
         String time = data[3];
 
-        return day + "." + month + "." + year + " " + time;
+        return year + "-" + month + "-" + day + " " + time;
     }
 
     /**
@@ -53,6 +53,6 @@ public abstract class DateParser {
      */
 
     public static Date stringToDate(String str) throws ParseException {
-        return new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH).parse(str);
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).parse(str);
     }
 }

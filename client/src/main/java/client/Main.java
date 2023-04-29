@@ -29,8 +29,9 @@ public class Main {
         try {
             InetAddress host = InetAddress.getByName("localhost");
             int port = 9812;
-            Connection connection = new Connection(host, port);
             LOGGER.info(String.format("client.Connection parameters. Host: %s, port: %d", host, port));
+
+            ClientConnection connection = new ClientConnection(host, port);
             connection.run();
         } catch (ExitException e) {
             LOGGER.debug("Correct exit");

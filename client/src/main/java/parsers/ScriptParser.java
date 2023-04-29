@@ -18,7 +18,7 @@ public abstract class ScriptParser {
      * @throws FileNotFoundException if file is not exists
      * @throws SecurityException     if permission denied
      */
-    public static InputStream readLines(String filePath) throws FileNotFoundException, SecurityException {
+    public static InputStream readLines(String filePath) throws FileNotFoundException {
         File script = new File(filePath);
         FileInputStream in = new FileInputStream(script);
         InputStreamReader reader = new InputStreamReader(in);

@@ -4,6 +4,7 @@ import exceptions.IncorrectDataException;
 import general.UniqueIdGenerator;
 import org.json.simple.JSONObject;
 import parsers.DateParser;
+import user.User;
 
 import java.io.Serializable;
 import java.util.Comparator;
@@ -34,6 +35,7 @@ public class Dragon implements Comparable<Dragon>, Serializable {
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private java.util.Date creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Integer age; //Значение поля должно быть больше 0, Поле может быть null
+    private User creator;
 
     /**
      * Constructor, sets all the params.
@@ -41,13 +43,15 @@ public class Dragon implements Comparable<Dragon>, Serializable {
      *
      * @throws IncorrectDataException if some params are incorrect
      */
-    public Dragon(int id, String name, Coordinates coordinates, Date creationDate, long weight, Color color, DragonCharacter character, DragonHead head)
+    public Dragon(int id, String name, Coordinates coordinates, Date creationDate, long weight, Color color, DragonCharacter character, DragonHead head, User creator)
             throws IncorrectDataException {
         this(name, coordinates, weight, color, character, head);
-        if (creationDate == null) throw new IncorrectDataException("Incorrect date of creation");
+        if (creationDate == null || creator == null)
+            throw new IncorrectDataException("Incorrect date of creation or about creator");
         if (id <= 0) throw new IncorrectDataException("Incorrect id");
         this.id = id;
         this.creationDate = creationDate;
+        this.creator = creator;
     }
 
     /**
@@ -143,7 +147,8 @@ public class Dragon implements Comparable<Dragon>, Serializable {
                 "Weight - " + weight + " kg\n" +
                 "Color - " + color + "\n" +
                 "Character - " + character + "\n" +
-                "Head - " + head;
+                "Head - " + head + "\n" +
+                "Creator - " + creator;
     }
 
     /**

@@ -20,8 +20,8 @@ import java.util.Arrays;
 /**
  * Does all works with clients interaction
  */
-public class Connection {
-    private static final Logger LOGGER = LogManager.getLogger(Connection.class);
+public class ServerConnection {
+    private static final Logger LOGGER = LogManager.getLogger(ServerConnection.class);
     private static final int MAX_UDP_BYTES_WINDOWS = 65507;
     private static final int MAX_UDP_BYTES_UNIX = 9216;
     private final CommandManager manager;
@@ -32,7 +32,7 @@ public class Connection {
     /**
      * Sets command manager, using for saving collection
      */
-    public Connection(CommandManager manager) {
+    public ServerConnection(CommandManager manager) {
         this.manager = manager;
     }
 
@@ -58,7 +58,7 @@ public class Connection {
      * If there are data package, unpacks request, processes it and sends response to the client
      */
     private void run() throws IOException {
-        ServerCommand.execute(manager);
+        ServerCommand.execute();
         if (readChannel()) {
             Request request = SerializationUtils.deserialize(buffer.array());
             LOGGER.info(String.format("Request command: %s, with args: %s",

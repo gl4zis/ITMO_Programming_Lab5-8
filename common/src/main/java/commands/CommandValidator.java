@@ -4,6 +4,7 @@ import dragons.Dragon;
 import exceptions.IncorrectInputException;
 import network.Request;
 import parsers.MyScanner;
+import user.User;
 
 public abstract class CommandValidator {
 
@@ -13,7 +14,7 @@ public abstract class CommandValidator {
      * @return request, built from line
      * @throws IncorrectInputException if something wrong with inputted line
      */
-    public static Request validCommand(String line, MyScanner reader) throws IncorrectInputException {
+    public static Request validCommand(String line, MyScanner reader, User user) throws IncorrectInputException {
         String[] input = line.split(" ");
         if (input.length > 2) throw new IncorrectInputException("Unknown command");
         CommandType command = CommandType.getByName(input[0]);
@@ -25,7 +26,7 @@ public abstract class CommandValidator {
             arg = genArg(input[1], type);
         }
         if (command.isNeedReadDragon()) dragon = genDragon(reader);
-        return new Request(command, arg, dragon);
+        return new Request(command, arg, dragon, user);
     }
 
     /**

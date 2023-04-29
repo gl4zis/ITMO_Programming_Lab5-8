@@ -24,7 +24,8 @@ public class HelpCommand extends Command {
     @Override
     public String execute(Request request) {
         return commandManager.getCommands().stream()
-                .map(Command::getDescription).
-                collect(Collectors.joining("\n\t", "\t", ""));
+                .map(Command::getDescription)
+                .filter((p) -> !p.isEmpty())
+                .collect(Collectors.joining("\n\t", "\t", ""));
     }
 }

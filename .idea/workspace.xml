@@ -4,14 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="JUnit5 and some bugfix">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="connection to database and accounts">
+      <change afterPath="$PROJECT_DIR$/.idea/toolchains.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/exceptions/LoginCollisionException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/exceptions/NoSuchUserException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/exceptions/WrongPasswordException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/user/PasswordHash.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/user/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/commands/SignInCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/commands/SignUpCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/database/DataBaseParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/database/MyBaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Color.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/DragonCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/DragonCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/MyScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/MyScanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/CommandProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/parsers/ScriptParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/parsers/ScriptParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/commands/CommandType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/commands/CommandType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/commands/CommandValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/commands/CommandValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/network/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/network/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/DateParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/DateParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/test/java/commands/CommandValidatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/test/java/commands/CommandValidatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/collection/CollectionManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/HelpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/parsers/JsonManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/HelpCommandTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/commands/HelpCommandTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/parsers/JsonManagerTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,8 +87,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -96,7 +120,7 @@
     "jdk.selected.JAVA_MODULE": "17",
     "last.edited.regexp": "Sample Text",
     "last_directory_selection": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/server/src/test/java/commands",
-    "last_opened_file_path": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)",
+    "last_opened_file_path": "C:/Users/Roma/Desktop/ITMO/Programming/testBD",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -133,7 +157,7 @@
       <recent name="general" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.client">
+  <component name="RunManager" selected="Application.server">
     <configuration name="client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.Main" />
       <module name="lab5-8.client.main" />
@@ -151,92 +175,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="JsonManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":server:test" />
-            <option value="--tests" />
-            <option value="&quot;parsers.JsonManagerTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="Tests in 'lab5-8.client.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":client:test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="Tests in 'lab5-8.common.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":common:test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="Tests in 'lab5-8.server.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":server:test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
     </configuration>
     <configuration name="build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
@@ -264,23 +202,16 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="nim.task.build.to.cache" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.server" />
       <item itemvalue="Application.client" />
       <item itemvalue="Gradle.build" />
-      <item itemvalue="Gradle.Tests in 'lab5-8.client.test'" />
-      <item itemvalue="Gradle.Tests in 'lab5-8.common.test'" />
-      <item itemvalue="Gradle.Tests in 'lab5-8.server.test'" />
-      <item itemvalue="Gradle.JsonManagerTest" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Gradle.Tests in 'lab5-8.server.test'" />
-        <item itemvalue="Gradle.Tests in 'lab5-8.common.test'" />
-        <item itemvalue="Gradle.Tests in 'lab5-8.client.test'" />
-        <item itemvalue="Gradle.JsonManagerTest" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -290,13 +221,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00031" summary="bugfix update command">
-      <created>1678871977435</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1678871977435</updated>
     </task>
     <task id="LOCAL-00032" summary="added random id generator">
       <created>1678872883475</created>
@@ -634,7 +558,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682495283488</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="code cleanup">
+      <created>1682693948517</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1682693948517</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -662,8 +593,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="bugfix with console outputs" />
-    <MESSAGE value="now collection can be sorted by any parameter" />
     <MESSAGE value="added ability to type first six numbers in id" />
     <MESSAGE value="fixed finding dragon by id" />
     <MESSAGE value="bugfix update command" />
@@ -687,7 +616,9 @@
     <MESSAGE value="reworked exiting from the app" />
     <MESSAGE value="big rework of console and script parsers" />
     <MESSAGE value="JUnit5 and some bugfix" />
-    <option name="LAST_COMMIT_MESSAGE" value="JUnit5 and some bugfix" />
+    <MESSAGE value="code cleanup" />
+    <MESSAGE value="connection to database and accounts" />
+    <option name="LAST_COMMIT_MESSAGE" value="connection to database and accounts" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -727,6 +658,7 @@
     <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_client_test_.ic" NAME="Tests in 'lab5-8.client.test' Coverage Results" MODIFIED="1682497873326" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$OsUtilusTest.ic" NAME="OsUtilusTest Coverage Results" MODIFIED="1682447215402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$RemoveByIdCommandTest.ic" NAME="RemoveByIdCommandTest Coverage Results" MODIFIED="1682494204206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$client.ic" NAME="client Coverage Results" MODIFIED="1682764920174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$UniqueIdGeneratorTest.ic" NAME="UniqueIdGeneratorTest Coverage Results" MODIFIED="1682447280882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_server_test_.ic" NAME="Tests in 'lab5-8.server.test' Coverage Results" MODIFIED="1682455654549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$RemoveGreaterCommandTest.ic" NAME="RemoveGreaterCommandTest Coverage Results" MODIFIED="1682494467379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

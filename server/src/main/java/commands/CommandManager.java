@@ -2,8 +2,8 @@ package commands;
 
 import collection.DragonCollection;
 import network.Request;
-import parsers.JsonManager;
 
+import java.sql.Connection;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,16 +13,16 @@ import java.util.Map;
  * (In console line or in script file line)
  */
 public class CommandManager {
-    private final JsonManager json;
     private final DragonCollection collection;
+    private final Connection baseConn;
     private Map<String, Command> commands;
 
     /**
      * Constructor, sets JsonManager and DragonCollection with which commands will work
      */
-    public CommandManager(JsonManager json, DragonCollection collection) {
-        this.json = json;
+    public CommandManager(Connection baseConn, DragonCollection collection) {
         this.collection = collection;
+        this.baseConn = baseConn;
         addStandardCommands();
     }
 
@@ -47,6 +47,8 @@ public class CommandManager {
             Command update = new UpdateCommand(collection);
             Command find = new FindCommand(collection);
             Command ping = new PingCommand();
+            Command signIn = new SignInCommand(baseConn);
+            Command signUp = new SignUpCommand(baseConn);
             commands.put(add.getName(), add);
             commands.put(addIfMin.getName(), addIfMin);
             commands.put(averageOfWeight.getName(), averageOfWeight);
@@ -62,6 +64,8 @@ public class CommandManager {
             commands.put(update.getName(), update);
             commands.put(find.getName(), find);
             commands.put(ping.getName(), ping);
+            commands.put(signIn.getName(), signIn);
+            commands.put(signUp.getName(), signUp);
         }
     }
 
@@ -81,13 +85,6 @@ public class CommandManager {
      */
     public Collection<Command> getCommands() {
         return commands.values();
-    }
-
-    /**
-     * @return JsonManager
-     */
-    public JsonManager getJson() {
-        return json;
     }
 
     /**

@@ -1,15 +1,16 @@
 package server;
 
 
-import collection.CollectionManager;
 import collection.DragonCollection;
 import commands.CommandManager;
+import database.DataBaseParser;
+import database.MyBaseConnection;
 import exceptions.ExitException;
 import general.OsUtilus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.JsonManager;
 
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,20 +32,20 @@ public class Main {
         Logger LOGGER = LogManager.getLogger(Main.class);
         LOGGER.debug("Server startup");
         try {
-            JsonManager jsonManager;
-            if (args.length == 0) {
-                jsonManager = new JsonManager("");
-            } else jsonManager = new JsonManager(args[0]);
             DragonCollection collection = new DragonCollection();
-            CommandManager commandManager = new CommandManager(jsonManager, collection);
-            CollectionManager.uploadCollection(jsonManager.readJSON(), collection);
-            Connection con = new Connection(commandManager);
+            Connection baseConn = MyBaseConnection.connect();
+            DataBaseParser.uploadCollection(baseConn, collection);
+            CommandManager manager = new CommandManager(baseConn, collection);
+
+            ServerConnection con = new ServerConnection(manager);
             int port = 9812;
             LOGGER.info("Waiting connection on port: " + port);
             con.open(port);
+
         } catch (ExitException e) {
             LOGGER.debug("Correct exit");
         } catch (Throwable e) {
+            e.printStackTrace();
             LOGGER.fatal("Something very strange happened =0 " + e.getMessage());
             LOGGER.debug("Incorrect exit (server crashed)");
         }

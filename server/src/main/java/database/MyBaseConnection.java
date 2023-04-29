@@ -1,0 +1,74 @@
+package database;
+
+import general.OsUtilus;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import parsers.StringModificator;
+
+import java.io.*;
+import java.sql.*;
+import java.util.Properties;
+
+public abstract class MyBaseConnection {
+    private static final Logger LOGGER = LogManager.getLogger(MyBaseConnection.class);
+
+    public static Connection connect() {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            LOGGER.error("There are no driver for postgreSQL DataBase!");
+        }
+        try {
+            return DriverManager.getConnection(getUrl(), getInfo());
+        } catch (SQLException e) {
+            LOGGER.error("Can't connect to the data base! " + e.getMessage());
+            return null;
+        }
+    }
+
+    private static String getUrl() {
+        if (OsUtilus.IsWindows())
+            return "jdbc:postgresql://localhost:7812/studs";
+        else return "jdbc:postgresql://pg:5432/studs";
+    }
+
+    private static Properties getInfo() {
+        try {
+            Properties info = new Properties();
+            if (OsUtilus.IsWindows()) {
+                info.load(new FileInputStream("C:\\Users\\Roma\\Desktop\\db\\db.cfg"));
+                return info;
+            } else {
+                info.load(parsePgPass());
+                return info;
+            }
+        } catch (IOException | SecurityException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private static InputStream parsePgPass() throws FileNotFoundException {
+        File script = new File(StringModificator.filePathFormat("~/.pgpass"));
+        FileInputStream in = new FileInputStream(script);
+        InputStreamReader reader = new InputStreamReader(in);
+
+        StringBuilder line = new StringBuilder();
+        try {
+            int nextSym = reader.read();
+            while (nextSym != -1) {
+                line.append((char) nextSym);
+                nextSym = reader.read();
+            }
+        } catch (IOException e) {
+            LOGGER.error("Something wrong with script file =(");
+            return null;
+        }
+
+        String[] data = line.toString().split(":");
+        String user = "user = " + data[data.length - 2];
+        String passwd = "password = " + data[data.length - 1];
+        return new ByteArrayInputStream((user + "\n" + passwd).getBytes());
+    }
+
+}

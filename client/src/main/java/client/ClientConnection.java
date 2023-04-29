@@ -12,6 +12,7 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import parsers.MyScanner;
+import user.User;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -25,11 +26,12 @@ import java.util.Date;
  * Realization of connection to the server.
  * Requests, responses etc
  */
-public class Connection {
-    private static final Logger LOGGER = LogManager.getLogger(Connection.class);
+public class ClientConnection {
+    private static final Logger LOGGER = LogManager.getLogger(ClientConnection.class);
     private static final int MAX_UDP_BYTES_WINDOWS = 65507;
     private static final int MAX_UDP_BYTES_UNIX = 9216;
     private static final MyScanner CONSOLE = new MyScanner(System.in);
+    private User user;
     private final InetSocketAddress address;
     private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
 
@@ -39,15 +41,16 @@ public class Connection {
      * @param host localhost
      * @param port server port
      */
-    public Connection(InetAddress host, int port) {
+    public ClientConnection(InetAddress host, int port) {
         address = new InetSocketAddress(host, port);
+        setUser();
     }
 
     /**
      * Processes waiting reply from server
      * (Prints messages, checks console)
      */
-    public static void waitingServer(boolean printMessage, Exception e) {
+    private static void waitingServer(boolean printMessage, Exception e) {
         if (printMessage) {
             System.out.println(e.getMessage());
             System.out.println("You can only exit from the app");
@@ -62,6 +65,25 @@ public class Connection {
             if (!line.isEmpty())
                 System.out.println("Can't execute commands now =(");
             System.out.print("-> ");
+        }
+    }
+
+    public void setUser() {
+        String resp = "";
+        while (!resp.startsWith("User was ")) {
+            System.out.print("If you want to sign up type '+', to sign in type '-': ");
+            String sign;
+            do {
+                sign = CONSOLE.nextLine();
+                if (sign.equals("exit")) throw new ExitException();
+                if (sign.equals("+") || sign.equals("-")) break;
+                LOGGER.warn("Incorrect input. Repeat");
+            } while (true);
+            user = User.authorize();
+            if (sign.equals("+")) {
+                resp = sendReqGetResp("sign_up", CONSOLE);
+            } else resp = sendReqGetResp("sign_in", CONSOLE);
+            LOGGER.info(resp);
         }
     }
 
@@ -188,7 +210,7 @@ public class Connection {
         boolean message = true;
         while (true) {
             try {
-                output = sendReqGetResp(CommandValidator.validCommand(line, reader));
+                output = sendReqGetResp(CommandValidator.validCommand(line, reader, user));
                 break;
             } catch (UnavailableServerException e) {
                 waitingServer(message, e);

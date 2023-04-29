@@ -71,13 +71,13 @@ public class ClientConnection {
     public void setUser() {
         String resp = "";
         while (!resp.startsWith("User was ")) {
-            System.out.print("If you want to sign up type '+', to sign in type '-': ");
             String sign;
             do {
+                System.out.print("If you want to sign up type '+', to sign in type '-': ");
                 sign = CONSOLE.nextLine();
                 if (sign.equals("exit")) throw new ExitException();
                 if (sign.equals("+") || sign.equals("-")) break;
-                LOGGER.warn("Incorrect input. Repeat");
+                LOGGER.warn("Incorrect input");
             } while (true);
             user = User.authorize();
             if (sign.equals("+")) {

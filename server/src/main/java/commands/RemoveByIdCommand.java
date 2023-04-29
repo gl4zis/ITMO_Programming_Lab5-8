@@ -1,10 +1,16 @@
 package commands;
 
 import collection.DragonCollection;
+import database.DataBaseManager;
 import dragons.Dragon;
+import exceptions.PermissionDeniedException;
 import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import user.User;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * Argument command "remove_by_id id". Removes dragon from the collection by its id
@@ -12,13 +18,15 @@ import org.apache.logging.log4j.Logger;
 public class RemoveByIdCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(RemoveByIdCommand.class);
     private final DragonCollection collection;
+    private final Connection conn;
 
     /**
      * Constructor, sets collection, that the command works with, name and description of command
      */
-    RemoveByIdCommand(DragonCollection collection) {
+    RemoveByIdCommand(DragonCollection collection, Connection conn) {
         super("remove_by_id", "remove_by_id id : remove an item from the collection by its id");
         this.collection = collection;
+        this.conn = conn;
     }
 
     /**
@@ -27,17 +35,17 @@ public class RemoveByIdCommand extends Command {
      */
     @Override
     public String execute(Request request) {
+        int id = (int) request.arg();
+        User user = request.user();
         try {
-            int id = (int) request.arg();
-            Dragon dragon = collection.find(id);
-            if (dragon != null) {
-                collection.remove(collection.find(id));
-                LOGGER.info("Dragon was successfully removed");
-                return "Dragon was successfully removed";
-            } else return "No such elements in collection";
-        } catch (ClassCastException | NullPointerException e) {
-            LOGGER.warn("Incorrect command argument");
-            return "Incorrect command argument";
+            DataBaseManager.removeById(conn, id, user);
+            collection.remove(collection.find(id));
+            LOGGER.info("Dragon was successfully removed");
+            return "Dragon was successfully removed";
+        } catch (SQLException e) {
+            return "No connection with database (";
+        } catch (PermissionDeniedException e) {
+            return "It is not your dragon! " + e.getMessage();
         }
     }
 }

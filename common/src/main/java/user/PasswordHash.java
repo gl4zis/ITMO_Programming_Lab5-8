@@ -17,13 +17,7 @@ public abstract class PasswordHash {
             digest = messageDigest.digest();
         } catch (NoSuchAlgorithmException ignored) {
         } // There ARE such algorithm!
-
         BigInteger bigInt = new BigInteger(1, digest);
-        StringBuilder md5Hex = new StringBuilder(bigInt.toString(16));
-        while (md5Hex.length() < 32) {
-            md5Hex.insert(0, "0");
-        }
-
-        return md5Hex.toString();
+        return bigInt.toString(16);
     }
 }

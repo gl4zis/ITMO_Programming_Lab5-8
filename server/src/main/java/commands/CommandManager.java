@@ -33,18 +33,18 @@ public class CommandManager {
         if (commands == null) {
             commands = new HashMap<>();
             Command add = new AddCommand(collection, baseConn);
-            Command addIfMin = new AddIfMinCommand(collection);
+            Command addIfMin = new AddIfMinCommand(collection, baseConn);
             Command averageOfWeight = new AverageOfWeightCommand(collection);
-            Command clear = new ClearCommand(collection);
+            Command clear = new ClearCommand(collection, baseConn);
             Command filterLessThanWeight = new FilterLessThanWeightCommand(collection);
             Command help = new HelpCommand(this);
             Command info = new InfoCommand(collection);
             Command minByAge = new MinByAgeCommand(collection);
-            Command removeById = new RemoveByIdCommand(collection);
-            Command removeGreater = new RemoveGreaterCommand(collection);
-            Command removeLower = new RemoveLowerCommand(collection);
+            Command removeById = new RemoveByIdCommand(collection, baseConn);
+            Command removeGreater = new RemoveGreaterCommand(collection, baseConn);
+            Command removeLower = new RemoveLowerCommand(collection, baseConn);
             Command show = new ShowCommand(collection);
-            Command update = new UpdateCommand(collection);
+            Command update = new UpdateCommand(collection, baseConn);
             Command find = new FindCommand(collection);
             Command ping = new PingCommand();
             Command signIn = new SignInCommand(baseConn);

@@ -157,7 +157,7 @@ public class MyScanner {
             for (Color color : Color.values()) {
                 print(String.format("\t%d: %s\n", color.ordinal() + 1, color.name()));
             }
-            print("Choose color (enter number):");
+            print("Choose color (enter number): ");
             try {
                 colorNum = Integer.parseInt(nextLine());
                 if (colorNum >= 1 && colorNum <= 4) break;

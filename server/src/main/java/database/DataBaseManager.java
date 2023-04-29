@@ -4,6 +4,7 @@ import collection.DragonCollection;
 import dragons.*;
 import exceptions.LoginCollisionException;
 import exceptions.NoSuchUserException;
+import exceptions.PermissionDeniedException;
 import exceptions.WrongPasswordException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -82,9 +83,8 @@ public abstract class DataBaseManager {
         String name = dragon.getName();
         double x = dragon.getCoordinates().getX();
         float y = dragon.getCoordinates().getY();
-        java.sql.Date creationDate = new java.sql.Date(dragon.getCreationDate().getTime());
-        Integer age = dragon.getAge();
-        if (age == -1) age = null;
+        Timestamp creationDate = new Timestamp((dragon.getCreationDate().getTime() / 1000) * 1000);
+        int age = dragon.getAge();
         long weight = dragon.getWeight();
         Color color = dragon.getColor();
         DragonCharacter character = dragon.getDragonCharacter();
@@ -94,8 +94,9 @@ public abstract class DataBaseManager {
         stat.setString(1, name);
         stat.setDouble(2, x);
         stat.setFloat(3, y);
-        stat.setDate(4, creationDate);
-        stat.setInt(5, age);
+        stat.setTimestamp(4, creationDate);
+        if (age == -1) stat.setNull(5, Types.INTEGER);
+        else stat.setInt(5, age);
         stat.setLong(6, weight);
         stat.setString(7, color.name());
         stat.setString(8, character.name());
@@ -105,5 +106,57 @@ public abstract class DataBaseManager {
         ResultSet set = stat.executeQuery();
         set.next();
         return set.getInt("id");
+    }
+
+    public static void clearDragons(Connection conn, User user) throws SQLException {
+        String login = user.getLogin();
+        PreparedStatement stat = conn.prepareStatement("DELETE FROM dragons WHERE creator = ?");
+        stat.setString(1, login);
+        stat.executeUpdate();
+    }
+
+    public static void removeById(Connection conn, int id, User user) throws SQLException, PermissionDeniedException {
+        String login = user.getLogin();
+        PreparedStatement stat = conn.prepareStatement("DELETE FROM dragons WHERE id = ? AND creator = ?");
+        stat.setInt(1, id);
+        stat.setString(2, login);
+        int deleted = stat.executeUpdate();
+        if (deleted == 0) throw new PermissionDeniedException();
+    }
+
+    public static void removeDragon(Connection conn, Dragon dragon, User user) throws SQLException {
+        try {
+            removeById(conn, dragon.hashCode(), user);
+        } catch (PermissionDeniedException ignored) {
+        }
+    }
+
+    public static void updateDragon(Connection conn, int id, Dragon newDragon, User user)
+            throws SQLException, PermissionDeniedException {
+        String login = user.getLogin();
+        PreparedStatement stat = conn.prepareStatement("UPDATE dragons " +
+                "SET name = ?, " +
+                "x = ?, " +
+                "y = ?, " +
+                "age = ?, " +
+                "weight = ?, " +
+                "color = ?::color, " +
+                "character = ?::dr_char," +
+                "eyes_count = ? " +
+                "WHERE id = ? AND creator = ?");
+        stat.setString(1, newDragon.getName());
+        stat.setDouble(2, newDragon.getCoordinates().getX());
+        stat.setFloat(3, newDragon.getCoordinates().getY());
+        int age = newDragon.getAge();
+        if (age == -1) stat.setNull(4, Types.INTEGER);
+        else stat.setInt(4, age);
+        stat.setLong(5, newDragon.getWeight());
+        stat.setString(6, newDragon.getColor().name());
+        stat.setString(7, newDragon.getDragonCharacter().name());
+        stat.setFloat(8, newDragon.getDragonHead().getEyesCount());
+        stat.setInt(9, id);
+        stat.setString(10, login);
+        int updated = stat.executeUpdate();
+        if (updated == 0) throw new PermissionDeniedException();
     }
 }

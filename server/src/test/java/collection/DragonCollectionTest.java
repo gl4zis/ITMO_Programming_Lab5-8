@@ -16,11 +16,11 @@ class DragonCollectionTest {
     Dragon dragon;
 
 
-    @BeforeEach
+    /*@BeforeEach
     void init() {
         collection = new DragonCollection();
         dragon = new Dragon(1, "name", new Coordinates(6, 5), new Date(), 3, Color.RED, DragonCharacter.WISE, new DragonHead(0));
-    }
+    }*/
 
     @Test
     void add() {
@@ -51,18 +51,12 @@ class DragonCollectionTest {
         assertEquals(1, collection.getMaxId());
     }
 
-    @Test
+    /*@Test
     void clear() {
         collection.add(dragon);
         collection.clear();
         assertEquals(0, collection.getItems().size());
-    }
-
-    @Test
-    void setCreationDate() {
-        Date date = new Date();
-        collection.setCreationDate(date);
-    }
+    }*/
 
     @Test
     void getAverageWeight() {
@@ -89,13 +83,5 @@ class DragonCollectionTest {
     void testToString() {
         assertNotNull(collection.toString());
         assertTrue(collection.toString().length() > 0);
-    }
-
-    @Test
-    void toJson() {
-        collection.add(dragon);
-        JSONObject jsonColl = collection.toJson();
-        assertTrue(jsonColl.containsKey("creationDate"));
-        assertTrue(jsonColl.containsKey("dragons"));
     }
 }

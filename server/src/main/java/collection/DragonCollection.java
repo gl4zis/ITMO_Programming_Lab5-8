@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import parsers.DateParser;
+import user.User;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,14 +20,12 @@ public class DragonCollection {
     private static final String TYPE = "LinkedHashSet";
     private final ArrayList<Integer> idList = new ArrayList<>();
     private final LinkedHashSet<Dragon> collection;
-    private Date creationDate;
 
     /**
      * Constructor creates new empty collection
      */
     public DragonCollection() {
         collection = new LinkedHashSet<>();
-        creationDate = new Date();
     }
 
     /**
@@ -74,20 +73,19 @@ public class DragonCollection {
     /**
      * Removes all objects from collection
      */
-    public void clear() {
-        int dragonCount = idList.size();
-        collection.clear();
-        idList.clear();
+    public void clear(User user) {
+        int dragonCount = 0;
+        Iterator<Integer> iter = idList.iterator();
+        while (iter.hasNext()) {
+            int id = iter.next();
+            Dragon dragon = find(id);
+            if (dragon.getCreator().equals(user)) {
+                dragonCount++;
+                iter.remove();
+                collection.remove(dragon);
+            }
+        }
         LOGGER.debug(dragonCount + " dragons removed from the collection");
-    }
-
-    /**
-     * Sets date of creation, read from JSON file
-     *
-     * @param date will be sets to this collection
-     */
-    void setCreationDate(Date date) {
-        creationDate = date;
     }
 
     /**
@@ -138,7 +136,6 @@ public class DragonCollection {
     public String toString() {
         return "Collection type: " + TYPE + "\n" +
                 "Collection size: " + collection.size() + "\n" +
-                "Date of creation: " + DateParser.dateToString(creationDate) + "\n" +
                 "Maximum dragon id: " + getMaxId();
     }
 }

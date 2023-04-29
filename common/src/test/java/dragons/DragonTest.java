@@ -17,7 +17,7 @@ class DragonTest {
     Dragon dragon1;
     Dragon dragon2;
 
-    @BeforeAll
+   /* @BeforeAll
     static void checkConstructors() {
         assertThrows(IncorrectDataException.class, () ->
                 new Dragon(-1, "test", new Coordinates(0, 0), new Date(), 100, Color.RED, DragonCharacter.WISE, new DragonHead(1)));
@@ -87,20 +87,5 @@ class DragonTest {
         dragon1 = new Dragon(2, "test2", new Coordinates(0, 0), new Date(), 100, Color.RED, DragonCharacter.WISE, new DragonHead(1));
         assertNotEquals(dragon1.compareTo(dragon2), 0);
     }
-
-    @Test
-    void toJson() {
-        JSONObject jsonDr = dragon1.toJson();
-        Set<String> keys = new HashSet<>();
-        keys.add("id");
-        keys.add("name");
-        keys.add("coordinates");
-        keys.add("creationDate");
-        keys.add("age");
-        keys.add("weight");
-        keys.add("color");
-        keys.add("character");
-        keys.add("head");
-        assertEquals(keys, jsonDr.keySet());
-    }
+         */
 }

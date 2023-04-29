@@ -7,6 +7,7 @@ import dragons.DragonCharacter;
 import exceptions.ExitException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import user.User;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -52,7 +53,7 @@ class MyScannerTest {
         InputStream is = new ByteArrayInputStream("    \nname\n-500\ndvk\n6\n\n5\n-10\nalj\n4\n\n-1\n3\n5\n\n2\n4\n\n1\n\n0.003\n0\n".getBytes());
         System.setIn(is);
         scanner = new MyScanner(System.in);
-        Dragon dragon = scanner.readDragon();
+        Dragon dragon = scanner.readDragon(User.signUp("admin", "qwerty"));
         assertEquals("name", dragon.getName());
         assertEquals(new Coordinates(6, 5).compareTo(dragon.getCoordinates()), 0);
         assertEquals(4, dragon.getAge());
@@ -64,6 +65,6 @@ class MyScannerTest {
         System.setIn(systemIn);
         is = new ByteArrayInputStream("name\n6\n5\n\nsgs\n".getBytes());
         scanner = new MyScanner(is);
-        assertNull(scanner.readDragon());
+        assertNull(scanner.readDragon(User.signUp("admin", "qwerty")));
     }
 }

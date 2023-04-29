@@ -35,7 +35,7 @@ public class Dragon implements Comparable<Dragon>, Serializable {
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private java.util.Date creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Integer age; //Значение поля должно быть больше 0, Поле может быть null
-    private User creator;
+    private final User creator;
 
     /**
      * Constructor, sets all the params.
@@ -43,15 +43,14 @@ public class Dragon implements Comparable<Dragon>, Serializable {
      *
      * @throws IncorrectDataException if some params are incorrect
      */
-    public Dragon(int id, String name, Coordinates coordinates, Date creationDate, long weight, Color color, DragonCharacter character, DragonHead head, User creator)
+    public Dragon(int id, String name, Coordinates coordinates, Date creationDate, long weight, Color color, DragonCharacter character, DragonHead head, User user)
             throws IncorrectDataException {
-        this(name, coordinates, weight, color, character, head);
-        if (creationDate == null || creator == null)
+        this(name, coordinates, weight, color, character, head, user);
+        if (creationDate == null || user == null)
             throw new IncorrectDataException("Incorrect date of creation or about creator");
         if (id <= 0) throw new IncorrectDataException("Incorrect id");
         this.id = id;
         this.creationDate = creationDate;
-        this.creator = creator;
     }
 
     /**
@@ -60,7 +59,7 @@ public class Dragon implements Comparable<Dragon>, Serializable {
      *
      * @throws IncorrectDataException if some params are incorrect
      */
-    public Dragon(String name, Coordinates coordinates, long weight, Color color, DragonCharacter character, DragonHead head)
+    public Dragon(String name, Coordinates coordinates, long weight, Color color, DragonCharacter character, DragonHead head, User user)
             throws IncorrectDataException {
         if (name == null || coordinates == null || color == null || character == null || head == null)
             throw new IncorrectDataException("There are nulls in dragon characteristics");
@@ -74,6 +73,7 @@ public class Dragon implements Comparable<Dragon>, Serializable {
         this.color = color;
         this.character = character;
         this.head = head;
+        this.creator = user;
     }
 
     /**
@@ -192,31 +192,5 @@ public class Dragon implements Comparable<Dragon>, Serializable {
         if (name.compareTo(dragon.name) == 0) {
             return id - dragon.hashCode();
         } else return name.compareTo(dragon.name);
-    }
-
-    /**
-     * Serializes Dragon object to JSONObject
-     *
-     * @return jsonDragon
-     */
-    @SuppressWarnings("unchecked")
-    public JSONObject toJson() {
-        JSONObject jsonDragon = new JSONObject();
-        JSONObject jsonHead = new JSONObject();
-        jsonHead.put("eyesCount", head.getEyesCount());
-        jsonDragon.put("head", jsonHead);
-
-        jsonDragon.put("character", character.name());
-        jsonDragon.put("color", color.name());
-        jsonDragon.put("weight", weight);
-        jsonDragon.put("age", age);
-        jsonDragon.put("creationDate", DateParser.dateToString(creationDate));
-        JSONObject jsonCoordinates = new JSONObject();
-        jsonCoordinates.put("x", coordinates.getX());
-        jsonCoordinates.put("y", coordinates.getY());
-        jsonDragon.put("coordinates", jsonCoordinates);
-        jsonDragon.put("name", name);
-        jsonDragon.put("id", id);
-        return jsonDragon;
     }
 }

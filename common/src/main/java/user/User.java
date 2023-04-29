@@ -14,8 +14,13 @@ public class User implements Serializable {
     }
 
     public static User authorize() {
-        System.out.print("Enter login: ");
-        String login = console.nextLine();
+        String login;
+        do {
+            System.out.print("Enter login: ");
+            login = console.nextLine();
+            if (login.matches("\\w")) break;
+            System.out.println("You can use only a-z, A-Z, 0-9 and _ in the login");
+        } while (true);
         System.out.print("Enter password: ");
         String passwd = console.nextLine();
         return signUp(login, passwd);

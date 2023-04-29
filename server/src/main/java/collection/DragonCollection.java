@@ -141,22 +141,4 @@ public class DragonCollection {
                 "Date of creation: " + DateParser.dateToString(creationDate) + "\n" +
                 "Maximum dragon id: " + getMaxId();
     }
-
-    /**
-     * Serializes all collection to the JSON
-     *
-     * @return jsonCollection
-     */
-    @SuppressWarnings("unchecked")
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("creationDate", DateParser.dateToString(creationDate));
-        JSONArray dragons = new JSONArray();
-        for (Dragon dragon : collection) {
-            JSONObject jsonDragon = dragon.toJson();
-            dragons.add(jsonDragon);
-        }
-        json.put("dragons", dragons);
-        return json;
-    }
 }

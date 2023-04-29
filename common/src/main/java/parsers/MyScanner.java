@@ -5,6 +5,7 @@ import exceptions.ExitException;
 import exceptions.IncorrectInputException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import user.User;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +21,7 @@ public class MyScanner {
     private static final Logger LOGGER = LogManager.getLogger(MyScanner.class);
     private final boolean isConsole;
     private final Scanner scanner;
+
 
     public MyScanner(InputStream is) {
         isConsole = is.equals(System.in);
@@ -212,7 +214,7 @@ public class MyScanner {
      *
      * @return created dragon
      */
-    public Dragon readDragon() {
+    public Dragon readDragon(User user) {
         print("""
                 Enter dragon profile.
                 You can leave age empty
@@ -226,7 +228,7 @@ public class MyScanner {
             DragonCharacter character = readCharacter();
             DragonHead head = readHead();
 
-            Dragon dragon = new Dragon(name, coords, weight, color, character, head);
+            Dragon dragon = new Dragon(name, coords, weight, color, character, head, user);
             LOGGER.debug("Dragon object has created");
             if (age > -1)
                 dragon.setAge(age);

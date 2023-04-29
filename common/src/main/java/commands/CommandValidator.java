@@ -25,7 +25,7 @@ public abstract class CommandValidator {
             Class type = command.argClass();
             arg = genArg(input[1], type);
         }
-        if (command.isNeedReadDragon()) dragon = genDragon(reader);
+        if (command.isNeedReadDragon()) dragon = genDragon(reader, user);
         return new Request(command, arg, dragon, user);
     }
 
@@ -52,8 +52,8 @@ public abstract class CommandValidator {
      *
      * @return generated dragon object
      */
-    private static Dragon genDragon(MyScanner reader) {
-        return reader.readDragon();
+    private static Dragon genDragon(MyScanner reader, User user) {
+        return reader.readDragon(user);
     }
 
     /**

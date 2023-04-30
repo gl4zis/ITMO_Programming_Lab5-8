@@ -45,7 +45,6 @@ public class Main {
         } catch (ExitException e) {
             LOGGER.debug("Correct exit");
         } catch (Throwable e) {
-            e.printStackTrace();
             LOGGER.fatal("Something very strange happened =0 " + e.getMessage());
             LOGGER.debug("Incorrect exit (server crashed)");
         }

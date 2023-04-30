@@ -3,8 +3,6 @@ package commands;
 import collection.DragonCollection;
 import database.DataBaseManager;
 import dragons.Dragon;
-import exceptions.IdCollisionException;
-import general.UniqueIdGenerator;
 import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

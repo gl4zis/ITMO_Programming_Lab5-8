@@ -2,7 +2,6 @@ package commands;
 
 import collection.DragonCollection;
 import database.DataBaseManager;
-import dragons.Dragon;
 import exceptions.PermissionDeniedException;
 import network.Request;
 import org.apache.logging.log4j.LogManager;

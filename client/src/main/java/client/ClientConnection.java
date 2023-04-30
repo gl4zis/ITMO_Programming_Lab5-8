@@ -31,8 +31,8 @@ public class ClientConnection {
     private static final int MAX_UDP_BYTES_WINDOWS = 65507;
     private static final int MAX_UDP_BYTES_UNIX = 9216;
     private static final MyScanner CONSOLE = new MyScanner(System.in);
-    private User user;
     private final InetSocketAddress address;
+    private User user;
     private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
 
     /**

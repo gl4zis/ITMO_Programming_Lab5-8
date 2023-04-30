@@ -1,17 +1,5 @@
 package dragons;
 
-import exceptions.IncorrectDataException;
-import org.json.simple.JSONObject;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class DragonTest {
 
     Dragon dragon1;

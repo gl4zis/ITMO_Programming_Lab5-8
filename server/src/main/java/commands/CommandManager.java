@@ -49,6 +49,7 @@ public class CommandManager {
             Command ping = new PingCommand();
             Command signIn = new SignInCommand(baseConn);
             Command signUp = new SignUpCommand(baseConn);
+            Command insert = new InsertCommand(collection, baseConn);
             commands.put(add.getName(), add);
             commands.put(addIfMin.getName(), addIfMin);
             commands.put(averageOfWeight.getName(), averageOfWeight);
@@ -66,6 +67,7 @@ public class CommandManager {
             commands.put(ping.getName(), ping);
             commands.put(signIn.getName(), signIn);
             commands.put(signUp.getName(), signUp);
+            commands.put(insert.getName(), insert);
         }
     }
 

@@ -46,12 +46,23 @@ public abstract class CommandProcessor {
                 case "update" -> update(conn, line, reader);
                 case "ping" -> ping(conn);
                 case "execute_script" -> ex_script(conn, line);
+                case "sign_in", "sign_up" -> "Incorrect input. Unknown command";
+                case "insert" -> insert(conn, line, reader);
                 case "sign_out" -> signOut(conn);
                 default -> conn.sendReqGetResp(line, reader);
             };
         } catch (IncorrectInputException e) {
             return e.getMessage();
         }
+    }
+
+    private static String insert(ClientConnection conn, String line, MyScanner reader) {
+        String find = "find" + line.substring(6);
+        String output = conn.sendReqGetResp(find, CONSOLE);
+        if (output.startsWith("No such")) {
+            output = conn.sendReqGetResp(line, reader);
+        }
+        return output;
     }
 
     private static String signOut(ClientConnection conn) {

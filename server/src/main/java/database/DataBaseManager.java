@@ -80,32 +80,47 @@ public abstract class DataBaseManager {
         PreparedStatement stat = conn.prepareStatement("INSERT INTO dragons" +
                 "(name, x, y, creation_date, age, weight, color, character, eyes_count, creator)" +
                 " VALUES (?, ?, ?, ?, ?, ?, ?::color, ?::dr_char, ?, ?) RETURNING id");
-        String name = dragon.getName();
-        double x = dragon.getCoordinates().getX();
-        float y = dragon.getCoordinates().getY();
         Timestamp creationDate = new Timestamp((dragon.getCreationDate().getTime() / 1000) * 1000);
         int age = dragon.getAge();
-        long weight = dragon.getWeight();
-        Color color = dragon.getColor();
-        DragonCharacter character = dragon.getDragonCharacter();
-        float eyesCount = dragon.getDragonHead().getEyesCount();
-        User creator = dragon.getCreator();
 
-        stat.setString(1, name);
-        stat.setDouble(2, x);
-        stat.setFloat(3, y);
+        stat.setString(1, dragon.getName());
+        stat.setDouble(2, dragon.getCoordinates().getX());
+        stat.setFloat(3, dragon.getCoordinates().getY());
         stat.setTimestamp(4, creationDate);
         if (age == -1) stat.setNull(5, Types.INTEGER);
         else stat.setInt(5, age);
-        stat.setLong(6, weight);
-        stat.setString(7, color.name());
-        stat.setString(8, character.name());
-        stat.setFloat(9, eyesCount);
-        stat.setString(10, creator.getLogin());
+        stat.setLong(6, dragon.getWeight());
+        stat.setString(7, dragon.getColor().name());
+        stat.setString(8, dragon.getDragonCharacter().name());
+        stat.setFloat(9, dragon.getDragonHead().getEyesCount());
+        stat.setString(10, dragon.getCreator().getLogin());
 
         ResultSet set = stat.executeQuery();
         set.next();
         return set.getInt("id");
+    }
+
+    public static void insertDragon(Connection conn, Dragon dragon) throws SQLException {
+        PreparedStatement stat = conn.prepareStatement("INSERT INTO dragons" +
+                "(id, name, x, y, creation_date, age, weight, color, character, eyes_count, creator)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?::color, ?::dr_char, ?, ?)");
+        Timestamp creationDate = new Timestamp((dragon.getCreationDate().getTime() / 1000) * 1000);
+        int age = dragon.getAge();
+
+        stat.setInt(1, dragon.hashCode());
+        stat.setString(2, dragon.getName());
+        stat.setDouble(3, dragon.getCoordinates().getX());
+        stat.setFloat(4, dragon.getCoordinates().getY());
+        stat.setTimestamp(5, creationDate);
+        if (age == -1) stat.setNull(6, Types.INTEGER);
+        else stat.setInt(6, age);
+        stat.setLong(7, dragon.getWeight());
+        stat.setString(8, dragon.getColor().name());
+        stat.setString(9, dragon.getDragonCharacter().name());
+        stat.setFloat(10, dragon.getDragonHead().getEyesCount());
+        stat.setString(11, dragon.getCreator().getLogin());
+
+        stat.executeUpdate();
     }
 
     public static void clearDragons(Connection conn, User user) throws SQLException {

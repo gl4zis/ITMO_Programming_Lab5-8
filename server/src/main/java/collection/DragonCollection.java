@@ -4,9 +4,6 @@ import dragons.Dragon;
 import exceptions.IdCollisionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import parsers.DateParser;
 import user.User;
 
 import java.util.*;
@@ -38,6 +35,10 @@ public class DragonCollection {
         if (idList.contains(dragon.hashCode())) throw new IdCollisionException();
         idList.add(dragon.hashCode());
         collection.add(dragon);
+    }
+
+    public boolean checkId(int id) {
+        return idList.contains(id);
     }
 
     /**

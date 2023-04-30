@@ -1,12 +1,15 @@
 package database;
 
+import exceptions.ExitException;
 import general.OsUtilus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import parsers.StringModificator;
 
 import java.io.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public abstract class MyBaseConnection {
@@ -16,13 +19,13 @@ public abstract class MyBaseConnection {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
-            LOGGER.error("There are no driver for postgreSQL DataBase!");
+            LOGGER.fatal("There are no driver for postgreSQL DataBase!");
         }
         try {
             return DriverManager.getConnection(getUrl(), getInfo());
         } catch (SQLException e) {
             LOGGER.error("Can't connect to the data base! " + e.getMessage());
-            return null;
+            throw new ExitException();
         }
     }
 
@@ -36,7 +39,7 @@ public abstract class MyBaseConnection {
         try {
             Properties info = new Properties();
             if (OsUtilus.IsWindows()) {
-                info.load(new FileInputStream("C:\\Users\\Roma\\Desktop\\db\\db.cfg"));
+                info.load(new FileInputStream("C:\\Windows\\Temp\\db\\db.cfg"));
                 return info;
             } else {
                 info.load(parsePgPass());
@@ -61,7 +64,7 @@ public abstract class MyBaseConnection {
                 nextSym = reader.read();
             }
         } catch (IOException e) {
-            LOGGER.error("Something wrong with script file =(");
+            LOGGER.error("Something wrong with config file =(");
             return null;
         }
 

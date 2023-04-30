@@ -38,16 +38,16 @@ public class User implements Serializable {
         return user;
     }
 
-    private void setHashedPasswd(String hashedPasswd) {
-        this.hashedPasswd = hashedPasswd;
-    }
-
     public String getLogin() {
         return login;
     }
 
     public String getHashedPasswd() {
         return hashedPasswd;
+    }
+
+    private void setHashedPasswd(String hashedPasswd) {
+        this.hashedPasswd = hashedPasswd;
     }
 
     @Override

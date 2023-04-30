@@ -2,7 +2,6 @@ package dragons;
 
 import exceptions.IncorrectDataException;
 import general.UniqueIdGenerator;
-import org.json.simple.JSONObject;
 import parsers.DateParser;
 import user.User;
 
@@ -26,6 +25,7 @@ public class Dragon implements Comparable<Dragon>, Serializable {
             return o1.id - o2.id;
         else return o1.getAge() - o2.getAge();
     };
+    private final User creator;
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private long weight; //Значение поля должно быть больше 0
@@ -35,7 +35,6 @@ public class Dragon implements Comparable<Dragon>, Serializable {
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private java.util.Date creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Integer age; //Значение поля должно быть больше 0, Поле может быть null
-    private final User creator;
 
     /**
      * Constructor, sets all the params.

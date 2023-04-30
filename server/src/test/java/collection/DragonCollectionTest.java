@@ -1,12 +1,8 @@
 package collection;
 
-import dragons.*;
+import dragons.Dragon;
 import exceptions.IdCollisionException;
-import org.json.simple.JSONObject;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -37,8 +37,8 @@ public class Main {
             DataBaseManager.uploadCollection(baseConn, collection);
             CommandManager manager = new CommandManager(baseConn, collection);
 
-            ServerConnection con = new ServerConnection(manager);
             int port = 9812;
+            ServerConnection con = new ServerConnection(manager);
             LOGGER.info("Waiting connection on port: " + port);
             con.open(port);
 

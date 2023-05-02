@@ -36,19 +36,15 @@ public abstract class MyBaseConnection {
     }
 
     private static Properties getInfo() {
+        Properties info = new Properties();
         try {
-            Properties info = new Properties();
-            if (OsUtilus.IsWindows()) {
+            if (OsUtilus.IsWindows())
                 info.load(new FileInputStream("C:\\Windows\\Temp\\db\\db.cfg"));
-                return info;
-            } else {
-                info.load(parsePgPass());
-                return info;
-            }
+            else info.load(parsePgPass());
         } catch (IOException | SecurityException e) {
-            e.printStackTrace();
-            return null;
+            LOGGER.error("Something went wrong with config file =(");
         }
+        return info;
     }
 
     private static InputStream parsePgPass() throws FileNotFoundException {
@@ -65,7 +61,7 @@ public abstract class MyBaseConnection {
             }
         } catch (IOException e) {
             LOGGER.error("Something wrong with config file =(");
-            return null;
+            return new ByteArrayInputStream("".getBytes());
         }
 
         String[] data = line.toString().split(":");

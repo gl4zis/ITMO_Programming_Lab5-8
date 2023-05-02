@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="all commands works with database">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/commands/InsertCommand.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="added insert command">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/commands/CommandType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/commands/CommandType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/collection/DragonCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/collection/DragonCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/database/MyBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database/MyBaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +133,7 @@
       <recent name="general" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.server">
+  <component name="RunManager" selected="Application.client">
     <configuration name="client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.Main" />
       <module name="lab5-8.client.main" />
@@ -199,13 +197,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00036" summary="decompozed methods in CollectionManager">
-      <created>1678978454661</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1678978454661</updated>
     </task>
     <task id="LOCAL-00037" summary="added class for checking OS on that app was started">
       <created>1679050209200</created>
@@ -543,7 +534,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682790590259</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="added insert command">
+      <created>1682867354103</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1682867354103</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -571,7 +569,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="change serializing to JSON" />
     <MESSAGE value="client-server architecture init" />
     <MESSAGE value="changed protocol to UDP" />
     <MESSAGE value="repackaging and reworking commands in server(removed reader)" />
@@ -596,7 +593,8 @@
     <MESSAGE value="user generates for each dragon" />
     <MESSAGE value="adding dragons to database" />
     <MESSAGE value="all commands works with database" />
-    <option name="LAST_COMMIT_MESSAGE" value="all commands works with database" />
+    <MESSAGE value="added insert command" />
+    <option name="LAST_COMMIT_MESSAGE" value="added insert command" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

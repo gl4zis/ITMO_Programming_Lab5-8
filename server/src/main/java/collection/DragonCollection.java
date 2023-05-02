@@ -15,14 +15,15 @@ import java.util.stream.Collectors;
 public class DragonCollection {
     private static final Logger LOGGER = LogManager.getLogger(DragonCollection.class);
     private static final String TYPE = "LinkedHashSet";
-    private final ArrayList<Integer> idList = new ArrayList<>();
-    private final LinkedHashSet<Dragon> collection;
+    private final List<Integer> idList;
+    private final Set<Dragon> collection;
 
     /**
      * Constructor creates new empty collection
      */
     public DragonCollection() {
-        collection = new LinkedHashSet<>();
+        collection = Collections.synchronizedSet(new LinkedHashSet<>());
+        idList = Collections.synchronizedList(new ArrayList<>());
     }
 
     /**

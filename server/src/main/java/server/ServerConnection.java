@@ -1,6 +1,7 @@
 package server;
 
 import commands.CommandManager;
+import commands.CommandType;
 import commands.CommandValidator;
 import exceptions.ExitException;
 import general.OsUtilus;
@@ -12,6 +13,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.arbiters.DefaultArbiter;
+import org.junit.experimental.theories.Theories;
 import parsers.MyScanner;
 
 import javax.xml.crypto.Data;
@@ -19,10 +21,7 @@ import java.awt.desktop.PreferencesEvent;
 import java.io.IOException;
 import java.net.*;
 import java.nio.ByteBuffer;
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -53,15 +52,18 @@ public class ServerConnection {
      * Opens socket, configure it and starts listening port
      */
     public void open(int port) {
-        new Thread(this::consoleCheck).start();
         try {
+            Thread mainThread = Thread.currentThread();
+            Thread console = new Thread(() -> consoleCheck(mainThread));
+            console.setName("console");
+            console.start();
             dataSock = new DatagramSocket(port);
-            dataSock.setSoTimeout(10);
             LOGGER.debug("Connection opened");
-            ForkJoinPool pool1 = new ForkJoinPool();
-            ExecutorService pool2 = Executors.newCachedThreadPool();
-            while (true)
-                run(pool1, pool2);
+            ForkJoinPool readPool = new ForkJoinPool();
+            readPool.submit(() -> readBuffer(readPool));
+            ExecutorService processPool = Executors.newCachedThreadPool();
+            run(processPool);
+            readPool.shutdownNow();
         } catch (SocketException e) {
             LOGGER.error("Something went wrong ( " + e.getMessage());
         } finally {
@@ -73,30 +75,33 @@ public class ServerConnection {
      * Listening port.
      * If there are data package, unpacks request, processes it and sends response to the client
      */
-    private void run(ForkJoinPool pool1, ExecutorService pool2) {
-        pool1.submit(this::readBuffer);
-        pool2.submit(this::processRequest);
-        new Thread(this::sendReply).start();
+    private void run(ExecutorService processPool) {
+        while (!Thread.currentThread().isInterrupted()) {
+            if (!requests.isEmpty())
+                processPool.submit(this::processRequest);
+            if (!responses.isEmpty())
+                new Thread(this::sendReply).start();
+        }
+        processPool.shutdownNow();
     }
 
-    private void readBuffer() {
+    private void readBuffer(ForkJoinPool pool) {
         try {
             ByteBuffer buffer = ByteBuffer.allocate(2048);
             DatagramPacket dataPack = new DatagramPacket(buffer.array(), buffer.capacity());
             dataSock.receive(dataPack);
+            pool.submit(() -> readBuffer(pool));
             LOGGER.debug("Request received");
             Request request = SerializationUtils.deserialize(buffer.array());
             LOGGER.info(String.format("Request command: %s, with args: %s",
                     request.command(), request.arg()));
             requests.offer(new ImmutablePair<>(dataPack, request));
-        } catch (SocketTimeoutException ignored) {
-        } catch (IOException e) {
-            LOGGER.error("Something went wrong ( " + e.getMessage());
+        } catch (IOException ignored) {
         }
     }
 
     private void processRequest() {
-        if (!requests.isEmpty()) {
+        try {
             Pair<DatagramPacket, Request> pair = requests.poll();
             Request request = pair.getRight();
             Response response;
@@ -106,25 +111,29 @@ public class ServerConnection {
                 response = new Response("Incorrect request!!");
             DatagramPacket dataPack = pair.getLeft();
             responses.offer(new ImmutablePair<>(dataPack, response));
-        }
+        } catch (NullPointerException ignored) {
+        } // Just terminate thread if requests is empty (other thread already got request)
     }
 
     private void sendReply() {
-        if (!responses.isEmpty()) {
+        try {
             Pair<DatagramPacket, Response> pair = responses.poll();
             Response response = pair.getRight();
             ByteBuffer buffer = ByteBuffer.wrap(SerializationUtils.serialize(response));
             DatagramPacket dataPack = pair.getLeft();
             sendResponse(buffer, dataPack.getAddress(), dataPack.getPort());
-        }
+        } catch (NullPointerException ignored) {
+        } // Just terminate thread if responses is empty (other thread already got response)
     }
 
-    private void consoleCheck() {
+    private void consoleCheck(Thread mainThread) {
+        MyScanner console = new MyScanner(System.in);
         while (true) {
-            String line = new MyScanner(System.in).nextLine();
-            if (line != null) {
+            String line = console.nextLine();
+            if (line != null && !line.equals("")) {
                 if ("exit".equals(line)) {
-                    System.exit(0);
+                    mainThread.interrupt();
+                    break;
                 } else {
                     LOGGER.info("Unknown server command");
                 }
@@ -159,7 +168,7 @@ public class ServerConnection {
     }
 
     /**
-     * Waiting for inputted number of milliseconds
+     * Waiting for inputted number of nanoseconds
      */
     private void wait(int ms) {
         try {

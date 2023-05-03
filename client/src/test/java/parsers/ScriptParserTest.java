@@ -39,6 +39,6 @@ class ScriptParserTest {
         Scanner scanner = new Scanner(is);
         StringBuilder output = new StringBuilder();
         while (scanner.hasNext()) output.append(scanner.nextLine()).append('\n');
-        assertEquals("line1\nline2\n\nline3", output.substring(0, output.length() - 1));
+        assertEquals("line1\nline2\nline3", output.substring(0, output.length() - 1));
     }
 }

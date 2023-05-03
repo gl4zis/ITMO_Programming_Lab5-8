@@ -18,7 +18,7 @@ class DateParserTest {
     @BeforeEach
     void setUp() {
         date = Date.from(Instant.ofEpochSecond(0));
-        dateStr = "01.01.1970 03:00:00";
+        dateStr = "1970-01-01 03:00:00";
     }
 
     @Test

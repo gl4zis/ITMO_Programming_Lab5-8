@@ -1,8 +1,12 @@
 package collection;
 
-import dragons.Dragon;
+import dragons.*;
 import exceptions.IdCollisionException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import user.User;
+
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,11 +16,11 @@ class DragonCollectionTest {
     Dragon dragon;
 
 
-    /*@BeforeEach
+    @BeforeEach
     void init() {
         collection = new DragonCollection();
-        dragon = new Dragon(1, "name", new Coordinates(6, 5), new Date(), 3, Color.RED, DragonCharacter.WISE, new DragonHead(0));
-    }*/
+        dragon = new Dragon(1, "name", new Coordinates(6, 5), new Date(), 3, Color.RED, DragonCharacter.WISE, new DragonHead(0), User.signIn("admin", "d8578edf8458ce06fbc5bb76a58c5ca4"));
+    }
 
     @Test
     void add() {

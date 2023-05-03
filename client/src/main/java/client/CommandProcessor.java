@@ -60,9 +60,8 @@ public abstract class CommandProcessor {
         String find = "find" + line.substring(6);
         String output = conn.sendReqGetResp(find, CONSOLE);
         if (output.startsWith("No such")) {
-            output = conn.sendReqGetResp(line, reader);
-        }
-        return output;
+            return conn.sendReqGetResp(line, reader);
+        } else return "Dragon with this id already exists";
     }
 
     private static String signOut(ClientConnection conn) {

@@ -3,6 +3,9 @@ package user;
 import parsers.MyScanner;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class User implements Serializable {
     private static final MyScanner console = new MyScanner(System.in);
@@ -28,14 +31,21 @@ public class User implements Serializable {
 
     public static User signUp(String login, String passwd) {
         User user = new User(login);
-        user.setHashedPasswd(PasswordHash.getMD5Hash(passwd));
+        user.hashPasswd(passwd, 500);
         return user;
     }
 
     public static User signIn(String login, String hashedPasswd) {
         User user = new User(login);
-        user.setHashedPasswd(hashedPasswd);
+        user.hashedPasswd = hashedPasswd;
         return user;
+    }
+
+    private void hashPasswd(String passwd, int iter) {
+        for (int i = 0; i < iter; i++) {
+            passwd = getMD5Hash(passwd);
+        }
+        hashedPasswd = passwd;
     }
 
     public String getLogin() {
@@ -46,8 +56,18 @@ public class User implements Serializable {
         return hashedPasswd;
     }
 
-    private void setHashedPasswd(String hashedPasswd) {
-        this.hashedPasswd = hashedPasswd;
+    public static String getMD5Hash(String passwd) {
+        MessageDigest messageDigest;
+        byte[] digest = new byte[0];
+        try {
+            messageDigest = MessageDigest.getInstance("MD5");
+            messageDigest.reset();
+            messageDigest.update(passwd.getBytes());
+            digest = messageDigest.digest();
+        } catch (NoSuchAlgorithmException ignored) {
+        } // There ARE such algorithm!
+        BigInteger bigInt = new BigInteger(1, digest);
+        return bigInt.toString(16);
     }
 
     @Override

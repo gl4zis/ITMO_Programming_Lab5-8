@@ -4,28 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="multithreading on server">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="updated server multithreading">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/test/java/parsers/ScriptParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/parsers/ScriptParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/test/java/parsers/DateParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/test/java/parsers/DateParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/collection/DragonCollectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/collection/DragonCollectionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/AddCommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/AddIfMinCommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/AverageOfWeightCommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/ClearCommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/FilterLessThanWeightCommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/FindCommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/HelpCommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/InfoCommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/MinByAgeCommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/PingCommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/RemoveByIdCommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/RemoveGreaterCommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/RemoveLowerCommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/ShowCommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/UpdateCommandTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/CommandProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/user/PasswordHash.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ClearCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +132,7 @@
       <recent name="general" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.server">
+  <component name="RunManager" selected="Application.client">
     <configuration name="client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.Main" />
       <module name="lab5-8.client.main" />
@@ -263,13 +248,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00038" summary="fixed bug in execute_script command">
-      <created>1679138739930</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1679138739930</updated>
     </task>
     <task id="LOCAL-00039" summary="fixed bugs in execute_script command with file paths">
       <created>1679140171109</created>
@@ -607,7 +585,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682986409720</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="updated server multithreading">
+      <created>1683133057495</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1683133057496</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -635,7 +620,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="changed protocol to UDP" />
     <MESSAGE value="repackaging and reworking commands in server(removed reader)" />
     <MESSAGE value="added server commands, translated commands to english" />
     <MESSAGE value="Connects methods decomposed" />
@@ -660,7 +644,8 @@
     <MESSAGE value="all commands works with database" />
     <MESSAGE value="added insert command" />
     <MESSAGE value="multithreading on server" />
-    <option name="LAST_COMMIT_MESSAGE" value="multithreading on server" />
+    <MESSAGE value="updated server multithreading" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated server multithreading" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

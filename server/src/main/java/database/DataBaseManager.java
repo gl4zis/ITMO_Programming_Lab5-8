@@ -6,6 +6,9 @@ import exceptions.LoginCollisionException;
 import exceptions.NoSuchUserException;
 import exceptions.PermissionDeniedException;
 import exceptions.WrongPasswordException;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import parsers.DateParser;
@@ -59,9 +62,11 @@ public abstract class DataBaseManager {
         stat.setString(1, user.getLogin());
         ResultSet login = stat.executeQuery();
         if (login.next()) throw new LoginCollisionException();
-        stat = conn.prepareStatement("INSERT INTO users(login, passwd) VALUES (?, ?)");
+        stat = conn.prepareStatement("INSERT INTO users(login, passwd, salt) VALUES (?, ?, ?)");
+        Pair<String, String> passwdPair = preparePasswd(user.getHashedPasswd());
         stat.setString(1, user.getLogin());
-        stat.setString(2, user.getHashedPasswd());
+        stat.setString(2, passwdPair.getLeft());
+        stat.setString(3, passwdPair.getRight());
         stat.executeUpdate();
     }
 
@@ -72,7 +77,8 @@ public abstract class DataBaseManager {
         if (!dbUser.next()) throw new NoSuchUserException();
         String dbLogin = dbUser.getString("login");
         String dbPasswd = dbUser.getString("passwd");
-        if (!dbLogin.equals(user.getLogin()) || !dbPasswd.equals(user.getHashedPasswd()))
+        String salt = dbUser.getString("salt");
+        if (!dbLogin.equals(user.getLogin()) || !dbPasswd.equals(preparePasswd(user.getHashedPasswd(), salt).getLeft()))
             throw new WrongPasswordException();
     }
 
@@ -173,5 +179,19 @@ public abstract class DataBaseManager {
         stat.setString(10, login);
         int updated = stat.executeUpdate();
         if (updated == 0) throw new PermissionDeniedException();
+    }
+
+    private static Pair<String, String> preparePasswd(String passwd, String salt) {
+        String pepper = "E1!(I)[!kv3\\\\8T ";
+        passwd += salt + pepper;
+        for (int i = 0; i < 500; i++) {
+            passwd = User.getMD5Hash(passwd);
+        }
+        return new ImmutablePair<>(passwd, salt);
+    }
+
+    private static Pair<String, String> preparePasswd(String passwd) {
+        String salt = RandomStringUtils.randomAscii(16);
+        return preparePasswd(passwd, salt);
     }
 }

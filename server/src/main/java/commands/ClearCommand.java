@@ -34,7 +34,7 @@ public class ClearCommand extends Command {
         try {
             DataBaseManager.clearDragons(conn, user);
             collection.clear(user);
-            return "Collection was cleared";
+            return "Your dragons in collection was cleared";
         } catch (SQLException e) {
             return "No connection with database (";
         }

@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import parsers.MyScanner;
 import parsers.ScriptParser;
 import parsers.StringModificator;
+import user.User;
 
 import java.io.FileNotFoundException;
 import java.util.Date;
@@ -49,10 +50,24 @@ public abstract class CommandProcessor {
                 case "sign_in", "sign_up" -> "Incorrect input. Unknown command";
                 case "insert" -> insert(conn, line, reader);
                 case "sign_out" -> signOut(conn);
+                case "change_password" -> changePasswd(conn, line);
                 default -> conn.sendReqGetResp(line, reader);
             };
         } catch (IncorrectInputException e) {
             return e.getMessage();
+        }
+    }
+
+    private static String changePasswd(ClientConnection conn, String line) {
+        try {
+            String passwd = line.split(" ")[1];
+            for (int i = 0; i < 500; i++) {
+                passwd = User.getMD5Hash(passwd);
+            }
+            return conn.sendReqGetResp("change_password " + passwd, CONSOLE);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            LOGGER.warn("Incorrect input. Unknown command");
+            return "";
         }
     }
 

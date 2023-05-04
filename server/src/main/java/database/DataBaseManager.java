@@ -181,6 +181,18 @@ public abstract class DataBaseManager {
         if (updated == 0) throw new PermissionDeniedException();
     }
 
+    public static void changePasswd(Connection conn, User user, String newPasswd) throws SQLException {
+        Pair<String, String> passwdPair = preparePasswd(newPasswd);
+        newPasswd = passwdPair.getLeft();
+        String salt = passwdPair.getRight();
+        String login = user.getLogin();
+        PreparedStatement stat = conn.prepareStatement("UPDATE users SET passwd = ?, salt = ? WHERE login = ?");
+        stat.setString(1, newPasswd);
+        stat.setString(2, salt);
+        stat.setString(3, login);
+        stat.executeUpdate();
+    }
+
     private static Pair<String, String> preparePasswd(String passwd, String salt) {
         String pepper = "E1!(I)[!kv3\\\\8T ";
         passwd += salt + pepper;

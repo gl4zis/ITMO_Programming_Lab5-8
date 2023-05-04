@@ -26,7 +26,8 @@ public enum CommandType implements Serializable {
     PING("ping", false, null, false),
     SIGN_UP("sign_up", false, null, false),
     SIGN_IN("sign_in", false, null, false),
-    INSERT("insert", true, int.class, true);
+    INSERT("insert", true, int.class, true),
+    CHANGE_PASSWORD("change_password", true, String.class, false);
 
     private final String name;
     private final boolean haveArgs;

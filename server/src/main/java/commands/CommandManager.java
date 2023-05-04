@@ -50,6 +50,7 @@ public class CommandManager {
             Command signIn = new SignInCommand(baseConn);
             Command signUp = new SignUpCommand(baseConn);
             Command insert = new InsertCommand(collection, baseConn);
+            Command changePasswd = new ChangePasswordCommand(baseConn);
             commands.put(add.getName(), add);
             commands.put(addIfMin.getName(), addIfMin);
             commands.put(averageOfWeight.getName(), averageOfWeight);
@@ -68,6 +69,7 @@ public class CommandManager {
             commands.put(signIn.getName(), signIn);
             commands.put(signUp.getName(), signUp);
             commands.put(insert.getName(), insert);
+            commands.put(changePasswd.getName(), changePasswd);
         }
     }
 

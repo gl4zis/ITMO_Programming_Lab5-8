@@ -69,8 +69,8 @@ public class ClientConnection {
     }
 
     public void setUser() {
-        String resp = "";
-        while (!resp.startsWith("User was ")) {
+        String resp;
+        do {
             String sign;
             do {
                 System.out.print("If you want to sign up type '+', to sign in type '-': ");
@@ -84,7 +84,7 @@ public class ClientConnection {
                 resp = sendReqGetResp("sign_up", CONSOLE);
             } else resp = sendReqGetResp("sign_in", CONSOLE);
             LOGGER.info(resp);
-        }
+        } while (!resp.startsWith("User was "));
     }
 
     /**
@@ -216,6 +216,7 @@ public class ClientConnection {
                 waitingServer(message, e);
                 message = false;
             }
+            if (!message) System.out.println();
         }
         return output;
     }

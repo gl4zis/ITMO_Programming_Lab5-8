@@ -12,9 +12,9 @@ public class SignUpCommand extends Command {
 
     private final Connection baseConn;
 
-    SignUpCommand(Connection baseConn) {
+    SignUpCommand(CommandManager manager) {
         super("sign_up", "");
-        this.baseConn = baseConn;
+        this.baseConn = manager.getConn();
     }
 
     @Override

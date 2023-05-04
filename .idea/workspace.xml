@@ -4,14 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="password encryption became more difficult">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/commands/ChangePasswordCommand.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="new command for changing password">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/CommandProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/commands/CommandType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/commands/CommandType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/exceptions/JsonParseException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AddCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AddIfMinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AddIfMinCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AverageOfWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AverageOfWeightCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ChangePasswordCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ChangePasswordCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ClearCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/FilterLessThanWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/FilterLessThanWeightCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/FindCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/FindCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/InfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/InfoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/InsertCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/InsertCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/MinByAgeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/MinByAgeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/PingCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/PingCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveByIdCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveGreaterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveLowerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveLowerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ShowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ShowCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/SignInCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/SignInCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/SignUpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/SignUpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/UpdateCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -250,13 +264,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00040" summary="fixed bugs in execute_script command with file paths">
-      <created>1679140950373</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1679140950373</updated>
     </task>
     <task id="LOCAL-00041" summary="fixed bugs in execute_script command with file paths">
       <created>1679141240315</created>
@@ -594,7 +601,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683144843037</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="new command for changing password">
+      <created>1683185903506</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1683185903506</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -622,7 +636,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="added server commands, translated commands to english" />
     <MESSAGE value="Connects methods decomposed" />
     <MESSAGE value="command optimizing" />
     <MESSAGE value="micro bugfix" />
@@ -647,7 +660,8 @@
     <MESSAGE value="multithreading on server" />
     <MESSAGE value="updated server multithreading" />
     <MESSAGE value="password encryption became more difficult" />
-    <option name="LAST_COMMIT_MESSAGE" value="password encryption became more difficult" />
+    <MESSAGE value="new command for changing password" />
+    <option name="LAST_COMMIT_MESSAGE" value="new command for changing password" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

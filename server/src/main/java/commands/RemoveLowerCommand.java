@@ -22,11 +22,11 @@ public class RemoveLowerCommand extends Command {
     /**
      * Constructor, sets collection, that the command works with, name and description of command
      */
-    RemoveLowerCommand(DragonCollection collection, Connection conn) {
+    RemoveLowerCommand(CommandManager manager) {
         super("remove_lower",
                 "remove_lower {dragon} : remove all items from the collection that are smaller than the specified");
-        this.collection = collection;
-        this.conn = conn;
+        this.collection = manager.getCollection();
+        this.conn = manager.getConn();
     }
 
     /**

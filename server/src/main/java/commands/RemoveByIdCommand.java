@@ -22,10 +22,10 @@ public class RemoveByIdCommand extends Command {
     /**
      * Constructor, sets collection, that the command works with, name and description of command
      */
-    RemoveByIdCommand(DragonCollection collection, Connection conn) {
+    RemoveByIdCommand(CommandManager manager) {
         super("remove_by_id", "remove_by_id id : remove an item from the collection by its id");
-        this.collection = collection;
-        this.conn = conn;
+        this.collection = manager.getCollection();
+        this.conn = manager.getConn();
     }
 
     /**

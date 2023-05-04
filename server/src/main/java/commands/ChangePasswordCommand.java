@@ -10,9 +10,9 @@ import java.sql.SQLException;
 public class ChangePasswordCommand extends Command {
     private final Connection conn;
 
-    ChangePasswordCommand(Connection conn) {
+    ChangePasswordCommand(CommandManager manager) {
         super("change_password", "change_password password : changes password on your account");
-        this.conn = conn;
+        this.conn = manager.getConn();
     }
 
     @Override

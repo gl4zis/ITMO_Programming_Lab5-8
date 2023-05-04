@@ -22,10 +22,10 @@ public class AddCommand extends Command {
     /**
      * Constructor, sets collection, that the command works with, name and description of command
      */
-    AddCommand(DragonCollection collection, Connection conn) {
+    AddCommand(CommandManager manager) {
         super("add", "add {dragon} : add a new item to the collection");
-        this.collection = collection;
-        this.conn = conn;
+        this.collection = manager.getCollection();
+        this.conn = manager.getConn();
     }
 
     /**

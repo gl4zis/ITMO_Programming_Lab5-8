@@ -29,7 +29,7 @@ public abstract class DataBaseManager {
                 collection.add(createDragon(dragons));
             }
         } catch (SQLException | ParseException e) {
-            LOGGER.error("Something wrong with data base! " + e.getMessage());
+            LOGGER.error("Something wrong with database! " + e.getMessage());
             LOGGER.error("Collection wasn't upload");
         }
     }

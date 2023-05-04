@@ -14,9 +14,9 @@ public class FindCommand extends Command {
     /**
      * Standard constructor
      */
-    FindCommand(DragonCollection collection) {
+    FindCommand(CommandManager manager) {
         super("find", "find id : returns dragon from collection by its id");
-        this.collection = collection;
+        this.collection = manager.getCollection();
     }
 
     /**

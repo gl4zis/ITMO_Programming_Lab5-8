@@ -10,7 +10,7 @@ import java.net.UnknownHostException;
  * Just for checking connection to server
  */
 public class PingCommand extends Command {
-    PingCommand() {
+    PingCommand(CommandManager manager) {
         super("ping", "ping : show information about connection to server");
     }
 

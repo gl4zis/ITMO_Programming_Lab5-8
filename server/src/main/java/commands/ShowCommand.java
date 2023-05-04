@@ -16,10 +16,10 @@ public class ShowCommand extends Command {
     /**
      * Constructor, sets collection, that the command works with, name and description of command
      */
-    ShowCommand(DragonCollection collection) {
+    ShowCommand(CommandManager manager) {
         super("show", "show : " +
                 "output all elements of the collection in string representation");
-        this.collection = collection;
+        this.collection = manager.getCollection();
     }
 
     /**

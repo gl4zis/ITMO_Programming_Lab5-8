@@ -19,11 +19,11 @@ public class FilterLessThanWeightCommand extends Command {
     /**
      * Constructor, sets collection, that the command works with, name and description of command
      */
-    FilterLessThanWeightCommand(DragonCollection collection) {
+    FilterLessThanWeightCommand(CommandManager manager) {
         super("filter_less_than_weight",
                 "filter_less_than_weight weight : " +
                         "output the elements whose value of the weight field is less than the given one");
-        this.collection = collection;
+        this.collection = manager.getCollection();
     }
 
     /**

@@ -13,9 +13,9 @@ public class SignInCommand extends Command {
 
     private final Connection baseConn;
 
-    SignInCommand(Connection baseConn) {
+    SignInCommand(CommandManager manager) {
         super("sign_in", "");
-        this.baseConn = baseConn;
+        this.baseConn = manager.getConn();
     }
 
     @Override

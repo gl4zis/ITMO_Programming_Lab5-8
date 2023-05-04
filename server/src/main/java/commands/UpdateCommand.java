@@ -23,11 +23,11 @@ public class UpdateCommand extends Command {
     /**
      * Constructor, sets collection, that the command works with, name and description of command
      */
-    UpdateCommand(DragonCollection collection, Connection conn) {
+    UpdateCommand(CommandManager manager) {
         super("update", "update id {element} : " +
                 "update the value of the collection item whose id is equal to the given one");
-        this.collection = collection;
-        this.conn = conn;
+        this.collection = manager.getCollection();
+        this.conn = manager.getConn();
     }
 
     /**

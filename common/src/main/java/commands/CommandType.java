@@ -56,6 +56,10 @@ public enum CommandType implements Serializable {
         throw new IncorrectInputException("Unknown command");
     }
 
+    public String getName() {
+        return name;
+    }
+
     /**
      * Flag, signals if this command must have argument
      */

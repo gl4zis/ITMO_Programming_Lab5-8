@@ -3,6 +3,7 @@ package commands;
 import collection.DragonCollection;
 import network.Request;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.util.Collection;
 import java.util.HashMap;
@@ -29,48 +30,35 @@ public class CommandManager {
     /**
      * Creates objects of standard command and adds it to the map
      */
+    @SuppressWarnings("unchecked")
     private void addStandardCommands() {
-        if (commands == null) {
-            commands = new HashMap<>();
-            Command add = new AddCommand(collection, baseConn);
-            Command addIfMin = new AddIfMinCommand(collection, baseConn);
-            Command averageOfWeight = new AverageOfWeightCommand(collection);
-            Command clear = new ClearCommand(collection, baseConn);
-            Command filterLessThanWeight = new FilterLessThanWeightCommand(collection);
-            Command help = new HelpCommand(this);
-            Command info = new InfoCommand(collection);
-            Command minByAge = new MinByAgeCommand(collection);
-            Command removeById = new RemoveByIdCommand(collection, baseConn);
-            Command removeGreater = new RemoveGreaterCommand(collection, baseConn);
-            Command removeLower = new RemoveLowerCommand(collection, baseConn);
-            Command show = new ShowCommand(collection);
-            Command update = new UpdateCommand(collection, baseConn);
-            Command find = new FindCommand(collection);
-            Command ping = new PingCommand();
-            Command signIn = new SignInCommand(baseConn);
-            Command signUp = new SignUpCommand(baseConn);
-            Command insert = new InsertCommand(collection, baseConn);
-            Command changePasswd = new ChangePasswordCommand(baseConn);
-            commands.put(add.getName(), add);
-            commands.put(addIfMin.getName(), addIfMin);
-            commands.put(averageOfWeight.getName(), averageOfWeight);
-            commands.put(clear.getName(), clear);
-            commands.put(filterLessThanWeight.getName(), filterLessThanWeight);
-            commands.put(help.getName(), help);
-            commands.put(info.getName(), info);
-            commands.put(minByAge.getName(), minByAge);
-            commands.put(removeById.getName(), removeById);
-            commands.put(removeGreater.getName(), removeGreater);
-            commands.put(removeLower.getName(), removeLower);
-            commands.put(show.getName(), show);
-            commands.put(update.getName(), update);
-            commands.put(find.getName(), find);
-            commands.put(ping.getName(), ping);
-            commands.put(signIn.getName(), signIn);
-            commands.put(signUp.getName(), signUp);
-            commands.put(insert.getName(), insert);
-            commands.put(changePasswd.getName(), changePasswd);
+        commands = new HashMap<>();
+        for (CommandType type : CommandType.values()) {
+            String className = parseCommandName(type.getName());
+            try {
+                Class<? extends Command> commandClass = (Class<? extends Command>) Class.forName(className);
+                Command command = commandClass.getDeclaredConstructor(CommandManager.class).newInstance(this);
+                commands.put(command.getName(), command);
+            } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
+                     InvocationTargetException ignored) {
+            }
         }
+    }
+
+    private String parseCommandName(String name) {
+        char[] letters = name.toCharArray();
+        char lastLetter = ' ';
+        StringBuilder className = new StringBuilder("commands.");
+        for (char a : letters) {
+            if (lastLetter == '_' || lastLetter == ' ') {
+                className.append(Character.toUpperCase(a));
+            } else if (a != '_') {
+                className.append(a);
+            }
+            lastLetter = a;
+        }
+        className.append("Command");
+        return className.toString();
     }
 
     /**
@@ -96,5 +84,9 @@ public class CommandManager {
      */
     public DragonCollection getCollection() {
         return collection;
+    }
+
+    public Connection getConn() {
+        return baseConn;
     }
 }

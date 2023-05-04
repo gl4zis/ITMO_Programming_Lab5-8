@@ -19,10 +19,10 @@ public class ClearCommand extends Command {
     /**
      * Constructor, sets collection, that the command works with, name and description of command
      */
-    ClearCommand(DragonCollection collection, Connection conn) {
+    ClearCommand(CommandManager manager) {
         super("clear", "clear : clear the collection");
-        this.collection = collection;
-        this.conn = conn;
+        this.collection = manager.getCollection();
+        this.conn = manager.getConn();
     }
 
     /**

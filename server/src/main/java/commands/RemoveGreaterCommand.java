@@ -22,11 +22,11 @@ public class RemoveGreaterCommand extends Command {
     /**
      * Constructor, sets collection, that the command works with, name and description of command
      */
-    RemoveGreaterCommand(DragonCollection collection, Connection conn) {
+    RemoveGreaterCommand(CommandManager manager) {
         super("remove_greater",
                 "remove_greater {dragon} : remove from the collection all items exceeding the specified");
-        this.collection = collection;
-        this.conn = conn;
+        this.collection = manager.getCollection();
+        this.conn = manager.getConn();
     }
 
     /**

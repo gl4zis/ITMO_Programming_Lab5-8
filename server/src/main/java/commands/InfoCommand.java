@@ -12,9 +12,9 @@ public class InfoCommand extends Command {
     /**
      * Constructor, sets collection, that the command works with, name and description of command
      */
-    InfoCommand(DragonCollection collection) {
+    InfoCommand(CommandManager manager) {
         super("info", "info : display information about the collection");
-        this.collection = collection;
+        this.collection = manager.getCollection();
     }
 
     /**

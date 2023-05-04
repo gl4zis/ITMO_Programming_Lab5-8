@@ -21,12 +21,12 @@ public class AddIfMinCommand extends Command {
     /**
      * Constructor, sets collection, that the command works with, name and description of command
      */
-    AddIfMinCommand(DragonCollection collection, Connection conn) {
+    AddIfMinCommand(CommandManager manager) {
         super("add_if_min",
                 "add_if_min {dragon} : " +
                         "add a new item to the collection if its value is smaller than the smallest item in the collection");
-        this.collection = collection;
-        this.conn = conn;
+        this.collection = manager.getCollection();
+        this.conn = manager.getConn();
     }
 
     /**

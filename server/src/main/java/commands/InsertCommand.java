@@ -16,10 +16,10 @@ public class InsertCommand extends Command {
     private final DragonCollection collection;
     private final Connection conn;
 
-    InsertCommand(DragonCollection collection, Connection conn) {
+    InsertCommand(CommandManager manager) {
         super("insert", "insert id {dragon} : add new dragon with inputted id in the collection");
-        this.collection = collection;
-        this.conn = conn;
+        this.collection = manager.getCollection();
+        this.conn = manager.getConn();
     }
 
     @Override

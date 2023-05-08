@@ -39,7 +39,7 @@ public abstract class MyBaseConnection {
         Properties info = new Properties();
         try {
             if (OsUtilus.IsWindows())
-                info.load(new FileInputStream("C:\\Windows\\Temp\\db\\db.cfg"));
+                info.load(new FileInputStream("C:\\Windows\\db\\db.cfg"));
             else info.load(parsePgPass());
         } catch (IOException | SecurityException e) {
             LOGGER.error("Something went wrong with config file =(");

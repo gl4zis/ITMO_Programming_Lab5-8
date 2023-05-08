@@ -1,5 +1,6 @@
-package client;
+package commands;
 
+import client.ClientConnection;
 import exceptions.ExitException;
 import exceptions.IncorrectDataException;
 import exceptions.IncorrectInputException;
@@ -26,19 +27,15 @@ public abstract class CommandProcessor {
      *
      * @param conn by this, realizes requests and responses
      * @param line there you want to find command
-     * @return responded message from the server
      */
-    public static String execute(ClientConnection conn, String line) {
-        if (line.trim().isEmpty())
-            return "";
-        String output = execute(conn, line, CONSOLE);
-        if (output == null) throw new ExitException();
-        else return output;
+    public static void execute(ClientConnection conn, String line) {
+        if (!line.trim().isEmpty()) {
+            String output = execute(conn, line, CONSOLE);
+            if (output == null) throw new ExitException();
+            else System.out.println(output);
+        }
     }
 
-    /**
-     * Similarly execute(Connection, String), but can execute commands from script
-     */
     private static String execute(ClientConnection conn, String line, MyScanner reader) {
         try {
             return switch (line.split(" ")[0]) {
@@ -138,19 +135,15 @@ public abstract class CommandProcessor {
     private static void ex_script(ClientConnection conn, HashSet<String> files, MyScanner reader) {
         String line = reader.nextLine();
         while (line != null) {
-            if (!line.trim().isEmpty()) {
-                try {
-                    if (line.startsWith("execute_script")) {
-                        validateScript(conn, files, line);
-                    } else {
-                        String output = execute(conn, line, reader);
-                        LOGGER.info("Executing: " + line);
-                        LOGGER.info(output);
-                    }
-                } catch (IncorrectInputException ignored) {
-                } catch (IncorrectDataException e) {
-                    LOGGER.warn(e.getMessage());
+            try {
+                if (line.startsWith("execute_script")) {
+                    validateScript(conn, files, line);
+                } else {
+                    LOGGER.info("Executing: " + line);
+                    execute(conn, line, reader);
                 }
+            } catch (IncorrectDataException e) {
+                LOGGER.warn(e.getMessage());
             }
             line = reader.nextLine();
         }

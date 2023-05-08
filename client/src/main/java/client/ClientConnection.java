@@ -1,5 +1,6 @@
 package client;
 
+import commands.CommandProcessor;
 import commands.CommandValidator;
 import exceptions.ExitException;
 import exceptions.UnavailableServerException;
@@ -94,9 +95,7 @@ public class ClientConnection {
         while (true) {
             System.out.print("-> ");
             String line = CONSOLE.nextLine();
-            String output = CommandProcessor.execute(this, line);
-            if (!output.isEmpty())
-                System.out.println(output);
+            CommandProcessor.execute(this, line);
         }
     }
 

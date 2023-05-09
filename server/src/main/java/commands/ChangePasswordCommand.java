@@ -18,15 +18,15 @@ public class ChangePasswordCommand extends Command {
     private final Connection conn;
 
     /**
-     * Constructor sets database connection
+     * Constructor sets database connection, that the command works with, description of command
      */
     ChangePasswordCommand(CommandManager manager) {
-        super("change_password", "change_password password : changes password on your account");
+        super("change_password password : changes password on your account");
         this.conn = manager.getConn();
     }
 
     /**
-     * Change current user's password in database to new
+     * Change current user's password in database on new
      */
     @Override
     public String execute(Request request) {

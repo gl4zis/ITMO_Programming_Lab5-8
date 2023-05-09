@@ -20,18 +20,17 @@ public class AddIfMinCommand extends Command {
     private final Connection conn;
 
     /**
-     * Constructor, sets collection, that the command works with, name and description of command
+     * Constructor sets collection and database connection, that the command works with, description of command
      */
     AddIfMinCommand(CommandManager manager) {
-        super("add_if_min",
-                "add_if_min {dragon} : " +
-                        "add a new item to the collection if its value is smaller than the smallest item in the collection");
+        super("add_if_min {dragon} : " +
+                "add a new item to the collection if its value is smaller than the smallest item in the collection");
         this.collection = manager.getCollection();
         this.conn = manager.getConn();
     }
 
     /**
-     * Reads all dragon vars, creates new dragon object and adds it in the collection if there are no dragons less that this
+     * Adds new dragon from request in database and in collection if there are no dragons less that this
      */
     @Override
     public String execute(Request request) {

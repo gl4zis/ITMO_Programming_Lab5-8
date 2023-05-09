@@ -18,13 +18,18 @@ public class SignUpCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(SignUpCommand.class);
     private final Connection baseConn;
 
+    /**
+     * Constructor sets database connection, that the command works with
+     */
     SignUpCommand(CommandManager manager) {
-        super("sign_up", "");
+        super("");
         this.baseConn = manager.getConn();
     }
 
     /**
-     * Adds in database login and hashed password of new user if it wasn't in database
+     * Adds in database login and hashed password of new user.
+     * Outputs 'User was signed up' if all ok.
+     * Outputs error message if user with this login already exists
      */
     @Override
     public String execute(Request request) {

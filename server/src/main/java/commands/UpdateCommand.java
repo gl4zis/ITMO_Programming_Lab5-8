@@ -14,7 +14,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Argument command "update id {dragon}". Change dragon vars on another. Finds dragon in collection by its id
+ * Argument command "update id {dragon}".
+ * Change dragon parameters on another.
  */
 public class UpdateCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(UpdateCommand.class);
@@ -22,18 +23,20 @@ public class UpdateCommand extends Command {
     private final Connection conn;
 
     /**
-     * Constructor, sets collection, that the command works with, name and description of command
+     * Constructor sets collection and database connection, that the command works with, description of command
      */
     UpdateCommand(CommandManager manager) {
-        super("update", "update id {element} : " +
+        super("update id {element} : " +
                 "update the value of the collection item whose id is equal to the given one");
         this.collection = manager.getCollection();
         this.conn = manager.getConn();
     }
 
     /**
-     * Change dragon vars on another. Finds dragon in collection by its id.
-     * Outputs error message, if wrong argument or if there are no such element in collection
+     * Change dragon parameters on another.
+     * Finds dragon in collection by its id.
+     * Outputs error message, if there are no such element in collection
+     * or if creator of this dragon not equals to current user
      */
     @Override
     public String execute(Request request) {

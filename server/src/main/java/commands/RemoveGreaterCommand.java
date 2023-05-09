@@ -13,7 +13,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Argument command "remove_greater {dragon}". Removes all dragons from collection, that more than inputted dragon
+ * Argument command "remove_greater {dragon}".
+ * Removes all dragons from collection, that more than inputted dragon
  */
 public class RemoveGreaterCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(RemoveGreaterCommand.class);
@@ -21,17 +22,17 @@ public class RemoveGreaterCommand extends Command {
     private final Connection conn;
 
     /**
-     * Constructor, sets collection, that the command works with, name and description of command
+     * Constructor sets collection and database connection, that the command works with, description of command
      */
     RemoveGreaterCommand(CommandManager manager) {
-        super("remove_greater",
-                "remove_greater {dragon} : remove from the collection all items exceeding the specified");
+        super("remove_greater {dragon} : remove from the collection all items exceeding the specified");
         this.collection = manager.getCollection();
         this.conn = manager.getConn();
     }
 
     /**
-     * Removes all dragons from collection, that more than inputted dragon and output info about removed dragons.
+     * Removes all dragons from collection, that more than inputted dragon and was created by current user,
+     * outputs info about removed dragons.
      * If there are no such elements in collection, outputs error message
      */
     @Override
@@ -47,6 +48,13 @@ public class RemoveGreaterCommand extends Command {
         } else return "No such elements in collection";
     }
 
+    /**
+     * Removes one dragon and collects info about it
+     *
+     * @param p      removing dragon
+     * @param user   current user
+     * @param output StringBuilder for collect info
+     */
     private void removeDragon(Dragon p, User user, StringBuilder output) {
         try {
             DataBaseManager.removeDragon(conn, p, user);

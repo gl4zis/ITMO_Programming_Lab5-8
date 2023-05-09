@@ -20,16 +20,16 @@ public class ClearCommand extends Command {
     private final Connection conn;
 
     /**
-     * Constructor, sets collection, that the command works with, name and description of command
+     * Constructor sets collection and database connection, that the command works with, description of command
      */
     ClearCommand(CommandManager manager) {
-        super("clear", "clear : clear the collection");
+        super("clear : clear the collection (delete all your dragons)");
         this.collection = manager.getCollection();
         this.conn = manager.getConn();
     }
 
     /**
-     * Removes all dragons from the collection
+     * Removes all dragons, created by current user, from the collection
      */
     @Override
     public String execute(Request request) {

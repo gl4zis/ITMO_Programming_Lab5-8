@@ -38,12 +38,25 @@ public class ServerConnection {
     private final Queue<Pair<DatagramPacket, Response>> responses;
     private DatagramSocket dataSock;
 
+    /**
+     * Constructor sets command manager for executing requests and creates queues for multithreading
+     */
     public ServerConnection(CommandManager manager) {
         this.manager = manager;
         requests = new ConcurrentLinkedDeque<>();
         responses = new ConcurrentLinkedDeque<>();
     }
 
+    /**
+     * Opens connection with clients on this port.
+     * Creates DatagramSocket
+     * Creates thread for checking console,
+     * ForkJoinPool for reading requests,
+     * CachedThreadPool for process requests
+     * and starts method run
+     *
+     * @param port UDP port
+     */
     public void open(int port) {
         try {
             Thread mainThread = Thread.currentThread();
@@ -52,11 +65,7 @@ public class ServerConnection {
             console.start();
             dataSock = new DatagramSocket(port);
             LOGGER.debug("Connection opened");
-            ForkJoinPool readPool = new ForkJoinPool();
-            readPool.submit(() -> readBuffer(readPool));
-            ExecutorService processPool = Executors.newCachedThreadPool();
-            run(processPool);
-            readPool.shutdownNow();
+            run();
             console.interrupt();
         } catch (SocketException e) {
             LOGGER.error("Something went wrong ( " + e.getMessage());
@@ -65,7 +74,15 @@ public class ServerConnection {
         }
     }
 
-    private void run(ExecutorService processPool) {
+    /**
+     * Manages multithreading.
+     * While main thread is not interrupted creates threads for reading, processing and sending in loop.
+     * As soon as main interrupts, shutdown all threads and exits from the app
+     */
+    private void run() {
+        ForkJoinPool readPool = new ForkJoinPool();
+        readPool.submit(() -> readBuffer(readPool));
+        ExecutorService processPool = Executors.newCachedThreadPool();
         Thread mainThread = Thread.currentThread();
         while (!Thread.currentThread().isInterrupted()) {
             if (!requests.isEmpty())
@@ -73,9 +90,17 @@ public class ServerConnection {
             if (!responses.isEmpty())
                 new Thread(this::sendReply).start();
         }
+        readPool.shutdownNow();
         processPool.shutdownNow();
     }
 
+    /**
+     * Runnable method for reading buffer.
+     * Works on recursion. As soon as the data coming in the buffer,
+     * creates new thread with this method
+     *
+     * @param pool ForkJoinPool with reading threads
+     */
     private void readBuffer(ForkJoinPool pool) {
         try {
             ByteBuffer buffer = ByteBuffer.allocate(2048);
@@ -91,6 +116,14 @@ public class ServerConnection {
         }
     }
 
+    /**
+     * Runnable method for processing requests.
+     * If there are requests in queue 'requests',
+     * gets it and executes desired command.
+     * Interrupts main thread if it needs exit
+     *
+     * @param mainThread Thread 'main' for exiting
+     */
     private void processRequest(Thread mainThread) {
         try {
             Pair<DatagramPacket, Request> pair = requests.poll();
@@ -108,6 +141,10 @@ public class ServerConnection {
         } // Just terminate thread if requests is empty (other thread already got request)
     }
 
+    /**
+     * Runnable method for sends reply to the client.
+     * Checks queue 'responses' and send if it's not empty
+     */
     private void sendReply() {
         try {
             Pair<DatagramPacket, Response> pair = responses.poll();
@@ -119,6 +156,12 @@ public class ServerConnection {
         } // Just terminate thread if responses is empty (other thread already got response)
     }
 
+    /**
+     * Runnable method for checking console.
+     * If there are 'exit' command interrupts main thread for exiting from the app
+     *
+     * @param mainThread Thread main for interrupting
+     */
     private void consoleCheck(Thread mainThread) {
         MyScanner console = new MyScanner(System.in);
         while (!Thread.currentThread().isInterrupted()) {
@@ -134,6 +177,13 @@ public class ServerConnection {
         }
     }
 
+    /**
+     * Divides large packages into several small and sends it to the client
+     *
+     * @param buffer serialized response (can be very large)
+     * @param host   host of client
+     * @param port   port of client
+     */
     private void sendResponse(ByteBuffer buffer, InetAddress host, int port) {
         int bytes;
         if (OsUtilus.IsWindows()) bytes = MAX_UDP_BYTES_WINDOWS;

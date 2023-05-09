@@ -11,16 +11,16 @@ public class MinByAgeCommand extends Command {
     private final DragonCollection collection;
 
     /**
-     * Constructor, sets collection, that command works with, name and description of this command
+     * Constructor sets collection, that command works with, description of this command
      */
     MinByAgeCommand(CommandManager manager) {
-        super("min_by_age", "min_by_age : " +
+        super("min_by_age : " +
                 "output any object from the collection, the value of the age field of which is the minimum");
         this.collection = manager.getCollection();
     }
 
     /**
-     * Outputs one dragon from collection, which have minimum age or outputs message about empty collection
+     * Outputs one dragon from collection, which have minimum age or message about empty collection
      */
     @Override
     public String execute(Request request) {

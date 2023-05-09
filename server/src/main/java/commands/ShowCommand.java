@@ -8,22 +8,23 @@ import java.util.stream.Collectors;
 
 
 /**
- * Non-argument command "show". Outputs info about all elements in the collection
+ * Non-argument command "show".
+ * Outputs info about all elements in the collection
  */
 public class ShowCommand extends Command {
     private final DragonCollection collection;
 
     /**
-     * Constructor, sets collection, that the command works with, name and description of command
+     * Constructor sets collection, that the command works with, description of command
      */
     ShowCommand(CommandManager manager) {
-        super("show", "show : " +
+        super("show : " +
                 "output all elements of the collection in string representation");
         this.collection = manager.getCollection();
     }
 
     /**
-     * Outputs info about all elements in the collection or outputs message about empty collection
+     * Outputs info about all elements in the collection or message about empty collection
      */
     @Override
     public String execute(Request request) {

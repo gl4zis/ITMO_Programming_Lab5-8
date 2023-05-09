@@ -10,16 +10,15 @@ public class AverageOfWeightCommand extends Command {
     private final DragonCollection collection;
 
     /**
-     * Constructor, sets collection, that the command works with, name and description of command
+     * Constructor sets collection, that the command works with, description of command
      */
     AverageOfWeightCommand(CommandManager manager) {
-        super("average_of_weight",
-                "average_of_weight : display the average value of the weight field for all items in the collection");
+        super("average_of_weight : display the average value of the weight field for all items in the collection");
         this.collection = manager.getCollection();
     }
 
     /**
-     * Output average value of all dragon's weight in collection
+     * Outputs average value of all dragon's weight in collection
      */
     @Override
     public String execute(Request request) {

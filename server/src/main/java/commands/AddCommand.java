@@ -21,16 +21,16 @@ public class AddCommand extends Command {
     private final Connection conn;
 
     /**
-     * Constructor, sets collection, that the command works with, name and description of command
+     * Constructor sets collection and database connection, that the command works with, description of command
      */
     AddCommand(CommandManager manager) {
-        super("add", "add {dragon} : add a new item to the collection");
+        super("add {dragon} : add a new item to the collection");
         this.collection = manager.getCollection();
         this.conn = manager.getConn();
     }
 
     /**
-     * Reads all dragon vars, creates new dragon object and adds it in the collection
+     * Adds new dragon from request in database and in collection
      */
     @Override
     public String execute(Request request) {

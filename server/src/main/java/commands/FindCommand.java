@@ -12,15 +12,15 @@ public class FindCommand extends Command {
     private final DragonCollection collection;
 
     /**
-     * Standard constructor
+     * Constructor sets collection, that the command works with, description of command
      */
     FindCommand(CommandManager manager) {
-        super("find", "find id : returns dragon from collection by its id");
+        super("find id : returns dragon from collection by its id");
         this.collection = manager.getCollection();
     }
 
     /**
-     * Returns dragon with inputted id or 'No such element in collection'
+     * Returns dragon with inputted id or 'No such element in collection' if there are no dragon with this id
      */
     @Override
     public String execute(Request request) {

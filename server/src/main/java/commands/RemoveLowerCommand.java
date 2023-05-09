@@ -21,17 +21,17 @@ public class RemoveLowerCommand extends Command {
     private final Connection conn;
 
     /**
-     * Constructor, sets collection, that the command works with, name and description of command
+     * Constructor sets collection and database connection, that the command works with, description of command
      */
     RemoveLowerCommand(CommandManager manager) {
-        super("remove_lower",
-                "remove_lower {dragon} : remove all items from the collection that are smaller than the specified");
+        super("remove_lower {dragon} : remove all items from the collection that are smaller than the specified");
         this.collection = manager.getCollection();
         this.conn = manager.getConn();
     }
 
     /**
-     * Removes all dragons from collection, that less than inputted dragon and output info about removed dragons.
+     * Removes all dragons from collection, that less than inputted dragon and was created by current user,
+     * outputs info about removed dragons.
      * If there are no such elements in collection, outputs error message
      */
     @Override
@@ -47,6 +47,13 @@ public class RemoveLowerCommand extends Command {
         } else return "No such elements in collection";
     }
 
+    /**
+     * Removes one dragon and collects info about it
+     *
+     * @param p      removing dragon
+     * @param user   current user
+     * @param output StringBuilder for collect info
+     */
     private void removeDragon(Dragon p, User user, StringBuilder output) {
         try {
             DataBaseManager.removeDragon(conn, p, user);

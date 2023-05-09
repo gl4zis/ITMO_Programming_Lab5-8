@@ -22,7 +22,6 @@ public class MyScanner {
     private final boolean isConsole;
     private final Scanner scanner;
 
-
     public MyScanner(InputStream is) {
         isConsole = is.equals(System.in);
         scanner = new Scanner(is);

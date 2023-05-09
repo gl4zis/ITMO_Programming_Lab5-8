@@ -19,13 +19,18 @@ public class SignInCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(SignInCommand.class);
     private final Connection baseConn;
 
+    /**
+     * Constructor sets database connection, that the command works with
+     */
     SignInCommand(CommandManager manager) {
-        super("sign_in", "");
+        super("");
         this.baseConn = manager.getConn();
     }
 
     /**
-     * Checks if this user is in database
+     * Checks if this user is in database.
+     * If all ok, outputs 'User was signed in'.
+     * Outputs error message if there is incorrect login or password
      */
     @Override
     public String execute(Request request) {

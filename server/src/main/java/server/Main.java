@@ -5,7 +5,6 @@ import collection.DragonCollection;
 import commands.CommandManager;
 import database.DataBaseManager;
 import database.MyBaseConnection;
-import exceptions.ExitException;
 import general.OsUtilus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,8 +41,6 @@ public class Main {
             LOGGER.info("Waiting connection on port: " + port);
             con.open(port);
 
-        } catch (ExitException e) {
-            LOGGER.debug("Correct exit");
         } catch (Throwable e) {
             LOGGER.fatal("Something very strange happened =0 " + e.getMessage());
             LOGGER.debug("Incorrect exit (server crashed)");

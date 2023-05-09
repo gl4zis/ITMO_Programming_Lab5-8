@@ -11,10 +11,10 @@ public class HelpCommand extends Command {
     private final CommandManager commandManager;
 
     /**
-     * Constructor, sets command manager, that the command works with, name and description of command
+     * Constructor, sets command manager, that the command works with, description of command
      */
     HelpCommand(CommandManager commandManager) {
-        super("help", "help : display help for available commands");
+        super("help : display help for available commands");
         this.commandManager = commandManager;
     }
 

@@ -17,12 +17,12 @@ public abstract class MyBaseConnection {
     private static final Logger LOGGER = LogManager.getLogger(MyBaseConnection.class);
     private static final MyScanner CONSOLE = new MyScanner(System.in);
 
-    public static synchronized Connection connect() {
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            LOGGER.fatal("There are no driver for postgreSQL DataBase!");
-        }
+    /**
+     * Do connection with my database, using JDBC PostgreSQL
+     *
+     * @return database connection
+     */
+    public static Connection connect() {
         boolean message = true;
         while (true) {
             try {
@@ -36,6 +36,10 @@ public abstract class MyBaseConnection {
         }
     }
 
+    /**
+     * Checks word 'exit' in the console, while try to connect to the database.
+     * You can exit from the app using 'exit' in the console
+     */
     private static void checkExit() {
         try {
             Thread.sleep(100);
@@ -47,12 +51,18 @@ public abstract class MyBaseConnection {
         }
     }
 
+    /**
+     * @return URL for database connection
+     */
     private static String getUrl() {
         if (OsUtilus.IsWindows())
             return "jdbc:postgresql://localhost:7812/studs";
         else return "jdbc:postgresql://pg:5432/studs";
     }
 
+    /**
+     * @return Properties with user and password for connection
+     */
     private static Properties getInfo() {
         Properties info = new Properties();
         try {
@@ -65,6 +75,12 @@ public abstract class MyBaseConnection {
         return info;
     }
 
+    /**
+     * Parses file '~/.pgpass'
+     *
+     * @return InputStream with user and password
+     * @throws FileNotFoundException if file is not exists
+     */
     private static InputStream parsePgPass() throws FileNotFoundException {
         File script = new File(StringModificator.filePathFormat("~/.pgpass"));
         FileInputStream in = new FileInputStream(script);
@@ -87,5 +103,4 @@ public abstract class MyBaseConnection {
         String passwd = "password = " + data[data.length - 1];
         return new ByteArrayInputStream((user + "\n" + passwd).getBytes());
     }
-
 }

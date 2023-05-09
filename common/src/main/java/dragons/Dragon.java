@@ -1,7 +1,6 @@
 package dragons;
 
 import exceptions.IncorrectDataException;
-import general.UniqueIdGenerator;
 import parsers.DateParser;
 import user.User;
 
@@ -53,7 +52,7 @@ public class Dragon implements Comparable<Dragon>, Serializable {
     }
 
     /**
-     * Constructor with auto-generated id and creation date.
+     * Constructor with auto-generated creation date.
      * For creating dragon by user
      *
      * @throws IncorrectDataException if some params are incorrect
@@ -64,7 +63,7 @@ public class Dragon implements Comparable<Dragon>, Serializable {
             throw new IncorrectDataException("There are nulls in dragon characteristics");
         if (name.equals("") || weight <= 0)
             throw new IncorrectDataException("Incorrect dragon characteristics (name or weight)");
-        this.id = UniqueIdGenerator.getIntId();
+        this.id = 1;
         this.name = name;
         this.coordinates = coordinates;
         this.creationDate = new Date();
@@ -110,6 +109,9 @@ public class Dragon implements Comparable<Dragon>, Serializable {
         else return age;
     }
 
+    /**
+     * Sets age. If age <= 0 throws exception
+     */
     public void setAge(int age) {
         if (age <= 0) throw new IncorrectDataException("Incorrect age for dragon");
         this.age = age;
@@ -159,7 +161,7 @@ public class Dragon implements Comparable<Dragon>, Serializable {
     }
 
     /**
-     * Returns id as a hash code
+     * Returns id as a hashCode
      *
      * @return id
      */

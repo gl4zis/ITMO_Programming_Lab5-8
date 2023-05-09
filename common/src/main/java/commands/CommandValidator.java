@@ -22,7 +22,7 @@ public abstract class CommandValidator {
         Dragon dragon = null;
         if (command.isHaveArgs()) {
             if (input.length != 2) throw new IncorrectInputException("Unknown command");
-            Class type = command.argClass();
+            Class type = command.getArgClass();
             arg = genArg(input[1], type);
         }
         if (command.isNeedReadDragon()) dragon = genDragon(reader, user);
@@ -67,7 +67,7 @@ public abstract class CommandValidator {
         Dragon dragon = request.dragon();
         if (command == null) return false;
         if (command.isHaveArgs()) {
-            Class type = command.argClass();
+            Class type = command.getArgClass();
             if (type == null) return false;
             if (arg == null) return false;
             if (!checkType(arg, type)) return false;

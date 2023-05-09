@@ -8,8 +8,6 @@ import general.OsUtilus;
 public abstract class StringModificator {
     /**
      * Formatting file paths to processing ~ and different slashes (\, /)
-     *
-     * @return formatted filePath
      */
     public static String filePathFormat(String filePath) {
         if (filePath.length() > 0) {
@@ -20,6 +18,11 @@ public abstract class StringModificator {
         return filePath;
     }
 
+    /**
+     * Parse homepath, depending on OS
+     *
+     * @return homepath
+     */
     private static String getHome() {
         if (OsUtilus.IsWindows()) {
             String homeDrive = System.getenv("HOMEDRIVE");

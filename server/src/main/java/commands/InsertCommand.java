@@ -16,21 +16,21 @@ import java.sql.SQLException;
  */
 public class InsertCommand extends Command {
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(InsertCommand.class);
     private final DragonCollection collection;
     private final Connection conn;
 
     /**
-     * Constructor sets database connection and dragon collection
+     * Constructor sets database connection and dragon collection, that the command works with, description of command
      */
     InsertCommand(CommandManager manager) {
-        super("insert", "insert id {dragon} : add new dragon with inputted id in the collection");
+        super("insert id {dragon} : add new dragon with inputted id in the collection");
         this.collection = manager.getCollection();
         this.conn = manager.getConn();
     }
 
     /**
-     * If there are no dragon with requested id, adds it or shows warning
+     * If there are no dragon with requested id, adds it else shows warning
      */
     @Override
     public String execute(Request request) {

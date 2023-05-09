@@ -18,7 +18,6 @@ public abstract class DateParser {
      * @param date inputted Date object, parses into string
      * @return stringDate
      */
-
     public static String dateToString(Date date) {
         Map<String, String> months = new HashMap<>();
         months.put("Jan", "01");
@@ -51,7 +50,6 @@ public abstract class DateParser {
      * @return dateObject
      * @throws ParseException if date format in inputted string is incorrect
      */
-
     public static Date stringToDate(String str) throws ParseException {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).parse(str);
     }

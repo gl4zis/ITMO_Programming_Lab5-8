@@ -21,17 +21,16 @@ public class RemoveByIdCommand extends Command {
     private final Connection conn;
 
     /**
-     * Constructor, sets collection, that the command works with, name and description of command
+     * Constructor sets collection and database connection, that the command works with, description of command
      */
     RemoveByIdCommand(CommandManager manager) {
-        super("remove_by_id", "remove_by_id id : remove an item from the collection by its id");
+        super("remove_by_id id : remove an item from the collection by its id");
         this.collection = manager.getCollection();
         this.conn = manager.getConn();
     }
 
     /**
-     * Removes dragon from the collection by its id.
-     * If there is incorrect argument or there is no dragon with such id in collection, outputs error messages
+     * Removes dragon from the collection by its id if creator of this dragon is equals to current user
      */
     @Override
     public String execute(Request request) {

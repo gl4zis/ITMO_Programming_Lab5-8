@@ -70,7 +70,7 @@ public enum CommandType implements Serializable {
     /**
      * Class of command argument. If command have no argument, returns null
      */
-    public Class argClass() {
+    public Class getArgClass() {
         return argClass;
     }
 

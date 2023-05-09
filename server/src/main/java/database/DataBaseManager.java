@@ -18,9 +18,18 @@ import java.sql.*;
 import java.text.ParseException;
 import java.util.Date;
 
+/**
+ * Do all work between database and server
+ */
 public abstract class DataBaseManager {
     private static final Logger LOGGER = LogManager.getLogger(DataBaseManager.class);
 
+    /**
+     * Uploads all dragons from saved collection from database to server
+     *
+     * @param conn       database connection
+     * @param collection new dragon collection
+     */
     public static void uploadCollection(Connection conn, DragonCollection collection) {
         String query = "SELECT * FROM dragons JOIN users ON creator = login;";
         try {
@@ -34,6 +43,14 @@ public abstract class DataBaseManager {
         }
     }
 
+    /**
+     * Parses dragon from database
+     *
+     * @param dragon resultSet of query to table 'dragons'
+     * @return new dragon object
+     * @throws SQLException   if something went wrong with connection
+     * @throws ParseException if there is wrong data in database
+     */
     private static Dragon createDragon(ResultSet dragon) throws SQLException, ParseException {
         int id = dragon.getInt("id");
         String name = dragon.getString("name");
@@ -57,6 +74,14 @@ public abstract class DataBaseManager {
         return newDragon;
     }
 
+    /**
+     * Adds new user in database (table 'users') if it's not exists yet
+     *
+     * @param conn dataBase connection
+     * @param user new user
+     * @throws LoginCollisionException if such user already in database
+     * @throws SQLException            if something went wrong with connection
+     */
     public static void addUser(Connection conn, User user) throws LoginCollisionException, SQLException {
         PreparedStatement stat = conn.prepareStatement("SELECT login FROM users WHERE login = ?");
         stat.setString(1, user.getLogin());

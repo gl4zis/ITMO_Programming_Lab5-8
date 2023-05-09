@@ -4,6 +4,7 @@ import exceptions.ExitException;
 import general.OsUtilus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import parsers.MyScanner;
 import parsers.StringModificator;
 
 import java.io.*;
@@ -14,18 +15,35 @@ import java.util.Properties;
 
 public abstract class MyBaseConnection {
     private static final Logger LOGGER = LogManager.getLogger(MyBaseConnection.class);
+    private static final MyScanner CONSOLE = new MyScanner(System.in);
 
-    public static Connection connect() {
+    public static synchronized Connection connect() {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
             LOGGER.fatal("There are no driver for postgreSQL DataBase!");
         }
+        boolean message = true;
+        while (true) {
+            try {
+                return DriverManager.getConnection(getUrl(), getInfo());
+            } catch (SQLException e) {
+                if (message)
+                    LOGGER.error("Can't connect to the data base! " + e.getMessage());
+                message = false;
+                checkExit();
+            }
+        }
+    }
+
+    private static void checkExit() {
         try {
-            return DriverManager.getConnection(getUrl(), getInfo());
-        } catch (SQLException e) {
-            LOGGER.error("Can't connect to the data base! " + e.getMessage());
-            throw new ExitException();
+            Thread.sleep(100);
+            String line = CONSOLE.checkConsole();
+            if (line != null && line.trim().equals("exit"))
+                throw new ExitException();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
     }
 

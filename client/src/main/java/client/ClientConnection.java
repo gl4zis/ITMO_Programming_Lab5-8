@@ -69,6 +69,9 @@ public class ClientConnection {
         }
     }
 
+    /**
+     * Sets current user on the client.
+     */
     public void setUser() {
         String resp;
         do {
@@ -210,12 +213,12 @@ public class ClientConnection {
         while (true) {
             try {
                 output = sendReqGetResp(CommandValidator.validCommand(line, reader, user));
+                if (!message) System.out.println();
                 break;
             } catch (UnavailableServerException e) {
                 waitingServer(message, e);
                 message = false;
             }
-            if (!message) System.out.println();
         }
         return output;
     }

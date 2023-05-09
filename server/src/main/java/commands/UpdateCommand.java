@@ -3,6 +3,7 @@ package commands;
 import collection.DragonCollection;
 import database.DataBaseManager;
 import dragons.Dragon;
+import exceptions.ExitException;
 import exceptions.PermissionDeniedException;
 import network.Request;
 import org.apache.logging.log4j.LogManager;
@@ -45,7 +46,8 @@ public class UpdateCommand extends Command {
             LOGGER.info("Dragon was updated");
             return "Dragon was updated";
         } catch (SQLException e) {
-            return "No connection with database (";
+            LOGGER.fatal("No connection with database (");
+            throw new ExitException();
         } catch (PermissionDeniedException e) {
             return "It is not your dragon! " + e.getMessage();
         }

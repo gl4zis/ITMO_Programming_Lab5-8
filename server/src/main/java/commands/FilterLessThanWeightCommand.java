@@ -32,16 +32,11 @@ public class FilterLessThanWeightCommand extends Command {
      */
     @Override
     public String execute(Request request) {
-        try {
-            long weight = (long) request.arg();
-            String output = collection.getItems().stream()
-                    .filter(p -> p.getWeight() < weight).sorted(Dragon.coordComp).map(Dragon::toString).collect(Collectors.joining(
-                            "\n----------------------------------------------------------------\n"));
-            if (output.length() > 0) return output;
-            else return "No such elements in collection";
-        } catch (ClassCastException | NullPointerException e) {
-            LOGGER.warn("Incorrect command argument");
-            return "Incorrect command argument";
-        }
+        long weight = (long) request.arg();
+        String output = collection.getItems().stream()
+                .filter(p -> p.getWeight() < weight).sorted(Dragon.coordComp).map(Dragon::toString).collect(Collectors.joining(
+                        "\n----------------------------------------------------------------\n"));
+        if (output.length() > 0) return output;
+        else return "No such elements in collection";
     }
 }

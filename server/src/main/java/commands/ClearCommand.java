@@ -2,7 +2,10 @@ package commands;
 
 import collection.DragonCollection;
 import database.DataBaseManager;
+import exceptions.ExitException;
 import network.Request;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import user.User;
 
 import java.sql.Connection;
@@ -12,8 +15,8 @@ import java.sql.SQLException;
  * Non-argument command "clear". Removes all dragons from the collection
  */
 public class ClearCommand extends Command {
+    private static final Logger LOGGER = LogManager.getLogger(ClearCommand.class);
     private final DragonCollection collection;
-
     private final Connection conn;
 
     /**
@@ -36,7 +39,8 @@ public class ClearCommand extends Command {
             collection.clear(user);
             return "Your dragons in collection was cleared";
         } catch (SQLException e) {
-            return "No connection with database (";
+            LOGGER.fatal("No connection with database (");
+            throw new ExitException();
         }
     }
 }

@@ -3,6 +3,7 @@ package commands;
 import collection.DragonCollection;
 import database.DataBaseManager;
 import dragons.Dragon;
+import exceptions.ExitException;
 import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,7 +42,8 @@ public class AddIfMinCommand extends Command {
                 dragon.setId(DataBaseManager.addDragon(conn, dragon));
                 collection.add(dragon);
             } catch (SQLException e) {
-                return "No connection with database (";
+                LOGGER.fatal("No connection with database (");
+                throw new ExitException();
             }
             LOGGER.info("New dragon successfully added in the collection");
             return "New dragon successfully added in the collection";

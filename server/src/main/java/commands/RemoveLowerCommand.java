@@ -3,6 +3,7 @@ package commands;
 import collection.DragonCollection;
 import database.DataBaseManager;
 import dragons.Dragon;
+import exceptions.ExitException;
 import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,20 +40,23 @@ public class RemoveLowerCommand extends Command {
         User user = request.user();
         StringBuilder output = new StringBuilder();
         collection.getItems().stream()
-                .filter(p -> p.compareTo(minDragon) < 0).sorted(Dragon.coordComp).forEach(p -> {
-                    try {
-                        DataBaseManager.removeDragon(conn, p, user);
-                    } catch (SQLException e) {
-                        return;
-                    }
-                    collection.remove(p);
-                    String outLine = "Removed dragon " + p.getName() + " with id: " + p.hashCode();
-                    LOGGER.info(outLine);
-                    output.append(outLine).append('\n');
-                });
+                .filter(p -> p.compareTo(minDragon) < 0).sorted(Dragon.coordComp).forEach(p -> removeDragon(p, user, output));
         if (output.length() > 0) {
             output.deleteCharAt(output.length() - 1);
             return output.toString();
         } else return "No such elements in collection";
+    }
+
+    private void removeDragon(Dragon p, User user, StringBuilder output) {
+        try {
+            DataBaseManager.removeDragon(conn, p, user);
+            collection.remove(p);
+            String outLine = "Removed dragon " + p.getName() + " with id: " + p.hashCode();
+            LOGGER.info(outLine);
+            output.append(outLine).append('\n');
+        } catch (SQLException e) {
+            LOGGER.fatal("No connection with database (");
+            throw new ExitException();
+        }
     }
 }

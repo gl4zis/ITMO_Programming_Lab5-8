@@ -1,7 +1,6 @@
 package server;
 
 import commands.CommandManager;
-import commands.CommandType;
 import commands.CommandValidator;
 import exceptions.ExitException;
 import general.OsUtilus;
@@ -12,16 +11,16 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.config.arbiters.DefaultArbiter;
-import org.junit.experimental.theories.Theories;
 import parsers.MyScanner;
 
-import javax.xml.crypto.Data;
-import java.awt.desktop.PreferencesEvent;
 import java.io.IOException;
-import java.net.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
 import java.nio.ByteBuffer;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -39,18 +38,12 @@ public class ServerConnection {
     private final Queue<Pair<DatagramPacket, Response>> responses;
     private DatagramSocket dataSock;
 
-    /**
-     * Sets command manager, using for saving collection
-     */
     public ServerConnection(CommandManager manager) {
         this.manager = manager;
         requests = new ConcurrentLinkedDeque<>();
         responses = new ConcurrentLinkedDeque<>();
     }
 
-    /**
-     * Opens socket, configure it and starts listening port
-     */
     public void open(int port) {
         try {
             Thread mainThread = Thread.currentThread();
@@ -64,6 +57,7 @@ public class ServerConnection {
             ExecutorService processPool = Executors.newCachedThreadPool();
             run(processPool);
             readPool.shutdownNow();
+            console.interrupt();
         } catch (SocketException e) {
             LOGGER.error("Something went wrong ( " + e.getMessage());
         } finally {
@@ -71,14 +65,11 @@ public class ServerConnection {
         }
     }
 
-    /**
-     * Listening port.
-     * If there are data package, unpacks request, processes it and sends response to the client
-     */
     private void run(ExecutorService processPool) {
+        Thread mainThread = Thread.currentThread();
         while (!Thread.currentThread().isInterrupted()) {
             if (!requests.isEmpty())
-                processPool.submit(this::processRequest);
+                processPool.submit(() -> processRequest(mainThread));
             if (!responses.isEmpty())
                 new Thread(this::sendReply).start();
         }
@@ -100,7 +91,7 @@ public class ServerConnection {
         }
     }
 
-    private void processRequest() {
+    private void processRequest(Thread mainThread) {
         try {
             Pair<DatagramPacket, Request> pair = requests.poll();
             Request request = pair.getRight();
@@ -111,6 +102,8 @@ public class ServerConnection {
                 response = new Response("Incorrect request!!");
             DatagramPacket dataPack = pair.getLeft();
             responses.offer(new ImmutablePair<>(dataPack, response));
+        } catch (ExitException e) {
+            mainThread.interrupt();
         } catch (NullPointerException ignored) {
         } // Just terminate thread if requests is empty (other thread already got request)
     }
@@ -128,8 +121,8 @@ public class ServerConnection {
 
     private void consoleCheck(Thread mainThread) {
         MyScanner console = new MyScanner(System.in);
-        while (true) {
-            String line = console.nextLine();
+        while (!Thread.currentThread().isInterrupted()) {
+            String line = console.checkConsole();
             if (line != null && !line.equals("")) {
                 if ("exit".equals(line)) {
                     mainThread.interrupt();
@@ -141,9 +134,6 @@ public class ServerConnection {
         }
     }
 
-    /**
-     * Sends response to the client
-     */
     private void sendResponse(ByteBuffer buffer, InetAddress host, int port) {
         int bytes;
         if (OsUtilus.IsWindows()) bytes = MAX_UDP_BYTES_WINDOWS;
@@ -168,7 +158,7 @@ public class ServerConnection {
     }
 
     /**
-     * Waiting for inputted number of nanoseconds
+     * Waiting for inputted number of milliseconds
      */
     private void wait(int ms) {
         try {

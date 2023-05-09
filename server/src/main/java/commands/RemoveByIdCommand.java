@@ -2,6 +2,7 @@ package commands;
 
 import collection.DragonCollection;
 import database.DataBaseManager;
+import exceptions.ExitException;
 import exceptions.PermissionDeniedException;
 import network.Request;
 import org.apache.logging.log4j.LogManager;
@@ -42,7 +43,8 @@ public class RemoveByIdCommand extends Command {
             LOGGER.info("Dragon was successfully removed");
             return "Dragon was successfully removed";
         } catch (SQLException e) {
-            return "No connection with database (";
+            LOGGER.fatal("No connection with database (");
+            throw new ExitException();
         } catch (PermissionDeniedException e) {
             return "It is not your dragon! " + e.getMessage();
         }

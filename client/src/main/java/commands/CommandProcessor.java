@@ -36,6 +36,11 @@ public abstract class CommandProcessor {
         }
     }
 
+    /**
+     * Executing client part of command
+     *
+     * @return response
+     */
     private static String execute(ClientConnection conn, String line, MyScanner reader) {
         try {
             return switch (line.split(" ")[0]) {
@@ -55,6 +60,12 @@ public abstract class CommandProcessor {
         }
     }
 
+    /**
+     * Hashes password and requests to change it on database
+     *
+     * @param line commandline(change_password newPassword)
+     * @return response
+     */
     private static String changePasswd(ClientConnection conn, String line) {
         try {
             String passwd = line.split(" ")[1];
@@ -68,6 +79,12 @@ public abstract class CommandProcessor {
         }
     }
 
+    /**
+     * Add dragon with inputted id
+     *
+     * @param line commandline (insert id)
+     * @return response
+     */
     private static String insert(ClientConnection conn, String line, MyScanner reader) {
         String find = "find" + line.substring(6);
         String output = conn.sendReqGetResp(find, CONSOLE);
@@ -76,6 +93,9 @@ public abstract class CommandProcessor {
         } else return "Dragon with this id already exists";
     }
 
+    /**
+     * Sets new current user on the client
+     */
     private static String signOut(ClientConnection conn) {
         LOGGER.info("User was signed out");
         conn.setUser();

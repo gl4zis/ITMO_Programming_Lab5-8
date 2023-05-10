@@ -19,7 +19,7 @@ import java.sql.SQLException;
 public class RemoveGreaterCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(RemoveGreaterCommand.class);
     private final DragonCollection collection;
-    private final Connection conn;
+    private final DataBaseManager baseMan;
 
     /**
      * Constructor sets collection and database connection, that the command works with, description of command
@@ -27,7 +27,7 @@ public class RemoveGreaterCommand extends Command {
     RemoveGreaterCommand(CommandManager manager) {
         super("remove_greater {dragon} : remove from the collection all items exceeding the specified");
         this.collection = manager.getCollection();
-        this.conn = manager.getConn();
+        this.baseMan = manager.getBaseMan();
     }
 
     /**
@@ -57,7 +57,7 @@ public class RemoveGreaterCommand extends Command {
      */
     private void removeDragon(Dragon p, User user, StringBuilder output) {
         try {
-            DataBaseManager.removeDragon(conn, p, user);
+            baseMan.removeDragon(p, user);
             collection.remove(p);
             String outLine = "Removed dragon " + p.getName() + " with id: " + p.hashCode();
             LOGGER.info(outLine);

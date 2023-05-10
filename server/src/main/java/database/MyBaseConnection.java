@@ -15,7 +15,6 @@ import java.util.Properties;
 
 public abstract class MyBaseConnection {
     private static final Logger LOGGER = LogManager.getLogger(MyBaseConnection.class);
-    private static final MyScanner CONSOLE = new MyScanner(System.in);
 
     /**
      * Do connection with my database, using JDBC PostgreSQL
@@ -43,7 +42,7 @@ public abstract class MyBaseConnection {
     private static void checkExit() {
         try {
             Thread.sleep(100);
-            String line = CONSOLE.checkConsole();
+            String line = new MyScanner(System.in).checkConsole();
             if (line != null && line.trim().equals("exit"))
                 throw new ExitException();
         } catch (InterruptedException e) {

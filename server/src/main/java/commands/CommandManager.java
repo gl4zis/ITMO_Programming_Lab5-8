@@ -1,6 +1,7 @@
 package commands;
 
 import collection.DragonCollection;
+import database.DataBaseManager;
 import network.Request;
 
 import java.lang.reflect.InvocationTargetException;
@@ -15,15 +16,15 @@ import java.util.Map;
  */
 public class CommandManager {
     private final DragonCollection collection;
-    private final Connection baseConn;
+    private final DataBaseManager baseMan;
     private Map<String, Command> commands;
 
     /**
      * Constructor, sets database Connection and DragonCollection with which commands will work
      */
-    public CommandManager(Connection baseConn, DragonCollection collection) {
+    public CommandManager(DataBaseManager baseMan, DragonCollection collection) {
         this.collection = collection;
-        this.baseConn = baseConn;
+        this.baseMan = baseMan;
         addAllCommands();
     }
 
@@ -56,7 +57,7 @@ public class CommandManager {
      * @param name command name for parsing
      * @return name of this command class
      */
-    private String parseCommandName(String name) {
+    private static String parseCommandName(String name) {
         char[] letters = name.toCharArray();
         char lastLetter = ' ';
         StringBuilder className = new StringBuilder("commands.");
@@ -91,7 +92,7 @@ public class CommandManager {
         return collection;
     }
 
-    public Connection getConn() {
-        return baseConn;
+    public DataBaseManager getBaseMan() {
+        return baseMan;
     }
 }

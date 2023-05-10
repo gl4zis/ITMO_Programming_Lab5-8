@@ -18,7 +18,7 @@ public class InsertCommand extends Command {
 
     private static final Logger LOGGER = LogManager.getLogger(InsertCommand.class);
     private final DragonCollection collection;
-    private final Connection conn;
+    private final DataBaseManager baseMan;
 
     /**
      * Constructor sets database connection and dragon collection, that the command works with, description of command
@@ -26,7 +26,7 @@ public class InsertCommand extends Command {
     InsertCommand(CommandManager manager) {
         super("insert id {dragon} : add new dragon with inputted id in the collection");
         this.collection = manager.getCollection();
-        this.conn = manager.getConn();
+        this.baseMan = manager.getBaseMan();
     }
 
     /**
@@ -40,7 +40,7 @@ public class InsertCommand extends Command {
         if (collection.checkId(id))
             return "Dragon with this id already in collection";
         try {
-            DataBaseManager.insertDragon(conn, dragon);
+            baseMan.insertDragon(dragon);
             collection.add(dragon);
             LOGGER.debug("New dragon successfully added in collection");
             return "New dragon successfully added in collection";

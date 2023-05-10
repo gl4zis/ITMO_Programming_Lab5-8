@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class RemoveByIdCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(RemoveByIdCommand.class);
     private final DragonCollection collection;
-    private final Connection conn;
+    private final DataBaseManager baseMan;
 
     /**
      * Constructor sets collection and database connection, that the command works with, description of command
@@ -26,7 +26,7 @@ public class RemoveByIdCommand extends Command {
     RemoveByIdCommand(CommandManager manager) {
         super("remove_by_id id : remove an item from the collection by its id");
         this.collection = manager.getCollection();
-        this.conn = manager.getConn();
+        this.baseMan = manager.getBaseMan();
     }
 
     /**
@@ -37,7 +37,7 @@ public class RemoveByIdCommand extends Command {
         int id = (int) request.arg();
         User user = request.user();
         try {
-            DataBaseManager.removeById(conn, id, user);
+            baseMan.removeById(id, user);
             collection.remove(collection.find(id));
             LOGGER.info("Dragon was successfully removed");
             return "Dragon was successfully removed";

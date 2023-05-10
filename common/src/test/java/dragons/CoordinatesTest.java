@@ -13,6 +13,8 @@ class CoordinatesTest {
     void setUp() {
         OO = new Coordinates(0, 0);
         coords = new Coordinates(3, 4);
+        assertEquals(3, coords.getX());
+        assertEquals(4, coords.getY());
     }
 
     @Test

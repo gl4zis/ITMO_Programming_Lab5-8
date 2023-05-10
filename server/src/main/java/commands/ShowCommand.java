@@ -32,6 +32,6 @@ public class ShowCommand extends Command {
                 .sorted(Dragon.coordComp).map(Dragon::toString).collect(Collectors.joining(
                         "\n----------------------------------------------------------------\n"));
         if (output.length() > 0) return output;
-        else return "No such elements in collection";
+        else return "Collection is empty";
     }
 }

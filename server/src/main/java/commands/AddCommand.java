@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class AddCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(AddCommand.class);
     private final DragonCollection collection;
-    private final Connection conn;
+    private final DataBaseManager baseMan;
 
     /**
      * Constructor sets collection and database connection, that the command works with, description of command
@@ -26,7 +26,7 @@ public class AddCommand extends Command {
     AddCommand(CommandManager manager) {
         super("add {dragon} : add a new item to the collection");
         this.collection = manager.getCollection();
-        this.conn = manager.getConn();
+        this.baseMan = manager.getBaseMan();
     }
 
     /**
@@ -36,7 +36,7 @@ public class AddCommand extends Command {
     public String execute(Request request) {
         Dragon dragon = request.dragon();
         try {
-            dragon.setId(DataBaseManager.addDragon(conn, dragon));
+            dragon.setId(baseMan.addDragon(dragon));
             collection.add(dragon);
         } catch (SQLException e) {
             LOGGER.fatal("No connection with database (");

@@ -38,6 +38,10 @@ public class DragonCollection {
         collection.add(dragon);
     }
 
+    /**
+     * @param id that you want to check
+     * @return true if dragon with this id in the collection
+     */
     public boolean checkId(int id) {
         return idList.contains(id);
     }
@@ -73,7 +77,9 @@ public class DragonCollection {
     }
 
     /**
-     * Removes all objects from collection
+     * Removes all objects, created by current user from collection
+     *
+     * @param user current user
      */
     public void clear(User user) {
         int dragonCount = 0;

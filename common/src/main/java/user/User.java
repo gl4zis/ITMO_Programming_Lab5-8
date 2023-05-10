@@ -12,7 +12,6 @@ import java.security.NoSuchAlgorithmException;
  * Don't save non-hashed password
  */
 public class User implements Serializable {
-    private static final MyScanner CONSOLE = new MyScanner(System.in);
     private final String login;
     private String hashedPasswd;
 
@@ -30,15 +29,16 @@ public class User implements Serializable {
      * @return user
      */
     public static User authorize() {
+        MyScanner console = new MyScanner(System.in);
         String login;
         do {
             System.out.print("Enter login: ");
-            login = CONSOLE.nextLine();
+            login = console.nextLine();
             if (login.matches("\\w+")) break;
             System.out.println("You can use only a-z, A-Z, 0-9 and _ in the login");
         } while (true);
         System.out.print("Enter password: ");
-        String passwd = CONSOLE.nextLine();
+        String passwd = console.nextLine();
         return signUp(login, passwd);
     }
 

@@ -4,50 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="debug with database connection">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/commands/CommandType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/commands/CommandType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/commands/CommandValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/commands/CommandValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/exceptions/ExitException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/exceptions/ExitException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/exceptions/LoginCollisionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/exceptions/LoginCollisionException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/exceptions/NoSuchUserException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/exceptions/NoSuchUserException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/exceptions/PermissionDeniedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/exceptions/PermissionDeniedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/exceptions/UnavailableServerException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/exceptions/UnavailableServerException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/exceptions/WrongPasswordException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/exceptions/WrongPasswordException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/general/OsUtilus.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/general/OsUtilus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/general/UniqueIdGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/network/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/network/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/DateParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/DateParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/MyScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/MyScanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/StringModificator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/StringModificator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/test/java/general/UniqueIdGeneratorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AddCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AddIfMinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AddIfMinCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/AverageOfWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/AverageOfWeightCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ChangePasswordCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ChangePasswordCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ClearCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/FilterLessThanWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/FilterLessThanWeightCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/FindCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/FindCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/HelpCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/InfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/InfoCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/InsertCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/InsertCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/MinByAgeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/MinByAgeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/PingCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/PingCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveByIdCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveGreaterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveLowerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveLowerCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/ShowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/ShowCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/SignInCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/SignInCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/SignUpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/SignUpCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/UpdateCommand.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="reworked DataBaseManager class">
+      <change afterPath="$PROJECT_DIR$/common/src/test/java/user/UserTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/commands/CommandManagerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/commands/CommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/database/DataBaseManagerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/database/MyBaseConnectionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/test/java/parsers/ScriptParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/parsers/ScriptParserTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/database/MyBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database/MyBaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,9 +63,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
         <option value="Interface" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -164,18 +128,13 @@
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="commands" />
+      <recent name="database" />
+      <recent name="user" />
       <recent name="collection" />
       <recent name="server" />
-      <recent name="parsers" />
-      <recent name="general" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.build">
-    <configuration default="true" type="Application" factoryName="Application">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.client">
     <configuration name="client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.Main" />
       <module name="lab5-8.client.main" />
@@ -194,7 +153,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ScriptParserTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CommandManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -205,9 +164,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":client:test" />
+            <option value=":server:test" />
             <option value="--tests" />
-            <option value="&quot;parsers.ScriptParserTest&quot;" />
+            <option value="&quot;commands.CommandManagerTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -217,7 +176,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="Tests in 'lab5-8.common.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CommandTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -228,7 +187,78 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":common:test" />
+            <option value=":server:test" />
+            <option value="--tests" />
+            <option value="&quot;commands.CommandTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="DataBaseManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":server:test" />
+            <option value="--tests" />
+            <option value="&quot;database.DataBaseManagerTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="DataBaseManagerTest.addUser" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":server:test" />
+            <option value="--tests" />
+            <option value="&quot;database.DataBaseManagerTest.addUser&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="MyBaseConnectionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":server:test" />
+            <option value="--tests" />
+            <option value="&quot;database.MyBaseConnectionTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -264,17 +294,28 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="nim.task.build.to.cache" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.server" />
       <item itemvalue="Application.client" />
       <item itemvalue="Gradle.build" />
-      <item itemvalue="Gradle.ScriptParserTest" />
-      <item itemvalue="Gradle.Tests in 'lab5-8.common.test'" />
+      <item itemvalue="Gradle.CommandManagerTest" />
+      <item itemvalue="Gradle.CommandTest" />
+      <item itemvalue="Gradle.DataBaseManagerTest" />
+      <item itemvalue="Gradle.DataBaseManagerTest.addUser" />
+      <item itemvalue="Gradle.MyBaseConnectionTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Tests in 'lab5-8.common.test'" />
-        <item itemvalue="Gradle.ScriptParserTest" />
+        <item itemvalue="Gradle.CommandTest" />
+        <item itemvalue="Gradle.CommandManagerTest" />
+        <item itemvalue="Gradle.DataBaseManagerTest" />
+        <item itemvalue="Gradle.DataBaseManagerTest.addUser" />
+        <item itemvalue="Gradle.MyBaseConnectionTest" />
       </list>
     </recent_temporary>
   </component>
@@ -286,20 +327,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00044" summary="fixed bugs in execute_script command with file paths formatting">
-      <created>1679141761804</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1679141761804</updated>
-    </task>
-    <task id="LOCAL-00045" summary="added logging and translated into english">
-      <created>1679249708756</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1679249708756</updated>
     </task>
     <task id="LOCAL-00046" summary="micro debug">
       <created>1679251389116</created>
@@ -630,7 +657,21 @@
       <option name="project" value="LOCAL" />
       <updated>1683637620546</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="javaDoc with micro debug">
+      <created>1683645396211</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1683645396211</updated>
+    </task>
+    <task id="LOCAL-00094" summary="reworked DataBaseManager class">
+      <created>1683699180411</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1683699180411</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -658,8 +699,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="reworked commands, using stream API" />
-    <MESSAGE value="command argument validating on the client" />
     <MESSAGE value="execute_script realization" />
     <MESSAGE value="reworked processing commands on client" />
     <MESSAGE value="added logger" />
@@ -683,7 +722,9 @@
     <MESSAGE value="auto-generating hasMap in CommandManager" />
     <MESSAGE value="micro debug with execute_script" />
     <MESSAGE value="debug with database connection" />
-    <option name="LAST_COMMIT_MESSAGE" value="debug with database connection" />
+    <MESSAGE value="javaDoc with micro debug" />
+    <MESSAGE value="reworked DataBaseManager class" />
+    <option name="LAST_COMMIT_MESSAGE" value="reworked DataBaseManager class" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -701,25 +742,28 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/lab5_8$CommandTest.ic" NAME="CommandTest Coverage Results" MODIFIED="1683671982433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$AverageOfWeightCommandTest.ic" NAME="AverageOfWeightCommandTest Coverage Results" MODIFIED="1682459615871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$DateParserTest.ic" NAME="DateParserTest Coverage Results" MODIFIED="1682446780151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$MyScannerTest.ic" NAME="MyScannerTest Coverage Results" MODIFIED="1682449137612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/lab5_8$ScriptParserTest.ic" NAME="ScriptParserTest Coverage Results" MODIFIED="1682451583891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$JsonManagerTest.ic" NAME="JsonManagerTest Coverage Results" MODIFIED="1682496856830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/lab5_8$CommandValidatorTest.ic" NAME="CommandValidatorTest Coverage Results" MODIFIED="1682455611276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$ScriptParserTest.ic" NAME="ScriptParserTest Coverage Results" MODIFIED="1683660199654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$CommandValidatorTest.ic" NAME="CommandValidatorTest Coverage Results" MODIFIED="1683658119200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$MinByAgeCommandTest.ic" NAME="MinByAgeCommandTest Coverage Results" MODIFIED="1682493907368" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$UpdateCommandTest.ic" NAME="UpdateCommandTest Coverage Results" MODIFIED="1682495210474" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$CoordinatesTest.ic" NAME="CoordinatesTest Coverage Results" MODIFIED="1682446349903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/lab5_8$DragonCollectionTest.ic" NAME="DragonCollectionTest Coverage Results" MODIFIED="1682456849002" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$DragonCollectionTest.ic" NAME="DragonCollectionTest Coverage Results" MODIFIED="1683663030538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$RemoveLowerCommandTest.ic" NAME="RemoveLowerCommandTest Coverage Results" MODIFIED="1682494591403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$FindCommandTest.ic" NAME="FindCommandTest Coverage Results" MODIFIED="1682493223112" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$PingCommandTest.ic" NAME="PingCommandTest Coverage Results" MODIFIED="1682494068030" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$AddCommandTest.ic" NAME="AddCommandTest Coverage Results" MODIFIED="1682459270886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$FilterLessThanWeightCommandTest.ic" NAME="FilterLessThanWeightCommandTest Coverage Results" MODIFIED="1682492944229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$MyBaseConnectionTest.ic" NAME="MyBaseConnectionTest Coverage Results" MODIFIED="1683665732270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$UserTest.ic" NAME="UserTest Coverage Results" MODIFIED="1683658768162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$StringModificatorTest.ic" NAME="StringModificatorTest Coverage Results" MODIFIED="1682447074359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$ClearCommandTest.ic" NAME="ClearCommandTest Coverage Results" MODIFIED="1682459712321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$AddIfMinCommandTest.ic" NAME="AddIfMinCommandTest Coverage Results" MODIFIED="1682459360474" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_common_test_.ic" NAME="Tests in 'lab5-8.common.test' Coverage Results" MODIFIED="1682497913244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_common_test_.ic" NAME="Tests in 'lab5-8.common.test' Coverage Results" MODIFIED="1683660180143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_client_test_.ic" NAME="Tests in 'lab5-8.client.test' Coverage Results" MODIFIED="1682497873326" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$OsUtilusTest.ic" NAME="OsUtilusTest Coverage Results" MODIFIED="1682447215402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$RemoveByIdCommandTest.ic" NAME="RemoveByIdCommandTest Coverage Results" MODIFIED="1682494204206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
@@ -728,8 +772,9 @@
     <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_server_test_.ic" NAME="Tests in 'lab5-8.server.test' Coverage Results" MODIFIED="1682455654549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$RemoveGreaterCommandTest.ic" NAME="RemoveGreaterCommandTest Coverage Results" MODIFIED="1682494467379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$ShowCommandTest.ic" NAME="ShowCommandTest Coverage Results" MODIFIED="1682494950667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/lab5_8$DragonTest.ic" NAME="DragonTest Coverage Results" MODIFIED="1682446147230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$DragonTest.ic" NAME="DragonTest Coverage Results" MODIFIED="1683658450928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$InfoCommandTest.ic" NAME="InfoCommandTest Coverage Results" MODIFIED="1682493788257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$DataBaseManagerTest.ic" NAME="DataBaseManagerTest Coverage Results" MODIFIED="1683669002134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$HelpCommandTest.ic" NAME="HelpCommandTest Coverage Results" MODIFIED="1682493673520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$ServerCommandTest.ic" NAME="ServerCommandTest Coverage Results" MODIFIED="1682453428696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$DragonHeadTest.ic" NAME="DragonHeadTest Coverage Results" MODIFIED="1682446554691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -20,7 +20,7 @@ import java.sql.SQLException;
 public class UpdateCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(UpdateCommand.class);
     private final DragonCollection collection;
-    private final Connection conn;
+    private final DataBaseManager baseMan;
 
     /**
      * Constructor sets collection and database connection, that the command works with, description of command
@@ -29,7 +29,7 @@ public class UpdateCommand extends Command {
         super("update id {element} : " +
                 "update the value of the collection item whose id is equal to the given one");
         this.collection = manager.getCollection();
-        this.conn = manager.getConn();
+        this.baseMan = manager.getBaseMan();
     }
 
     /**
@@ -44,7 +44,7 @@ public class UpdateCommand extends Command {
             int id = (int) request.arg();
             User user = request.user();
             Dragon dragon = collection.find(id);
-            DataBaseManager.updateDragon(conn, id, request.dragon(), user);
+            baseMan.updateDragon(id, request.dragon(), user);
             dragon.update(request.dragon());
             LOGGER.info("Dragon was updated");
             return "Dragon was updated";

@@ -33,14 +33,15 @@ public class Main {
         try {
             DragonCollection collection = new DragonCollection();
             Connection baseConn = MyBaseConnection.connect();
-            DataBaseManager.uploadCollection(baseConn, collection);
-            CommandManager manager = new CommandManager(baseConn, collection);
+            DataBaseManager baseMan = new DataBaseManager(baseConn);
+            baseMan.uploadCollection(collection);
+            CommandManager manager = new CommandManager(baseMan, collection);
 
             int port = 9812;
             ServerConnection con = new ServerConnection(manager);
             LOGGER.info("Waiting connection on port: " + port);
             con.open(port);
-
+            baseConn.close();
         } catch (Throwable e) {
             LOGGER.fatal("Something very strange happened =0 " + e.getMessage());
             LOGGER.debug("Incorrect exit (server crashed)");

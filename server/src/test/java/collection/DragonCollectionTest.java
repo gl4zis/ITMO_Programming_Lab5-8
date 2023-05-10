@@ -19,7 +19,7 @@ class DragonCollectionTest {
     @BeforeEach
     void init() {
         collection = new DragonCollection();
-        dragon = new Dragon(1, "name", new Coordinates(6, 5), new Date(), 3, Color.RED, DragonCharacter.WISE, new DragonHead(0), User.signIn("admin", "d8578edf8458ce06fbc5bb76a58c5ca4"));
+        dragon = new Dragon(1, "name", new Coordinates(6, 5), new Date(), 3, Color.RED, DragonCharacter.WISE, new DragonHead(0), User.signUp("admin", "qwerty"));
     }
 
     @Test
@@ -51,12 +51,14 @@ class DragonCollectionTest {
         assertEquals(1, collection.getMaxId());
     }
 
-    /*@Test
+    @Test
     void clear() {
         collection.add(dragon);
-        collection.clear();
+        assertTrue(collection.checkId(1));
+        assertFalse(collection.checkId(2));
+        collection.clear(User.signUp("admin", "qwerty"));
         assertEquals(0, collection.getItems().size());
-    }*/
+    }
 
     @Test
     void getAverageWeight() {

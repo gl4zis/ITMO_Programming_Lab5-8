@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class RemoveLowerCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(RemoveLowerCommand.class);
     private final DragonCollection collection;
-    private final Connection conn;
+    private final DataBaseManager baseMan;
 
     /**
      * Constructor sets collection and database connection, that the command works with, description of command
@@ -26,7 +26,7 @@ public class RemoveLowerCommand extends Command {
     RemoveLowerCommand(CommandManager manager) {
         super("remove_lower {dragon} : remove all items from the collection that are smaller than the specified");
         this.collection = manager.getCollection();
-        this.conn = manager.getConn();
+        this.baseMan = manager.getBaseMan();
     }
 
     /**
@@ -56,7 +56,7 @@ public class RemoveLowerCommand extends Command {
      */
     private void removeDragon(Dragon p, User user, StringBuilder output) {
         try {
-            DataBaseManager.removeDragon(conn, p, user);
+            baseMan.removeDragon(p, user);
             collection.remove(p);
             String outLine = "Removed dragon " + p.getName() + " with id: " + p.hashCode();
             LOGGER.info(outLine);

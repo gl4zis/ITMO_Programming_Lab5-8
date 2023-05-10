@@ -15,14 +15,14 @@ import java.sql.SQLException;
  */
 public class ChangePasswordCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(ChangePasswordCommand.class);
-    private final Connection conn;
+    private final DataBaseManager baseMan;
 
     /**
      * Constructor sets database connection, that the command works with, description of command
      */
     ChangePasswordCommand(CommandManager manager) {
         super("change_password password : changes password on your account");
-        this.conn = manager.getConn();
+        this.baseMan = manager.getBaseMan();
     }
 
     /**
@@ -33,7 +33,7 @@ public class ChangePasswordCommand extends Command {
         try {
             User user = request.user();
             String passwd = (String) request.arg();
-            DataBaseManager.changePasswd(conn, user, passwd);
+            baseMan.changePasswd(user, passwd);
             return "Password was changed";
         } catch (SQLException e) {
             LOGGER.fatal("No connection with database (");

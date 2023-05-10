@@ -17,14 +17,14 @@ import java.sql.SQLException;
  */
 public class SignInCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(SignInCommand.class);
-    private final Connection baseConn;
+    private final DataBaseManager baseMan;
 
     /**
      * Constructor sets database connection, that the command works with
      */
     SignInCommand(CommandManager manager) {
         super("");
-        this.baseConn = manager.getConn();
+        this.baseMan = manager.getBaseMan();
     }
 
     /**
@@ -36,7 +36,7 @@ public class SignInCommand extends Command {
     public String execute(Request request) {
         User user = request.user();
         try {
-            DataBaseManager.signInUser(baseConn, user);
+            baseMan.signInUser(user);
             return "User was signed in";
         } catch (SQLException e) {
             LOGGER.fatal("No connection with database (");

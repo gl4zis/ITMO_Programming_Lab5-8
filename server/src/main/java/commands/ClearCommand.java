@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class ClearCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(ClearCommand.class);
     private final DragonCollection collection;
-    private final Connection conn;
+    private final DataBaseManager baseMan;
 
     /**
      * Constructor sets collection and database connection, that the command works with, description of command
@@ -25,7 +25,7 @@ public class ClearCommand extends Command {
     ClearCommand(CommandManager manager) {
         super("clear : clear the collection (delete all your dragons)");
         this.collection = manager.getCollection();
-        this.conn = manager.getConn();
+        this.baseMan = manager.getBaseMan();
     }
 
     /**
@@ -35,7 +35,7 @@ public class ClearCommand extends Command {
     public String execute(Request request) {
         User user = request.user();
         try {
-            DataBaseManager.clearDragons(conn, user);
+            baseMan.clearDragons(user);
             collection.clear(user);
             return "Your dragons in collection was cleared";
         } catch (SQLException e) {

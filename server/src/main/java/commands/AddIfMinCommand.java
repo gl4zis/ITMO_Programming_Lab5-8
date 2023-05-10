@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class AddIfMinCommand extends Command {
     private static final Logger LOGGER = LogManager.getLogger(AddIfMinCommand.class);
     private final DragonCollection collection;
-    private final Connection conn;
+    private final DataBaseManager baseMan;
 
     /**
      * Constructor sets collection and database connection, that the command works with, description of command
@@ -26,7 +26,7 @@ public class AddIfMinCommand extends Command {
         super("add_if_min {dragon} : " +
                 "add a new item to the collection if its value is smaller than the smallest item in the collection");
         this.collection = manager.getCollection();
-        this.conn = manager.getConn();
+        this.baseMan = manager.getBaseMan();
     }
 
     /**
@@ -36,18 +36,16 @@ public class AddIfMinCommand extends Command {
     public String execute(Request request) {
         Dragon dragon = request.dragon();
         Dragon minDragon = collection.getMinDragon();
-        if (minDragon == null || collection.getMinDragon().compareTo(dragon) > 0) {
-            try {
-                dragon.setId(DataBaseManager.addDragon(conn, dragon));
-                collection.add(dragon);
-            } catch (SQLException e) {
-                LOGGER.fatal("No connection with database (");
-                throw new ExitException();
-            }
-            LOGGER.info("New dragon successfully added in the collection");
-            return "New dragon successfully added in the collection";
-        } else {
+        if (minDragon != null && minDragon.compareTo(dragon) <= 0)
             return "Object is not minimal";
+        try {
+            dragon.setId(baseMan.addDragon(dragon));
+            collection.add(dragon);
+        } catch (SQLException e) {
+            LOGGER.fatal("No connection with database (");
+            throw new ExitException();
         }
+        LOGGER.info("New dragon successfully added in the collection");
+        return "New dragon successfully added in the collection";
     }
 }

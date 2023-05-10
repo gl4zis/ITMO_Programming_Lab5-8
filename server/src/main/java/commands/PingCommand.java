@@ -27,8 +27,8 @@ public class PingCommand extends Command {
         try {
             host = InetAddress.getLocalHost();
             return "Connected to server: " + host;
-        } catch (UnknownHostException ignored) {
+        } catch (UnknownHostException e) {
+            return "Connected to server";
         }
-        return "Connected to server";
     }
 }

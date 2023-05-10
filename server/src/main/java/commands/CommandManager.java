@@ -5,7 +5,6 @@ import database.DataBaseManager;
 import network.Request;
 
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,25 +25,6 @@ public class CommandManager {
         this.collection = collection;
         this.baseMan = baseMan;
         addAllCommands();
-    }
-
-    /**
-     * Creates objects of all commands and adds it to the HashMap (commandName, command).
-     * Constructor of command class need to get only CommandManager !!
-     */
-    @SuppressWarnings("unchecked")
-    private void addAllCommands() {
-        commands = new HashMap<>();
-        for (CommandType type : CommandType.values()) {
-            String className = parseCommandName(type.getName());
-            try {
-                Class<? extends Command> commandClass = (Class<? extends Command>) Class.forName(className);
-                Command command = commandClass.getDeclaredConstructor(CommandManager.class).newInstance(this);
-                commands.put(type.getName(), command);
-            } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
-                     InvocationTargetException ignored) {
-            }
-        }
     }
 
     /**
@@ -71,6 +51,25 @@ public class CommandManager {
         }
         className.append("Command");
         return className.toString();
+    }
+
+    /**
+     * Creates objects of all commands and adds it to the HashMap (commandName, command).
+     * Constructor of command class need to get only CommandManager !!
+     */
+    @SuppressWarnings("unchecked")
+    private void addAllCommands() {
+        commands = new HashMap<>();
+        for (CommandType type : CommandType.values()) {
+            String className = parseCommandName(type.getName());
+            try {
+                Class<? extends Command> commandClass = (Class<? extends Command>) Class.forName(className);
+                Command command = commandClass.getDeclaredConstructor(CommandManager.class).newInstance(this);
+                commands.put(type.getName(), command);
+            } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
+                     InvocationTargetException ignored) {
+            }
+        }
     }
 
     /**

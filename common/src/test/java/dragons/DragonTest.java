@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DragonTest {
 
+    private static User user;
     private Dragon dragon1;
     private Dragon dragon2;
-    private static User user;
 
     @BeforeAll
     static void checkConstructors() {

@@ -9,7 +9,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import user.User;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
@@ -36,6 +35,8 @@ public class RemoveByIdCommand extends Command {
     public String execute(Request request) {
         int id = (int) request.arg();
         User user = request.user();
+        if (!collection.checkId(id))
+            return "No such dragon in collection";
         try {
             baseMan.removeById(id, user);
             collection.remove(collection.find(id));

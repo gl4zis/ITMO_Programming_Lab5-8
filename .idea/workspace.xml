@@ -10,8 +10,11 @@
       <change afterPath="$PROJECT_DIR$/server/src/test/java/commands/CommandTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/server/src/test/java/database/DataBaseManagerTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/server/src/test/java/database/MyBaseConnectionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/test/java/parsers/ScriptParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/parsers/ScriptParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/PingCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/PingCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/RemoveByIdCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +137,7 @@
       <recent name="server" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.client">
+  <component name="RunManager" selected="Gradle.build">
     <configuration name="client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.Main" />
       <module name="lab5-8.client.main" />
@@ -199,7 +202,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="DataBaseManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'lab5-8.client.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -210,9 +213,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":server:test" />
-            <option value="--tests" />
-            <option value="&quot;database.DataBaseManagerTest&quot;" />
+            <option value=":client:test" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -222,7 +223,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="DataBaseManagerTest.addUser" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'lab5-8.common.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -233,9 +234,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":server:test" />
-            <option value="--tests" />
-            <option value="&quot;database.DataBaseManagerTest.addUser&quot;" />
+            <option value=":common:test" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -245,7 +244,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="MyBaseConnectionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'lab5-8.server.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -257,8 +256,6 @@
         <option name="taskNames">
           <list>
             <option value=":server:test" />
-            <option value="--tests" />
-            <option value="&quot;database.MyBaseConnectionTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -305,17 +302,17 @@
       <item itemvalue="Gradle.build" />
       <item itemvalue="Gradle.CommandManagerTest" />
       <item itemvalue="Gradle.CommandTest" />
-      <item itemvalue="Gradle.DataBaseManagerTest" />
-      <item itemvalue="Gradle.DataBaseManagerTest.addUser" />
-      <item itemvalue="Gradle.MyBaseConnectionTest" />
+      <item itemvalue="Gradle.Tests in 'lab5-8.client.test'" />
+      <item itemvalue="Gradle.Tests in 'lab5-8.server.test'" />
+      <item itemvalue="Gradle.Tests in 'lab5-8.common.test'" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Tests in 'lab5-8.server.test'" />
+        <item itemvalue="Gradle.Tests in 'lab5-8.common.test'" />
+        <item itemvalue="Gradle.Tests in 'lab5-8.client.test'" />
         <item itemvalue="Gradle.CommandTest" />
         <item itemvalue="Gradle.CommandManagerTest" />
-        <item itemvalue="Gradle.DataBaseManagerTest" />
-        <item itemvalue="Gradle.DataBaseManagerTest.addUser" />
-        <item itemvalue="Gradle.MyBaseConnectionTest" />
       </list>
     </recent_temporary>
   </component>
@@ -327,13 +324,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00046" summary="micro debug">
-      <created>1679251389116</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1679251389116</updated>
     </task>
     <task id="LOCAL-00047" summary="micro debug">
       <created>1679251563492</created>
@@ -671,7 +661,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683699180411</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="reworked DataBaseManager class">
+      <created>1683699276042</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1683699276042</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -742,7 +739,7 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/lab5_8$CommandTest.ic" NAME="CommandTest Coverage Results" MODIFIED="1683671982433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$CommandTest.ic" NAME="CommandTest Coverage Results" MODIFIED="1683700569088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$AverageOfWeightCommandTest.ic" NAME="AverageOfWeightCommandTest Coverage Results" MODIFIED="1682459615871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$DateParserTest.ic" NAME="DateParserTest Coverage Results" MODIFIED="1682446780151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$MyScannerTest.ic" NAME="MyScannerTest Coverage Results" MODIFIED="1682449137612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
@@ -763,14 +760,14 @@
     <SUITE FILE_PATH="coverage/lab5_8$StringModificatorTest.ic" NAME="StringModificatorTest Coverage Results" MODIFIED="1682447074359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$ClearCommandTest.ic" NAME="ClearCommandTest Coverage Results" MODIFIED="1682459712321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$AddIfMinCommandTest.ic" NAME="AddIfMinCommandTest Coverage Results" MODIFIED="1682459360474" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_common_test_.ic" NAME="Tests in 'lab5-8.common.test' Coverage Results" MODIFIED="1683660180143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_client_test_.ic" NAME="Tests in 'lab5-8.client.test' Coverage Results" MODIFIED="1682497873326" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_common_test_.ic" NAME="Tests in 'lab5-8.common.test' Coverage Results" MODIFIED="1683703691867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_client_test_.ic" NAME="Tests in 'lab5-8.client.test' Coverage Results" MODIFIED="1683703682490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$OsUtilusTest.ic" NAME="OsUtilusTest Coverage Results" MODIFIED="1682447215402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$RemoveByIdCommandTest.ic" NAME="RemoveByIdCommandTest Coverage Results" MODIFIED="1682494204206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$client.ic" NAME="client Coverage Results" MODIFIED="1682764920174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$UniqueIdGeneratorTest.ic" NAME="UniqueIdGeneratorTest Coverage Results" MODIFIED="1682447280882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_server_test_.ic" NAME="Tests in 'lab5-8.server.test' Coverage Results" MODIFIED="1682455654549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$RemoveGreaterCommandTest.ic" NAME="RemoveGreaterCommandTest Coverage Results" MODIFIED="1682494467379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_server_test_.ic" NAME="Tests in 'lab5-8.server.test' Coverage Results" MODIFIED="1683703700838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$ShowCommandTest.ic" NAME="ShowCommandTest Coverage Results" MODIFIED="1682494950667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$DragonTest.ic" NAME="DragonTest Coverage Results" MODIFIED="1683658450928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$InfoCommandTest.ic" NAME="InfoCommandTest Coverage Results" MODIFIED="1682493788257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

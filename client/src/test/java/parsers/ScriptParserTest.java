@@ -22,7 +22,7 @@ class ScriptParserTest {
             temp = new File("C:/Windows/Temp/testFile.txt");
             temp.createNewFile();
             FileOutputStream out = new FileOutputStream(temp);
-            out.write("line1 //Comment\r\nline2\r\n\r\nline3 //Comment".getBytes());
+            out.write("line1 //Comment\r\nline2\r\n      \r\n\nline3 //Comment".getBytes());
             out.close();
         } catch (IOException ignored) {
         }

@@ -51,7 +51,7 @@ public class User implements Serializable {
      */
     public static User signUp(String login, String passwd) {
         User user = new User(login);
-        user.hashPasswd(passwd, 500);
+        user.hashedPasswd = hashPasswd(passwd, 500);
         return user;
     }
 
@@ -89,11 +89,11 @@ public class User implements Serializable {
     /**
      * Hashes string several times
      */
-    private void hashPasswd(String passwd, int iter) {
+    public static String hashPasswd(String passwd, int iter) {
         for (int i = 0; i < iter; i++) {
             passwd = getMD5Hash(passwd);
         }
-        hashedPasswd = passwd;
+        return passwd;
     }
 
     public String getLogin() {

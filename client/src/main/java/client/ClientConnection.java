@@ -73,22 +73,33 @@ public class ClientConnection {
      * Sets current user on the client.
      */
     public void setUser() {
-        String resp;
+        String resp = "";
         do {
-            String sign;
-            do {
-                System.out.print("If you want to sign up type '+', to sign in type '-': ");
-                sign = CONSOLE.nextLine();
-                if (sign.equals("exit")) throw new ExitException();
-                if (sign.equals("+") || sign.equals("-")) break;
-                LOGGER.warn("Incorrect input");
-            } while (true);
+            boolean sign = chooseUpIn();
             user = User.authorize();
-            if (sign.equals("+")) {
+            if (sign) {
+                System.out.print("Repeat password: ");
+                String repPasswd = CONSOLE.nextLine();
+                if (!User.hashPasswd(repPasswd, 500).equals(user.getHashedPasswd())) {
+                    LOGGER.warn("Incorrect repeated password");
+                    continue;
+                }
                 resp = sendReqGetResp("sign_up", CONSOLE);
             } else resp = sendReqGetResp("sign_in", CONSOLE);
             LOGGER.info(resp);
         } while (!resp.startsWith("User was "));
+    }
+    
+    private boolean chooseUpIn() {
+        String sign;
+        do {
+            System.out.print("If you want to sign up type '+', to sign in type '-': ");
+            sign = CONSOLE.nextLine();
+            if (sign.equals("exit")) throw new ExitException();
+            if (sign.equals("-")) return false;
+            if (sign.equals("+")) return true;
+            LOGGER.warn("Incorrect input");
+        } while (true);
     }
 
     /**

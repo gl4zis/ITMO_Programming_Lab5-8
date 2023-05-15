@@ -33,6 +33,7 @@ public class ClientConnection {
     private static final int MAX_UDP_BYTES_UNIX = 9216;
     private static final MyScanner CONSOLE = new MyScanner(System.in);
     private final InetSocketAddress address;
+    private final CommandProcessor processor;
     private User user;
     private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
 
@@ -44,6 +45,7 @@ public class ClientConnection {
      */
     public ClientConnection(InetAddress host, int port) {
         address = new InetSocketAddress(host, port);
+        processor = new CommandProcessor(this);
         setUser();
     }
 
@@ -89,7 +91,12 @@ public class ClientConnection {
             LOGGER.info(resp);
         } while (!resp.startsWith("User was "));
     }
-    
+
+    /**
+     * Using while setting up user
+     *
+     * @return true if user want to sign up, false if sign in
+     */
     private boolean chooseUpIn() {
         String sign;
         do {
@@ -108,8 +115,7 @@ public class ClientConnection {
     public void run() {
         while (true) {
             System.out.print("-> ");
-            String line = CONSOLE.nextLine();
-            CommandProcessor.execute(this, line);
+            processor.execute();
         }
     }
 
@@ -232,5 +238,9 @@ public class ClientConnection {
             }
         }
         return output;
+    }
+
+    public CommandProcessor getProcessor() {
+        return processor;
     }
 }

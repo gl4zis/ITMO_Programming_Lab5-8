@@ -122,7 +122,7 @@ public class Dragon implements Comparable<Dragon>, Serializable {
     }
 
     /**
-     * Sets age. If age <= 0 throws exception
+     * Sets age. If age {@literal <}= 0 throws exception
      */
     public void setAge(int age) {
         if (age <= 0) throw new IncorrectDataException("Incorrect age for dragon");

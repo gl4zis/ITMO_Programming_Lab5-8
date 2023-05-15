@@ -7,8 +7,8 @@ import java.io.Serializable;
  * Can be one of four variants
  */
 public enum Color implements Serializable {
-    GREEN(),
-    RED(),
-    ORANGE(),
-    BROWN()
+    GREEN,
+    RED,
+    ORANGE,
+    BROWN
 }

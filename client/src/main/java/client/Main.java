@@ -34,6 +34,7 @@ public class Main {
             ClientConnection connection = new ClientConnection(host, port);
             connection.run();
         } catch (ExitException e) {
+            System.out.println(e.getMessage());
             LOGGER.debug("Correct exit");
         } catch (Throwable e) {
             LOGGER.fatal("Something very strange happened =0 " + e.getMessage());

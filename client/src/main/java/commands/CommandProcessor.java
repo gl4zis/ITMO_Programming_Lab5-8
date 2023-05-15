@@ -2,183 +2,70 @@ package commands;
 
 import client.ClientConnection;
 import exceptions.ExitException;
-import exceptions.IncorrectDataException;
 import exceptions.IncorrectInputException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import parsers.MyScanner;
-import parsers.ScriptParser;
-import parsers.StringModificator;
-import user.User;
 
-import java.io.FileNotFoundException;
-import java.util.Date;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Preprocessing commands on client
  */
-public abstract class CommandProcessor {
-    private static final Logger LOGGER = LogManager.getLogger(CommandProcessor.class);
+public class CommandProcessor {
     private static final MyScanner CONSOLE = new MyScanner(System.in);
+    private final Map<String, Command> commands;
+    private final ClientConnection conn;
 
     /**
-     * Processes string line. Finds there special commands, processes it, sends requests and return response
-     *
-     * @param conn by this, realizes requests and responses
-     * @param line there you want to find command
+     * Constructor sets ClientConnection and fills commands HashMap
      */
-    public static void execute(ClientConnection conn, String line) {
+    public CommandProcessor(ClientConnection conn) {
+        this.conn = conn;
+        commands = new HashMap<>();
+        Command changePasswd = new ChangePasswordCommand(conn);
+        Command exScript = new ExecuteScriptCommand(conn);
+        Command exit = new ExitCommand(conn);
+        Command help = new HelpCommand(conn);
+        Command ping = new PingCommand(conn);
+        Command signOut = new SignOutCommand(conn);
+        Command update = new UpdateCommand(conn);
+        commands.put(changePasswd.getName(), changePasswd);
+        commands.put(exit.getName(), exit);
+        commands.put(exScript.getName(), exScript);
+        commands.put(help.getName(), help);
+        commands.put(ping.getName(), ping);
+        commands.put(signOut.getName(), signOut);
+        commands.put(update.getName(), update);
+    }
+
+    /**
+     * Executes command from console line
+     */
+    public void execute() {
+        String line = CONSOLE.nextLine();
         if (!line.trim().isEmpty()) {
-            String output = execute(conn, line, CONSOLE);
+            String output = execute(line, CONSOLE);
             if (output == null) throw new ExitException();
             else System.out.println(output);
         }
     }
 
     /**
-     * Executing client part of command
+     * Executes command from any line
      *
-     * @return response
+     * @param line string with command
+     * @return response from server
      */
-    private static String execute(ClientConnection conn, String line, MyScanner reader) {
+    String execute(String line, MyScanner reader) {
         try {
-            return switch (line.split(" ")[0]) {
-                case "exit" -> throw new ExitException();
-                case "help" -> help(conn);
-                case "update" -> update(conn, line, reader);
-                case "ping" -> ping(conn);
-                case "execute_script" -> ex_script(conn, line);
-                case "sign_in", "sign_up" -> "Incorrect input. Unknown command";
-                case "sign_out" -> signOut(conn);
-                case "change_password" -> changePasswd(conn, line);
-                default -> conn.sendReqGetResp(line, reader);
-            };
+            String command = line.split(" ")[0];
+            if (command.equals("sign_up") || command.equals("sign_in"))
+                throw new IncorrectInputException("Unknown command");
+            if (commands.get(command) == null) {
+                return conn.sendReqGetResp(line, reader);
+            } else return commands.get(command).execute(line, reader);
         } catch (IncorrectInputException e) {
             return e.getMessage();
         }
-    }
-
-    /**
-     * Hashes password and requests to change it on database
-     *
-     * @param line commandline(change_password newPassword)
-     * @return response
-     */
-    private static String changePasswd(ClientConnection conn, String line) {
-        try {
-            String passwd = line.split(" ")[1];
-            for (int i = 0; i < 500; i++) {
-                passwd = User.getMD5Hash(passwd);
-            }
-            return conn.sendReqGetResp("change_password " + passwd, CONSOLE);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            LOGGER.warn("Incorrect input. Unknown command");
-            return "";
-        }
-    }
-
-    /**
-     * Sets new current user on the client
-     */
-    private static String signOut(ClientConnection conn) {
-        LOGGER.info("User was signed out");
-        conn.setUser();
-        return "";
-    }
-
-    /**
-     * Special client command 'ping'
-     * Checks connection to server
-     */
-    private static String ping(ClientConnection conn) {
-        long startTime = new Date().getTime();
-        String output = "";
-        for (int i = 0; i < 10; i++) {
-            output = conn.sendReqGetResp("ping", CONSOLE);
-        }
-        long endTime = new Date().getTime() - startTime;
-        return output + "\nAverage reply time: " + endTime / 10 + " ms";
-    }
-
-    /**
-     * Special client command 'help'
-     */
-    private static String help(ClientConnection conn) {
-        String output = conn.sendReqGetResp("help", CONSOLE);
-        output += """
-                        
-                \tsign_out : sign out from the account
-                \texit : terminate the program
-                \texecute_script filepath : execute script in the file, by its filepath""";
-        return output;
-    }
-
-    /**
-     * Special client command 'update'
-     */
-    private static String update(ClientConnection conn, String line, MyScanner reader) {
-        String find = "find" + line.substring(6);
-        String output = conn.sendReqGetResp(find, CONSOLE);
-        if (!output.startsWith("No such")) {
-            output = conn.sendReqGetResp(line, reader);
-        }
-        return output;
-    }
-
-    /**
-     * Special client command 'execute_script'
-     */
-    private static String ex_script(ClientConnection conn, String line) {
-        validateScript(conn, new HashSet<>(), line);
-        return "";
-    }
-
-    /**
-     * Executes command from reader
-     */
-    private static void ex_script(ClientConnection conn, HashSet<String> files, MyScanner reader) {
-        String line = reader.nextLine();
-        while (line != null) {
-            try {
-                if (line.startsWith("execute_script")) {
-                    validateScript(conn, files, line);
-                } else {
-                    LOGGER.info("Executing: " + line);
-                    execute(conn, line, reader);
-                }
-            } catch (IncorrectDataException e) {
-                LOGGER.warn(e.getMessage());
-            }
-            line = reader.nextLine();
-        }
-    }
-
-    /**
-     * Validates script file, checks recursion etc
-     */
-    private static void validateScript(ClientConnection conn, HashSet<String> files, String line) {
-        String filePath;
-        MyScanner reader;
-        try {
-            filePath = StringModificator.filePathFormat(line.split(" ")[1]);
-            if (!files.contains(filePath)) {
-                files.add(filePath);
-                reader = new MyScanner(ScriptParser.readLines(filePath));
-                LOGGER.info("Executing script: " + filePath);
-            } else {
-                LOGGER.warn("Try of recursion! Script wouldn't execute");
-                return;
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new IncorrectInputException("Unknown command");
-        } catch (FileNotFoundException | SecurityException e) {
-            throw new IncorrectInputException("File don't exist or there are no enough rights");
-        }
-
-        ex_script(conn, files, reader);
-
-        files.remove(filePath);
-        LOGGER.info(String.format("Script: %s executing ended", filePath));
     }
 }

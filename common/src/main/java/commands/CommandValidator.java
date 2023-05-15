@@ -53,7 +53,9 @@ public abstract class CommandValidator {
      * @return generated dragon object
      */
     private static Dragon genDragon(MyScanner reader, User user) {
-        return reader.readDragon(user);
+        Dragon dragon = reader.readDragon(user);
+        if (dragon == null) throw new IncorrectInputException("Unknown command");
+        else return dragon;
     }
 
     /**

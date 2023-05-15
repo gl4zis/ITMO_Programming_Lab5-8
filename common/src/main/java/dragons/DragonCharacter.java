@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Can be one of three variants
  */
 public enum DragonCharacter implements Serializable {
-    WISE(),
-    CHAOTIC_EVIL(),
-    FICKLE()
+    WISE,
+    CHAOTIC_EVIL,
+    FICKLE
 }

@@ -1,28 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_TEST_SOURCES" value="false" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="repeating password when sign_up">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/ChangePasswordCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/ExecuteScriptCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/ExitCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/HelpCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/PingCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/SignOutCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/UpdateCommand.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="bugfix (now inputted dragon is saved on client, while server isn't replying)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/parsers/ScriptParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/parsers/ScriptParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/commands/CommandValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/commands/CommandValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Color.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/DragonCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/DragonCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/exceptions/ExitException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/exceptions/ExitException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -332,20 +319,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00050" summary="changed logs dir, now dependence on user.dir">
-      <created>1679268846683</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1679268846684</updated>
-    </task>
-    <task id="LOCAL-00051" summary="fixed exit confirm and dragon entering">
-      <created>1679302138009</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1679302138010</updated>
     </task>
     <task id="LOCAL-00052" summary="colors in console">
       <created>1679314569775</created>
@@ -676,7 +649,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684156308310</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="decomposed CommandProcessor on client">
+      <created>1684163257070</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1684163257070</updated>
+    </task>
+    <task id="LOCAL-00100" summary="bugfix (now inputted dragon is saved on client, while server isn't replying)">
+      <created>1684163610212</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1684163610212</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -704,8 +691,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="added javaDoc" />
-    <MESSAGE value="big bugfix&#10;added ability to send huge data from server&#10;now if server doesn't reply, client repeats request each second until gets the reply&#10;fixed null pointer in commands, which needs read dragon from console&#10;etc..." />
     <MESSAGE value="added ping command" />
     <MESSAGE value="now logs saves in /tmp or Windows/Temp" />
     <MESSAGE value="reworked exiting from the app" />
@@ -729,7 +714,9 @@
     <MESSAGE value="unit tests" />
     <MESSAGE value="now command 'insert' works with key not with id" />
     <MESSAGE value="repeating password when sign_up" />
-    <option name="LAST_COMMIT_MESSAGE" value="repeating password when sign_up" />
+    <MESSAGE value="decomposed CommandProcessor on client" />
+    <MESSAGE value="bugfix (now inputted dragon is saved on client, while server isn't replying)" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix (now inputted dragon is saved on client, while server isn't replying)" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

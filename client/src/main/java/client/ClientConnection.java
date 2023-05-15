@@ -227,9 +227,10 @@ public class ClientConnection {
     public String sendReqGetResp(String line, MyScanner reader) {
         String output;
         boolean message = true;
+        Request request = CommandValidator.validCommand(line, reader, user);
         while (true) {
             try {
-                output = sendReqGetResp(CommandValidator.validCommand(line, reader, user));
+                output = sendReqGetResp(request);
                 if (!message) System.out.println();
                 break;
             } catch (UnavailableServerException e) {

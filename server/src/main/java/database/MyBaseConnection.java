@@ -4,7 +4,6 @@ import exceptions.ExitException;
 import general.OsUtilus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.MyScanner;
 import parsers.StringModificator;
 
 import java.io.*;
@@ -22,31 +21,11 @@ public abstract class MyBaseConnection {
      * @return database connection
      */
     public static Connection connect() {
-        boolean message = true;
-        while (true) {
-            try {
-                return DriverManager.getConnection(getUrl(), getInfo());
-            } catch (SQLException e) {
-                if (message)
-                    LOGGER.error("Can't connect to the data base! " + e.getMessage());
-                message = false;
-                checkExit();
-            }
-        }
-    }
-
-    /**
-     * Checks word 'exit' in the console, while try to connect to the database.
-     * You can exit from the app using 'exit' in the console
-     */
-    private static void checkExit() {
         try {
-            Thread.sleep(100);
-            String line = new MyScanner(System.in).checkConsole();
-            if (line != null && line.trim().equals("exit"))
-                throw new ExitException();
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            return DriverManager.getConnection(getUrl(), getInfo());
+        } catch (SQLException e) {
+            LOGGER.fatal("Can't connect to the data base! " + e.getMessage());
+            throw new ExitException();
         }
     }
 

@@ -58,6 +58,7 @@ public class DataBaseManager {
      */
     private Dragon createDragon(ResultSet dragon) throws SQLException, ParseException {
         int id = dragon.getInt("id");
+        String key = dragon.getString("key");
         String name = dragon.getString("name");
         double X = dragon.getDouble("x");
         float Y = dragon.getFloat("y");
@@ -74,7 +75,7 @@ public class DataBaseManager {
         String passwd = dragon.getString("passwd");
         User creator = User.signIn(login, passwd);
 
-        Dragon newDragon = new Dragon(id, name, coords, creationDate, weight, color, character, head, creator);
+        Dragon newDragon = new Dragon(id, key, name, coords, creationDate, weight, color, character, head, creator);
         if (age > 0) newDragon.setAge(age);
         return newDragon;
     }
@@ -128,8 +129,8 @@ public class DataBaseManager {
      */
     public synchronized int addDragon(Dragon dragon) throws SQLException {
         PreparedStatement stat = conn.prepareStatement("INSERT INTO dragons" +
-                "(name, x, y, creation_date, age, weight, color, character, eyes_count, creator)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?::color, ?::dr_char, ?, ?) RETURNING id");
+                "(name, x, y, creation_date, age, weight, color, character, eyes_count, creator, key)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?::color, ?::dr_char, ?, ?, ?) RETURNING id");
         Timestamp creationDate = new Timestamp((dragon.getCreationDate().getTime() / 1000) * 1000);
         int age = dragon.getAge();
 
@@ -144,6 +145,7 @@ public class DataBaseManager {
         stat.setString(8, dragon.getDragonCharacter().name());
         stat.setFloat(9, dragon.getDragonHead().getEyesCount());
         stat.setString(10, dragon.getCreator().getLogin());
+        stat.setString(11, dragon.getKey());
 
         ResultSet set = stat.executeQuery();
         set.next();
@@ -158,8 +160,8 @@ public class DataBaseManager {
      */
     public synchronized void insertDragon(Dragon dragon) throws SQLException {
         PreparedStatement stat = conn.prepareStatement("INSERT INTO dragons" +
-                "(id, name, x, y, creation_date, age, weight, color, character, eyes_count, creator)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?::color, ?::dr_char, ?, ?)");
+                "(id, name, x, y, creation_date, age, weight, color, character, eyes_count, creator, key)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?::color, ?::dr_char, ?, ?, ?)");
         Timestamp creationDate = new Timestamp((dragon.getCreationDate().getTime() / 1000) * 1000);
         int age = dragon.getAge();
 
@@ -175,6 +177,7 @@ public class DataBaseManager {
         stat.setString(9, dragon.getDragonCharacter().name());
         stat.setFloat(10, dragon.getDragonHead().getEyesCount());
         stat.setString(11, dragon.getCreator().getLogin());
+        stat.setString(12, dragon.getKey());
 
         stat.executeUpdate();
     }
@@ -291,7 +294,7 @@ public class DataBaseManager {
      * @return hashed password
      */
     private String preparePasswd(String passwd, String salt) {
-        String pepper = "E1!(I)[!kv3\\\\8T ";
+        String pepper = System.getenv("pepper");
         passwd += salt + pepper;
         for (int i = 0; i < 500; i++) {
             passwd = User.getMD5Hash(passwd);

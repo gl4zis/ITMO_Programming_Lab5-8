@@ -50,7 +50,6 @@ public abstract class CommandProcessor {
                 case "ping" -> ping(conn);
                 case "execute_script" -> ex_script(conn, line);
                 case "sign_in", "sign_up" -> "Incorrect input. Unknown command";
-                case "insert" -> insert(conn, line, reader);
                 case "sign_out" -> signOut(conn);
                 case "change_password" -> changePasswd(conn, line);
                 default -> conn.sendReqGetResp(line, reader);
@@ -77,20 +76,6 @@ public abstract class CommandProcessor {
             LOGGER.warn("Incorrect input. Unknown command");
             return "";
         }
-    }
-
-    /**
-     * Add dragon with inputted id
-     *
-     * @param line commandline (insert id)
-     * @return response
-     */
-    private static String insert(ClientConnection conn, String line, MyScanner reader) {
-        String find = "find" + line.substring(6);
-        String output = conn.sendReqGetResp(find, CONSOLE);
-        if (output.startsWith("No such")) {
-            return conn.sendReqGetResp(line, reader);
-        } else return "Dragon with this id already exists";
     }
 
     /**

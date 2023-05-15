@@ -52,7 +52,7 @@ public class DragonCollection {
      * @param dragon will be removed from collection
      */
     public void remove(Dragon dragon) {
-        idList.remove((Integer) dragon.hashCode());
+        idList.remove(dragon.hashCode());
         collection.remove(dragon);
     }
 

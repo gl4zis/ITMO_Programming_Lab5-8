@@ -23,7 +23,7 @@ public class InsertCommand extends Command {
      * Constructor sets database connection and dragon collection, that the command works with, description of command
      */
     InsertCommand(CommandManager manager) {
-        super("insert id {dragon} : add new dragon with inputted id in the collection");
+        super("insert key {dragon} : add new dragon with inputted (String) key in the collection");
         this.collection = manager.getCollection();
         this.baseMan = manager.getBaseMan();
     }
@@ -33,11 +33,9 @@ public class InsertCommand extends Command {
      */
     @Override
     public String execute(Request request) {
-        int id = (int) request.arg();
+        String key = (String) request.arg();
         Dragon dragon = request.dragon();
-        dragon.setId(id);
-        if (collection.checkId(id))
-            return "Dragon with this id already in collection";
+        dragon.setKey(key);
         try {
             baseMan.insertDragon(dragon);
             collection.add(dragon);

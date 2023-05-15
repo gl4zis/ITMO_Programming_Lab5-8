@@ -111,7 +111,7 @@ public class User implements Serializable {
     public boolean equals(Object obj) {
         if (obj == null || this.getClass() != obj.getClass()) return false;
         else {
-            return login.equals(((User) obj).login) && hashedPasswd.equals(((User) obj).hashedPasswd);
+            return login.equals(((User) obj).login);
         }
     }
 

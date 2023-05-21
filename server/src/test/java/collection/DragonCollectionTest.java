@@ -19,7 +19,7 @@ class DragonCollectionTest {
     @BeforeEach
     void init() {
         collection = new DragonCollection();
-        dragon = new Dragon(1, "name", new Coordinates(6, 5), new Date(), 3, Color.RED, DragonCharacter.WISE, new DragonHead(0), User.signUp("admin", "qwerty"));
+        dragon = new Dragon(1, "key", "name", new Coordinates(6, 5), new Date(), 3, Color.RED, DragonCharacter.WISE, new DragonHead(0), User.signUp("admin", "qwerty"));
     }
 
     @Test

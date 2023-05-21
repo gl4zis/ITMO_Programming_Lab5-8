@@ -37,7 +37,8 @@ public class InsertCommand extends Command {
         Dragon dragon = request.dragon();
         dragon.setKey(key);
         try {
-            baseMan.insertDragon(dragon);
+            int id = baseMan.insertDragon(dragon);
+            dragon.setId(id);
             collection.add(dragon);
             LOGGER.debug("New dragon successfully added in collection");
             return "New dragon successfully added in collection";

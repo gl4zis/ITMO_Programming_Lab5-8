@@ -113,10 +113,9 @@ public class DataBaseManager {
         stat.setString(1, user.getLogin());
         ResultSet dbUser = stat.executeQuery();
         if (!dbUser.next()) throw new NoSuchUserException();
-        String dbLogin = dbUser.getString("login");
         String dbPasswd = dbUser.getString("passwd");
         String salt = dbUser.getString("salt");
-        if (!dbLogin.equals(user.getLogin()) || !dbPasswd.equals(preparePasswd(user.getHashedPasswd(), salt)))
+        if (!dbPasswd.equals(preparePasswd(user.getHashedPasswd(), salt)))
             throw new WrongPasswordException();
     }
 
@@ -158,28 +157,29 @@ public class DataBaseManager {
      * @param dragon current dragon
      * @throws SQLException if something went wrong with connectioin
      */
-    public synchronized void insertDragon(Dragon dragon) throws SQLException {
+    public synchronized int insertDragon(Dragon dragon) throws SQLException {
         PreparedStatement stat = conn.prepareStatement("INSERT INTO dragons" +
-                "(id, name, x, y, creation_date, age, weight, color, character, eyes_count, creator, key)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?::color, ?::dr_char, ?, ?, ?)");
+                "(name, x, y, creation_date, age, weight, color, character, eyes_count, creator, key)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?::color, ?::dr_char, ?, ?, ?) RETURNING id");
         Timestamp creationDate = new Timestamp((dragon.getCreationDate().getTime() / 1000) * 1000);
         int age = dragon.getAge();
 
-        stat.setInt(1, dragon.hashCode());
-        stat.setString(2, dragon.getName());
-        stat.setDouble(3, dragon.getCoordinates().getX());
-        stat.setFloat(4, dragon.getCoordinates().getY());
-        stat.setTimestamp(5, creationDate);
-        if (age == -1) stat.setNull(6, Types.INTEGER);
-        else stat.setInt(6, age);
-        stat.setLong(7, dragon.getWeight());
-        stat.setString(8, dragon.getColor().name());
-        stat.setString(9, dragon.getDragonCharacter().name());
-        stat.setFloat(10, dragon.getDragonHead().getEyesCount());
-        stat.setString(11, dragon.getCreator().getLogin());
-        stat.setString(12, dragon.getKey());
+        stat.setString(1, dragon.getName());
+        stat.setDouble(2, dragon.getCoordinates().getX());
+        stat.setFloat(3, dragon.getCoordinates().getY());
+        stat.setTimestamp(4, creationDate);
+        if (age == -1) stat.setNull(5, Types.INTEGER);
+        else stat.setInt(5, age);
+        stat.setLong(6, dragon.getWeight());
+        stat.setString(7, dragon.getColor().name());
+        stat.setString(8, dragon.getDragonCharacter().name());
+        stat.setFloat(9, dragon.getDragonHead().getEyesCount());
+        stat.setString(10, dragon.getCreator().getLogin());
+        stat.setString(11, dragon.getKey());
 
-        stat.executeUpdate();
+        ResultSet set = stat.executeQuery();
+        set.next();
+        return set.getInt("id");
     }
 
     /**

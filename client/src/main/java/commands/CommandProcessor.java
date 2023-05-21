@@ -46,7 +46,7 @@ public class CommandProcessor {
         if (!line.trim().isEmpty()) {
             String output = execute(line, CONSOLE);
             if (output == null) throw new ExitException();
-            else System.out.println(output);
+            else if (!output.isEmpty()) System.out.println(output);
         }
     }
 

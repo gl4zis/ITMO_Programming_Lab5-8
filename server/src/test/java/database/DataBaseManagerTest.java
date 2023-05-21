@@ -32,7 +32,7 @@ class DataBaseManagerTest {
     @BeforeEach
     void init() throws SQLException {
         admin = User.signUp("admin", "qwerty");
-        dragon = new Dragon(123, "dragonTest", new Coordinates(0.01, 1000),
+        dragon = new Dragon(123, "key", "dragonTest", new Coordinates(0.01, 1000),
                 new Date(0), 1000, Color.RED, WISE, new DragonHead(3), admin);
 
         conn = Mockito.mock(Connection.class);
@@ -52,6 +52,7 @@ class DataBaseManagerTest {
         Mockito.when(set.next()).thenReturn(iter.next());
 
         Mockito.when(set.getInt("id")).thenReturn(123);
+        Mockito.when(set.getString("key")).thenReturn("key");
         Mockito.when(set.getString("name")).thenReturn("dragonTest");
         Mockito.when(set.getDouble("x")).thenReturn(0.01);
         Mockito.when(set.getFloat("y")).thenReturn(1000f);
@@ -62,8 +63,8 @@ class DataBaseManagerTest {
         Mockito.when(set.getString("character")).thenReturn("WISE");
         Mockito.when(set.getFloat("eyes_count")).thenReturn(3.0f);
         Mockito.when(set.getString("login")).thenReturn("admin");
-        Mockito.when(set.getString("passwd")).thenReturn("a010f70d897a6e3404a85a5e2a192d10");
-        Mockito.when(set.getString("salt")).thenReturn("%%l1JPH(=Dj|JIKl");
+        Mockito.when(set.getString("passwd")).thenReturn("4470e980d181565e5f2f7ab5e223ab0c");
+        Mockito.when(set.getString("salt")).thenReturn("T1fD\"L;seV/M3Io_");
     }
 
     @Test

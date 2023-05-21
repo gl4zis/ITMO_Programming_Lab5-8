@@ -34,7 +34,7 @@ public class ClientConnection {
     private static final MyScanner CONSOLE = new MyScanner(System.in);
     private final InetSocketAddress address;
     private final CommandProcessor processor;
-    private User user;
+    private final Settings settings;
     private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
 
     /**
@@ -46,6 +46,7 @@ public class ClientConnection {
     public ClientConnection(InetAddress host, int port) {
         address = new InetSocketAddress(host, port);
         processor = new CommandProcessor(this);
+        settings = new Settings();
         setUser();
     }
 
@@ -72,44 +73,6 @@ public class ClientConnection {
     }
 
     /**
-     * Sets current user on the client.
-     */
-    public void setUser() {
-        String resp = "";
-        do {
-            boolean sign = chooseUpIn();
-            user = User.authorize();
-            if (sign) {
-                System.out.print("Repeat password: ");
-                String repPasswd = CONSOLE.nextLine();
-                if (!User.hashPasswd(repPasswd, 500).equals(user.getHashedPasswd())) {
-                    LOGGER.warn("Incorrect repeated password");
-                    continue;
-                }
-                resp = sendReqGetResp("sign_up", CONSOLE);
-            } else resp = sendReqGetResp("sign_in", CONSOLE);
-            LOGGER.info(resp);
-        } while (!resp.startsWith("User was "));
-    }
-
-    /**
-     * Using while setting up user
-     *
-     * @return true if user want to sign up, false if sign in
-     */
-    private boolean chooseUpIn() {
-        String sign;
-        do {
-            System.out.print("If you want to sign up type '+', to sign in type '-': ");
-            sign = CONSOLE.nextLine();
-            if (sign.equals("exit")) throw new ExitException();
-            if (sign.equals("-")) return false;
-            if (sign.equals("+")) return true;
-            LOGGER.warn("Incorrect input");
-        } while (true);
-    }
-
-    /**
      * Reads console and execute command in console line, throw server
      */
     public void run() {
@@ -117,6 +80,19 @@ public class ClientConnection {
             System.out.print("-> ");
             processor.execute();
         }
+    }
+
+    public void setUser() {
+        String resp = "";
+        do {
+            boolean sign = CONSOLE.chooseUpIn();
+            User user = CONSOLE.readUser(sign);
+            if (user == null) continue;
+            settings.setUser(user);
+            if (sign) resp = sendReqGetResp("sign_up", CONSOLE);
+            else resp = sendReqGetResp("sign_in", CONSOLE);
+            LOGGER.info(resp);
+        } while (!resp.startsWith("User was"));
     }
 
     /**
@@ -227,7 +203,7 @@ public class ClientConnection {
     public String sendReqGetResp(String line, MyScanner reader) {
         String output;
         boolean message = true;
-        Request request = CommandValidator.validCommand(line, reader, user);
+        Request request = CommandValidator.validCommand(line, reader, settings.getUser());
         while (true) {
             try {
                 output = sendReqGetResp(request);

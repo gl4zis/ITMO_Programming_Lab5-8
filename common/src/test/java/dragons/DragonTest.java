@@ -20,9 +20,11 @@ class DragonTest {
     static void checkConstructors() {
         user = User.signUp("admin", "qwerty");
         assertThrows(IncorrectDataException.class, () ->
-                new Dragon(-1, "test", new Coordinates(0, 0), new Date(), 100, Color.RED, DragonCharacter.WISE, new DragonHead(1), user));
+                new Dragon(-1, "key", "test", new Coordinates(0, 0), new Date(), 100, Color.RED, DragonCharacter.WISE, new DragonHead(1), user));
         assertThrows(IncorrectDataException.class, () ->
-                new Dragon(1, "test", new Coordinates(0, 0), null, 100, Color.RED, DragonCharacter.WISE, new DragonHead(1), user));
+                new Dragon(1, "key", "test", new Coordinates(0, 0), null, 100, Color.RED, DragonCharacter.WISE, new DragonHead(1), user));
+        assertThrows(IncorrectDataException.class, () ->
+                new Dragon(1, null, "test", new Coordinates(0, 0), new Date(), 100, Color.RED, DragonCharacter.WISE, new DragonHead(1), user));
         assertThrows(IncorrectDataException.class, () ->
                 new Dragon(null, new Coordinates(0, 0), 100, Color.RED, DragonCharacter.WISE, new DragonHead(1), user));
         assertThrows(IncorrectDataException.class, () ->
@@ -43,8 +45,8 @@ class DragonTest {
 
     @BeforeEach
     void setUp() {
-        dragon1 = new Dragon(10, "test", new Coordinates(0, 0), new Date(), 100, Color.RED, DragonCharacter.WISE, new DragonHead(1), user);
-        dragon2 = new Dragon(10, "test", new Coordinates(0, 0), new Date(0), 100, Color.RED, DragonCharacter.WISE, new DragonHead(1), user);
+        dragon1 = new Dragon(10, "key", "test", new Coordinates(0, 0), new Date(), 100, Color.RED, DragonCharacter.WISE, new DragonHead(1), user);
+        dragon2 = new Dragon(10, "key", "test", new Coordinates(0, 0), new Date(0), 100, Color.RED, DragonCharacter.WISE, new DragonHead(1), user);
         assertEquals(user, dragon1.getCreator());
         assertEquals(new Date(0), dragon2.getCreationDate());
     }
@@ -90,7 +92,7 @@ class DragonTest {
     @Test
     void compareTo() {
         assertEquals(dragon1.compareTo(dragon2), 0);
-        dragon1 = new Dragon(2, "test2", new Coordinates(0, 0), new Date(), 100, Color.RED, DragonCharacter.WISE, new DragonHead(1), user);
+        dragon1 = new Dragon(2, "key", "test2", new Coordinates(0, 0), new Date(), 100, Color.RED, DragonCharacter.WISE, new DragonHead(1), user);
         assertNotEquals(dragon1.compareTo(dragon2), 0);
 
 

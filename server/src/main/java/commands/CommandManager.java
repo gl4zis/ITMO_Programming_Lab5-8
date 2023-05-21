@@ -3,6 +3,8 @@ package commands;
 import collection.DragonCollection;
 import database.DataBaseManager;
 import network.Request;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -14,6 +16,7 @@ import java.util.Map;
  * (In console line or in script file line)
  */
 public class CommandManager {
+    private static final Logger LOGGER = LogManager.getLogger(CommandManager.class);
     private final DragonCollection collection;
     private final DataBaseManager baseMan;
     private Map<String, Command> commands;
@@ -67,7 +70,8 @@ public class CommandManager {
                 Command command = commandClass.getDeclaredConstructor(CommandManager.class).newInstance(this);
                 commands.put(type.getName(), command);
             } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
-                     InvocationTargetException ignored) {
+                     InvocationTargetException e) {
+                LOGGER.error(e.getMessage());
             }
         }
     }

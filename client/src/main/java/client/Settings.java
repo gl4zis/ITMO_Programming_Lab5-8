@@ -14,6 +14,7 @@ import java.util.Properties;
 public class Settings {
     private static final Logger LOGGER = LogManager.getLogger(Settings.class);
     private User user;
+    private boolean saveUser;
     private MyLocales locale;
     private Properties settings;
     private String settingsPath;
@@ -23,6 +24,7 @@ public class Settings {
     }
 
     private void load() {
+        saveUser = false;
         settings = new Properties();
         settingsPath = this.getClass().getClassLoader().getResource("settings.properties").getFile();
         try {
@@ -38,30 +40,31 @@ public class Settings {
     private void loadUser() {
         String login = (String) settings.get("user");
         String password = (String) settings.get("password");
-        user = User.signIn(login, password);
+        if (!login.trim().isEmpty() && !password.trim().isEmpty()) {
+            user = User.signIn(login, password);
+            saveUser();
+        }
+    }
+
+    private void loadLocale() {
+        String loc = (String) settings.get("locale");
+        locale = MyLocales.getByName(loc);
     }
 
     public User getUser() {
         return user;
     }
 
-    /**
-     * Sets current user on the client.
-     */
     public void setUser(User user) {
         this.user = user;
     }
 
-    private void loadLocale() {
-        String loc = (String) settings.get("locale");
-        switch (loc.toUpperCase()) {
-            case "EN" -> locale = MyLocales.ENGLISH;
-            case "RU" -> locale = MyLocales.RUSSIAN;
-        }
+    public void saveUser() {
+        saveUser = true;
     }
 
-    private void save() {
-        String out = propsFormat(settings);
+    public void save() {
+        String out = fileFormat();
         try (FileWriter writer = new FileWriter(settingsPath, StandardCharsets.UTF_8)) {
             writer.write(out);
             writer.flush();
@@ -70,15 +73,16 @@ public class Settings {
         }
     }
 
-    private String propsFormat(Properties properties) {
-        StringBuilder strBuild = new StringBuilder();
-        for (Object obj : properties.keySet()) {
-            strBuild.append(obj).append('=');
-            Object value = properties.get(obj);
-            if (value != null)
-                strBuild.append(value);
-            strBuild.append('\n');
+    private String fileFormat() {
+        StringBuilder out = new StringBuilder();
+        out.append("locale=").append(locale.name()).append('\n');
+        if (saveUser) {
+            out.append("user=").append(user.getLogin()).append('\n');
+            out.append("password=").append(user.getHashedPasswd()).append('\n');
+        } else {
+            out.append("user=\n");
+            out.append("password=\n");
         }
-        return strBuild.toString();
+        return out.toString();
     }
 }

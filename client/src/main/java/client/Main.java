@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 
 public class Main {
 
@@ -26,15 +27,17 @@ public class Main {
     public static void main(String[] args) {
         Logger LOGGER = LogManager.getLogger(Main.class);
         LOGGER.debug("Client startup");
+        Settings settings = new Settings();
         try {
             InetAddress host = InetAddress.getByName("localhost");
             int port = 9812;
-            LOGGER.info(String.format("client.Connection parameters. Host: %s, port: %d", host, port));
+            LOGGER.info(String.format("Connection parameters. Host: %s, port: %d", host, port));
 
-            ClientConnection connection = new ClientConnection(host, port);
+            ClientConnection connection = new ClientConnection(host, port, settings);
             connection.run();
         } catch (ExitException e) {
             System.out.println(e.getMessage());
+            settings.save();
             LOGGER.debug("Correct exit");
         } catch (Throwable e) {
             LOGGER.fatal("Something very strange happened =0 " + e.getMessage());

@@ -7,27 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="bugfix (now inputted dragon is saved on client, while server isn't replying)">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/client/MyLocales.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/client/Settings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/en_locale.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/ru_locale.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/settings.properties" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="added settings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/test/java/parsers/ScriptParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/parsers/ScriptParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/MyScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/MyScanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/test/java/dragons/DragonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/test/java/dragons/DragonTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/collection/DragonCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/collection/DragonCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/InsertCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/InsertCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/collection/DragonCollectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/collection/DragonCollectionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/CommandTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/commands/CommandTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/database/DataBaseManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/database/DataBaseManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/MyLocales.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/MyLocales.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/settings.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,13 +321,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00053" summary="bugfix with console outputs">
-      <created>1679318814301</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1679318814301</updated>
     </task>
     <task id="LOCAL-00054" summary="now collection can be sorted by any parameter">
       <created>1679705304341</created>
@@ -679,7 +658,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684163822813</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="added settings">
+      <created>1684701685074</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1684701685075</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -707,7 +693,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="added ping command" />
     <MESSAGE value="now logs saves in /tmp or Windows/Temp" />
     <MESSAGE value="reworked exiting from the app" />
     <MESSAGE value="big rework of console and script parsers" />
@@ -732,7 +717,8 @@
     <MESSAGE value="repeating password when sign_up" />
     <MESSAGE value="decomposed CommandProcessor on client" />
     <MESSAGE value="bugfix (now inputted dragon is saved on client, while server isn't replying)" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix (now inputted dragon is saved on client, while server isn't replying)" />
+    <MESSAGE value="added settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="added settings" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

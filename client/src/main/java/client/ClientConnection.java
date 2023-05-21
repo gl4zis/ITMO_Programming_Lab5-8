@@ -22,6 +22,7 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Realization of connection to the server.
@@ -43,10 +44,10 @@ public class ClientConnection {
      * @param host localhost
      * @param port server port
      */
-    public ClientConnection(InetAddress host, int port) {
+    public ClientConnection(InetAddress host, int port, Settings settings) {
         address = new InetSocketAddress(host, port);
         processor = new CommandProcessor(this);
-        settings = new Settings();
+        this.settings = settings;
         setUser();
     }
 
@@ -83,6 +84,10 @@ public class ClientConnection {
     }
 
     public void setUser() {
+        if (settings.getUser() != null) {
+            System.out.println("Was authorized as " + settings.getUser().getLogin());
+            return;
+        }
         String resp = "";
         do {
             boolean sign = CONSOLE.chooseUpIn();
@@ -93,6 +98,18 @@ public class ClientConnection {
             else resp = sendReqGetResp("sign_in", CONSOLE);
             LOGGER.info(resp);
         } while (!resp.startsWith("User was"));
+        checkSaveUser();
+    }
+
+    private void checkSaveUser() {
+        System.out.println("Do you want to save your login and password?");
+        System.out.print("Type '+' if you want: ");
+        String sign = CONSOLE.nextLine();
+        if (sign.equals("+")) {
+            settings.saveUser();
+            System.out.println("User data was saved");
+        } else
+            System.out.println("User data wasn't saved");
     }
 
     /**

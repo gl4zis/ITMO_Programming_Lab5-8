@@ -41,7 +41,7 @@ public class ServerConnection {
     /**
      * Constructor sets command manager for executing requests and creates queues for multithreading
      */
-    public ServerConnection(CommandManager manager) {
+    ServerConnection(CommandManager manager) {
         this.manager = manager;
         requests = new ConcurrentLinkedDeque<>();
         responses = new ConcurrentLinkedDeque<>();

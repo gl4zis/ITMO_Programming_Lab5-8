@@ -13,6 +13,7 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import parsers.MyScanner;
+import settings.Settings;
 import user.User;
 
 import java.io.IOException;
@@ -22,7 +23,6 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * Realization of connection to the server.
@@ -44,7 +44,7 @@ public class ClientConnection {
      * @param host localhost
      * @param port server port
      */
-    public ClientConnection(InetAddress host, int port, Settings settings) {
+    ClientConnection(InetAddress host, int port, Settings settings) {
         address = new InetSocketAddress(host, port);
         processor = new CommandProcessor(this);
         this.settings = settings;

@@ -1,7 +1,7 @@
-package client;
+package settings;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
@@ -27,8 +27,8 @@ public abstract class Localization {
     }
 
     private static Properties loadProp(String filename) throws IOException {
-        String path = Localization.class.getClassLoader().getResource(filename).getFile();
-        InputStreamReader isr = new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8);
+        InputStream path = Localization.class.getClassLoader().getResourceAsStream(filename);
+        InputStreamReader isr = new InputStreamReader(path, StandardCharsets.UTF_8);
         Properties properties = new Properties();
         properties.load(isr);
         return properties;

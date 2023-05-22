@@ -1,4 +1,4 @@
-package client;
+package settings;
 
 import general.MyLocales;
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +17,6 @@ public class Settings {
     private User user;
     private boolean saveUser;
     private MyLocales locale;
-    private Properties settings;
     private String settingsPath;
 
     public Settings() {
@@ -26,19 +25,31 @@ public class Settings {
 
     private void load() {
         saveUser = false;
-        settings = new Properties();
-        settingsPath = this.getClass().getClassLoader().getResource("settings.properties").getFile();
+        Properties settings = new Properties();
+        settingsPath = this.getClass().getClassLoader().getResource("settings.cfg").getPath();
+        if (settingsPath.contains("!")) {
+            settingsPath = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+            settingsPath = settingsPath.substring(0, settingsPath.length() - 16);
+            settingsPath += "settings.cfg";
+        }
         try {
             InputStreamReader is = new InputStreamReader(new FileInputStream(settingsPath), StandardCharsets.UTF_8);
             settings.load(is);
-            loadUser();
-            loadLocale();
+            loadUser(settings);
+            loadLocale(settings);
         } catch (IOException e) {
+            e.printStackTrace();
             LOGGER.error("Can't read settings file");
+            setDefault();
         }
     }
 
-    private void loadUser() {
+    private void setDefault() {
+        locale = MyLocales.ENGLISH;
+        saveUser = false;
+    }
+
+    private void loadUser(Properties settings) {
         String login = (String) settings.get("user");
         String password = (String) settings.get("password");
         if (!login.trim().isEmpty() && !password.trim().isEmpty()) {
@@ -47,7 +58,7 @@ public class Settings {
         }
     }
 
-    private void loadLocale() {
+    private void loadLocale(Properties settings) {
         String loc = (String) settings.get("locale");
         locale = MyLocales.getByName(loc);
     }
@@ -85,6 +96,10 @@ public class Settings {
             out.append("password=\n");
         }
         return out.toString();
+    }
+
+    public void setLocale(MyLocales locale) {
+        this.locale = locale;
     }
 
     public String localize(String message) {

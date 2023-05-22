@@ -47,6 +47,6 @@ public class DragonHead implements Comparable<DragonHead>, Serializable {
      */
     @Override
     public String toString() {
-        return "Has " + eyesCount.intValue() + " eyes";
+        return eyesCount.intValue() + " eyes";
     }
 }

@@ -1,5 +1,6 @@
 package client;
 
+import general.MyLocales;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import user.User;
@@ -84,5 +85,12 @@ public class Settings {
             out.append("password=\n");
         }
         return out.toString();
+    }
+
+    public String localize(String message) {
+        return switch (locale) {
+            case ENGLISH -> Localization.ENLocalize(message);
+            case RUSSIAN -> Localization.RULocalize(message);
+        };
     }
 }

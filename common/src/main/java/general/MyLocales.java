@@ -1,4 +1,4 @@
-package client;
+package general;
 
 import exceptions.IncorrectDataException;
 

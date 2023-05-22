@@ -5,11 +5,14 @@ import collection.DragonCollection;
 import commands.CommandManager;
 import database.DataBaseManager;
 import database.MyBaseConnection;
+import exceptions.ExitException;
 import general.OsUtilus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.LogEvent;
 
 import java.sql.Connection;
+import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -42,6 +45,9 @@ public class Main {
             LOGGER.info("Waiting connection on port: " + port);
             con.open(port);
             baseConn.close();
+        } catch (ExitException e) {
+            LOGGER.debug("Correct exit");
+            System.out.println(e.getMessage());
         } catch (Throwable e) {
             LOGGER.fatal("Something very strange happened =0 " + e.getMessage());
             LOGGER.debug("Incorrect exit (server crashed)");

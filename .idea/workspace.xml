@@ -7,20 +7,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="start of localization">
-      <change afterPath="$PROJECT_DIR$/client/src/test/java/commands/CommandProcessorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/test/java/commands/CommandTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/test/java/settings/LocalizationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/test/java/settings/SettingsTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/test/resources/exitScript.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/test/resources/script1.txt" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="tests + bugfix">
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/database.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Localization.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Localization.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/SignOutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/SignOutCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/en_locale.properties" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/en_locale.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/database/MyBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database/MyBaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,7 +160,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommandProcessorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CoordinatesTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -177,9 +171,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":client:test" />
+            <option value=":common:test" />
             <option value="--tests" />
-            <option value="&quot;commands.CommandProcessorTest&quot;" />
+            <option value="&quot;dragons.CoordinatesTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -189,7 +183,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="CommandTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="StringModificatorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -200,9 +194,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":client:test" />
+            <option value=":common:test" />
             <option value="--tests" />
-            <option value="&quot;commands.CommandTest&quot;" />
+            <option value="&quot;parsers.StringModificatorTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -305,19 +299,19 @@
       <item itemvalue="Application.server" />
       <item itemvalue="Application.client" />
       <item itemvalue="Gradle.build" />
-      <item itemvalue="Gradle.CommandProcessorTest" />
-      <item itemvalue="Gradle.CommandTest" />
+      <item itemvalue="Gradle.CoordinatesTest" />
+      <item itemvalue="Gradle.StringModificatorTest" />
       <item itemvalue="Gradle.Tests in 'lab5-8.client.test'" />
       <item itemvalue="Gradle.Tests in 'lab5-8.common.test'" />
       <item itemvalue="Gradle.Tests in 'lab5-8.server.test'" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.CommandTest" />
-        <item itemvalue="Gradle.Tests in 'lab5-8.server.test'" />
+        <item itemvalue="Gradle.StringModificatorTest" />
+        <item itemvalue="Gradle.CoordinatesTest" />
         <item itemvalue="Gradle.Tests in 'lab5-8.common.test'" />
+        <item itemvalue="Gradle.Tests in 'lab5-8.server.test'" />
         <item itemvalue="Gradle.Tests in 'lab5-8.client.test'" />
-        <item itemvalue="Gradle.CommandProcessorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -329,13 +323,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00056" summary="fixed finding dragon by id">
-      <created>1679754763329</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1679754763330</updated>
     </task>
     <task id="LOCAL-00057" summary="bugfix update command">
       <created>1680077708245</created>
@@ -673,7 +660,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684747013461</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="tests + bugfix">
+      <created>1684768678730</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1684768678730</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -701,7 +695,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="big rework of console and script parsers" />
     <MESSAGE value="JUnit5 and some bugfix" />
     <MESSAGE value="code cleanup" />
     <MESSAGE value="connection to database and accounts" />
@@ -726,7 +719,8 @@
     <MESSAGE value="added settings" />
     <MESSAGE value="added ability to save login and password" />
     <MESSAGE value="start of localization" />
-    <option name="LAST_COMMIT_MESSAGE" value="start of localization" />
+    <MESSAGE value="tests + bugfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="tests + bugfix" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -770,14 +764,14 @@
     <SUITE FILE_PATH="coverage/lab5_8$StringModificatorTest.ic" NAME="StringModificatorTest Coverage Results" MODIFIED="1682447074359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$ClearCommandTest.ic" NAME="ClearCommandTest Coverage Results" MODIFIED="1682459712321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$AddIfMinCommandTest.ic" NAME="AddIfMinCommandTest Coverage Results" MODIFIED="1682459360474" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_common_test_.ic" NAME="Tests in 'lab5-8.common.test' Coverage Results" MODIFIED="1684756805400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_client_test_.ic" NAME="Tests in 'lab5-8.client.test' Coverage Results" MODIFIED="1684756786302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_common_test_.ic" NAME="Tests in 'lab5-8.common.test' Coverage Results" MODIFIED="1684774754917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_client_test_.ic" NAME="Tests in 'lab5-8.client.test' Coverage Results" MODIFIED="1684771099492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$OsUtilusTest.ic" NAME="OsUtilusTest Coverage Results" MODIFIED="1682447215402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$RemoveByIdCommandTest.ic" NAME="RemoveByIdCommandTest Coverage Results" MODIFIED="1682494204206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$client.ic" NAME="client Coverage Results" MODIFIED="1682764920174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$UniqueIdGeneratorTest.ic" NAME="UniqueIdGeneratorTest Coverage Results" MODIFIED="1682447280882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$RemoveGreaterCommandTest.ic" NAME="RemoveGreaterCommandTest Coverage Results" MODIFIED="1682494467379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_server_test_.ic" NAME="Tests in 'lab5-8.server.test' Coverage Results" MODIFIED="1684756826483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_server_test_.ic" NAME="Tests in 'lab5-8.server.test' Coverage Results" MODIFIED="1684771111056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$ShowCommandTest.ic" NAME="ShowCommandTest Coverage Results" MODIFIED="1682494950667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$DragonTest.ic" NAME="DragonTest Coverage Results" MODIFIED="1683658450928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$InfoCommandTest.ic" NAME="InfoCommandTest Coverage Results" MODIFIED="1682493788257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

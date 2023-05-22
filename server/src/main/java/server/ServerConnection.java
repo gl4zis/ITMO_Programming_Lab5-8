@@ -80,7 +80,7 @@ public class ServerConnection {
      * As soon as main interrupts, shutdown all threads and exits from the app
      */
     private void run() {
-        ForkJoinPool readPool = new ForkJoinPool();
+        ForkJoinPool readPool = new ForkJoinPool(10);
         readPool.submit(() -> readBuffer(readPool));
         ExecutorService processPool = Executors.newCachedThreadPool();
         Thread mainThread = Thread.currentThread();

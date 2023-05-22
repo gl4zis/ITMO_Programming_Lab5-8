@@ -21,9 +21,12 @@ public abstract class MyBaseConnection {
      * @return database connection
      */
     public static Connection connect() {
+        Properties config = new Properties();
         try {
-            return DriverManager.getConnection(getUrl(), getInfo());
-        } catch (SQLException e) {
+            InputStream stream = DataBaseManager.class.getClassLoader().getResourceAsStream("database.cfg");
+            config.load(stream);
+            return DriverManager.getConnection(getUrl(config), getUser(config), getPassword(config));
+        } catch (SQLException | NullPointerException | IOException e) {
             LOGGER.fatal("Can't connect to the data base! " + e.getMessage());
             throw new ExitException();
         }
@@ -32,53 +35,18 @@ public abstract class MyBaseConnection {
     /**
      * @return URL for database connection
      */
-    private static String getUrl() {
+    private static String getUrl(Properties config) {
         if (OsUtilus.IsWindows())
-            return "jdbc:postgresql://localhost:7812/studs";
-        else return "jdbc:postgresql://pg:5432/studs";
+            return (String) config.get("WINDOWS_URL");
+        else
+            return (String) config.get("HELIOS_URL");
     }
 
-    /**
-     * @return Properties with user and password for connection
-     */
-    private static Properties getInfo() {
-        Properties info = new Properties();
-        try {
-            if (OsUtilus.IsWindows())
-                info.load(new FileInputStream("C:\\Windows\\db\\db.cfg"));
-            else info.load(parsePgPass());
-        } catch (IOException | SecurityException e) {
-            LOGGER.error("Something went wrong with config file =(");
-        }
-        return info;
+    private static String getUser(Properties config) {
+        return (String) config.get("user");
     }
 
-    /**
-     * Parses file '~/.pgpass'
-     *
-     * @return InputStream with user and password
-     * @throws FileNotFoundException if file is not exists
-     */
-    private static InputStream parsePgPass() throws FileNotFoundException {
-        File script = new File(StringModificator.filePathFormat("~/.pgpass"));
-        FileInputStream in = new FileInputStream(script);
-        InputStreamReader reader = new InputStreamReader(in);
-
-        StringBuilder line = new StringBuilder();
-        try {
-            int nextSym = reader.read();
-            while (nextSym != -1) {
-                line.append((char) nextSym);
-                nextSym = reader.read();
-            }
-        } catch (IOException e) {
-            LOGGER.error("Something wrong with config file =(");
-            return new ByteArrayInputStream("".getBytes());
-        }
-
-        String[] data = line.toString().split(":");
-        String user = "user = " + data[data.length - 2];
-        String passwd = "password = " + data[data.length - 1];
-        return new ByteArrayInputStream((user + "\n" + passwd).getBytes());
+    private static String getPassword(Properties config) {
+        return (String) config.get("password");
     }
 }

@@ -85,7 +85,7 @@ public class ClientConnection {
 
     public void setUser() {
         if (settings.getUser() != null) {
-            System.out.println("Was authorized as " + settings.getUser().getLogin());
+            LOGGER.info("Was authorized as " + settings.getUser().getLogin());
             return;
         }
         String resp = "";
@@ -107,9 +107,9 @@ public class ClientConnection {
         String sign = CONSOLE.nextLine();
         if (sign.equals("+")) {
             settings.saveUser();
-            System.out.println("User data was saved");
+            LOGGER.info("User data was saved");
         } else
-            System.out.println("User data wasn't saved");
+            LOGGER.info("User data wasn't saved");
     }
 
     /**
@@ -236,5 +236,9 @@ public class ClientConnection {
 
     public CommandProcessor getProcessor() {
         return processor;
+    }
+
+    public Settings getSettings() {
+        return settings;
     }
 }

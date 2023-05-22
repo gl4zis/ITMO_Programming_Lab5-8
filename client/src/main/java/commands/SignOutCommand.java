@@ -24,6 +24,7 @@ public class SignOutCommand extends Command {
     @Override
     public String execute(String line, MyScanner reader) {
         LOGGER.info("User was signed out");
+        conn.getSettings().setUser(null);
         conn.setUser();
         return "";
     }

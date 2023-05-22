@@ -27,8 +27,8 @@ public abstract class Localization {
     }
 
     private static Properties loadProp(String filename) throws IOException {
-        InputStream path = Localization.class.getClassLoader().getResourceAsStream(filename);
-        InputStreamReader isr = new InputStreamReader(path, StandardCharsets.UTF_8);
+        InputStream stream = Localization.class.getClassLoader().getResourceAsStream(filename);
+        InputStreamReader isr = new InputStreamReader(stream, StandardCharsets.UTF_8);
         Properties properties = new Properties();
         properties.load(isr);
         return properties;

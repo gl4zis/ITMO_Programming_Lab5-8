@@ -69,6 +69,7 @@ public class Settings {
 
     public void setUser(User user) {
         this.user = user;
+        saveUser = false;
     }
 
     public void saveUser() {

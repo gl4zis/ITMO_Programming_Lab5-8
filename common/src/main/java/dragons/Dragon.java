@@ -1,7 +1,6 @@
 package dragons;
 
 import exceptions.IncorrectDataException;
-import org.apache.commons.lang3.RandomStringUtils;
 import parsers.DateParser;
 import user.User;
 
@@ -26,7 +25,6 @@ public class Dragon implements Comparable<Dragon>, Serializable {
         else return o1.getAge() - o2.getAge();
     };
     private final User creator;
-    private String key;
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private long weight; //Значение поля должно быть больше 0
@@ -43,14 +41,13 @@ public class Dragon implements Comparable<Dragon>, Serializable {
      *
      * @throws IncorrectDataException if some params are incorrect
      */
-    public Dragon(int id, String key, String name, Coordinates coordinates, Date creationDate, long weight, Color color, DragonCharacter character, DragonHead head, User user)
+    public Dragon(int id, String name, Coordinates coordinates, Date creationDate, long weight, Color color, DragonCharacter character, DragonHead head, User user)
             throws IncorrectDataException {
         this(name, coordinates, weight, color, character, head, user);
-        if (creationDate == null || user == null || key == null)
-            throw new IncorrectDataException("Incorrect date of creation or creator or key");
+        if (creationDate == null || user == null)
+            throw new IncorrectDataException("Incorrect date of creation or creator");
         if (id <= 0) throw new IncorrectDataException("Incorrect id");
         this.id = id;
-        this.key = key;
         this.creationDate = creationDate;
     }
 
@@ -67,7 +64,6 @@ public class Dragon implements Comparable<Dragon>, Serializable {
         if (name.equals("") || weight <= 0)
             throw new IncorrectDataException("Incorrect dragon characteristics (name or weight)");
         this.id = 1;
-        this.key = RandomStringUtils.randomAlphanumeric(16);
         this.name = name;
         this.coordinates = coordinates;
         this.creationDate = new Date();
@@ -93,14 +89,6 @@ public class Dragon implements Comparable<Dragon>, Serializable {
         color = dragon.getColor();
         character = dragon.getDragonCharacter();
         head = dragon.getDragonHead();
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
     }
 
     public String getName() {
@@ -161,7 +149,6 @@ public class Dragon implements Comparable<Dragon>, Serializable {
     @Override
     public String toString() {
         return "Id - " + id + "\n" +
-                "Key - " + key + "\n" +
                 "Name - " + name + "\n" +
                 "Coordinates:" + coordinates + "\n" +
                 "Date of creation - " + DateParser.dateToString(creationDate) + "\n" +

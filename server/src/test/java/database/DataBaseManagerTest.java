@@ -32,7 +32,7 @@ class DataBaseManagerTest {
     @BeforeEach
     void init() throws SQLException {
         admin = User.signUp("admin", "qwerty");
-        dragon = new Dragon(123, "key", "dragonTest", new Coordinates(0.01, 1000),
+        dragon = new Dragon(123, "dragonTest", new Coordinates(0.01, 1000),
                 new Date(0), 1000, Color.RED, WISE, new DragonHead(3), admin);
 
         conn = Mockito.mock(Connection.class);
@@ -98,11 +98,6 @@ class DataBaseManagerTest {
     void addDragon() throws SQLException {
         int id = baseMan.addDragon(dragon);
         assertEquals(123, id);
-    }
-
-    @Test
-    void insertDragon() throws SQLException {
-        baseMan.insertDragon(dragon);
     }
 
     @Test

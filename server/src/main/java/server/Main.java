@@ -9,10 +9,8 @@ import exceptions.ExitException;
 import general.OsUtilus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.LogEvent;
 
 import java.sql.Connection;
-import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

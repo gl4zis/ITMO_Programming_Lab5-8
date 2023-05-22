@@ -58,7 +58,6 @@ public class DataBaseManager {
      */
     private Dragon createDragon(ResultSet dragon) throws SQLException, ParseException {
         int id = dragon.getInt("id");
-        String key = dragon.getString("key");
         String name = dragon.getString("name");
         double X = dragon.getDouble("x");
         float Y = dragon.getFloat("y");
@@ -75,7 +74,7 @@ public class DataBaseManager {
         String passwd = dragon.getString("passwd");
         User creator = User.signIn(login, passwd);
 
-        Dragon newDragon = new Dragon(id, key, name, coords, creationDate, weight, color, character, head, creator);
+        Dragon newDragon = new Dragon(id, name, coords, creationDate, weight, color, character, head, creator);
         if (age > 0) newDragon.setAge(age);
         return newDragon;
     }
@@ -128,8 +127,8 @@ public class DataBaseManager {
      */
     public int addDragon(Dragon dragon) throws SQLException {
         PreparedStatement stat = conn.prepareStatement("INSERT INTO dragons" +
-                "(name, x, y, creation_date, age, weight, color, character, eyes_count, creator, key)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?::color, ?::dr_char, ?, ?, ?) RETURNING id");
+                "(name, x, y, creation_date, age, weight, color, character, eyes_count, creator)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?::color, ?::dr_char, ?, ?) RETURNING id");
         Timestamp creationDate = new Timestamp((dragon.getCreationDate().getTime() / 1000) * 1000);
         int age = dragon.getAge();
 
@@ -144,38 +143,6 @@ public class DataBaseManager {
         stat.setString(8, dragon.getDragonCharacter().name());
         stat.setFloat(9, dragon.getDragonHead().getEyesCount());
         stat.setString(10, dragon.getCreator().getLogin());
-        stat.setString(11, dragon.getKey());
-
-        ResultSet set = stat.executeQuery();
-        set.next();
-        return set.getInt("id");
-    }
-
-    /**
-     * Adds new dragon in the database (table 'dragons') with current id
-     *
-     * @param dragon current dragon
-     * @throws SQLException if something went wrong with connectioin
-     */
-    public int insertDragon(Dragon dragon) throws SQLException {
-        PreparedStatement stat = conn.prepareStatement("INSERT INTO dragons" +
-                "(name, x, y, creation_date, age, weight, color, character, eyes_count, creator, key)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?::color, ?::dr_char, ?, ?, ?) RETURNING id");
-        Timestamp creationDate = new Timestamp((dragon.getCreationDate().getTime() / 1000) * 1000);
-        int age = dragon.getAge();
-
-        stat.setString(1, dragon.getName());
-        stat.setDouble(2, dragon.getCoordinates().getX());
-        stat.setFloat(3, dragon.getCoordinates().getY());
-        stat.setTimestamp(4, creationDate);
-        if (age == -1) stat.setNull(5, Types.INTEGER);
-        else stat.setInt(5, age);
-        stat.setLong(6, dragon.getWeight());
-        stat.setString(7, dragon.getColor().name());
-        stat.setString(8, dragon.getDragonCharacter().name());
-        stat.setFloat(9, dragon.getDragonHead().getEyesCount());
-        stat.setString(10, dragon.getCreator().getLogin());
-        stat.setString(11, dragon.getKey());
 
         ResultSet set = stat.executeQuery();
         set.next();

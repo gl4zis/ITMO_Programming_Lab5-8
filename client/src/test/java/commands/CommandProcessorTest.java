@@ -2,7 +2,6 @@ package commands;
 
 import client.ClientConnection;
 import exceptions.ExitException;
-import exceptions.IncorrectInputException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -10,15 +9,13 @@ import parsers.MyScanner;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.security.Security;
-import java.sql.Connection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CommandProcessorTest {
 
-    private CommandProcessor processor;
     private final MyScanner console = new MyScanner(System.in);
+    private CommandProcessor processor;
 
     @BeforeEach
     void init() {

@@ -2,28 +2,19 @@ package commands;
 
 import client.ClientConnection;
 import exceptions.ExitException;
-import exceptions.IncorrectDataException;
 import exceptions.IncorrectInputException;
-import exceptions.NoSuchUserException;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import parsers.MyScanner;
 import settings.Settings;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CommandTest {
 
-    private ClientConnection conn;
     private final MyScanner console = new MyScanner(System.in);
+    private ClientConnection conn;
 
     @BeforeEach
     void init() {
@@ -62,6 +53,7 @@ class CommandTest {
     @Test
     void signOut() {
         Command signOut = new SignOutCommand(conn);
+        Mockito.when(conn.getSettings()).thenReturn(new Settings());
         assertEquals("", signOut.execute("sign_out", console));
         Mockito.doThrow(RuntimeException.class).when(conn).setUser();
         assertThrows(RuntimeException.class, () -> signOut.execute("sign_out", console));

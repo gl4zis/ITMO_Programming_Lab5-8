@@ -35,7 +35,7 @@ class CommandManagerTest {
         DataBaseManager baseMan = new DataBaseManager(conn);
         collection = new DragonCollection();
         manager = new CommandManager(baseMan, collection);
-        assertEquals(19, manager.getCommands().size());
+        assertEquals(18, manager.getCommands().size());
         assertEquals(collection, manager.getCollection());
         assertEquals(baseMan, manager.getBaseMan());
         Request request = new Request(CommandType.SHOW, null, null, null);

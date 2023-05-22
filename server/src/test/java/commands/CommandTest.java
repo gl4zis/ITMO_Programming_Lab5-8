@@ -111,18 +111,6 @@ class CommandTest {
     }
 
     @Test
-    void insert() throws SQLException {
-        Mockito.when(manager.getBaseMan().insertDragon(Mockito.any())).thenReturn(1);
-        Request insertReq = new Request(CommandType.INSERT, "aaa", dragon, admin);
-        assertEquals("New dragon successfully added in collection", manager.seekCommand(insertReq));
-        Mockito.when(manager.getBaseMan().insertDragon(Mockito.any())).thenReturn(2);
-        assertEquals("New dragon successfully added in collection", manager.seekCommand(insertReq));
-        Mockito.doThrow(SQLException.class).when(manager.getBaseMan()).insertDragon(Mockito.any());
-        Request anotherInsertReq = new Request(CommandType.INSERT, "lol", dragon, admin);
-        assertThrows(ExitException.class, () -> manager.seekCommand(anotherInsertReq));
-    }
-
-    @Test
     void minByAge() {
         Request minReq = new Request(CommandType.MIN_BY_AGE, null, null, admin);
         assertEquals("Collection is empty", manager.seekCommand(minReq));

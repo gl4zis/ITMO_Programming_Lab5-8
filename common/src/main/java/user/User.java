@@ -1,7 +1,5 @@
 package user;
 
-import parsers.MyScanner;
-
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -20,26 +18,6 @@ public class User implements Serializable {
      */
     private User(String login) {
         this.login = login;
-    }
-
-    /**
-     * Authorizes current user.
-     * Reads login and non-hashed password
-     *
-     * @return user
-     */
-    public static User authorize() {
-        MyScanner console = new MyScanner(System.in);
-        String login;
-        do {
-            System.out.print("Enter login: ");
-            login = console.nextLine();
-            if (login.matches("\\w+")) break;
-            System.out.println("You can use only a-z, A-Z, 0-9 and _ in the login");
-        } while (true);
-        System.out.print("Enter password: ");
-        String passwd = console.nextLine();
-        return signUp(login, passwd);
     }
 
     /**

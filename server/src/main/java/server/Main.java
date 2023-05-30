@@ -31,9 +31,8 @@ public class Main {
     public static void main(String[] args) {
         Logger LOGGER = LogManager.getLogger(Main.class);
         LOGGER.debug("Server startup");
-        try {
+        try (Connection baseConn = MyBaseConnection.connect()) {
             DragonCollection collection = new DragonCollection();
-            Connection baseConn = MyBaseConnection.connect();
             DataBaseManager baseMan = new DataBaseManager(baseConn);
             baseMan.uploadCollection(collection);
             CommandManager manager = new CommandManager(baseMan, collection);
@@ -42,7 +41,6 @@ public class Main {
             ServerConnection con = new ServerConnection(manager);
             LOGGER.info("Waiting connection on port: " + port);
             con.open(port);
-            baseConn.close();
         } catch (ExitException e) {
             LOGGER.debug("Correct exit");
             System.out.println(e.getMessage());

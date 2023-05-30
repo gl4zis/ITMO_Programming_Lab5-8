@@ -109,7 +109,7 @@ public class ServerConnection {
             pool.submit(() -> readBuffer(pool));
             LOGGER.debug("Request received");
             Request request = SerializationUtils.deserialize(buffer.array());
-            LOGGER.info(String.format("Request command: %s, with args: %s",
+            LOGGER.debug(String.format("Request command: %s, with args: %s",
                     request.command(), request.arg()));
             requests.offer(new ImmutablePair<>(dataPack, request));
         } catch (IOException ignored) {
@@ -196,11 +196,10 @@ public class ServerConnection {
                 DatagramPacket dataPack = new DatagramPacket(partOfBuffer, partOfBuffer.length, host, port);
                 new DatagramSocket().send(dataPack);
 
-                LOGGER.debug(String.format("Pack number %d, was sent (%d bytes)", i + 1, partOfBuffer.length));
                 if (packsNumber > 3)
                     wait(8);
             }
-            LOGGER.info("Sent response (" + buffer.capacity() + " bytes) to the client: " +
+            LOGGER.debug("Sent response (" + buffer.capacity() + " bytes) to the client: " +
                     host.toString().substring(1));
         } catch (IOException e) {
             LOGGER.error("Something went wrong ( " + e.getMessage());

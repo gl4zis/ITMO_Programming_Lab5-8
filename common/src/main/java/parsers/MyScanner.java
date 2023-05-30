@@ -79,36 +79,6 @@ public class MyScanner {
             throw new IncorrectInputException(message);
     }
 
-    public User readUser(boolean sign) {
-        User user = User.authorize();
-        if (sign) {
-            System.out.print("Repeat password: ");
-            String repPasswd = nextLine();
-            if (!User.hashPasswd(repPasswd, 500).equals(user.getHashedPasswd())) {
-                LOGGER.warn("Incorrect repeated password");
-                return null;
-            }
-        }
-        return user;
-    }
-
-    /**
-     * Using while setting up user
-     *
-     * @return true if user want to sign up, false if sign in
-     */
-    public boolean chooseUpIn() {
-        String sign;
-        do {
-            System.out.print("If you want to sign up type '+', to sign in type '-': ");
-            sign = nextLine();
-            if (sign.equals("exit")) throw new ExitException();
-            if (sign.equals("-")) return false;
-            if (sign.equals("+")) return true;
-            LOGGER.warn("Incorrect input");
-        } while (true);
-    }
-
     private String readName() {
         do {
             print("Enter name: ");

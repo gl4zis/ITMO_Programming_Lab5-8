@@ -23,7 +23,7 @@ public class LangBox extends JComboBox<String> {
         setEditable(true);
     }
 
-    public static JComboBox<String> getShortBox(MyFrame parent) {
+    public static LangBox getShortBox(MyFrame parent) {
         String[] shortLangs = new String[MyLocale.values().length];
         int counter = 0;
         for (MyLocale locale : MyLocale.values()) {
@@ -32,7 +32,7 @@ public class LangBox extends JComboBox<String> {
         return new LangBox(shortLangs, parent);
     }
 
-    public static JComboBox<String> getLongBox(MyFrame parent) {
+    public static LangBox getLongBox(MyFrame parent) {
         String[] langs = new String[MyLocale.values().length];
         int counter = 0;
         for (MyLocale locale : MyLocale.values()) {

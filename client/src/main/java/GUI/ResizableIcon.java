@@ -111,16 +111,9 @@ public abstract class ResizableIcon extends JLabel {
 
     public static ResizableIcon getConnButton(MyFrame parent) {
         return new ResizableIcon(parent, CONNECTION, NO_CONNECTION) {
-            private boolean isConnected = true;
-
-            @Override
-            protected void click() {
-                isConnected = !isConnected;
-            }
-
             @Override
             protected BufferedImage chooseImg() {
-                if (isConnected)
+                if (parent.getSettings().getConnection().connected)
                     return image1;
                 else
                     return image2;

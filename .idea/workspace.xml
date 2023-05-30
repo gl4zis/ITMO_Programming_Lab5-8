@@ -7,83 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="removed insert command">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/AuthorizePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/BasePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ChangePasswordPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CommandsPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomTextField.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/HomePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LangBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LeftPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LightDarkResizableIcon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyCheckBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/PageStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SignInPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SignUpPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SwitchButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/TablePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/WarningLabel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_el_GR.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ro_RO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ru_RU.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/settings/MyLocale.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/connection.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/close_eye.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/commands.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/dragon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/help.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/itmo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/open_eye.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/table.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/theme.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/user.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/view.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/close_eye.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/commands.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/dragon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/help.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/itmo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/open_eye.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/table.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/theme.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/user.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/view.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/no_connection.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/welcome.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/styles/dark.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/styles/light.properties" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="client GUI init (works sign in, sign up, change password) + localization">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ChangePasswordPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ChangePasswordPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/LangBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LangBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/SignInPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SignInPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/SignUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SignUpPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/ChangePasswordCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/commands/ChangePasswordCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/commands/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/commands/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/ExecuteScriptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/commands/ExecuteScriptCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/ExitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/commands/ExitCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/commands/HelpCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/PingCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/commands/PingCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/SignOutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/commands/SignOutCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/commands/UpdateCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Localization.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/en_locale.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/ru_locale.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/settings.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/test/java/settings/SettingsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/settings/SettingsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/general/MyLocales.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/MyScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/MyScanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +148,7 @@
       <recent name="l10n" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.server">
+  <component name="RunManager" selected="Application.client">
     <configuration default="true" type="Application" factoryName="Application">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -405,20 +338,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00061" summary="repackaging and reworking commands in server(removed reader)">
-      <created>1681143894211</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1681143894211</updated>
-    </task>
-    <task id="LOCAL-00062" summary="added server commands, translated commands to english">
-      <created>1681145773420</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1681145773421</updated>
     </task>
     <task id="LOCAL-00063" summary="Connects methods decomposed">
       <created>1681147462727</created>
@@ -749,7 +668,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684782775316</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="client GUI init (works sign in, sign up, change password) + localization">
+      <created>1685473363613</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1685473363614</updated>
+    </task>
+    <task id="LOCAL-00111" summary="client GUI init (works sign in, sign up, change password) + localization">
+      <created>1685473503025</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1685473503025</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -777,7 +710,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="user generates for each dragon" />
     <MESSAGE value="adding dragons to database" />
     <MESSAGE value="all commands works with database" />
     <MESSAGE value="added insert command" />
@@ -802,7 +734,8 @@
     <MESSAGE value="database settings in resources now" />
     <MESSAGE value="removed insert dragon" />
     <MESSAGE value="removed insert command" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed insert command" />
+    <MESSAGE value="client GUI init (works sign in, sign up, change password) + localization" />
+    <option name="LAST_COMMIT_MESSAGE" value="client GUI init (works sign in, sign up, change password) + localization" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

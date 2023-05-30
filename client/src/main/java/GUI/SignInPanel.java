@@ -1,5 +1,6 @@
 package GUI;
 
+import exceptions.UnavailableServerException;
 import user.User;
 
 import javax.swing.*;
@@ -76,7 +77,7 @@ public class SignInPanel extends BasePanel {
                 if (check()) {
                     parent.getSettings().setUser(User.signUp(login.getText(), password.getText()));
                     parent.setStatus(PageStatus.HOME);
-                } else
+                } else if (parent.getSettings().getConnection().connected)
                     warning.showMessage();
             }
         });
@@ -89,7 +90,6 @@ public class SignInPanel extends BasePanel {
         User newUser = User.signUp(login, password);
         parent.getSettings().saveUser(save.isSelected());
 
-        String reply = parent.getSettings().getConnection().sendReqGetResp("sign_in", newUser);
-        return reply.startsWith("User was ");
+        return parent.getSettings().getConnection().signIn(newUser);
     }
 }

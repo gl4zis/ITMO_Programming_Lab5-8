@@ -1,5 +1,6 @@
 package client;
 
+import commands.CommandType;
 import commands.CommandValidator;
 import exceptions.UnavailableServerException;
 import general.OsUtilus;
@@ -10,9 +11,11 @@ import org.apache.commons.lang3.SerializationException;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.appender.rewrite.RewriteAppender;
 import parsers.MyScanner;
 import user.User;
 
+import java.beans.PropertyEditorSupport;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -20,6 +23,8 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.util.Date;
+import java.util.Objects;
+import java.util.concurrent.Callable;
 
 /**
  * Realization of connection to the server.
@@ -31,6 +36,7 @@ public class ClientConnection {
     private static final int MAX_UDP_BYTES_UNIX = 9216;
     private final InetSocketAddress address;
     private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
+    public boolean connected = true;
 
     /**
      * Standard constructor
@@ -58,7 +64,7 @@ public class ClientConnection {
      * @return true if server replied
      */
     private boolean receivePacks(DatagramChannel channel) throws IOException {
-        int packNumber = 0;
+        int packNumber = 1;
         byte[] replyArr = null;
         int bytes;
         if (OsUtilus.IsWindows()) bytes = MAX_UDP_BYTES_WINDOWS;
@@ -67,8 +73,7 @@ public class ClientConnection {
             ByteBuffer partOfBuffer = ByteBuffer.allocate(bytes);
             if (!waitResponse(channel, partOfBuffer))
                 return false;
-            LOGGER.debug(String.format("Pack number %d, was received (%d bytes)", packNumber + 1, partOfBuffer.capacity()));
-            packNumber++;
+            LOGGER.debug(String.format("Pack number %d, was received (%d bytes)", packNumber++, partOfBuffer.capacity()));
             replyArr = sumPacks(replyArr, partOfBuffer);
         } while (!checkPacks(replyArr));
         LOGGER.debug("Reply was received");
@@ -116,7 +121,7 @@ public class ClientConnection {
         while (!respond) {
             from = channel.receive(packBuffer);
             respond = (from != null);
-            if (new Date().getTime() - requestTime > 1000) {
+            if (new Date().getTime() - requestTime > 500) {
                 return false;
             }
         }
@@ -161,7 +166,40 @@ public class ClientConnection {
         return output;
     }
 
-    public String sendReqGetResp(String line, User user) {
-        return sendReqGetResp(line, null, user);
+    public Object tryConnecting(Callable<Object> call) {
+        Object result = null;
+        try {
+            result = call.call();
+        } catch (Exception ignored) {
+        }
+        connected = result != null;
+        return result;
+    }
+
+    public boolean signIn(User user) {
+        Request request = new Request(CommandType.SIGN_IN, null, null, user);
+        Object result = tryConnecting(() -> sendReqGetResp(request));
+        if (result == null)
+            return false;
+        else
+            return ((String) result).startsWith("User was");
+    }
+
+    public boolean signUp(User user) {
+        Request request = new Request(CommandType.SIGN_UP, null, null, user);
+        Object result = tryConnecting(() -> sendReqGetResp(request));
+        if (result == null)
+            return false;
+        else
+            return ((String) result).startsWith("User was");
+    }
+
+    public boolean changePasswd(User user, String newPasswd) {
+        Request request = new Request(CommandType.CHANGE_PASSWORD, User.hashPasswd(newPasswd, 500), null, user);
+        Object result = tryConnecting(() -> sendReqGetResp(request));
+        if (result == null)
+            return false;
+        else
+            return ((String) result).startsWith("Password was");
     }
 }

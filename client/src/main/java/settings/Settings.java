@@ -24,19 +24,21 @@ public class Settings {
     private HashMap<String, Color> colors;
     private int port;
     private String hostName;
+    private static final String DARK_STYLE_PATH = "/styles/dark.properties";
+    private static final String LIGH_STYLE_PATH = "/styles/light.properties";
 
     public Settings() {
         load();
     }
 
     private void load() {
-        saveUser = false;
+        setDefault();
         colors = new HashMap<>();
         Properties settings = new Properties();
-        settingsPath = this.getClass().getClassLoader().getResource("settings.cfg").getPath();
+        settingsPath = this.getClass().getResource("/settings.cfg").getPath();
         if (settingsPath.contains("!")) {
             settingsPath = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-            settingsPath = settingsPath.substring(0, settingsPath.length() - 16);
+            settingsPath = settingsPath.substring(0, settingsPath.lastIndexOf('/'));
             settingsPath += "settings.cfg";
         }
         try {
@@ -46,22 +48,16 @@ public class Settings {
             loadUser(settings);
             loadLocale(settings);
             loadTheme(settings);
-            String stylePath;
-            if (darkTheme)
-                stylePath = "/styles/dark.properties";
-            else
-                stylePath = "/styles/light.properties";
-            loadStyle(stylePath);
+            loadStyle();
         } catch (IOException e) {
-            e.printStackTrace();
             LOGGER.error("Can't read settings file");
-            setDefault();
         }
     }
 
     private void setDefault() {
         locale = MyLocale.ENGLISH;
         saveUser = false;
+        darkTheme = false;
     }
 
     private void loadServer(Properties settings) throws UnknownHostException {
@@ -75,8 +71,7 @@ public class Settings {
         String password = (String) settings.get("password");
         if (!login.trim().isEmpty() && !password.trim().isEmpty()) {
             User newUser = User.signIn(login, password);
-            String reply = connection.sendReqGetResp("sign_in", newUser);
-            if (reply.startsWith("User was")) {
+            if (connection.signIn(newUser)) {
                 user = newUser;
                 saveUser = true;
             }
@@ -93,7 +88,12 @@ public class Settings {
         darkTheme = theme.equalsIgnoreCase("true");
     }
 
-    private void loadStyle(String stylePath) throws IOException {
+    private void loadStyle() throws IOException {
+        String stylePath;
+        if (darkTheme)
+            stylePath = DARK_STYLE_PATH;
+        else
+            stylePath = LIGH_STYLE_PATH;
         Properties style = new Properties();
         InputStream is = Settings.class.getResourceAsStream(stylePath);
         style.load(is);
@@ -112,15 +112,10 @@ public class Settings {
 
     public void changeTheme() {
         darkTheme = !darkTheme;
-        String stylePath;
-        if (darkTheme)
-            stylePath = "/styles/dark.properties";
-        else
-            stylePath = "/styles/light.properties";
         try {
-            loadStyle(stylePath);
+            loadStyle();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Can't load styles " + e.getMessage());
         }
     }
 

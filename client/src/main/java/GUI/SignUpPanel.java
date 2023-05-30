@@ -84,7 +84,7 @@ public class SignUpPanel extends BasePanel {
                 if (checkInfo()) {
                     parent.getSettings().setUser(User.signUp(login.getText(), password.getText()));
                     parent.setStatus(PageStatus.HOME);
-                } else
+                } else if (parent.getSettings().getConnection().connected)
                     loginCol.showMessage();
             }
         });
@@ -114,8 +114,7 @@ public class SignUpPanel extends BasePanel {
         if (password.isEmpty())
             right = false;
         if (right) {
-            String reply = parent.getSettings().getConnection().sendReqGetResp("sign_up", newUser);
-            right = reply.startsWith("User was");
+            right = parent.getSettings().getConnection().signUp(newUser);
         }
         return right;
     }

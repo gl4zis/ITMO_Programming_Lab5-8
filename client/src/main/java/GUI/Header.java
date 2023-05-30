@@ -6,28 +6,39 @@ import java.awt.*;
 public class Header extends JPanel {
 
     private final MyFrame parent;
+    private final ResizableIcon connIcon;
+    private final ResizableIcon themeButton;
+    private final ResizableIcon userButton;
+    private final ResizableIcon helpButton;
+    private final LangBox lang;
 
     public Header(MyFrame parent) {
         this.parent = parent;
         setPreferredSize(new Dimension(800, 65));
         setLayout(new GridBagLayout());
 
+        connIcon = ResizableIcon.getConnButton(parent);
+        themeButton = LightDarkResizableIcon.getThemeButton(parent);
+        userButton = LightDarkResizableIcon.getUserButton(parent);
+        helpButton = LightDarkResizableIcon.getHelpButton(parent);
+        lang = LangBox.getShortBox(parent);
+
         fill();
     }
 
     private void fill() {
         addSpacer(0.05);
-        addConnButton();
+        addComponent(connIcon);
         addSpacer(0.2);
-        addThemeButton();
+        addComponent(themeButton);
         addSpacer(0.4);
         addITMOLabel();
         addSpacer(0.4);
-        addUserButton();
+        addComponent(userButton);
         addSpacer(0.05);
-        addHelpButton();
+        addComponent(helpButton);
         addSpacer(0.05);
-        addLangBox();
+        addComponent(lang);
         addSpacer(0.05);
     }
 
@@ -37,38 +48,14 @@ public class Header extends JPanel {
         add(MyFrame.getSpacer(), constraints);
     }
 
-    private void addConnButton() {
+    private void addComponent(Component c) {
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(2, 0, 0, 0);
-        add(ResizableIcon.getConnButton(parent), constraints);
-    }
-
-    private void addThemeButton() {
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(2, 0, 0, 0);
-        add(LightDarkResizableIcon.getThemeButton(parent), constraints);
+        add(c, constraints);
     }
 
     private void addITMOLabel() {
         add(LightDarkResizableIcon.getITMO(parent));
-    }
-
-    private void addUserButton() {
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(2, 0, 0, 0);
-        add(LightDarkResizableIcon.getUserButton(parent), constraints);
-    }
-
-    private void addHelpButton() {
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(2, 0, 0, 0);
-        add(LightDarkResizableIcon.getHelpButton(parent), constraints);
-    }
-
-    private void addLangBox() {
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(2, 0, 0, 0);
-        add(LangBox.getShortBox(parent), constraints);
     }
 
     @Override

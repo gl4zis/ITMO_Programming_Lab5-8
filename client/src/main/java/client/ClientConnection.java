@@ -1,8 +1,6 @@
 package client;
 
-import commands.CommandProcessor;
 import commands.CommandValidator;
-import exceptions.ExitException;
 import exceptions.UnavailableServerException;
 import general.OsUtilus;
 import network.Request;
@@ -13,7 +11,6 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import parsers.MyScanner;
-import settings.Settings;
 import user.User;
 
 import java.io.IOException;
@@ -32,10 +29,7 @@ public class ClientConnection {
     private static final Logger LOGGER = LogManager.getLogger(ClientConnection.class);
     private static final int MAX_UDP_BYTES_WINDOWS = 65507;
     private static final int MAX_UDP_BYTES_UNIX = 9216;
-    private static final MyScanner CONSOLE = new MyScanner(System.in);
     private final InetSocketAddress address;
-    private final CommandProcessor processor;
-    private final Settings settings;
     private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
 
     /**
@@ -44,73 +38,10 @@ public class ClientConnection {
      * @param host localhost
      * @param port server port
      */
-    ClientConnection(InetAddress host, int port, Settings settings) {
+    public ClientConnection(InetAddress host, int port) {
         address = new InetSocketAddress(host, port);
-        processor = new CommandProcessor(this);
-        this.settings = settings;
-        setUser();
     }
 
-    /**
-     * Processes waiting reply from server
-     * (Prints messages, checks console)
-     */
-    private static void waitingServer(boolean printMessage, Exception e) {
-        if (printMessage) {
-            System.out.println(e.getMessage());
-            System.out.println("You can only exit from the app");
-            System.out.print("-> ");
-        }
-        String line = CONSOLE.checkConsole();
-        if (line != null) {
-            line = line.split("\n")[0].trim();
-            if (line.equals("exit")) {
-                throw new ExitException();
-            }
-            if (!line.isEmpty())
-                System.out.println("Can't execute commands now =(");
-            System.out.print("-> ");
-        }
-    }
-
-    /**
-     * Reads console and execute command in console line, throw server
-     */
-    public void run() {
-        while (true) {
-            System.out.print("-> ");
-            processor.execute();
-        }
-    }
-
-    public void setUser() {
-        if (settings.getUser() != null) {
-            LOGGER.info("Was authorized as " + settings.getUser().getLogin());
-            return;
-        }
-        String resp = "";
-        do {
-            boolean sign = CONSOLE.chooseUpIn();
-            User user = CONSOLE.readUser(sign);
-            if (user == null) continue;
-            settings.setUser(user);
-            if (sign) resp = sendReqGetResp("sign_up", CONSOLE);
-            else resp = sendReqGetResp("sign_in", CONSOLE);
-            LOGGER.info(resp);
-        } while (!resp.startsWith("User was"));
-        checkSaveUser();
-    }
-
-    private void checkSaveUser() {
-        System.out.println("Do you want to save your login and password?");
-        System.out.print("Type '+' if you want: ");
-        String sign = CONSOLE.nextLine();
-        if (sign.equals("+")) {
-            settings.saveUser();
-            LOGGER.info("User data was saved");
-        } else
-            LOGGER.info("User data wasn't saved");
-    }
 
     /**
      * Sends request in the channel
@@ -217,28 +148,20 @@ public class ClientConnection {
      *
      * @return message from response
      */
-    public String sendReqGetResp(String line, MyScanner reader) {
+    public String sendReqGetResp(String line, MyScanner reader, User user) {
         String output;
-        boolean message = true;
-        Request request = CommandValidator.validCommand(line, reader, settings.getUser());
+        Request request = CommandValidator.validCommand(line, reader, user);
         while (true) {
             try {
                 output = sendReqGetResp(request);
-                if (!message) System.out.println();
                 break;
-            } catch (UnavailableServerException e) {
-                waitingServer(message, e);
-                message = false;
+            } catch (UnavailableServerException ignored) {
             }
         }
         return output;
     }
 
-    public CommandProcessor getProcessor() {
-        return processor;
-    }
-
-    public Settings getSettings() {
-        return settings;
+    public String sendReqGetResp(String line, User user) {
+        return sendReqGetResp(line, null, user);
     }
 }

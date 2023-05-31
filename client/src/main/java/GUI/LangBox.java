@@ -75,36 +75,37 @@ public class LangBox extends JComboBox<String> implements GoodQuality {
         updateSize(width, height);
         setSelectedIndex(parent.getSettings().getLocale().ordinal());
     }
-}
 
-class LangBoxRenderer extends JLabel implements ListCellRenderer<String> {
+    private static class LangBoxRenderer extends JLabel implements ListCellRenderer<String> {
 
-    private final MyFrame parent;
+        private final MyFrame parent;
 
-    public LangBoxRenderer(MyFrame parent) {
-        setOpaque(true);
-        this.parent = parent;
-        setSettings();
+        public LangBoxRenderer(MyFrame parent) {
+            setOpaque(true);
+            this.parent = parent;
+            setSettings();
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            setSettings();
+            super.paintComponent(g);
+        }
+
+        private void setSettings() {
+            int fontSize = (int) (parent.getKf() * 16);
+            setFont(new Font("Arial", Font.BOLD, fontSize));
+            setBackground(parent.getSettings().getColors().get("mainColor"));
+            setForeground(parent.getSettings().getColors().get("fontColor"));
+        }
+
+        @Override
+        public Component getListCellRendererComponent(JList<? extends String> list, String value,
+                                                      int index, boolean isSelected, boolean cellHasFocus) {
+            setText(value);
+            list.repaint();
+            return this;
+        }
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        setSettings();
-        super.paintComponent(g);
-    }
-
-    private void setSettings() {
-        int fontSize = (int) (parent.getKf() * 16);
-        setFont(new Font("Arial", Font.BOLD, fontSize));
-        setBackground(parent.getSettings().getColors().get("mainColor"));
-        setForeground(parent.getSettings().getColors().get("fontColor"));
-    }
-
-    @Override
-    public Component getListCellRendererComponent(JList<? extends String> list, String value,
-                                                  int index, boolean isSelected, boolean cellHasFocus) {
-        setText(value);
-        list.repaint();
-        return this;
-    }
 }

@@ -28,7 +28,9 @@ public class GUI_en_US extends ListResourceBundle {
                 {"chPass.old", "old password"},
                 {"chPass.new", "new password"},
                 {"all.confirm", "Confirm"},
-                {"chPass.incOld", "Incorrect password"}
+                {"chPass.incOld", "Incorrect password"},
+                {"synopsis.title", "Synopsis"},
+                {"synopsis.text", "I don't know what I should write here"}
         };
     }
 }

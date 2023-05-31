@@ -28,6 +28,7 @@ public class Main {
         Logger LOGGER = LogManager.getLogger(Main.class);
         LOGGER.debug("Client startup");
         try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 
             Settings settings = new Settings();
             SwingUtilities.invokeLater(() -> new MyFrame("Dragonapplication", settings));

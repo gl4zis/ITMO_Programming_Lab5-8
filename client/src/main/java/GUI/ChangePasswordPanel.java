@@ -110,6 +110,7 @@ public class ChangePasswordPanel extends BasePanel {
         if (right) {
             right = parent.getSettings().getConnection().changePasswd(parent.getSettings().getUser(),
                     newHashedPasswd);
+            parent.checkConnect();
         }
         return right;
     }

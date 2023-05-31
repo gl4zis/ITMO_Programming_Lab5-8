@@ -115,6 +115,7 @@ public class SignUpPanel extends BasePanel {
             right = false;
         if (right) {
             right = parent.getSettings().getConnection().signUp(newUser);
+            parent.checkConnect();
         }
         return right;
     }

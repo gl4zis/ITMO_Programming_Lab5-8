@@ -28,7 +28,9 @@ public class GUI_el_GR extends ListResourceBundle {
                 {"chPass.old", "παλιός κωδικός πρόσβασης"},
                 {"chPass.new", "νέος κωδικός πρόσβασης"},
                 {"all.confirm", "Επιβεβαίωση"},
-                {"chPass.incOld", "Λανθασμένος κωδικός πρόσβασης"}
+                {"chPass.incOld", "Λανθασμένος κωδικός πρόσβασης"},
+                {"synopsis.title", "Σύνοψη"},
+                {"synopsis.text", "Δεν ξέρω τι πρέπει να γράψω εδώ"}
         };
     }
 }

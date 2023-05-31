@@ -7,19 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="better image quality">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/GoodQuality.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="increased all GUI quality">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/HelpDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/BasePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/BasePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CustomTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomTextField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/GoodIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/GoodIcon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/LangBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LangBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/LeftPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LeftPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/welcome.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/welcome.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/LightDarkResizableIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LightDarkResizableIcon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_el_GR.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_el_GR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ro_RO.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ro_RO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ru_RU.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ru_RU.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -342,13 +339,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00065" summary="command optimizing">
-      <created>1681149744650</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1681149744650</updated>
     </task>
     <task id="LOCAL-00066" summary="micro bugfix">
       <created>1681157725209</created>
@@ -686,7 +676,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685531835100</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="increased all GUI quality">
+      <created>1685533430557</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1685533430557</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -714,7 +711,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="added insert command" />
     <MESSAGE value="multithreading on server" />
     <MESSAGE value="updated server multithreading" />
     <MESSAGE value="password encryption became more difficult" />
@@ -739,7 +735,8 @@
     <MESSAGE value="client GUI init (works sign in, sign up, change password) + localization" />
     <MESSAGE value="showing status of connection" />
     <MESSAGE value="better image quality" />
-    <option name="LAST_COMMIT_MESSAGE" value="better image quality" />
+    <MESSAGE value="increased all GUI quality" />
+    <option name="LAST_COMMIT_MESSAGE" value="increased all GUI quality" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

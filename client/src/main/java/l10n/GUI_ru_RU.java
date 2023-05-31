@@ -28,7 +28,9 @@ public class GUI_ru_RU extends ListResourceBundle {
                 {"chPass.old", "старый пароль"},
                 {"chPass.new", "новый пароль"},
                 {"all.confirm", "Ок"},
-                {"chPass.incOld", "Неверный пароль"}
+                {"chPass.incOld", "Неверный пароль"},
+                {"synopsis.title", "Справка"},
+                {"synopsis.text", "Не знаю что здесь написать"}
         };
     }
 }

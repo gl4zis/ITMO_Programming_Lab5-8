@@ -28,7 +28,9 @@ public class GUI_ro_RO extends ListResourceBundle {
                 {"chPass.old", "parola veche"},
                 {"chPass.new", "parolă nouă"},
                 {"all.confirm", "Confirmați"},
-                {"chPass.incOld", "Parolă incorectă"}
+                {"chPass.incOld", "Parolă incorectă"},
+                {"synopsis.title", "Sinopsis"},
+                {"synopsis.text", "Nu știu ce ar trebui să scriu aici."}
         };
     }
 }

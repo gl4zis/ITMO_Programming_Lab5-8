@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -121,7 +122,12 @@ public class LightDarkResizableIcon extends ResizableIcon {
     }
 
     public static ResizableIcon getHelpButton(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, LIGHT_HELP, DARK_HELP);
+        return new LightDarkResizableIcon(parent, LIGHT_HELP, DARK_HELP) {
+            @Override
+            protected void click() {
+                new HelpDialog(parent, "synopsis.title", "synopsis.text");
+            }
+        };
     }
 
     public static ResizableIcon getITMO(MyFrame parent) {

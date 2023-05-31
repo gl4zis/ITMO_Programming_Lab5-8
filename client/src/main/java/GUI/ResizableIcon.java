@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public abstract class ResizableIcon extends JLabel {
@@ -70,7 +72,7 @@ public abstract class ResizableIcon extends JLabel {
     protected BufferedImage image2;
     protected MyFrame parent;
     protected int fontSize;
-    protected double scale = 0.8;
+    protected double scale = 0.2;
 
     protected ResizableIcon(MyFrame parent, URL image1, URL image2, String text) {
         this.parent = parent;
@@ -80,7 +82,7 @@ public abstract class ResizableIcon extends JLabel {
         fontSize = 14;
         try {
             this.image1 = ImageIO.read(image1);
-            setIcon(new ImageIcon(this.image1.getScaledInstance((int) (this.image1.getWidth() * scale),
+            setIcon(new GoodIcon(this.image1.getScaledInstance((int) (this.image1.getWidth() * scale),
                     (int) (this.image1.getHeight() * scale), Image.SCALE_DEFAULT)));
             this.image2 = ImageIO.read(image2);
         } catch (IOException | IllegalArgumentException ignored) {
@@ -135,7 +137,7 @@ public abstract class ResizableIcon extends JLabel {
         int width = (int) (imgSize.width * k * scale);
         int height = (int) (imgSize.height * k * scale);
         Image icon = mainImg.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        setIcon(new ImageIcon(icon));
+        setIcon(new GoodIcon(icon));
     }
 
     @Override

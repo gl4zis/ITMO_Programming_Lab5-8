@@ -61,7 +61,7 @@ public class LightDarkResizableIcon extends ResizableIcon {
     public static ResizableIcon getBigThemeButton(MyFrame parent) {
         return new LightDarkResizableIcon(parent, LIGHT_THEME, DARK_THEME, "home.darkTheme") {
             {
-                scale = 1.2;
+                scale = 0.3;
             }
 
             @Override
@@ -105,7 +105,7 @@ public class LightDarkResizableIcon extends ResizableIcon {
     public static ResizableIcon getBigUserButton(MyFrame parent) {
         return new LightDarkResizableIcon(parent, LIGHT_USER, DARK_USER, "") {
             {
-                scale = 2;
+                scale = 0.4;
             }
 
             @Override
@@ -133,7 +133,11 @@ public class LightDarkResizableIcon extends ResizableIcon {
     }
 
     public static ResizableIcon getDragon(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, LIGHT_DRAGON, DARK_DRAGON);
+        return new LightDarkResizableIcon(parent, LIGHT_DRAGON, DARK_DRAGON) {
+            {
+                scale = 1;
+            }
+        };
     }
 
     @Override

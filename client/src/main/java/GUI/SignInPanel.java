@@ -79,6 +79,7 @@ public class SignInPanel extends BasePanel {
                     parent.setStatus(PageStatus.HOME);
                 } else if (parent.getSettings().getConnection().connected)
                     warning.showMessage();
+                parent.checkConnect();
             }
         });
         add(panel, constraints);

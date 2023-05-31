@@ -21,10 +21,6 @@ public class MyFrame extends JFrame {
         setIconImage(new ImageIcon(Objects.requireNonNull(
                 getClass().getResource("/img/light/dragon.png"))).getImage());
         this.settings = settings;
-        try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        } catch (Exception ignored) {
-        }
         header = new Header(this);
         leftPanel = new LeftPanel(this);
         if (settings.getUser() == null)
@@ -60,6 +56,10 @@ public class MyFrame extends JFrame {
             protected void paintComponent(Graphics g) {
             }
         };
+    }
+
+    public void checkConnect() {
+        header.repaint();
     }
 
     public void setStatus(PageStatus status) {

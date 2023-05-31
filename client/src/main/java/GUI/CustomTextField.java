@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-public class CustomTextField extends JPasswordField {
+public class CustomTextField extends JPasswordField implements GoodQuality {
     private final MyFrame parent;
     private final int height;
     private final String msg;
@@ -60,6 +60,8 @@ public class CustomTextField extends JPasswordField {
 
             @Override
             public void changedUpdate(DocumentEvent e) {
+                if (focused)
+                    clientMsg = new String(getPassword());
             }
         });
     }
@@ -108,7 +110,7 @@ public class CustomTextField extends JPasswordField {
         setBorder(new EmptyBorder((int) (10 * k), (int) (10 * k), (int) (10 * k), (int) (10 * k)));
         setFont(new Font("Arial", Font.ITALIC, (int) (k * 14)));
 
-        Graphics2D g2D = (Graphics2D) g;
+        Graphics2D g2D = setGoodQ(g);
         g2D.setColor(parent.getSettings().getColors().get("secondColor"));
         g2D.setStroke(new BasicStroke((int) (k * 2)));
         g2D.drawRoundRect((int) k, (int) k, getWidth() - (int) (k * 2), getHeight() - (int) (k * 2), (int) (k * 6), (int) (k * 6));

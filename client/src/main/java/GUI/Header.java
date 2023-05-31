@@ -3,7 +3,7 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
-public class Header extends JPanel {
+public class Header extends JPanel implements GoodQuality {
 
     private final MyFrame parent;
     private final ResizableIcon connIcon;
@@ -64,7 +64,7 @@ public class Header extends JPanel {
         setPreferredSize(new Dimension(parent.getWidth(), parent.getHeight() / 7));
         double k = parent.getKf();
 
-        Graphics2D g2D = (Graphics2D) g;
+        Graphics2D g2D = setGoodQ(g);
         setBackground(parent.getSettings().getColors().get("mainColor"));
         Dimension panelSize = getSize();
         g2D.setColor(parent.getSettings().getColors().get("secondColor"));

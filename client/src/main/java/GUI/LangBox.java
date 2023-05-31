@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Objects;
 
-public class LangBox extends JComboBox<String> {
+public class LangBox extends JComboBox<String> implements GoodQuality {
     private final JLabel label;
     private final MyFrame parent;
 
@@ -61,7 +61,7 @@ public class LangBox extends JComboBox<String> {
         label.setText((String) getSelectedItem());
         label.setForeground(parent.getSettings().getColors().get("fontColor"));
 
-        Graphics2D g2D = (Graphics2D) g;
+        Graphics2D g2D = setGoodQ(g);
         g2D.setColor(parent.getSettings().getColors().get("mainColor"));
         g2D.setFont(label.getFont());
         g2D.fillRect(0, 0, getWidth(), getHeight());

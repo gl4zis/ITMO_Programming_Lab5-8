@@ -3,7 +3,7 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class BasePanel extends JPanel {
+public abstract class BasePanel extends JPanel implements GoodQuality {
 
     protected final MyFrame parent;
 
@@ -19,7 +19,7 @@ public abstract class BasePanel extends JPanel {
         Dimension panelSize = getSize();
         double k = parent.getKf();
 
-        Graphics2D g2D = (Graphics2D) g;
+        Graphics2D g2D = setGoodQ(g);
 
         //Drawing part of border
         g2D.setStroke(new BasicStroke((float) k * 8));

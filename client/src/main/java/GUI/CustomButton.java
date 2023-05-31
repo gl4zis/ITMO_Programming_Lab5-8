@@ -4,8 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Map;
 
-public abstract class CustomButton extends JPanel {
+public abstract class CustomButton extends JPanel implements GoodQuality {
 
     private final boolean isFilled;
     private final MyFrame parent;
@@ -59,7 +61,8 @@ public abstract class CustomButton extends JPanel {
         super.paintComponent(g);
         double k = parent.getKf();
         setBackground(parent.getSettings().getColors().get("mainColor"));
-        Graphics2D g2D = (Graphics2D) g;
+        Graphics2D g2D = setGoodQ(g);
+
         g2D.setColor(parent.getSettings().getColors().get("secondColor"));
         g2D.setStroke(new BasicStroke((int) (k * 2)));
 

@@ -7,37 +7,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="showing status of connection">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/GoodIcon.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="better image quality">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/GoodQuality.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ChangePasswordPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ChangePasswordPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/LightDarkResizableIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LightDarkResizableIcon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/MyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/BasePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/BasePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CustomTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomTextField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/GoodIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/GoodIcon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/LangBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LangBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/LeftPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LeftPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/SignInPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SignInPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/SignUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SignUpPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/connection.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/connection.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/dark/close_eye.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/close_eye.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/dark/commands.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/commands.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/dark/help.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/help.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/dark/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/home.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/dark/open_eye.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/open_eye.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/dark/table.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/table.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/dark/theme.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/theme.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/dark/user.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/user.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/dark/view.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/dark/view.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/light/close_eye.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/close_eye.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/light/commands.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/commands.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/light/help.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/help.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/light/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/home.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/light/open_eye.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/open_eye.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/light/table.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/table.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/light/theme.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/theme.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/light/user.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/user.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/light/view.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/light/view.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/no_connection.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/no_connection.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/settings.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/img/welcome.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/img/welcome.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +108,7 @@
     "jdk.selected.JAVA_MODULE": "17",
     "last.edited.regexp": "Sample Text",
     "last_directory_selection": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/test/java/commands",
-    "last_opened_file_path": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/main/resources/img/dark",
+    "last_opened_file_path": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/main/resources/img",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -139,13 +121,14 @@
       <recent name="org.application.lab5.dragons" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\resources\img\dark" />
-      <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\resources\img\light" />
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\resources\img" />
+      <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\resources\img\light" />
+      <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\resources\img\dark" />
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\resources" />
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\java\GUI" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\resources\img\light" />
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5\common\src\main" />
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5\server\src\main\java" />
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5\src\main" />
@@ -359,13 +342,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00064" summary="command optimizing">
-      <created>1681149090466</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1681149090466</updated>
     </task>
     <task id="LOCAL-00065" summary="command optimizing">
       <created>1681149744650</created>
@@ -703,7 +679,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685486916980</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="better image quality">
+      <created>1685531835099</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1685531835100</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -731,7 +714,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="all commands works with database" />
     <MESSAGE value="added insert command" />
     <MESSAGE value="multithreading on server" />
     <MESSAGE value="updated server multithreading" />
@@ -756,7 +738,8 @@
     <MESSAGE value="removed insert command" />
     <MESSAGE value="client GUI init (works sign in, sign up, change password) + localization" />
     <MESSAGE value="showing status of connection" />
-    <option name="LAST_COMMIT_MESSAGE" value="showing status of connection" />
+    <MESSAGE value="better image quality" />
+    <option name="LAST_COMMIT_MESSAGE" value="better image quality" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

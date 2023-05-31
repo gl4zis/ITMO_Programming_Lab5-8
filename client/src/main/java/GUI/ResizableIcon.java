@@ -106,7 +106,7 @@ public abstract class ResizableIcon extends JLabel {
     public static ResizableIcon getWelcome(MyFrame parent) {
         return new ResizableIcon(parent, WELCOME) {
             {
-                scale = 0.7;
+                scale = 0.4;
             }
         };
     }

@@ -39,7 +39,7 @@ public class Settings {
         if (settingsPath.contains("!")) {
             settingsPath = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
             settingsPath = settingsPath.substring(0, settingsPath.lastIndexOf('/'));
-            settingsPath += "settings.cfg";
+            settingsPath += "/settings.cfg";
         }
         try {
             InputStreamReader is = new InputStreamReader(new FileInputStream(settingsPath), StandardCharsets.UTF_8);

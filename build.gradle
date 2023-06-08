@@ -43,7 +43,7 @@ allprojects {
     apply plugin: 'java'
 
     group 'ru.ifmo.se'
-    version '3.0.0'
+    version '3.0.1'
 
     repositories {
         mavenCentral()

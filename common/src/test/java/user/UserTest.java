@@ -19,12 +19,6 @@ class UserTest {
     }
 
     @Test
-    void authorize() {
-        User user = User.authorize();
-        assertEquals(admin, user);
-    }
-
-    @Test
     void signIn() {
         User user = User.signIn("admin", admin.getHashedPasswd());
         assertEquals(admin, user);

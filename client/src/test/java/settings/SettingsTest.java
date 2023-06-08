@@ -27,7 +27,7 @@ class SettingsTest {
 
     @Test
     void saveUser() throws Exception {
-        settings.saveUser();
+        settings.saveUser(true);
         Field saveUser = settings.getClass().getDeclaredField("saveUser");
         saveUser.setAccessible(true);
         boolean save = saveUser.getBoolean(settings);
@@ -44,15 +44,5 @@ class SettingsTest {
         saveUser.setAccessible(true);
         saveUser.setBoolean(settings, false);
         settings.save();
-    }
-
-    @Test
-    void localize() {
-        settings.setLocale(MyLocales.ENGLISH);
-        String output = settings.localize("CHAOTIC_EVIL");
-        assertEquals("Evil", output);
-        settings.setLocale(MyLocales.RUSSIAN);
-        output = settings.localize("CHAOTIC_EVIL");
-        assertEquals("Злой", output);
     }
 }

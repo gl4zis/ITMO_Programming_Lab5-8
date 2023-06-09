@@ -31,7 +31,7 @@ public class Main {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 
             Settings settings = new Settings();
-            SwingUtilities.invokeLater(() -> new MyFrame("Dragonapplication", settings));
+            SwingUtilities.invokeLater(() -> new MyFrame("Dragon application", settings));
 
         } catch (Throwable e) {
             LOGGER.fatal("Something very strange happened =0 " + e.getMessage());

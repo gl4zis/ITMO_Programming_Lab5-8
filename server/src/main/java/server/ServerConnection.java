@@ -64,7 +64,7 @@ public class ServerConnection {
             console.setName("console");
             console.start();
             dataSock = new DatagramSocket(port);
-            LOGGER.debug("Connection opened");
+            LOGGER.info("Connection opened. Port: " + dataSock.getLocalPort());
             run();
             console.interrupt();
         } catch (SocketException e) {

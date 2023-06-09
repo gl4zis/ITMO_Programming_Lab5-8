@@ -35,12 +35,7 @@ public class Settings {
         setDefault();
         colors = new HashMap<>();
         Properties settings = new Properties();
-        settingsPath = this.getClass().getResource("/settings.cfg").getPath();
-        if (settingsPath.contains("!")) {
-            settingsPath = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-            settingsPath = settingsPath.substring(0, settingsPath.lastIndexOf('/'));
-            settingsPath += "/settings.cfg";
-        }
+        settingsPath = System.getProperty("user.home") + "/dragon_sett.cfg";
         try {
             InputStreamReader is = new InputStreamReader(new FileInputStream(settingsPath), StandardCharsets.UTF_8);
             settings.load(is);
@@ -58,6 +53,12 @@ public class Settings {
         locale = MyLocale.ENGLISH;
         saveUser = false;
         darkTheme = false;
+        port = 9812;
+        hostName = "localhost";
+        try {
+            connection = new ClientConnection(InetAddress.getByName(hostName), port);
+        } catch (UnknownHostException ignored) {
+        } //Can't be thrown
     }
 
     private void loadServer(Properties settings) throws UnknownHostException {
@@ -95,7 +96,7 @@ public class Settings {
         else
             stylePath = LIGH_STYLE_PATH;
         Properties style = new Properties();
-        InputStream is = Settings.class.getResourceAsStream(stylePath);
+        InputStream is = this.getClass().getResourceAsStream(stylePath);
         style.load(is);
         for (Object str : style.keySet()) {
             colors.put((String) str, parseColor(style.get(str)));

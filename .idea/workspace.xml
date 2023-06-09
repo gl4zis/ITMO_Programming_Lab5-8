@@ -7,15 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="increased all GUI quality">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="bugfix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/test/java/commands/CommandProcessorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/test/java/commands/CommandTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/test/java/settings/LocalizationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/settings/LocalizationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/test/java/settings/SettingsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/settings/SettingsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/test/java/user/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/test/java/user/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,12 +101,12 @@
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
     &quot;last.edited.regexp&quot;: &quot;Sample Text&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/test/java/commands&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/main/resources/img&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Console&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.idesettings.debugger.capture&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -148,12 +145,7 @@
       <recent name="l10n" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.server">
-    <configuration default="true" type="Application" factoryName="Application">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.client">
     <configuration name="client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.Main" />
       <module name="lab5-8.client.main" />
@@ -168,6 +160,52 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="CommandManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":server:test" />
+            <option value="--tests" />
+            <option value="&quot;commands.CommandManagerTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="CommandManagerTest.parse" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":server:test" />
+            <option value="--tests" />
+            <option value="&quot;commands.CommandManagerTest.parse&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="CommandManagerTest.seekCommand" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -192,30 +230,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="CommandTest.signOut" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":client:test" />
-            <option value="--tests" />
-            <option value="&quot;commands.CommandTest.signOut&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="DataBaseManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DragonCollectionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -228,7 +243,7 @@
           <list>
             <option value=":server:test" />
             <option value="--tests" />
-            <option value="&quot;database.DataBaseManagerTest&quot;" />
+            <option value="&quot;collection.DragonCollectionTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -238,7 +253,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="MyBaseConnectionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'lab5-8.server.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -250,31 +265,6 @@
         <option name="taskNames">
           <list>
             <option value=":server:test" />
-            <option value="--tests" />
-            <option value="&quot;database.MyBaseConnectionTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="StringModificatorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":common:test" />
-            <option value="--tests" />
-            <option value="&quot;parsers.StringModificatorTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -310,23 +300,28 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="nim.task.build.to.cache" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.server" />
       <item itemvalue="Application.client" />
       <item itemvalue="Gradle.build" />
+      <item itemvalue="Gradle.CommandManagerTest" />
+      <item itemvalue="Gradle.CommandManagerTest.parse" />
+      <item itemvalue="Gradle.DragonCollectionTest" />
+      <item itemvalue="Gradle.Tests in 'lab5-8.server.test'" />
       <item itemvalue="Gradle.CommandManagerTest.seekCommand" />
-      <item itemvalue="Gradle.CommandTest.signOut" />
-      <item itemvalue="Gradle.DataBaseManagerTest" />
-      <item itemvalue="Gradle.MyBaseConnectionTest" />
-      <item itemvalue="Gradle.StringModificatorTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.CommandManagerTest.seekCommand" />
-        <item itemvalue="Gradle.CommandTest.signOut" />
-        <item itemvalue="Gradle.DataBaseManagerTest" />
-        <item itemvalue="Gradle.MyBaseConnectionTest" />
-        <item itemvalue="Gradle.StringModificatorTest" />
+        <item itemvalue="Gradle.CommandManagerTest.parse" />
+        <item itemvalue="Gradle.CommandManagerTest" />
+        <item itemvalue="Gradle.DragonCollectionTest" />
+        <item itemvalue="Gradle.Tests in 'lab5-8.server.test'" />
       </list>
     </recent_temporary>
   </component>
@@ -338,13 +333,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00066" summary="micro bugfix">
-      <created>1681157725209</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1681157725210</updated>
     </task>
     <task id="LOCAL-00067" summary="reworked commands, using stream API">
       <created>1681219765701</created>
@@ -682,7 +670,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685533430557</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="bugfix">
+      <created>1686235176267</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1686235176267</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -710,7 +705,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="multithreading on server" />
     <MESSAGE value="updated server multithreading" />
     <MESSAGE value="password encryption became more difficult" />
     <MESSAGE value="new command for changing password" />
@@ -735,7 +729,8 @@
     <MESSAGE value="showing status of connection" />
     <MESSAGE value="better image quality" />
     <MESSAGE value="increased all GUI quality" />
-    <option name="LAST_COMMIT_MESSAGE" value="increased all GUI quality" />
+    <MESSAGE value="bugfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

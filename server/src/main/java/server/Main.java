@@ -39,7 +39,6 @@ public class Main {
 
             int port = 9812;
             ServerConnection con = new ServerConnection(manager);
-            LOGGER.info("Waiting connection on port: " + port);
             con.open(port);
         } catch (ExitException e) {
             LOGGER.debug("Correct exit");

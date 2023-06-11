@@ -18,7 +18,9 @@ public class MyCheckBox extends JCheckBox {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         double k = parent.getKf();
-        setFont(new Font("Arial", Font.PLAIN, (int) (k * 12)));
+        int defaultFontSize = 12;
+        if (getFont().getSize() != (int) (k * defaultFontSize))
+            setFont(new Font("Arial", Font.PLAIN, (int) (k * defaultFontSize)));
         setBackground(parent.getSettings().getColors().get("mainColor"));
         setForeground(parent.getSettings().getColors().get("fontColor"));
         setText(parent.getSettings().getLocale().getResource(message));

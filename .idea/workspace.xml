@@ -7,12 +7,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="ResizableIcons now don't repaint everytime">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="optimized interface">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CustomTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomTextField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/GoodIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/GoodIcon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/HelpDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/HelpDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/LangBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LangBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/MyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/LightDarkResizableIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LightDarkResizableIcon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/MyCheckBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyCheckBox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/SignInPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SignInPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/test/java/settings/LocalizationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/settings/LocalizationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,13 +343,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00068" summary="command argument validating on the client">
-      <created>1681221733434</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1681221733434</updated>
     </task>
     <task id="LOCAL-00069" summary="execute_script realization">
       <created>1681228737321</created>
@@ -677,7 +680,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686481056258</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="optimized header and leftPanel">
+      <created>1686484974072</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1686484974072</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -705,8 +715,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="password encryption became more difficult" />
-    <MESSAGE value="new command for changing password" />
     <MESSAGE value="auto-generating hasMap in CommandManager" />
     <MESSAGE value="micro debug with execute_script" />
     <MESSAGE value="debug with database connection" />
@@ -730,7 +738,9 @@
     <MESSAGE value="increased all GUI quality" />
     <MESSAGE value="bugfix" />
     <MESSAGE value="ResizableIcons now don't repaint everytime" />
-    <option name="LAST_COMMIT_MESSAGE" value="ResizableIcons now don't repaint everytime" />
+    <MESSAGE value="optimized header and leftPanel" />
+    <MESSAGE value="optimized interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="optimized interface" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

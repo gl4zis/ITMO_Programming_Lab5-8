@@ -15,6 +15,8 @@ import java.util.Properties;
 
 public class Settings {
     private static final Logger LOGGER = LogManager.getLogger(Settings.class);
+    private static final String DARK_STYLE_PATH = "/styles/dark.properties";
+    private static final String LIGH_STYLE_PATH = "/styles/light.properties";
     private User user;
     private boolean saveUser;
     private boolean darkTheme;
@@ -24,8 +26,6 @@ public class Settings {
     private HashMap<String, Color> colors;
     private int port;
     private String hostName;
-    private static final String DARK_STYLE_PATH = "/styles/dark.properties";
-    private static final String LIGH_STYLE_PATH = "/styles/light.properties";
 
     public Settings() {
         load();

@@ -1,10 +1,6 @@
 package GUI;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.net.URL;
 
 public class LightDarkResizableIcon extends ResizableIcon {
@@ -58,15 +54,32 @@ public class LightDarkResizableIcon extends ResizableIcon {
     }
 
     public static ResizableIcon getBigThemeButton(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, "home.darkTheme", LIGHT_THEME, DARK_THEME) {
+        return new LightDarkResizableIcon(parent, LIGHT_THEME, DARK_THEME) {
+            private final String darkText = "home.darkTheme";
+            private final String lightText = "home.lightTheme";
+
             {
                 scale = 0.3;
                 defaultFontSize = 20;
+                if (!parent.getSettings().isDark()) {
+                    text = darkText;
+                    setText(parent.getSettings().getLocale().getResource(darkText));
+                } else {
+                    text = lightText;
+                    setText(parent.getSettings().getLocale().getResource(lightText));
+                }
             }
 
             @Override
             protected void click() {
                 parent.getSettings().changeTheme();
+                if (text.equals(darkText)) {
+                    text = lightText;
+                    setText(parent.getSettings().getLocale().getResource(lightText));
+                } else {
+                    text = darkText;
+                    setText(parent.getSettings().getLocale().getResource(darkText));
+                }
                 parent.repaint();
             }
         };

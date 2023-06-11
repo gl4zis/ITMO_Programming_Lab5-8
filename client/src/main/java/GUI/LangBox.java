@@ -53,7 +53,6 @@ public class LangBox extends JComboBox<String> implements GoodQuality {
     private void changeLang(ActionEvent e) {
         MyLocale newLocale = Objects.requireNonNull(MyLocale.getByName((String) getSelectedItem()));
         if (!parent.getSettings().getLocale().equals(newLocale)) {
-            System.out.println(newLocale + "  " + parent.getSettings().getLocale());
             parent.getSettings().setLocale(newLocale);
             parent.repaint();
         }
@@ -86,19 +85,19 @@ public class LangBox extends JComboBox<String> implements GoodQuality {
 
     private static class LangBoxRenderer extends JLabel implements ListCellRenderer<String> {
 
-        private double oldKf;
         private final MyFrame parent;
+        private double oldKf;
 
         public LangBoxRenderer(MyFrame parent) {
-            setOpaque(true);
             this.parent = parent;
+            setOpaque(true);
             setSettings();
         }
 
         @Override
         protected void paintComponent(Graphics g) {
-            setSettings();
             super.paintComponent(g);
+            setSettings();
         }
 
         private void setSettings() {
@@ -117,6 +116,14 @@ public class LangBox extends JComboBox<String> implements GoodQuality {
         @Override
         public Component getListCellRendererComponent(JList<? extends String> list, String value,
                                                       int index, boolean isSelected, boolean cellHasFocus) {
+            Color background;
+            if (isSelected)
+                background = parent.getSettings().getColors().get("secondColor");
+            else
+                background = parent.getSettings().getColors().get("mainColor");
+
+            setBackground(background);
+            setForeground(parent.getSettings().getColors().get("fontColor"));
             setText(value);
             return this;
         }

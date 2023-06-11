@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Objects;
 
+import static java.awt.Font.BOLD;
+
 public class LangBox extends JComboBox<String> implements GoodQuality {
     private final JLabel label;
     private final MyFrame parent;
@@ -49,7 +51,12 @@ public class LangBox extends JComboBox<String> implements GoodQuality {
     }
 
     private void changeLang(ActionEvent e) {
-        parent.getSettings().setLocale(Objects.requireNonNull(MyLocale.getByName((String) getSelectedItem())));
+        MyLocale newLocale = Objects.requireNonNull(MyLocale.getByName((String) getSelectedItem()));
+        if (!parent.getSettings().getLocale().equals(newLocale)) {
+            System.out.println(newLocale + "  " + parent.getSettings().getLocale());
+            parent.getSettings().setLocale(newLocale);
+            parent.repaint();
+        }
     }
 
     @Override
@@ -57,7 +64,8 @@ public class LangBox extends JComboBox<String> implements GoodQuality {
         super.paintComponent(g);
         double k = parent.getKf();
         int fontSize = (int) (k * 16);
-        label.setFont(new Font("Arial", Font.BOLD, fontSize));
+        if (label.getFont().getSize() != fontSize)
+            label.setFont(new Font("Arial", BOLD, fontSize));
         label.setText((String) getSelectedItem());
         label.setForeground(parent.getSettings().getColors().get("fontColor"));
 
@@ -78,6 +86,7 @@ public class LangBox extends JComboBox<String> implements GoodQuality {
 
     private static class LangBoxRenderer extends JLabel implements ListCellRenderer<String> {
 
+        private double oldKf;
         private final MyFrame parent;
 
         public LangBoxRenderer(MyFrame parent) {
@@ -93,17 +102,22 @@ public class LangBox extends JComboBox<String> implements GoodQuality {
         }
 
         private void setSettings() {
-            int fontSize = (int) (parent.getKf() * 16);
-            setFont(new Font("Arial", Font.BOLD, fontSize));
-            setBackground(parent.getSettings().getColors().get("mainColor"));
-            setForeground(parent.getSettings().getColors().get("fontColor"));
+            if (oldKf != parent.getKf()) {
+                oldKf = parent.getKf();
+                setFont(new Font("Arial", BOLD, (int) (parent.getKf() * 16)));
+            }
+            Color newBackground = parent.getSettings().getColors().get("mainColor");
+            Color newForeground = parent.getSettings().getColors().get("fontColor");
+            if (!getForeground().equals(newForeground))
+                setForeground(newForeground);
+            if (!getBackground().equals(newBackground))
+                setBackground(newBackground);
         }
 
         @Override
         public Component getListCellRendererComponent(JList<? extends String> list, String value,
                                                       int index, boolean isSelected, boolean cellHasFocus) {
             setText(value);
-            list.repaint();
             return this;
         }
     }

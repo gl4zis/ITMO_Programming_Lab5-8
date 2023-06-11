@@ -1,5 +1,7 @@
 package GUI;
 
+import settings.MyLocale;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -75,10 +77,12 @@ public abstract class ResizableIcon extends JLabel {
     protected int defaultFontSize = 14;
     protected double scale = 0.2;
     private double oldKf = 1;
+    private MyLocale locale;
 
     protected ResizableIcon(MyFrame parent, String text, URL... images) {
         this.parent = parent;
         this.text = text;
+        locale = parent.getSettings().getLocale();
         if (text != null)
             setText(parent.getSettings().getLocale().getResource(text));
         fontSize = defaultFontSize;
@@ -144,9 +148,16 @@ public abstract class ResizableIcon extends JLabel {
             Icon icon = new GoodIcon(mainImg.getScaledInstance(width, height, Image.SCALE_DEFAULT));
             setIcon(icon);
         }
+        if (text != null && !locale.equals(parent.getSettings().getLocale())) {
+            locale = parent.getSettings().getLocale();
+            setText(parent.getSettings().getLocale().getResource(text));
+        }
+        Color newForeground;
         if (this instanceof SwitchButton sw && sw.setted) {
-            setForeground(parent.getSettings().getColors().get("secondColor"));
-        } else setForeground(parent.getSettings().getColors().get("fontColor"));
+            newForeground = parent.getSettings().getColors().get("secondColor");
+        } else newForeground = parent.getSettings().getColors().get("fontColor");
+        if (!getForeground().equals(newForeground))
+            setForeground(newForeground);
     }
 
     @Override

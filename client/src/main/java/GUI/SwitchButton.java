@@ -4,15 +4,15 @@ import java.awt.*;
 import java.net.URL;
 
 public class SwitchButton extends LightDarkResizableIcon {
-    private boolean setted;
+    protected boolean setted;
 
-    protected SwitchButton(MyFrame parent, URL image1, URL image2, String text) {
-        super(parent, image1, image2, text);
+    protected SwitchButton(MyFrame parent, String text, URL... images) {
+        super(parent, text, images);
         reset();
     }
 
     public static SwitchButton getHomeButton(MyFrame parent) {
-        return new SwitchButton(parent, LIGHT_HOME, DARK_HOME, "leftPanel.home") {
+        return new SwitchButton(parent, "leftPanel.home", LIGHT_HOME, DARK_HOME) {
             @Override
             protected void click() {
                 if (parent.getSettings().getUser() != null)
@@ -24,7 +24,7 @@ public class SwitchButton extends LightDarkResizableIcon {
     }
 
     public static SwitchButton getViewButton(MyFrame parent) {
-        return new SwitchButton(parent, LIGHT_VIEW, DARK_VIEW, "leftPanel.view") {
+        return new SwitchButton(parent, "leftPanel.view", LIGHT_VIEW, DARK_VIEW) {
             @Override
             protected void click() {
                 parent.setStatus(PageStatus.VIEW);
@@ -33,7 +33,7 @@ public class SwitchButton extends LightDarkResizableIcon {
     }
 
     public static SwitchButton getTableButton(MyFrame parent) {
-        return new SwitchButton(parent, LIGHT_TABLE, DARK_TABLE, "leftPanel.table") {
+        return new SwitchButton(parent, "leftPanel.table", LIGHT_TABLE, DARK_TABLE) {
             @Override
             protected void click() {
                 parent.setStatus(PageStatus.TABLE);
@@ -42,7 +42,7 @@ public class SwitchButton extends LightDarkResizableIcon {
     }
 
     public static SwitchButton getCommandsButton(MyFrame parent) {
-        return new SwitchButton(parent, LIGHT_COMMANDS, DARK_COMMANDS, "leftPanel.commands") {
+        return new SwitchButton(parent, "leftPanel.commands", LIGHT_COMMANDS, DARK_COMMANDS) {
             @Override
             protected void click() {
                 if (parent.getSettings().getUser() != null)
@@ -53,23 +53,16 @@ public class SwitchButton extends LightDarkResizableIcon {
 
     public void set() {
         setted = true;
-        repaint();
+        setFont(new Font("Arial", Font.BOLD | Font.ITALIC, fontSize));
     }
 
     public void reset() {
         setted = false;
-        repaint();
+        setFont(new Font("Arial", Font.BOLD, fontSize));
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (setted) {
-            setFont(new Font("Arial", Font.BOLD | Font.ITALIC, fontSize));
-            setForeground(parent.getSettings().getColors().get("secondColor"));
-        } else {
-            setFont(new Font("Arial", Font.BOLD, fontSize));
-            setForeground(parent.getSettings().getColors().get("fontColor"));
-        }
     }
 }

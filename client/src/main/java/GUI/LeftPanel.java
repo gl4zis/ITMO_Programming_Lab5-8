@@ -24,13 +24,13 @@ public class LeftPanel extends JPanel implements GoodQuality {
     }
 
     private void fill() {
-        addHomeButton();
+        addComponent(buttons[0]);
         addSpacer(0.1);
-        addViewButton();
+        addComponent(buttons[1]);
         addSpacer(0.1);
-        addTableButton();
+        addComponent(buttons[2]);
         addSpacer(0.1);
-        addCommandsButton();
+        addComponent(buttons[3]);
         addSpacer(0.5);
         addLogo();
         addSpacer(0.2);
@@ -44,37 +44,13 @@ public class LeftPanel extends JPanel implements GoodQuality {
         add(MyFrame.getSpacer(), constraints);
     }
 
-    private void addHomeButton() {
+    private void addComponent(Component c) {
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(10, 0, 0, 0);
         constraints.anchor = GridBagConstraints.WEST;
         constraints.gridx = 0;
         constraints.gridy = row++;
-        add(buttons[0], constraints);
-    }
-
-    private void addViewButton() {
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.anchor = GridBagConstraints.WEST;
-        constraints.gridx = 0;
-        constraints.gridy = row++;
-        add(buttons[1], constraints);
-    }
-
-    private void addTableButton() {
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.anchor = GridBagConstraints.WEST;
-        constraints.gridx = 0;
-        constraints.gridy = row++;
-        add(buttons[2], constraints);
-    }
-
-    private void addCommandsButton() {
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.anchor = GridBagConstraints.WEST;
-        constraints.gridx = 0;
-        constraints.gridy = row++;
-        add(buttons[3], constraints);
+        add(c, constraints);
     }
 
     private void addLogo() {

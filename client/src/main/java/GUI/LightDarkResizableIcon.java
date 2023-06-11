@@ -8,43 +8,41 @@ import java.io.IOException;
 import java.net.URL;
 
 public class LightDarkResizableIcon extends ResizableIcon {
-    protected LightDarkResizableIcon(MyFrame parent, URL image1, URL image2, String text) {
-        super(parent, image1, image2, text);
+    protected LightDarkResizableIcon(MyFrame parent, String text, URL... images) {
+        super(parent, text, images);
     }
 
-    protected LightDarkResizableIcon(MyFrame parent, URL image1, URL image2) {
-        super(parent, image1, image2);
+    protected LightDarkResizableIcon(MyFrame parent, URL... images) {
+        super(parent, images);
     }
 
     public static ResizableIcon getEyeButton(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, LIGHT_CLOSE_EYE, DARK_CLOSE_EYE) {
-            private BufferedImage image3;
-            private BufferedImage image4;
+        return new LightDarkResizableIcon(parent, LIGHT_CLOSE_EYE, DARK_CLOSE_EYE, LIGHT_OPEN_EYE, DARK_OPEN_EYE) {
+            private boolean isOpen = false;
 
-            {
-                try {
-                    image3 = ImageIO.read(LIGHT_OPEN_EYE);
-                    image4 = ImageIO.read(DARK_OPEN_EYE);
-                } catch (IOException ignored) {
+            @Override
+            public void chooseImg() {
+                if (parent.getSettings().isDark()) {
+                    if (isOpen)
+                        mainImg = images[3];
+                    else
+                        mainImg = images[1];
+                } else {
+                    if (isOpen)
+                        mainImg = images[2];
+                    else
+                        mainImg = images[0];
                 }
-            }
-
-            private void swapImages() {
-                BufferedImage buffer = image1;
-                image1 = image3;
-                image3 = buffer;
-                buffer = image2;
-                image2 = image4;
-                image4 = buffer;
             }
 
             @Override
             protected void click() {
                 Container field = getParent();
-                if (field instanceof CustomTextField) {
-                    ((CustomTextField) field).swapHideMode();
+                if (field instanceof CustomTextField ctf) {
+                    ctf.swapHideMode();
                 }
-                swapImages();
+                isOpen = !isOpen;
+                repaint();
             }
         };
     }
@@ -60,9 +58,10 @@ public class LightDarkResizableIcon extends ResizableIcon {
     }
 
     public static ResizableIcon getBigThemeButton(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, LIGHT_THEME, DARK_THEME, "home.darkTheme") {
+        return new LightDarkResizableIcon(parent, "home.darkTheme", LIGHT_THEME, DARK_THEME) {
             {
                 scale = 0.3;
+                defaultFontSize = 20;
             }
 
             @Override
@@ -70,53 +69,50 @@ public class LightDarkResizableIcon extends ResizableIcon {
                 parent.getSettings().changeTheme();
                 parent.repaint();
             }
-
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                setFont(new Font("Arial", Font.BOLD, (int) (fontSize * 1.5)));
-                if (parent.getSettings().isDark())
-                    setText(parent.getSettings().getLocale().getResource("home.lightTheme"));
-                else
-                    setText(parent.getSettings().getLocale().getResource("home.darkTheme"));
-            }
         };
     }
 
     public static ResizableIcon getUserButton(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, LIGHT_USER, DARK_USER, "") {
+        return new LightDarkResizableIcon(parent, "", LIGHT_USER, DARK_USER) {
             @Override
             protected void click() {
                 if (parent.getSettings().getUser() != null)
                     parent.setStatus(PageStatus.HOME);
             }
 
+            private void checkUsr() {
+                if (parent.getSettings().getUser() == null && !getText().isEmpty()) {
+                    setText("");
+                } else if (getText().isEmpty() && parent.getSettings().getUser() != null)
+                    setText(parent.getSettings().getUser().getLogin());
+            }
+
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                setFont(new Font("Arial", Font.BOLD, fontSize));
-                if (parent.getSettings().getUser() == null)
-                    setText("");
-                else
-                    setText(parent.getSettings().getUser().getLogin());
+                checkUsr();
             }
         };
     }
 
     public static ResizableIcon getBigUserButton(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, LIGHT_USER, DARK_USER, "") {
+        return new LightDarkResizableIcon(parent, "", LIGHT_USER, DARK_USER) {
             {
                 scale = 0.4;
+                defaultFontSize = 20;
+            }
+
+            private void checkUsr() {
+                if (parent.getSettings().getUser() == null && !getText().isEmpty()) {
+                    setText("");
+                } else if (getText().isEmpty() && parent.getSettings().getUser() != null)
+                    setText(parent.getSettings().getUser().getLogin());
             }
 
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                setFont(new Font("Arial", Font.BOLD, (int) (fontSize * 1.5)));
-                if (parent.getSettings().getUser() == null)
-                    setText("");
-                else
-                    setText(parent.getSettings().getUser().getLogin());
+                checkUsr();
             }
         };
     }
@@ -147,9 +143,10 @@ public class LightDarkResizableIcon extends ResizableIcon {
     }
 
     @Override
-    protected BufferedImage chooseImg() {
+    protected void chooseImg() {
         if (parent.getSettings().isDark())
-            return image2;
-        else return image1;
+            mainImg = images[1];
+        else
+            mainImg = images[0];
     }
 }

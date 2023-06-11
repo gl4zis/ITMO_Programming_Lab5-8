@@ -7,12 +7,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="bugfix">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="relocate settings file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/GoodIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/GoodIcon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/LeftPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LeftPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/LightDarkResizableIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LightDarkResizableIcon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/SwitchButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SwitchButton.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,6 +148,11 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.client">
+    <configuration default="true" type="Application" factoryName="Application">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.Main" />
       <module name="lab5-8.client.main" />
@@ -299,11 +306,6 @@
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="nim.task.build.to.cache" enabled="true" />
-      </method>
     </configuration>
     <list>
       <item itemvalue="Application.server" />

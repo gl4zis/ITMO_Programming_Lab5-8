@@ -60,6 +60,7 @@ public class Header extends JPanel implements GoodQuality {
 
     @Override
     protected void paintComponent(Graphics g) {
+        System.out.println(1);
         super.paintComponent(g);
         setPreferredSize(new Dimension(parent.getWidth(), parent.getHeight() / 7));
         double k = parent.getKf();

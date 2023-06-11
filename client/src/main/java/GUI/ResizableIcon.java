@@ -68,23 +68,28 @@ public abstract class ResizableIcon extends JLabel {
     }
 
     protected final String text;
-    protected BufferedImage image1;
-    protected BufferedImage image2;
+    protected BufferedImage mainImg;
+    protected BufferedImage[] images;
     protected MyFrame parent;
     protected int fontSize;
+    protected int defaultFontSize = 14;
     protected double scale = 0.2;
+    private double oldKf = 1;
 
-    protected ResizableIcon(MyFrame parent, URL image1, URL image2, String text) {
+    protected ResizableIcon(MyFrame parent, String text, URL... images) {
         this.parent = parent;
         this.text = text;
         if (text != null)
             setText(parent.getSettings().getLocale().getResource(text));
-        fontSize = 14;
+        fontSize = defaultFontSize;
+        this.images = new BufferedImage[images.length];
         try {
-            this.image1 = ImageIO.read(image1);
-            setIcon(new GoodIcon(this.image1.getScaledInstance((int) (this.image1.getWidth() * scale),
-                    (int) (this.image1.getHeight() * scale), Image.SCALE_DEFAULT)));
-            this.image2 = ImageIO.read(image2);
+            this.mainImg = ImageIO.read(images[0]);
+            setIcon(new GoodIcon(mainImg.getScaledInstance((int) (mainImg.getWidth() * scale),
+                    (int) (mainImg.getHeight() * scale), Image.SCALE_DEFAULT)));
+            for (int i = 0; i < images.length; i++) {
+                this.images[i] = ImageIO.read(images[i]);
+            }
         } catch (IOException | IllegalArgumentException ignored) {
         }
         addMouseListener(new MouseAdapter() {
@@ -95,12 +100,8 @@ public abstract class ResizableIcon extends JLabel {
         });
     }
 
-    protected ResizableIcon(MyFrame parent, URL image1, URL image2) {
-        this(parent, image1, image2, null);
-    }
-
-    protected ResizableIcon(MyFrame parent, URL image) {
-        this(parent, image, null);
+    protected ResizableIcon(MyFrame parent, URL... images) {
+        this(parent, null, images);
     }
 
     public static ResizableIcon getWelcome(MyFrame parent) {
@@ -114,11 +115,11 @@ public abstract class ResizableIcon extends JLabel {
     public static ResizableIcon getConnButton(MyFrame parent) {
         return new ResizableIcon(parent, CONNECTION, NO_CONNECTION) {
             @Override
-            protected BufferedImage chooseImg() {
+            protected void chooseImg() {
                 if (parent.getSettings().getConnection().connected)
-                    return image1;
+                    mainImg = images[0];
                 else
-                    return image2;
+                    mainImg = images[1];
             }
         };
     }
@@ -126,26 +127,31 @@ public abstract class ResizableIcon extends JLabel {
     protected void click() {
     }
 
-    protected BufferedImage chooseImg() {
-        return image1;
+    protected void chooseImg() {
     }
 
-    private void setImage(BufferedImage mainImg) {
-        double k = parent.getKf();
-        Dimension imgSize = new Dimension(mainImg.getWidth(), mainImg.getHeight());
-        fontSize = (int) (14 * k);
-        int width = (int) (imgSize.width * k * scale);
-        int height = (int) (imgSize.height * k * scale);
-        Image icon = mainImg.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        setIcon(new GoodIcon(icon));
+    private void update() {
+        Image oldImg = mainImg;
+        chooseImg();
+        if (oldImg != mainImg || oldKf != parent.getKf()) {
+            oldKf = parent.getKf();
+            fontSize = (int) (defaultFontSize * oldKf);
+            setFont(getFont().deriveFont((float) fontSize));
+            if (text != null)
+                setText(parent.getSettings().getLocale().getResource(text));
+            int width = (int) (mainImg.getWidth() * oldKf * scale);
+            int height = (int) (mainImg.getHeight() * oldKf * scale);
+            Icon icon = new GoodIcon(mainImg.getScaledInstance(width, height, Image.SCALE_DEFAULT));
+            setIcon(icon);
+        }
+        if (this instanceof SwitchButton sw && sw.setted) {
+            setForeground(parent.getSettings().getColors().get("secondColor"));
+        } else setForeground(parent.getSettings().getColors().get("fontColor"));
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        setImage(chooseImg());
-        setForeground(parent.getSettings().getColors().get("fontColor"));
-        if (text != null)
-            setText(parent.getSettings().getLocale().getResource(text));
+        update();
     }
 }

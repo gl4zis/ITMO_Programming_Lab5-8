@@ -92,23 +92,32 @@ public class CustomTextField extends JPasswordField implements GoodQuality {
     private void setMsg() {
         setBackground(parent.getSettings().getColors().get("mainColor"));
         setCaretColor(parent.getSettings().getColors().get("fontColor"));
+        String newText;
+        char newEcho;
         if (clientMsg.isEmpty() && !focused) {
-            setEchoChar((char) 0);
-            setText(parent.getSettings().getLocale().getResource(msg));
+            newEcho = (char) 0;
+            newText = parent.getSettings().getLocale().getResource(msg);
             setForeground(parent.getSettings().getColors().get("secondFontColor"));
         } else {
-            setEchoChar(realEchoChar);
-            setText(clientMsg);
+            newEcho = realEchoChar;
+            newText = clientMsg;
             setForeground(parent.getSettings().getColors().get("fontColor"));
         }
+        if (getEchoChar() != newEcho)
+            setEchoChar(newEcho);
+        if (!new String(getPassword()).equals(newText))
+            setText(newText);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         double k = parent.getKf();
-        setBorder(new EmptyBorder((int) (10 * k), (int) (10 * k), (int) (10 * k), (int) (10 * k)));
-        setFont(new Font("Arial", Font.ITALIC, (int) (k * 14)));
+        int defaultFontSize = 14;
+        if (getFont().getSize() != (int) (k * defaultFontSize)) {
+            setBorder(new EmptyBorder((int) (10 * k), (int) (10 * k), (int) (10 * k), (int) (10 * k)));
+            setFont(new Font("Arial", Font.ITALIC, (int) (k * defaultFontSize)));
+        }
 
         Graphics2D g2D = setGoodQ(g);
         g2D.setColor(parent.getSettings().getColors().get("secondColor"));

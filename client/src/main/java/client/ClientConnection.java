@@ -11,11 +11,9 @@ import org.apache.commons.lang3.SerializationException;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.appender.rewrite.RewriteAppender;
 import parsers.MyScanner;
 import user.User;
 
-import java.beans.PropertyEditorSupport;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -23,7 +21,6 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.util.Date;
-import java.util.Objects;
 import java.util.concurrent.Callable;
 
 /**
@@ -35,8 +32,8 @@ public class ClientConnection {
     private static final int MAX_UDP_BYTES_WINDOWS = 65507;
     private static final int MAX_UDP_BYTES_UNIX = 9216;
     private final InetSocketAddress address;
-    private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
     public boolean connected = true;
+    private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
 
     /**
      * Standard constructor

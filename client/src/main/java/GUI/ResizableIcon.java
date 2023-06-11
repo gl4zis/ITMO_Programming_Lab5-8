@@ -10,8 +10,6 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public abstract class ResizableIcon extends JLabel {
@@ -69,7 +67,7 @@ public abstract class ResizableIcon extends JLabel {
         DARK_OPEN_EYE = Objects.requireNonNull(ResizableIcon.class.getResource("/img/dark/open_eye.png"));
     }
 
-    protected final String text;
+    protected String text;
     protected BufferedImage mainImg;
     protected BufferedImage[] images;
     protected MyFrame parent;

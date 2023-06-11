@@ -2,7 +2,6 @@ package GUI;
 
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
@@ -17,41 +16,6 @@ public class HelpDialog extends JDialog {
         setLocation(windowSize.x + windowSize.width / 2 - getWidth() / 2, windowSize.y + windowSize.height / 2 - getHeight() / 2);
         setResizable(false);
         setVisible(true);
-    }
-
-    class DialogPanel extends JPanel implements GoodQuality {
-        private final MyFrame parent;
-        private final String message;
-
-        public DialogPanel(MyFrame parent, String message) {
-            this.parent = parent;
-            this.message = message;
-            setLayout(new BorderLayout());
-            setBackground(parent.getSettings().getColors().get("mainColor"));
-            addLabel();
-            CustomButton button = new CustomButton(parent, CustomButton.Size.SMALL, "all.confirm", false) {
-                @Override
-                protected void click() {
-                    HelpDialog.this.dispose();
-                }
-            };
-            add(button, BorderLayout.SOUTH);
-        }
-
-        private void addLabel() {
-            JTextArea label = new JTextArea(10, 20);
-            label.setText(parent.getSettings().getLocale().getResource(message));
-            label.setLineWrap(true);
-            label.setEditable(false);
-            label.setFont(new Font("Arial", Font.BOLD, (int) (14 * parent.getKf())));
-            label.setForeground(parent.getSettings().getColors().get("fontColor"));
-            label.setBackground(parent.getSettings().getColors().get("mainColor"));
-            add(label, BorderLayout.CENTER);
-            JScrollPane pane = new JScrollPane(label, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-            pane.getVerticalScrollBar().setUI(new MyScrollBarUi(parent));
-            pane.setBorder(BorderFactory.createEmptyBorder());
-            add(pane, BorderLayout.EAST);
-        }
     }
 
     private static class MyScrollBarUi extends BasicScrollBarUI implements GoodQuality {
@@ -97,6 +61,41 @@ public class HelpDialog extends JDialog {
             Graphics2D g2d = setGoodQ(g);
             g2d.setColor(parent.getSettings().getColors().get("borderColor"));
             g2d.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
+        }
+    }
+
+    class DialogPanel extends JPanel implements GoodQuality {
+        private final MyFrame parent;
+        private final String message;
+
+        public DialogPanel(MyFrame parent, String message) {
+            this.parent = parent;
+            this.message = message;
+            setLayout(new BorderLayout());
+            setBackground(parent.getSettings().getColors().get("mainColor"));
+            addLabel();
+            CustomButton button = new CustomButton(parent, CustomButton.Size.SMALL, "all.confirm", false) {
+                @Override
+                protected void click() {
+                    HelpDialog.this.dispose();
+                }
+            };
+            add(button, BorderLayout.SOUTH);
+        }
+
+        private void addLabel() {
+            JTextArea label = new JTextArea(10, 20);
+            label.setText(parent.getSettings().getLocale().getResource(message));
+            label.setLineWrap(true);
+            label.setEditable(false);
+            label.setFont(new Font("Arial", Font.BOLD, (int) (14 * parent.getKf())));
+            label.setForeground(parent.getSettings().getColors().get("fontColor"));
+            label.setBackground(parent.getSettings().getColors().get("mainColor"));
+            add(label, BorderLayout.CENTER);
+            JScrollPane pane = new JScrollPane(label, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+            pane.getVerticalScrollBar().setUI(new MyScrollBarUi(parent));
+            pane.setBorder(BorderFactory.createEmptyBorder());
+            add(pane, BorderLayout.EAST);
         }
     }
 }

@@ -1,6 +1,5 @@
 package GUI;
 
-import exceptions.UnavailableServerException;
 import user.User;
 
 import javax.swing.*;

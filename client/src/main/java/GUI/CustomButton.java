@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.HashMap;
-import java.util.Map;
 
 public abstract class CustomButton extends JPanel implements GoodQuality {
 
@@ -77,7 +75,8 @@ public abstract class CustomButton extends JPanel implements GoodQuality {
             name.setForeground(parent.getSettings().getColors().get("secondColor"));
 
         name.setText(parent.getSettings().getLocale().getResource(message));
-        name.setFont(new Font("Arial", Font.BOLD, (int) (k * fontSize)));
+        if (name.getFont().getSize() != (int) (k * fontSize))
+            name.setFont(new Font("Arial", Font.BOLD, (int) (k * fontSize)));
         updateSize((int) (k * height));
     }
 

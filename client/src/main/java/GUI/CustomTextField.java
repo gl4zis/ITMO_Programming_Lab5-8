@@ -12,6 +12,7 @@ import java.awt.event.FocusListener;
 public class CustomTextField extends JPasswordField implements GoodQuality {
     private final MyFrame parent;
     private final int height;
+    private final int fontSize;
     private final String msg;
     private final boolean hidden;
     private String clientMsg;
@@ -26,7 +27,8 @@ public class CustomTextField extends JPasswordField implements GoodQuality {
         clientMsg = "";
         this.parent = parent;
         this.height = size.height;
-        updateSize(height);
+        fontSize = size.fontSize;
+        updateSize((int) (height * parent.getKf()));
         if (hidden) {
             add(LightDarkResizableIcon.getEyeButton(parent));
             hideEchoChar = getEchoChar();
@@ -37,11 +39,13 @@ public class CustomTextField extends JPasswordField implements GoodQuality {
             @Override
             public void focusGained(FocusEvent e) {
                 focused = true;
+                repaint();
             }
 
             @Override
             public void focusLost(FocusEvent e) {
                 focused = false;
+                repaint();
             }
         });
         getDocument().addDocumentListener(new DocumentListener() {
@@ -72,7 +76,7 @@ public class CustomTextField extends JPasswordField implements GoodQuality {
     }
 
     private void updateSize(int height) {
-        Dimension size = new Dimension(height * 6, height);
+        Dimension size = new Dimension(height * 5, height);
         setMinimumSize(size);
         setPreferredSize(size);
         setMaximumSize(size);
@@ -112,10 +116,9 @@ public class CustomTextField extends JPasswordField implements GoodQuality {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         double k = parent.getKf();
-        int defaultFontSize = 14;
-        if (getFont().getSize() != (int) (k * defaultFontSize)) {
+        if (getFont().getSize() != (int) (k * fontSize)) {
             setBorder(new EmptyBorder((int) (10 * k), (int) (10 * k), (int) (10 * k), (int) (10 * k)));
-            setFont(new Font("Arial", Font.ITALIC, (int) (k * defaultFontSize)));
+            setFont(new Font("Arial", Font.ITALIC, (int) (k * fontSize)));
         }
 
         Graphics2D g2D = setGoodQ(g);
@@ -129,13 +132,15 @@ public class CustomTextField extends JPasswordField implements GoodQuality {
     }
 
     enum Size {
-        SMALL(30),
-        MEDIUM(35);
+        SMALL(35, 12),
+        MEDIUM(40, 14);
 
         private final int height;
+        private final int fontSize;
 
-        Size(int height) {
+        Size(int height, int fontSize) {
             this.height = height;
+            this.fontSize = fontSize;
         }
     }
 }

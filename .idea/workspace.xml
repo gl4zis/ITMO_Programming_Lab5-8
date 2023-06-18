@@ -7,35 +7,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="added output console">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/AddCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/AddIfMinCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/AverageOfWeightCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/ClearCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/CommandProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/FilterLessThanWeightCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/InfoCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/MinByAgeCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/RemoveByIdCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/RemoveGreaterCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/RemoveLowerCommand.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="added all commands on client">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomComboBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/DragonDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CommandsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CommandsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CustomTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomTextField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/HelpDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/HelpDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/HomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/HomePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/SignInPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SignInPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/LangBox.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/AddCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/ChangePasswordCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/CommandProcessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/ExecuteScriptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/ExecuteScriptCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/ExitCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/HelpCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/PingCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/SignOutCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/UpdateCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/commands/CommandType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/commands/CommandType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/DragonCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/DragonCharacter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,29 +98,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "jdk.selected.JAVA_MODULE": "17",
-    "last.edited.regexp": "Sample Text",
-    "last_directory_selection": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/test/java/commands",
-    "last_opened_file_path": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.idesettings.debugger.capture"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last.edited.regexp&quot;: &quot;Sample Text&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/test/java/commands&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.idesettings.debugger.capture&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.application.lab5.dragons" />
@@ -171,11 +158,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.client">
-    <configuration default="true" type="Application" factoryName="Application">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.Main" />
       <module name="lab5-8.client.main" />
@@ -330,6 +312,11 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="nim.task.build.to.cache" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.server" />
       <item itemvalue="Application.client" />
@@ -358,13 +345,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00071" summary="added logger">
-      <created>1681249335460</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1681249335460</updated>
     </task>
     <task id="LOCAL-00072" summary="added javaDoc">
       <created>1681252874016</created>
@@ -702,7 +682,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687111499461</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="added all commands on client">
+      <created>1687117435219</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1687117435220</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -730,7 +717,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="micro debug with execute_script" />
     <MESSAGE value="debug with database connection" />
     <MESSAGE value="javaDoc with micro debug" />
     <MESSAGE value="reworked DataBaseManager class" />
@@ -755,7 +741,8 @@
     <MESSAGE value="optimized header and leftPanel" />
     <MESSAGE value="optimized interface" />
     <MESSAGE value="added output console" />
-    <option name="LAST_COMMIT_MESSAGE" value="added output console" />
+    <MESSAGE value="added all commands on client" />
+    <option name="LAST_COMMIT_MESSAGE" value="added all commands on client" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

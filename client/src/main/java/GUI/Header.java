@@ -10,7 +10,7 @@ public class Header extends JPanel implements GoodQuality {
     private final ResizableIcon themeButton;
     private final ResizableIcon userButton;
     private final ResizableIcon helpButton;
-    private final LangBox lang;
+    private final CustomComboBox lang;
 
     public Header(MyFrame parent) {
         this.parent = parent;
@@ -21,7 +21,7 @@ public class Header extends JPanel implements GoodQuality {
         themeButton = LightDarkResizableIcon.getThemeButton(parent);
         userButton = LightDarkResizableIcon.getUserButton(parent);
         helpButton = LightDarkResizableIcon.getHelpButton(parent);
-        lang = LangBox.getShortBox(parent);
+        lang = CustomComboBox.getShortLangBox(parent);
 
         fill();
     }

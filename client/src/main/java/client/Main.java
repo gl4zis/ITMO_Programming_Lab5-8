@@ -9,6 +9,7 @@ import settings.Settings;
 import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 
 public class Main {
 
@@ -30,8 +31,7 @@ public class Main {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 
-            Settings settings = new Settings();
-            SwingUtilities.invokeLater(() -> new MyFrame("Dragon application", settings));
+            SwingUtilities.invokeLater(Settings::new);
 
         } catch (Exception e) {
             LOGGER.fatal("Something very strange happened =0 " + e.getMessage());

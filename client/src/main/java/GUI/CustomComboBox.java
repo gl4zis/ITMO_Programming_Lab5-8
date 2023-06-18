@@ -1,5 +1,6 @@
 package GUI;
 
+import dragons.DragonCharacter;
 import settings.MyLocale;
 
 import javax.swing.*;
@@ -9,38 +10,75 @@ import java.util.Objects;
 
 import static java.awt.Font.BOLD;
 
-public class LangBox extends JComboBox<String> implements GoodQuality {
-    private final JLabel label;
+public class CustomComboBox extends JComboBox<String> implements GoodQuality {
     private final MyFrame parent;
+    private final JLabel label;
 
-    private LangBox(String[] langs, MyFrame parent) {
-        super(langs);
+    private CustomComboBox(String[] array, MyFrame parent) {
+        super(array);
         this.parent = parent;
-        label = new JLabel((String) getSelectedItem(), SwingConstants.CENTER);
-        add(label, 0);
-        remove(1);
-        addActionListener(this::changeLang);
-        setSelectedIndex(parent.getSettings().getLocale().ordinal());
-        setRenderer(new LangBoxRenderer(parent));
-        setEditable(true);
+        label = new JLabel();
+        remove(0);
+        add(label);
+        setRenderer(new MyBoxRenderer(parent));
     }
 
-    public static LangBox getShortBox(MyFrame parent) {
+    public static CustomComboBox getShortLangBox(MyFrame parent) {
         String[] shortLangs = new String[MyLocale.values().length];
         int counter = 0;
         for (MyLocale locale : MyLocale.values()) {
             shortLangs[counter++] = locale.getShortName();
         }
-        return new LangBox(shortLangs, parent);
+        return new CustomComboBox(shortLangs, parent) {
+            {
+                addActionListener(this::changeLang);
+                setSelectedIndex(parent.getSettings().getLocale().ordinal());
+            }
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                setSelectedIndex(parent.getSettings().getLocale().ordinal());
+            }
+        };
     }
 
-    public static LangBox getLongBox(MyFrame parent) {
+    public static CustomComboBox getLongLangBox(MyFrame parent) {
         String[] langs = new String[MyLocale.values().length];
         int counter = 0;
         for (MyLocale locale : MyLocale.values()) {
             langs[counter++] = locale.getLocaledName();
         }
-        return new LangBox(langs, parent);
+        return new CustomComboBox(langs, parent) {
+            {
+                addActionListener(this::changeLang);
+                setSelectedIndex(parent.getSettings().getLocale().ordinal());
+            }
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                setSelectedIndex(parent.getSettings().getLocale().ordinal());
+            }
+        };
+    }
+
+    public static CustomComboBox getCharacterBox(MyFrame parent) {
+        String[] characters = new String[DragonCharacter.values().length];
+        int counter = 0;
+        for (DragonCharacter character : DragonCharacter.values()) {
+            characters[counter++] = character.name();
+        }
+        return new CustomComboBox(characters, parent);
+    }
+
+    public static CustomComboBox getColorBox(MyFrame parent) {
+        String[] colors = new String[dragons.Color.values().length];
+        int counter = 0;
+        for (dragons.Color color : dragons.Color.values()) {
+            colors[counter++] = color.name();
+        }
+        return new CustomComboBox(colors, parent);
     }
 
     private void updateSize(int width, int height) {
@@ -50,7 +88,7 @@ public class LangBox extends JComboBox<String> implements GoodQuality {
         setMaximumSize(newSize);
     }
 
-    private void changeLang(ActionEvent e) {
+    protected void changeLang(ActionEvent e) {
         MyLocale newLocale = Objects.requireNonNull(MyLocale.getByName((String) getSelectedItem()));
         if (!parent.getSettings().getLocale().equals(newLocale)) {
             parent.getSettings().setLocale(newLocale);
@@ -63,8 +101,10 @@ public class LangBox extends JComboBox<String> implements GoodQuality {
         super.paintComponent(g);
         double k = parent.getKf();
         int fontSize = (int) (k * 16);
-        if (label.getFont().getSize() != fontSize)
+        if (label.getFont().getSize() != fontSize) {
             label.setFont(new Font("Arial", BOLD, fontSize));
+            setFont(new Font("Arial", BOLD, fontSize));
+        }
         label.setText((String) getSelectedItem());
         label.setForeground(parent.getSettings().getColors().get("fontColor"));
 
@@ -80,37 +120,15 @@ public class LangBox extends JComboBox<String> implements GoodQuality {
         int height = fontSize * 2;
         setLayout(new FlowLayout(FlowLayout.LEFT, (int) (width * 0.15), (int) (fontSize / 2.3)));
         updateSize(width, height);
-        setSelectedIndex(parent.getSettings().getLocale().ordinal());
     }
 
-    private static class LangBoxRenderer extends JLabel implements ListCellRenderer<String> {
+    private static class MyBoxRenderer extends JLabel implements ListCellRenderer<String> {
 
         private final MyFrame parent;
-        private double oldKf;
 
-        public LangBoxRenderer(MyFrame parent) {
+        public MyBoxRenderer(MyFrame parent) {
             this.parent = parent;
             setOpaque(true);
-            setSettings();
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            setSettings();
-        }
-
-        private void setSettings() {
-            if (oldKf != parent.getKf()) {
-                oldKf = parent.getKf();
-                setFont(new Font("Arial", BOLD, (int) (parent.getKf() * 16)));
-            }
-            Color newBackground = parent.getSettings().getColors().get("mainColor");
-            Color newForeground = parent.getSettings().getColors().get("fontColor");
-            if (!getForeground().equals(newForeground))
-                setForeground(newForeground);
-            if (!getBackground().equals(newBackground))
-                setBackground(newBackground);
         }
 
         @Override
@@ -128,5 +146,4 @@ public class LangBox extends JComboBox<String> implements GoodQuality {
             return this;
         }
     }
-
 }

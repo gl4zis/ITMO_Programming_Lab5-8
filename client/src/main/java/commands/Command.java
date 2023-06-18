@@ -1,7 +1,9 @@
 package commands;
 
+import GUI.DragonDialog;
 import GUI.MyConsole;
 import client.ClientConnection;
+import dragons.Dragon;
 import parsers.MyScanner;
 import settings.Settings;
 
@@ -26,4 +28,8 @@ public abstract class Command {
     }
 
     public abstract void execute(MyConsole output);
+
+    Dragon readDragon() {
+        return new DragonDialog(settings).getDragon();
+    }
 }

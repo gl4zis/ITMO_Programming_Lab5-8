@@ -74,7 +74,7 @@ public abstract class ResizableIcon extends JLabel {
     protected int fontSize;
     protected int defaultFontSize = 14;
     protected double scale = 0.2;
-    private double oldKf = 1;
+    private double oldKf;
     private MyLocale locale;
 
     protected ResizableIcon(MyFrame parent, String text, URL... images) {

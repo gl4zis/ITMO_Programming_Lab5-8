@@ -30,7 +30,7 @@ public class GUI_en_US extends ListResourceBundle {
                 {"all.confirm", "Confirm"},
                 {"chPass.incOld", "Incorrect password"},
                 {"synopsis.title", "Synopsis"},
-                {"synopsis.text", "I don't know what I should write here"}
+                {"synopsis.text", "I don't know what I should\n write here"}
         };
     }
 }

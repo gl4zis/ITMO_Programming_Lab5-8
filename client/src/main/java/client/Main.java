@@ -33,7 +33,7 @@ public class Main {
             Settings settings = new Settings();
             SwingUtilities.invokeLater(() -> new MyFrame("Dragon application", settings));
 
-        } catch (Throwable e) {
+        } catch (Exception e) {
             LOGGER.fatal("Something very strange happened =0 " + e.getMessage());
             LOGGER.debug("Incorrect exit (client crashed)");
         }

@@ -7,6 +7,7 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class CustomTextField extends JPasswordField implements GoodQuality {
     private final MyFrame parent;
@@ -31,17 +32,15 @@ public class CustomTextField extends JPasswordField implements GoodQuality {
             hideEchoChar = getEchoChar();
             realEchoChar = hideEchoChar;
         }
-        addFocusListener(new FocusAdapter() {
+        addFocusListener(new FocusListener() {
+
             @Override
             public void focusGained(FocusEvent e) {
-                super.focusGained(e);
                 focused = true;
             }
-        });
-        addFocusListener(new FocusAdapter() {
+
             @Override
             public void focusLost(FocusEvent e) {
-                super.focusLost(e);
                 focused = false;
             }
         });

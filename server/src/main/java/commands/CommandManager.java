@@ -40,7 +40,7 @@ public class CommandManager {
      * @param name command name for parsing
      * @return name of this command class
      */
-    private static String parseCommandName(String name) {
+    private String parseCommandName(String name) {
         char[] letters = name.toCharArray();
         char lastLetter = ' ';
         StringBuilder className = new StringBuilder("commands.");

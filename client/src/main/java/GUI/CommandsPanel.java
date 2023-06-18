@@ -17,14 +17,24 @@ public class CommandsPanel extends BasePanel {
                 buttons[counter++] = new CustomButton(parent, CustomButton.Size.TINY, commandType.getName(), false) {
                     @Override
                     protected void click() {
-                        console.addText("Command " + commandType.getName() + " was executed");
+                        executeCommand(commandType.getName());
                     }
                 };
             }
         }
+        buttons[11] = new CustomButton(parent, CustomButton.Size.TINY, "execute_script", false) {
+            @Override
+            protected void click() {
+                executeCommand("execute_script");
+            }
+        };
         setLayout(new GridBagLayout());
         addConsole();
         addButtons();
+    }
+
+    private void executeCommand(String commandName) {
+        parent.getSettings().getProcessor().execute(commandName, console);
     }
 
     private void addConsole() {

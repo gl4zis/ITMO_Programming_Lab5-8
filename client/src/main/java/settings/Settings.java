@@ -1,6 +1,7 @@
 package settings;
 
 import client.ClientConnection;
+import commands.CommandProcessor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import user.User;
@@ -26,8 +27,10 @@ public class Settings {
     private HashMap<String, Color> colors;
     private int port;
     private String hostName;
+    private final CommandProcessor processor;
 
     public Settings() {
+        processor = new CommandProcessor(this);
         load();
     }
 
@@ -166,6 +169,10 @@ public class Settings {
             out.append("password=\n");
         }
         return out.toString();
+    }
+
+    public CommandProcessor getProcessor() {
+        return processor;
     }
 
     public MyLocale getLocale() {

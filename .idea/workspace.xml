@@ -7,21 +7,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="optimized interface">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyConsole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyScrollBarUI.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="added output console">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/AddCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/AddIfMinCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/AverageOfWeightCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/ClearCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/CommandProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/FilterLessThanWeightCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/InfoCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/MinByAgeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/RemoveByIdCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/RemoveGreaterCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/commands/RemoveLowerCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CommandsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CommandsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CustomTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomTextField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/HelpDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/HelpDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/HomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/HomePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/SignInPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SignInPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/SignUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SignUpPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/ChangePasswordCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/CommandProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/ExecuteScriptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/ExecuteScriptCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/ExitCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/HelpCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/PingCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/SignOutCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/UpdateCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/commands/CommandType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/commands/CommandType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/commands/CommandManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +104,9 @@
     <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2LoodPmTv5xYaI7FX4yb3CNuoi1" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -130,11 +146,11 @@
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\java\GUI" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\java" />
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\resources\img\light" />
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5\common\src\main" />
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5\server\src\main\java" />
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5\src\main" />
-      <recent name="C:\Users\Roma\Desktop\Учеба\Сем 2\Прога\Лаба5\lab5\src\main\java" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -342,13 +358,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00070" summary="reworked processing commands on client">
-      <created>1681246228563</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1681246228563</updated>
     </task>
     <task id="LOCAL-00071" summary="added logger">
       <created>1681249335460</created>
@@ -686,7 +695,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686503558253</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="added output console">
+      <created>1687111499461</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1687111499461</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -714,7 +730,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="auto-generating hasMap in CommandManager" />
     <MESSAGE value="micro debug with execute_script" />
     <MESSAGE value="debug with database connection" />
     <MESSAGE value="javaDoc with micro debug" />
@@ -739,7 +754,8 @@
     <MESSAGE value="ResizableIcons now don't repaint everytime" />
     <MESSAGE value="optimized header and leftPanel" />
     <MESSAGE value="optimized interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="optimized interface" />
+    <MESSAGE value="added output console" />
+    <option name="LAST_COMMIT_MESSAGE" value="added output console" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

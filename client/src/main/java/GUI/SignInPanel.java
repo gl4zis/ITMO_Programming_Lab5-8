@@ -73,13 +73,13 @@ public class SignInPanel extends BasePanel {
         panel.add(new CustomButton(parent, CustomButton.Size.SMALL, "all.signIn", true) {
             @Override
             protected void click() {
+                parent.checkConnect();
                 if (check()) {
                     parent.getSettings().setUser(User.signUp(login.getText(), password.getText()));
                     parent.setStatus(PageStatus.HOME);
                     parent.getSettings().saveUser(save.isSelected());
                 } else if (parent.getSettings().getConnection().connected)
                     warning.showMessage();
-                else parent.checkConnect();
             }
         });
         add(panel, constraints);

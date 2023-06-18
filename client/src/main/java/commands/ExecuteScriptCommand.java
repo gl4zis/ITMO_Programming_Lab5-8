@@ -1,5 +1,6 @@
 package commands;
 
+import GUI.MyConsole;
 import client.ClientConnection;
 import exceptions.IncorrectDataException;
 import exceptions.IncorrectInputException;
@@ -8,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import parsers.MyScanner;
 import parsers.ScriptParser;
 import parsers.StringModificator;
+import settings.Settings;
 
 import java.io.FileNotFoundException;
 import java.util.HashSet;
@@ -19,32 +21,28 @@ public class ExecuteScriptCommand extends Command {
 
     private static final Logger LOGGER = LogManager.getLogger(ExecuteScriptCommand.class);
 
-    ExecuteScriptCommand(ClientConnection connection) {
-        super(connection, "execute_script");
+    ExecuteScriptCommand(Settings settings) {
+        super(settings, "execute_script");
     }
 
     /**
      * Processes script file and sends every command from it one by one on server
-     *
-     * @return empty line
      */
     @Override
-    public String execute(String line, MyScanner reader) {
-        validateScript(new HashSet<>(), line);
-        return "";
+    public void execute(MyConsole output) {
+        String filePath = "";
+        validateScript(new HashSet<>(), filePath);
     }
 
     /**
      * Validates script (checks if file exists, checks recursion etc)
      *
-     * @param files set with filePaths for checking recursion
-     * @param line  new filepath
+     * @param files    set with filePaths for checking recursion
+     * @param filePath new filepath
      */
-    private void validateScript(HashSet<String> files, String line) {
-        String filePath;
+    private void validateScript(HashSet<String> files, String filePath) {
         MyScanner reader;
         try {
-            filePath = StringModificator.filePathFormat(line.split(" ")[1]);
             if (!files.contains(filePath)) {
                 files.add(filePath);
                 reader = new MyScanner(ScriptParser.readLines(filePath));
@@ -76,7 +74,6 @@ public class ExecuteScriptCommand extends Command {
                     validateScript(files, line);
                 } else {
                     LOGGER.info("Executing: " + line);
-                    System.out.println(conn.getProcessor().execute(line, reader));
                 }
             } catch (IncorrectDataException e) {
                 LOGGER.warn(e.getMessage());

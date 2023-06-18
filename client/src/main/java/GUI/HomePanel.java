@@ -70,6 +70,7 @@ public class HomePanel extends BasePanel {
             protected void click() {
                 parent.getSettings().setUser(null);
                 parent.setStatus(PageStatus.AUTHORIZE);
+                parent.repaint();
             }
         });
         add(panel, constraints);

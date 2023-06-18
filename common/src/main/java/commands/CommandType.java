@@ -22,7 +22,7 @@ public enum CommandType implements Serializable {
     REMOVE_LOWER("remove_lower", false, null, true, true),
     SHOW("show", false, null, false, false),
     UPDATE("update", true, int.class, true, true),
-    FIND("find", true, int.class, false, true),
+    FIND("find", true, int.class, false, false),
     PING("ping", false, null, false, false),
     SIGN_UP("sign_up", false, null, false, false),
     SIGN_IN("sign_in", false, null, false, false),

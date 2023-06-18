@@ -1,28 +1,29 @@
 package commands;
 
+import GUI.MyConsole;
 import client.ClientConnection;
 import parsers.MyScanner;
+import settings.Settings;
 
 /**
  * Command 'update'
  */
 public class UpdateCommand extends Command {
-    UpdateCommand(ClientConnection connection) {
-        super(connection, "update");
+    UpdateCommand(Settings settings) {
+        super(settings, "update");
     }
 
     /**
      * Sends 2 requests, 'find id' and then, if dragon exists 'update id'
-     *
-     * @return server response
      */
     @Override
-    public String execute(String line, MyScanner reader) {
-        String find = "find" + line.substring(6);
+    public void execute(MyConsole output) {
+        /*String find = "find" + line.substring(6);
         String output = conn.sendReqGetResp(find, reader);
         if (!output.startsWith("No such")) {
             output = conn.sendReqGetResp(line, reader);
         }
         return output;
+         */
     }
 }

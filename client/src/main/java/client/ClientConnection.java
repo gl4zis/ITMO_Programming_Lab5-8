@@ -192,7 +192,7 @@ public class ClientConnection {
     }
 
     public boolean changePasswd(User user, String newPasswd) {
-        Request request = new Request(CommandType.CHANGE_PASSWORD, User.hashPasswd(newPasswd, 500), null, user);
+        Request request = new Request(CommandType.CHANGE_PASSWORD, newPasswd, null, user);
         Object result = tryConnecting(() -> sendReqGetResp(request));
         if (result == null)
             return false;

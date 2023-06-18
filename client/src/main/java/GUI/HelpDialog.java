@@ -11,7 +11,6 @@ public class HelpDialog extends JDialog {
         super(parent, parent.getSettings().getLocale().getResource(title), true);
         add(new DialogPanel(parent, message));
         pack();
-        setSize(getWidth(), getHeight());
         Rectangle windowSize = parent.getBounds();
         setLocation(windowSize.x + windowSize.width / 2 - getWidth() / 2, windowSize.y + windowSize.height / 2 - getHeight() / 2);
         setResizable(false);

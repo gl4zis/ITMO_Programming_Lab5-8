@@ -130,7 +130,7 @@ public class ClientConnection {
      *
      * @return message from request
      */
-    private String sendReqGetResp(Request request) throws UnavailableServerException {
+    public String sendReqGetResp(Request request) throws UnavailableServerException {
         try (DatagramChannel channel = DatagramChannel.open()) {
             channel.configureBlocking(false);
             sendRequest(request, channel);

@@ -14,7 +14,7 @@ public class HomePanel extends BasePanel {
         super(parent);
 
         user = LightDarkResizableIcon.getBigUserButton(parent);
-        locale = LangBox.getLongBox(parent);
+        locale = CustomComboBox.getLongLangBox(parent);
         theme = LightDarkResizableIcon.getBigThemeButton(parent);
 
         fill();

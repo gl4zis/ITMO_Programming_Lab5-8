@@ -1,11 +1,13 @@
 package settings;
 
+import GUI.MyFrame;
 import client.ClientConnection;
 import commands.CommandProcessor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import user.User;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.net.InetAddress;
@@ -28,10 +30,12 @@ public class Settings {
     private int port;
     private String hostName;
     private final CommandProcessor processor;
+    private final MyFrame mainWindow;
 
     public Settings() {
         processor = new CommandProcessor(this);
         load();
+        mainWindow = new MyFrame("Dragon application", this);
     }
 
     private void load() {
@@ -169,6 +173,10 @@ public class Settings {
             out.append("password=\n");
         }
         return out.toString();
+    }
+
+    public MyFrame getMainWindow() {
+        return mainWindow;
     }
 
     public CommandProcessor getProcessor() {

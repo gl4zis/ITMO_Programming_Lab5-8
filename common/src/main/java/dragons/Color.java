@@ -10,5 +10,13 @@ public enum Color implements Serializable {
     GREEN,
     RED,
     ORANGE,
-    BROWN
+    BROWN;
+
+    public static Color getByName(String name) {
+        for (Color color : Color.values()) {
+            if (color.name().equals(name))
+                return color;
+        }
+        return null;
+    }
 }

@@ -9,5 +9,13 @@ import java.io.Serializable;
 public enum DragonCharacter implements Serializable {
     WISE,
     CHAOTIC_EVIL,
-    FICKLE
+    FICKLE;
+
+    public static DragonCharacter getByName(String name) {
+        for (DragonCharacter character : DragonCharacter.values()) {
+            if (character.name().equals(name))
+                return character;
+        }
+        return null;
+    }
 }

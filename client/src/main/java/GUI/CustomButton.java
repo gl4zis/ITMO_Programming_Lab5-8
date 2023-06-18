@@ -65,10 +65,11 @@ public abstract class CustomButton extends JPanel implements GoodQuality {
         g2D.setStroke(new BasicStroke((int) (k * 2)));
 
         if (isFilled) {
-            g2D.fillRoundRect(0, 0, getWidth(), getHeight(), (int) (k * 30), (int) (k * 30));
+            g2D.fillRoundRect(0, 0, getWidth(), getHeight(), (int) (k * height * 3 / 4), (int) (k * height * 3 / 4));
             name.setForeground(parent.getSettings().getColors().get("mainColor"));
         } else {
-            g2D.drawRoundRect((int) k, (int) k, getWidth() - (int) (k * 2), getHeight() - (int) (k * 2), (int) (k * 30), (int) (k * 30));
+            g2D.drawRoundRect((int) k, (int) k, getWidth() - (int) (k * 2), getHeight() - (int) (k * 2),
+                    (int) (k * height * 3 / 4), (int) (k * height * 3 / 4));
             name.setForeground(parent.getSettings().getColors().get("fontColor"));
         }
         if (pressed)
@@ -81,6 +82,7 @@ public abstract class CustomButton extends JPanel implements GoodQuality {
     }
 
     enum Size {
+        TINY(25, 10),
         SMALL(30, 14),
         MEDIUM(40, 16);
 

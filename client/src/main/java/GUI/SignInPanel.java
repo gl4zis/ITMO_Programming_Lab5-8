@@ -76,9 +76,10 @@ public class SignInPanel extends BasePanel {
                 if (check()) {
                     parent.getSettings().setUser(User.signUp(login.getText(), password.getText()));
                     parent.setStatus(PageStatus.HOME);
+                    parent.getSettings().saveUser(save.isSelected());
                 } else if (parent.getSettings().getConnection().connected)
                     warning.showMessage();
-                parent.checkConnect();
+                else parent.checkConnect();
             }
         });
         add(panel, constraints);
@@ -88,7 +89,6 @@ public class SignInPanel extends BasePanel {
         String login = this.login.getText();
         String password = this.password.getText();
         User newUser = User.signUp(login, password);
-        parent.getSettings().saveUser(save.isSelected());
 
         return parent.getSettings().getConnection().signIn(newUser);
     }

@@ -75,7 +75,7 @@ public class Settings {
             if (connection.signIn(newUser)) {
                 user = newUser;
                 saveUser = true;
-            }
+            } else saveUser = false;
         }
     }
 

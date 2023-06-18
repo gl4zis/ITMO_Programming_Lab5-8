@@ -84,6 +84,7 @@ public class SignUpPanel extends BasePanel {
                 if (checkInfo()) {
                     parent.getSettings().setUser(User.signUp(login.getText(), password.getText()));
                     parent.setStatus(PageStatus.HOME);
+                    parent.getSettings().saveUser(save.isSelected());
                 } else if (parent.getSettings().getConnection().connected)
                     loginCol.showMessage();
             }
@@ -95,7 +96,6 @@ public class SignUpPanel extends BasePanel {
         String login = this.login.getText();
         String password = this.password.getText();
         String repPassword = this.repPassword.getText();
-        parent.getSettings().saveUser(save.isSelected());
         User newUser = User.signUp(login, password);
 
         loginCol.hideMessage();

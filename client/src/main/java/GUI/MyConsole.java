@@ -7,6 +7,7 @@ public class MyConsole extends JPanel {
     private final MyFrame parent;
     private final int fontSize = 12;
     private final JTextArea text;
+    private static String oldText = "";
 
     public MyConsole(MyFrame parent) {
         this.parent = parent;
@@ -29,15 +30,17 @@ public class MyConsole extends JPanel {
         pane.getVerticalScrollBar().setUI(new MyScrollBarUI(parent));
         pane.setBorder(BorderFactory.createEmptyBorder());
         add(pane, BorderLayout.CENTER);
+        text.setText(oldText);
     }
 
     public void addText(String newStr) {
         String oldStr = text.getText();
-        newStr = newStr.replaceAll("\n", "\n  ");
         if (oldStr.isEmpty())
-            text.setText("  " + newStr);
+            newStr = "  " + newStr.replaceAll("\n", "\n  ");
         else
-            text.setText(oldStr + "\n  " + newStr);
+            newStr = oldStr + "\n  " + newStr.replaceAll("\n", "\n  ");
+        text.setText(newStr);
+        oldText = newStr;
     }
 
     private void paintTextArea() {

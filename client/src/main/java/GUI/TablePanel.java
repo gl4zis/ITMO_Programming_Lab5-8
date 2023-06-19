@@ -15,6 +15,7 @@ public class TablePanel extends BasePanel {
     private final JScrollPane pane;
     private final int fontSize = 12;
     private final JTable table;
+    private final JTextField filter;
 
     public TablePanel(MyFrame parent) {
         super(parent);
@@ -23,10 +24,12 @@ public class TablePanel extends BasePanel {
 
         table.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, fontSize));
         table.getTableHeader().setOpaque(false);
+        table.setRowSelectionAllowed(false);
         pane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         pane.getVerticalScrollBar().setUI(new MyScrollBarUI(parent));
         pane.getHorizontalScrollBar().setUI(new MyScrollBarUI(parent));
         pane.setOpaque(false);
+        filter = new CustomTextField(parent, CustomTextField.Size.MEDIUM, "table.filter", false);
         fill();
     }
 
@@ -48,26 +51,41 @@ public class TablePanel extends BasePanel {
     }
 
     private void fill() {
-        JPanel southPanel = new JPanel();
+        JPanel southPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                setBackground(parent.getSettings().getColors().get("mainColor"));
+            }
+        };
+        southPanel.add(filter);
+        southPanel.add(new CustomButton(parent, CustomButton.Size.MEDIUM, "table.refresh", true) {
+            @Override
+            protected void click() {
+                ((MyTableModel) table.getModel()).parseCollection();
+                table.repaint();
+            }
+        });
+
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.weightx = 0.97;
-        constraints.weighty = 0.8;
+        constraints.weightx = 0.98;
+        constraints.weighty = 0.94;
         constraints.anchor = GridBagConstraints.NORTHWEST;
         constraints.fill = GridBagConstraints.BOTH;
         add(pane, constraints);
-        constraints.weighty = 0.15;
+        constraints.weighty = 0.05;
         constraints.gridy = 1;
         constraints.gridx = 0;
         add(southPanel, constraints);
         constraints.gridy = 2;
         constraints.gridx = 0;
-        constraints.weighty = 0.05;
+        constraints.weighty = 0.01;
         constraints.weightx = 0;
         add(MyFrame.getSpacer(), constraints);
         constraints.gridy = 0;
         constraints.gridx = 1;
         constraints.weighty = 0;
-        constraints.weightx = 0.03;
+        constraints.weightx = 0.02;
         add(MyFrame.getSpacer(), constraints);
     }
 
@@ -168,7 +186,7 @@ public class TablePanel extends BasePanel {
                     return;
                 if (col == 5 && (Long) value <= 0)
                     return;
-                if (col == 6 && (Integer) value <= 0)
+                if (col == 6 && value != null && (Integer) value <= 0)
                     return;
                 if (col == 9 && (Float) value < 0)
                     return;
@@ -192,7 +210,6 @@ public class TablePanel extends BasePanel {
                     if (flag)
                         return;
                 }
-
                 data[row][col] = value;
                 Object oldValue = data[row][col];
 

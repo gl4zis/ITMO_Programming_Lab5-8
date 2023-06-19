@@ -1,10 +1,7 @@
 package GUI;
 
 import dragons.Color;
-import dragons.Coordinates;
-import dragons.Dragon;
-import dragons.DragonCharacter;
-import dragons.DragonHead;
+import dragons.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,17 +9,18 @@ import java.awt.*;
 public class DragonDialog extends JDialog {
 
     private final MyFrame parent;
-    private boolean canceled = true;
     private final WarningLabel warn;
     private final JLabel label;
     private final JTextField[] fields = new JTextField[6];
     private final CustomComboBox[] boxes = new CustomComboBox[2];
+    private boolean canceled = true;
 
     public DragonDialog(MyFrame parent) {
-        super(parent, "Dragon", true);
+        super(parent, parent.getSettings().getLocale().getResource("dragon"), true);
         this.parent = parent;
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        warn = new WarningLabel(parent, "dragon.incorrect", 12);
+        warn = new WarningLabel(parent, "dialog.incorrect", 12);
         label = new JLabel(parent.getSettings().getLocale().getResource("dragon.empty"));
         label.setFont(new Font("Aral", Font.BOLD, (int) (12 * parent.getKf())));
         label.setForeground(parent.getSettings().getColors().get("fontColor"));

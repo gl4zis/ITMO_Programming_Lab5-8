@@ -1,9 +1,9 @@
 package commands;
 
 import GUI.MyConsole;
-import client.ClientConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import parsers.MyScanner;
 import settings.Settings;
 
 import java.lang.reflect.InvocationTargetException;
@@ -55,5 +55,9 @@ public class CommandProcessor {
 
     public void execute(String commandName, MyConsole output) {
         commands.get(commandName).execute(output);
+    }
+
+    public void exFromScript(MyConsole output, MyScanner script, String line) {
+        commands.get(line.split(" ")[0]).exFromScript(output, script, line);
     }
 }

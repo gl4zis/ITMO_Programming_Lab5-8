@@ -2,7 +2,6 @@ package GUI;
 
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
 public class HelpDialog extends JDialog {

@@ -31,7 +31,7 @@ public class GUI_ro_RO extends ListResourceBundle {
                 {"chPass.incOld", "Parolă incorectă"},
                 {"synopsis.title", "Sinopsis"},
                 {"synopsis.text", "Nu știu ce ar trebui să scriu aici."},
-                {"dragon.incorrect", "Un câmp este incorect"},
+                {"dialog.incorrect", "Un câmp este incorect"},
                 {"dragon.empty", "Vârsta poate fi goală:"},
                 {"dragon.name", "nume"},
                 {"dragon.weight", "greutate"},

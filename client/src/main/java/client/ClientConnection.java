@@ -1,7 +1,5 @@
 package client;
 
-import commands.CommandType;
-import commands.CommandValidator;
 import exceptions.UnavailableServerException;
 import general.OsUtilus;
 import network.Request;
@@ -11,20 +9,14 @@ import org.apache.commons.lang3.SerializationException;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsers.MyScanner;
-import settings.Settings;
-import user.User;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
-import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.util.Date;
-import java.util.Set;
-import java.util.concurrent.Callable;
 
 /**
  * Realization of connection to the server.

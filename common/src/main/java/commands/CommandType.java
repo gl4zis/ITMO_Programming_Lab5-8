@@ -42,10 +42,6 @@ public enum CommandType implements Serializable {
         this.selfButton = selfButton;
     }
 
-    public boolean haveSelfButton() {
-        return selfButton;
-    }
-
     /**
      * Returns commandType objects, by its name
      *
@@ -59,6 +55,10 @@ public enum CommandType implements Serializable {
             }
         }
         throw new IncorrectInputException("Unknown command");
+    }
+
+    public boolean haveSelfButton() {
+        return selfButton;
     }
 
     public String getName() {

@@ -1,6 +1,5 @@
 package client;
 
-import GUI.MyFrame;
 import general.OsUtilus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,7 +8,6 @@ import settings.Settings;
 import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Set;
 
 public class Main {
 

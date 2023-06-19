@@ -1,10 +1,10 @@
 package server;
 
 
-import collection.DragonCollection;
 import commands.CommandManager;
 import database.DataBaseManager;
 import database.MyBaseConnection;
+import dragons.DragonCollection;
 import exceptions.ExitException;
 import general.OsUtilus;
 import org.apache.logging.log4j.LogManager;

@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
 public class CommandProcessor {
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(CommandProcessor.class);
     private final HashMap<String, Command> commands;
     private final Settings settings;
 

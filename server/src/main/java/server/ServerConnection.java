@@ -1,10 +1,12 @@
 package server;
 
 import commands.CommandManager;
+import commands.CommandType;
 import commands.CommandValidator;
 import exceptions.ExitException;
 import general.OsUtilus;
 import network.Request;
+import network.RespCollection;
 import network.Response;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -129,9 +131,12 @@ public class ServerConnection {
             Pair<DatagramPacket, Request> pair = requests.poll();
             Request request = pair.getRight();
             Response response;
-            if (CommandValidator.validCommand(request))
-                response = new Response(manager.seekCommand(request));
-            else
+            if (CommandValidator.validCommand(request)) {
+                if (request.command().equals(CommandType.SHOW)) {
+                    response = new RespCollection(manager.getCollection());
+                } else
+                    response = new Response(manager.seekCommand(request));
+            } else
                 response = new Response("Incorrect request!!");
             DatagramPacket dataPack = pair.getLeft();
             responses.offer(new ImmutablePair<>(dataPack, response));

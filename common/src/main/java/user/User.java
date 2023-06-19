@@ -59,7 +59,7 @@ public class User implements Serializable {
             messageDigest.update(passwd.getBytes());
             digest = messageDigest.digest();
         } catch (NoSuchAlgorithmException ignored) {
-        } // There ARE such algorithm!
+        } // There IS such algorithm!
         BigInteger bigInt = new BigInteger(1, digest);
         return bigInt.toString(16);
     }

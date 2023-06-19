@@ -1,8 +1,8 @@
 package commands;
 
-import collection.DragonCollection;
 import database.DataBaseManager;
 import dragons.Dragon;
+import dragons.DragonCollection;
 import exceptions.ExitException;
 import exceptions.PermissionDeniedException;
 import network.Request;

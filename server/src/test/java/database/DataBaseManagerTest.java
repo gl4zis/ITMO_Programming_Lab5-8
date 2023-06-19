@@ -1,10 +1,6 @@
 package database;
 
-import collection.DragonCollection;
-import dragons.Color;
-import dragons.Coordinates;
-import dragons.Dragon;
-import dragons.DragonHead;
+import dragons.*;
 import exceptions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -31,7 +31,8 @@ public class Main {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 
-            SwingUtilities.invokeLater(Settings::new);
+            Settings settings = new Settings();
+            SwingUtilities.invokeLater(settings::runGUI);
 
         } catch (Exception e) {
             LOGGER.fatal("Something very strange happened =0 " + e.getMessage());

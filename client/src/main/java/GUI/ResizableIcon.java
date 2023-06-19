@@ -118,7 +118,7 @@ public abstract class ResizableIcon extends JLabel {
         return new ResizableIcon(parent, CONNECTION, NO_CONNECTION) {
             @Override
             protected void chooseImg() {
-                if (parent.getSettings().getConnection().connected)
+                if (parent.getSettings().isConnected())
                     mainImg = images[0];
                 else
                     mainImg = images[1];

@@ -108,9 +108,8 @@ public class ChangePasswordPanel extends BasePanel {
             incOld.hideMessage();
 
         if (right) {
-            right = parent.getSettings().getConnection().changePasswd(parent.getSettings().getUser(),
+            right = parent.getSettings().changePasswd(parent.getSettings().getUser(),
                     newHashedPasswd);
-            parent.checkConnect();
         }
         return right;
     }

@@ -3,11 +3,13 @@ package settings;
 import GUI.MyFrame;
 import client.ClientConnection;
 import commands.CommandProcessor;
+import commands.CommandType;
+import exceptions.UnavailableServerException;
+import network.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import user.User;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.net.InetAddress;
@@ -21,7 +23,7 @@ public class Settings {
     private static final String DARK_STYLE_PATH = "/styles/dark.properties";
     private static final String LIGH_STYLE_PATH = "/styles/light.properties";
     private User user;
-    private boolean saveUser;
+    private boolean saveUser = false;
     private boolean darkTheme;
     private MyLocale locale;
     private String settingsPath;
@@ -30,12 +32,12 @@ public class Settings {
     private int port;
     private String hostName;
     private final CommandProcessor processor;
-    private final MyFrame mainWindow;
+    private MyFrame mainWindow;
+    private boolean connected;
 
     public Settings() {
         processor = new CommandProcessor(this);
         load();
-        mainWindow = new MyFrame("Dragon application", this);
     }
 
     private void load() {
@@ -79,10 +81,10 @@ public class Settings {
         String password = (String) settings.get("password");
         if (!login.trim().isEmpty() && !password.trim().isEmpty()) {
             User newUser = User.signIn(login, password);
-            if (connection.signIn(newUser)) {
+            if (signIn(newUser)) {
                 user = newUser;
                 saveUser = true;
-            } else saveUser = false;
+            }
         }
     }
 
@@ -175,6 +177,23 @@ public class Settings {
         return out.toString();
     }
 
+    public String tryConnect(Request request) {
+        String reply = null;
+        try {
+            reply = connection.sendReqGetResp(request);
+            connected = true;
+        } catch (UnavailableServerException e) {
+            connected = false;
+        }
+        if (mainWindow != null)
+            mainWindow.checkConnect();
+        return reply;
+    }
+
+    public void runGUI() {
+        mainWindow = new MyFrame("Dragon application", this);
+    }
+
     public MyFrame getMainWindow() {
         return mainWindow;
     }
@@ -191,7 +210,34 @@ public class Settings {
         this.locale = locale;
     }
 
-    public ClientConnection getConnection() {
-        return connection;
+    public boolean isConnected() {
+        return connected;
+    }
+
+    public boolean signIn(User user) {
+        Request request = new Request(CommandType.SIGN_IN, null, null, user);
+        String reply = tryConnect(request);
+        if (reply == null)
+            return false;
+        else
+            return reply.startsWith("User was");
+    }
+
+    public boolean signUp(User user) {
+        Request request = new Request(CommandType.SIGN_UP, null, null, user);
+        String reply = tryConnect(request);
+        if (reply == null)
+            return false;
+        else
+            return reply.startsWith("User was");
+    }
+
+    public boolean changePasswd(User user, String newPasswd) {
+        Request request = new Request(CommandType.CHANGE_PASSWORD, newPasswd, null, user);
+        String reply = tryConnect(request);
+        if (reply == null)
+            return false;
+        else
+            return reply.startsWith("Password was");
     }
 }

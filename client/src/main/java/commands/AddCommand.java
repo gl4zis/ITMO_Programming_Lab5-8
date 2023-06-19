@@ -17,14 +17,11 @@ public class AddCommand extends Command {
     public void execute(MyConsole output) {
         Dragon dragon = readDragon();
         if (dragon != null) {
-            try {
-                String reply = settings.getConnection().sendReqGetResp(new Request(CommandType.ADD, null, dragon, settings.getUser()));
-                output.addText("-----ADD-----\n  " + reply);
-            } catch (UnavailableServerException e) {
-                e.printStackTrace();
-                settings.getConnection().connected = false;
-                output.addText("No connection");
-            }
+            String reply = settings.tryConnect(new Request(CommandType.ADD, null, dragon, settings.getUser()));
+            if (reply == null)
+                output.addText("No connection (");
+            else
+                output.addText("-----ADD-----\n" + reply);
         }
     }
 }

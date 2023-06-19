@@ -7,22 +7,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="added all commands on client">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomComboBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/DragonDialog.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="command 'add' works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CustomTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomTextField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/Header.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/HelpDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/HelpDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/HomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/HomePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/LangBox.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ChangePasswordPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ChangePasswordPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/DragonDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/DragonDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/MyConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyConsole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ResizableIcon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/SignInPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SignInPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/SignUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SignUpPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/AddCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Color.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/DragonCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/DragonCharacter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -345,13 +342,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00072" summary="added javaDoc">
-      <created>1681252874016</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1681252874016</updated>
     </task>
     <task id="LOCAL-00073" summary="big bugfix&#10;added ability to send huge data from server&#10;now if server doesn't reply, client repeats request each second until gets the reply&#10;fixed null pointer in commands, which needs read dragon from console&#10;etc...">
       <created>1681328376628</created>
@@ -689,7 +679,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687117435220</updated>
     </task>
-    <option name="localTasksCounter" value="121" />
+    <task id="LOCAL-00121" summary="command 'add' works">
+      <created>1687129907136</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1687129907137</updated>
+    </task>
+    <option name="localTasksCounter" value="122" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -717,7 +714,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="debug with database connection" />
     <MESSAGE value="javaDoc with micro debug" />
     <MESSAGE value="reworked DataBaseManager class" />
     <MESSAGE value="unit tests" />
@@ -742,7 +738,8 @@
     <MESSAGE value="optimized interface" />
     <MESSAGE value="added output console" />
     <MESSAGE value="added all commands on client" />
-    <option name="LAST_COMMIT_MESSAGE" value="added all commands on client" />
+    <MESSAGE value="command 'add' works" />
+    <option name="LAST_COMMIT_MESSAGE" value="command 'add' works" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -790,7 +787,7 @@
     <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_client_test_.ic" NAME="Tests in 'lab5-8.client.test' Coverage Results" MODIFIED="1684771099492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$OsUtilusTest.ic" NAME="OsUtilusTest Coverage Results" MODIFIED="1682447215402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$RemoveByIdCommandTest.ic" NAME="RemoveByIdCommandTest Coverage Results" MODIFIED="1682494204206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/lab5_8$client.ic" NAME="client Coverage Results" MODIFIED="1682764920174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/lab5_8$client.ic" NAME="client Coverage Results" MODIFIED="1687161422360" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$UniqueIdGeneratorTest.ic" NAME="UniqueIdGeneratorTest Coverage Results" MODIFIED="1682447280882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$RemoveGreaterCommandTest.ic" NAME="RemoveGreaterCommandTest Coverage Results" MODIFIED="1682494467379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/lab5_8$Tests_in__lab5_8_server_test_.ic" NAME="Tests in 'lab5-8.server.test' Coverage Results" MODIFIED="1684771111056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -33,6 +33,7 @@ public class MyConsole extends JPanel {
 
     public void addText(String newStr) {
         String oldStr = text.getText();
+        newStr = newStr.replaceAll("\n", "\n  ");
         if (oldStr.isEmpty())
             text.setText("  " + newStr);
         else

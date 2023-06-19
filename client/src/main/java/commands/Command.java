@@ -30,6 +30,6 @@ public abstract class Command {
     public abstract void execute(MyConsole output);
 
     Dragon readDragon() {
-        return new DragonDialog(settings).getDragon();
+        return new DragonDialog(settings.getMainWindow()).getDragon();
     }
 }

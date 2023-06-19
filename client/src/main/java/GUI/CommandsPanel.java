@@ -1,4 +1,5 @@
 package GUI;
+
 import commands.CommandType;
 
 import java.awt.*;

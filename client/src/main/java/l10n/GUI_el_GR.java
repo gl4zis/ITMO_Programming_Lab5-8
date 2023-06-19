@@ -31,7 +31,7 @@ public class GUI_el_GR extends ListResourceBundle {
                 {"chPass.incOld", "Λανθασμένος κωδικός πρόσβασης"},
                 {"synopsis.title", "Σύνοψη"},
                 {"synopsis.text", "Δεν ξέρω τι πρέπει να γράψω εδώ"},
-                {"dragon.incorrect", "Κάποιο πεδίο είναι λανθασμένο"},
+                {"dialog.incorrect", "Κάποιο πεδίο είναι λανθασμένο"},
                 {"dragon.empty", "Η ηλικία μπορεί να είναι κενή:"},
                 {"dragon.name", "όνομα"},
                 {"dragon.weight", "βάρος"},

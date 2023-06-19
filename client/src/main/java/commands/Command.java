@@ -2,13 +2,10 @@ package commands;
 
 import GUI.DragonDialog;
 import GUI.MyConsole;
-import client.ClientConnection;
+import GUI.NumberDialog;
 import dragons.Dragon;
 import parsers.MyScanner;
 import settings.Settings;
-
-import javax.swing.*;
-import java.util.Set;
 
 /**
  * Abstract class of commands, which need to be processed on client
@@ -29,7 +26,13 @@ public abstract class Command {
 
     public abstract void execute(MyConsole output);
 
-    Dragon readDragon() {
+    public abstract void exFromScript(MyConsole output, MyScanner script, String line);
+
+    protected Dragon readDragon() {
         return new DragonDialog(settings.getMainWindow()).getDragon();
+    }
+
+    protected Number readNumber(String name, Class<? extends Number> type) {
+        return new NumberDialog(settings.getMainWindow(), name, type).getVar();
     }
 }

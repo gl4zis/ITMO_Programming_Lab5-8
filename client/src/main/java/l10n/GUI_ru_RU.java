@@ -30,7 +30,13 @@ public class GUI_ru_RU extends ListResourceBundle {
                 {"all.confirm", "Ок"},
                 {"chPass.incOld", "Неверный пароль"},
                 {"synopsis.title", "Справка"},
-                {"synopsis.text", "Не знаю что здесь написать"}
+                {"synopsis.text", "Не знаю что здесь написать"},
+                {"dragon.incorrect", "Поле заполнено некорректно"},
+                {"dragon.empty", "Можно оставить пустым:"},
+                {"dragon.name", "имя"},
+                {"dragon.weight", "вес"},
+                {"dragon.age", "возраст"},
+                {"dragon.eyes_count", "кол-во глаз"}
         };
     }
 }

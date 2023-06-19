@@ -22,9 +22,9 @@ public class DragonDialog extends JDialog {
         super(parent, "Dragon", true);
         this.parent = parent;
 
-        warn = new WarningLabel(parent, "dragon.incorrect");
-        label = new JLabel("dragon.empty");
-        label.setFont(new Font("Aral", Font.BOLD, (int) (14 * parent.getKf())));
+        warn = new WarningLabel(parent, "dragon.incorrect", 12);
+        label = new JLabel(parent.getSettings().getLocale().getResource("dragon.empty"));
+        label.setFont(new Font("Aral", Font.BOLD, (int) (12 * parent.getKf())));
         label.setForeground(parent.getSettings().getColors().get("fontColor"));
         fields[0] = new CustomTextField(parent, CustomTextField.Size.SMALL, "dragon.name", false);
         fields[1] = new CustomTextField(parent, CustomTextField.Size.SMALL, "X", false);

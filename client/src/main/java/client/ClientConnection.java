@@ -1,8 +1,12 @@
 package client;
 
+import commands.CommandType;
+import dragons.DragonCollection;
+import exceptions.IncorrectDataException;
 import exceptions.UnavailableServerException;
 import general.OsUtilus;
 import network.Request;
+import network.RespCollection;
 import network.Response;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.SerializationException;
@@ -125,13 +129,13 @@ public class ClientConnection {
      *
      * @return message from request
      */
-    public String sendReqGetResp(Request request) throws UnavailableServerException {
+    private Response sendReqGetResp(Request request) throws UnavailableServerException {
         try (DatagramChannel channel = DatagramChannel.open()) {
             channel.configureBlocking(false);
             sendRequest(request, channel);
             if (receivePacks(channel)) {
                 connected = true;
-                return ((Response) SerializationUtils.deserialize(buffer.array())).message();
+                return SerializationUtils.deserialize(buffer.array());
             } else {
                 connected = false;
                 throw new UnavailableServerException("No connection");
@@ -141,5 +145,16 @@ public class ClientConnection {
             LOGGER.error("Something went wrong: " + e.getMessage());
             throw new UnavailableServerException("No connection");
         }
+    }
+
+    public String getReply(Request request) throws UnavailableServerException {
+        return sendReqGetResp(request).message;
+    }
+
+    public DragonCollection getCollection(Request request) throws UnavailableServerException {
+        if (request.command().equals(CommandType.SHOW))
+            return ((RespCollection) sendReqGetResp(request)).collection;
+        else
+            throw new IncorrectDataException("Incorrect request!!");
     }
 }

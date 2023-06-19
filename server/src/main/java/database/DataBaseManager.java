@@ -1,6 +1,5 @@
 package database;
 
-import collection.DragonCollection;
 import dragons.*;
 import exceptions.LoginCollisionException;
 import exceptions.NoSuchUserException;

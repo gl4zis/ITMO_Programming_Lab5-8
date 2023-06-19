@@ -1,18 +1,18 @@
-package collection;
+package dragons;
 
-import dragons.Dragon;
 import exceptions.IdCollisionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import user.User;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * Class that contains collection of dragons, some vars and methods to work with it
  */
-public class DragonCollection {
+public class DragonCollection implements Serializable {
     private static final Logger LOGGER = LogManager.getLogger(DragonCollection.class);
     private static final String TYPE = "LinkedHashSet";
     private final List<Integer> idList;

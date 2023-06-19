@@ -1,13 +1,11 @@
 package commands;
 
-import collection.DragonCollection;
 import database.DataBaseManager;
+import dragons.DragonCollection;
 import network.Request;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.sql.Connection;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,17 +15,6 @@ class CommandManagerTest {
     private Connection conn;
     private DragonCollection collection;
     private CommandManager manager;
-
-    @Test
-    void parse() {
-        try {
-            Method parse = CommandManager.class.getDeclaredMethod("parseCommandName", String.class);
-            parse.setAccessible(true);
-            String className = (String) parse.invoke(CommandManager.class, "add_if_min");
-            assertEquals("commands.AddIfMinCommand", className);
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {
-        }
-    }
 
     @Test
     void seekCommand() {

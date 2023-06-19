@@ -4,6 +4,8 @@ import GUI.MyFrame;
 import client.ClientConnection;
 import commands.CommandProcessor;
 import commands.CommandType;
+import dragons.Dragon;
+import dragons.DragonCollection;
 import exceptions.UnavailableServerException;
 import network.Request;
 import org.apache.logging.log4j.LogManager;
@@ -15,14 +17,16 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Properties;
 
 public class Settings {
     private static final Logger LOGGER = LogManager.getLogger(Settings.class);
     private static final String DARK_STYLE_PATH = "/styles/dark.properties";
     private static final String LIGH_STYLE_PATH = "/styles/light.properties";
-    private final CommandProcessor processor;
+    private final CommandProcessor processor = new CommandProcessor(this);
     private User user;
     private boolean saveUser = false;
     private boolean darkTheme;
@@ -34,9 +38,9 @@ public class Settings {
     private String hostName;
     private MyFrame mainWindow;
     private boolean connected;
+    private DragonCollection collection;
 
     public Settings() {
-        processor = new CommandProcessor(this);
         load();
     }
 
@@ -60,6 +64,7 @@ public class Settings {
 
     private void setDefault() {
         locale = MyLocale.ENGLISH;
+        Locale.setDefault(locale.getLang());
         saveUser = false;
         darkTheme = false;
         port = 9812;
@@ -91,6 +96,7 @@ public class Settings {
     private void loadLocale(Properties settings) {
         String loc = (String) settings.get("locale");
         locale = MyLocale.getByName(loc);
+        Locale.setDefault(locale.getLang());
     }
 
     private void loadTheme(Properties settings) {
@@ -177,10 +183,21 @@ public class Settings {
         return out.toString();
     }
 
+    public void loadCollection() {
+        try {
+            collection = connection.getCollection(new Request(CommandType.SHOW, null, null, user));
+            connected = true;
+        } catch (UnavailableServerException e) {
+            connected = false;
+        }
+        if (mainWindow != null)
+            mainWindow.checkConnect();
+    }
+
     public String tryConnect(Request request) {
         String reply = null;
         try {
-            reply = connection.sendReqGetResp(request);
+            reply = connection.getReply(request);
             connected = true;
         } catch (UnavailableServerException e) {
             connected = false;
@@ -208,10 +225,15 @@ public class Settings {
 
     public void setLocale(MyLocale locale) {
         this.locale = locale;
+        Locale.setDefault(locale.getLang());
     }
 
     public boolean isConnected() {
         return connected;
+    }
+
+    public Collection<Dragon> getCollection() {
+        return collection.getItems();
     }
 
     public boolean signIn(User user) {

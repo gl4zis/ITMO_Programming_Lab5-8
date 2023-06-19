@@ -1,6 +1,6 @@
 package commands;
 
-import collection.DragonCollection;
+import dragons.DragonCollection;
 import network.Request;
 
 /**

@@ -30,7 +30,13 @@ public class GUI_en_US extends ListResourceBundle {
                 {"all.confirm", "Confirm"},
                 {"chPass.incOld", "Incorrect password"},
                 {"synopsis.title", "Synopsis"},
-                {"synopsis.text", "I don't know what I should\n write here"}
+                {"synopsis.text", "I don't know what I should\n write here"},
+                {"dragon.incorrect", "Some field is incorrect"},
+                {"dragon.empty", "Age can be empty:"},
+                {"dragon.name", "name"},
+                {"dragon.weight", "weight"},
+                {"dragon.age", "age"},
+                {"dragon.eyes_count", "count of eyes"}
         };
     }
 }

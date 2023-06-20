@@ -117,6 +117,10 @@ public class Dragon implements Comparable<Dragon>, Serializable {
         this.age = age;
     }
 
+    public void setCoordinates(Coordinates c) {
+        this.coordinates = c;
+    }
+
     public long getWeight() {
         return weight;
     }

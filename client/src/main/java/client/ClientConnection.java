@@ -14,6 +14,7 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.awt.desktop.UserSessionEvent;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -117,7 +118,7 @@ public class ClientConnection {
         while (!respond) {
             from = channel.receive(packBuffer);
             respond = (from != null);
-            if (new Date().getTime() - requestTime > 500) {
+            if (new Date().getTime() - requestTime > 200) {
                 return false;
             }
         }
@@ -151,10 +152,8 @@ public class ClientConnection {
         return sendReqGetResp(request).message;
     }
 
-    public DragonCollection getCollection(Request request) throws UnavailableServerException {
-        if (request.command().equals(CommandType.SHOW))
-            return ((RespCollection) sendReqGetResp(request)).collection;
-        else
-            throw new IncorrectDataException("Incorrect request!!");
+    public DragonCollection getCollection() throws UnavailableServerException {
+        Request request = new Request(CommandType.SHOW, null, null, null);
+        return ((RespCollection) sendReqGetResp(request)).collection;
     }
 }

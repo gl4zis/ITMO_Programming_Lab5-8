@@ -13,8 +13,6 @@ import java.awt.*;
 import java.util.Collection;
 import java.util.Date;
 
-import static GUI.CustomTextField.Size.SMALL;
-
 public class TablePanel extends BasePanel {
     private final JScrollPane pane;
     private final int fontSize = 12;

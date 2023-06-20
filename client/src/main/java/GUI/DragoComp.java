@@ -1,7 +1,9 @@
 package GUI;
 
+import commands.CommandType;
 import dragons.Coordinates;
 import dragons.Dragon;
+import network.Request;
 import user.User;
 
 import javax.imageio.ImageIO;
@@ -13,7 +15,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
-public class DragoComp extends JLabel {
+public class DragoComp extends JLabel implements Recolorable {
 
     private static final URL DINO_STAY = DragoComp.class.getResource("/img/dino_stay.png");
     private static final URL DINO_LEFT = DragoComp.class.getResource("/img/dino_left.png");
@@ -31,13 +33,17 @@ public class DragoComp extends JLabel {
     private Thread moving;
     private double oldKf;
     private int iconInd = 0;
+    private Point trueCoords;
+    private final ViewPanel view;
 
-    public DragoComp(Dragon dragon, MyFrame parent) {
+    public DragoComp(Dragon dragon, MyFrame parent, ViewPanel view) {
         this.parent = parent;
+        this.view = view;
         oldKf = parent.getKf();
         scale = getScale(dragon.getWeight()) * parent.getKf();
         Coordinates c = dragon.getCoordinates();
-        setBounds((int) c.getX(), (int) c.getY(), (int) (DEF_WIDTH * scale), (int) (DEF_HEIGHT * scale));
+        trueCoords = new Point((int) c.getX(), (int) c.getY());
+        setSize((int) (DEF_WIDTH * scale), (int) (DEF_HEIGHT * scale));
         User user = dragon.getCreator();
         color = getColorByString(user.getLogin());
         setImages();
@@ -46,16 +52,28 @@ public class DragoComp extends JLabel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (!isMoving) {
-                    isMoving = true;
-                    moving = new Thread(() -> move());
-                    moving.start();
-                } else {
-                    isMoving = false;
-                    moving.interrupt();
+                if (parent.getSettings().getUser() != null &&
+                        parent.getSettings().getUser().equals(dragon.getCreator())) {
+                    if (!isMoving) {
+                        isMoving = true;
+                        moving = new Thread(() -> move());
+                        moving.start();
+                    } else {
+                        isMoving = false;
+                        moving.interrupt();
+                        updateDragon(dragon);
+                    }
                 }
             }
         });
+    }
+
+    private void updateDragon(Dragon dragon) {
+        Coordinates newCoords = new Coordinates(trueCoords.x, trueCoords.y);
+        dragon.setCoordinates(newCoords);
+        int id = dragon.hashCode();
+        Request update = new Request(CommandType.UPDATE, id, dragon, parent.getSettings().getUser());
+        parent.getSettings().tryConnect(update);
     }
 
     private void move() {
@@ -74,6 +92,7 @@ public class DragoComp extends JLabel {
             setIcon(getIcon(images[iconInd]));
             setLocation(getX() + 1, getY());
             counter++;
+            trueCoords = new Point(getX() - view.getOffsetX(), view.getOffsetY() - getY());
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
@@ -88,37 +107,14 @@ public class DragoComp extends JLabel {
         images = new BufferedImage[3];
         try {
             BufferedImage image = ImageIO.read(DINO_STAY);
-            images[0] = recolor(image);
+            images[0] = recolor(image, BASE_COLOR, color);
             image = ImageIO.read(DINO_LEFT);
-            images[1] = recolor(image);
+            images[1] = recolor(image, BASE_COLOR, color);
             image = ImageIO.read(DINO_RIGHT);
-            images[2] = recolor(image);
+            images[2] = recolor(image, BASE_COLOR, color);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private BufferedImage recolor(BufferedImage image) {
-        int width = image.getWidth();
-        int height = image.getHeight();
-        BufferedImage transpImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g = transpImg.createGraphics();
-        g.drawImage(image, 0, 0, null);
-        g.dispose();
-
-        BufferedImage newImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        int preferredRGB = color.getRGB();
-        int baseRGB = BASE_COLOR.getRGB();
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                int color = transpImg.getRGB(i, j);
-                if (color == baseRGB) {
-                    newImage.setRGB(i, j, preferredRGB);
-                } else
-                    newImage.setRGB(i, j, 0);
-            }
-        }
-        return newImage;
     }
 
     private double getScale(long x) {
@@ -133,6 +129,14 @@ public class DragoComp extends JLabel {
 
     private Icon getIcon(BufferedImage image) {
         return new GoodIcon(image.getScaledInstance((int) (scale * DEF_WIDTH), (int) (scale * DEF_HEIGHT), Image.SCALE_SMOOTH));
+    }
+
+    public int getTrueX() {
+        return trueCoords.x;
+    }
+
+    public int getTrueY() {
+        return trueCoords.y;
     }
 
     @Override

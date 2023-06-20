@@ -7,19 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="budfix settings and table">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/DinoComp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/dino_left.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/dino_right.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/dino_stay.png" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="added components with dragons">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/DinoComp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/TablePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/TablePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_el_GR.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_el_GR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ro_RO.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ro_RO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ru_RU.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ru_RU.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/parsers/MyDate.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/parsers/MyDate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -342,13 +336,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00079" summary="JUnit5 and some bugfix">
-      <created>1682495283488</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1682495283488</updated>
     </task>
     <task id="LOCAL-00080" summary="code cleanup">
       <created>1682693948517</created>
@@ -686,7 +673,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687262214144</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="added components with dragons">
+      <created>1687277954093</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1687277954093</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -714,7 +708,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="bugfix (now inputted dragon is saved on client, while server isn't replying)" />
     <MESSAGE value="added settings" />
     <MESSAGE value="added ability to save login and password" />
     <MESSAGE value="start of localization" />
@@ -739,7 +732,8 @@
     <MESSAGE value="table works" />
     <MESSAGE value="update for table panel" />
     <MESSAGE value="budfix settings and table" />
-    <option name="LAST_COMMIT_MESSAGE" value="budfix settings and table" />
+    <MESSAGE value="added components with dragons" />
+    <option name="LAST_COMMIT_MESSAGE" value="added components with dragons" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

@@ -254,7 +254,10 @@ public class Settings {
     }
 
     public Collection<Dragon> getCollection() {
-        return collection.getItems();
+        if (collection == null)
+            return null;
+        else
+            return collection.getItems();
     }
 
     public boolean signIn(User user) {

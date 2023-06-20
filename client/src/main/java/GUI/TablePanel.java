@@ -98,9 +98,11 @@ public class TablePanel extends BasePanel {
                 int row = table.getSelectedRow();
                 if (row > -1) {
                     String owner = (String) table.getValueAt(row, 10);
-                    if (owner.equals(parent.getSettings().getUser().getLogin())) {
+                    if (parent.getSettings().getUser() != null &&
+                            owner.equals(parent.getSettings().getUser().getLogin())) {
                         int id = (Integer) table.getValueAt(row, 0);
-                        Request removeId = new Request(CommandType.REMOVE_BY_ID, id, null, parent.getSettings().getUser());
+                        Request removeId = new Request(CommandType.REMOVE_BY_ID, id,
+                                null, parent.getSettings().getUser());
                         parent.getSettings().tryConnect(removeId);
                         refresh();
                     }
@@ -220,7 +222,8 @@ public class TablePanel extends BasePanel {
 
         @Override
         public void setValueAt(Object value, int row, int col) {
-            if (parent.getSettings().getUser().getLogin().equals(data[row][10])) {
+            if (parent.getSettings().getUser() != null &&
+                    parent.getSettings().getUser().getLogin().equals(data[row][10])) {
                 if (col != 6 && value.toString().trim().isEmpty())
                     return;
                 if (col == 2 && (Double) value <= -497)
@@ -258,7 +261,7 @@ public class TablePanel extends BasePanel {
                 String name = (String) data[row][1];
                 double x = (Double) data[row][2];
                 float y = (Float) data[row][3];
-                Date date = (Date) data[row][4];
+                Date date = ((MyDate) data[row][4]).getDate();
                 long weight = (Long) data[row][5];
                 Color color = Color.getByName((String) data[row][7]);
                 DragonCharacter character = DragonCharacter.getByName((String) data[row][8]);

@@ -7,9 +7,11 @@ import java.awt.*;
 public class MyScrollBarUI extends BasicScrollBarUI implements GoodQuality {
 
     private final MyFrame parent;
+    private final boolean isHorizontal;
 
-    public MyScrollBarUI(MyFrame parent) {
+    public MyScrollBarUI(MyFrame parent, boolean isHorizontal) {
         this.parent = parent;
+        this.isHorizontal = isHorizontal;
     }
 
     protected JButton createZeroButton() {
@@ -47,14 +49,21 @@ public class MyScrollBarUI extends BasicScrollBarUI implements GoodQuality {
 
         Graphics2D g2d = setGoodQ(g);
         g2d.setColor(parent.getSettings().getColors().get("secondColor"));
-        g2d.fillRoundRect(thumbBounds.x + thumbBounds.width / 4, thumbBounds.y, thumbBounds.width / 2, thumbBounds.height,
-                thumbBounds.width / 2, thumbBounds.width / 2);
+        if (isHorizontal)
+            g2d.fillRoundRect(thumbBounds.x, thumbBounds.y + thumbBounds.height / 4, thumbBounds.width, thumbBounds.height / 2,
+                    thumbBounds.height / 2, thumbBounds.height / 2);
+        else
+            g2d.fillRoundRect(thumbBounds.x + thumbBounds.width / 4, thumbBounds.y, thumbBounds.width / 2, thumbBounds.height,
+                    thumbBounds.width / 2, thumbBounds.width / 2);
     }
 
     @Override
     protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
         Graphics2D g2d = setGoodQ(g);
         g2d.setColor(parent.getSettings().getColors().get("borderColor"));
-        g2d.fillRect(trackBounds.x + trackBounds.width / 4, trackBounds.y, trackBounds.width / 2, trackBounds.height);
+        if (isHorizontal)
+            g2d.fillRect(trackBounds.x, trackBounds.y + trackBounds.height / 4, trackBounds.width, trackBounds.height / 2);
+        else
+            g2d.fillRect(trackBounds.x + trackBounds.width / 4, trackBounds.y, trackBounds.width / 2, trackBounds.height);
     }
 }

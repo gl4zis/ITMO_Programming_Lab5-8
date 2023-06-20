@@ -26,9 +26,9 @@ public class Settings {
     private static final Logger LOGGER = LogManager.getLogger(Settings.class);
     private static final String DARK_STYLE_PATH = "/styles/dark.properties";
     private static final String LIGH_STYLE_PATH = "/styles/light.properties";
-    private final CommandProcessor processor = new CommandProcessor(this);
+    private final CommandProcessor processor;
     private User user;
-    private boolean saveUser = false;
+    private boolean saveUser;
     private boolean darkTheme;
     private MyLocale locale;
     private String settingsPath;
@@ -41,6 +41,9 @@ public class Settings {
     private DragonCollection collection;
 
     public Settings() {
+        saveUser = false;
+        connected = true;
+        processor = new CommandProcessor(this);
         load();
     }
 
@@ -52,13 +55,33 @@ public class Settings {
         try {
             InputStreamReader is = new InputStreamReader(new FileInputStream(settingsPath), StandardCharsets.UTF_8);
             settings.load(is);
-            loadServer(settings);
-            loadUser(settings);
-            loadLocale(settings);
-            loadTheme(settings);
-            loadStyle();
         } catch (IOException e) {
             LOGGER.error("Can't read settings file");
+        }
+        try {
+            loadServer(settings);
+        } catch (Exception e) {
+            LOGGER.error("Can't read server settings");
+        }
+        try {
+            loadUser(settings);
+        } catch (Exception e) {
+            LOGGER.error("Can't read user settings");
+        }
+        try {
+            loadLocale(settings);
+        } catch (Exception e) {
+            LOGGER.error("Can't read locale settings");
+        }
+        try {
+            loadTheme(settings);
+        } catch (Exception e) {
+            LOGGER.error("Can't read theme settings");
+        }
+        try {
+            loadStyle();
+        } catch (Exception e) {
+            LOGGER.error("Can't read styles");
         }
     }
 
@@ -86,10 +109,8 @@ public class Settings {
         String password = (String) settings.get("password");
         if (!login.trim().isEmpty() && !password.trim().isEmpty()) {
             User newUser = User.signIn(login, password);
-            if (signIn(newUser)) {
-                user = newUser;
-                saveUser = true;
-            }
+            if (signIn(newUser))
+                setUser(newUser);
         }
     }
 

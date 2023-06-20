@@ -33,6 +33,7 @@ public class Main {
             SwingUtilities.invokeLater(settings::runGUI);
 
         } catch (Exception e) {
+            e.printStackTrace();
             LOGGER.fatal("Something very strange happened =0 " + e.getMessage());
             LOGGER.debug("Incorrect exit (client crashed)");
         }

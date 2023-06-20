@@ -13,11 +13,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
-public class DinoComp extends JLabel {
+public class DragoComp extends JLabel {
 
-    private static final URL DINO_STAY = DinoComp.class.getResource("/img/dino_stay.png");
-    private static final URL DINO_LEFT = DinoComp.class.getResource("/img/dino_left.png");
-    private static final URL DINO_RIGHT = DinoComp.class.getResource("/img/dino_right.png");
+    private static final URL DINO_STAY = DragoComp.class.getResource("/img/dino_stay.png");
+    private static final URL DINO_LEFT = DragoComp.class.getResource("/img/dino_left.png");
+    private static final URL DINO_RIGHT = DragoComp.class.getResource("/img/dino_right.png");
     private static final int DEF_HEIGHT = 22;
     private static final int DEF_WIDTH = 20;
     private static final Color BASE_COLOR = Color.black;
@@ -32,7 +32,7 @@ public class DinoComp extends JLabel {
     private double oldKf;
     private int iconInd = 0;
 
-    public DinoComp(Dragon dragon, MyFrame parent) {
+    public DragoComp(Dragon dragon, MyFrame parent) {
         this.parent = parent;
         oldKf = parent.getKf();
         scale = getScale(dragon.getWeight()) * parent.getKf();
@@ -124,7 +124,7 @@ public class DinoComp extends JLabel {
     private double getScale(long x) {
         if (x <= 0)
             return 1;
-        return Math.log(x) / 3 + 1;
+        return Math.log(x) / 3 + 2;
     }
 
     private Color getColorByString(String str) {

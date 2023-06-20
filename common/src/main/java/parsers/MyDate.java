@@ -17,6 +17,10 @@ public class MyDate {
         this.date = date;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
     @Override
     public String toString() {
         String locale = Locale.getDefault().getCountry();

@@ -84,6 +84,7 @@ public class TablePanel extends BasePanel {
                 setBackground(parent.getSettings().getColors().get("mainColor"));
             }
         };
+        southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 20));
         southPanel.add(filter);
         southPanel.add(new CustomButton(parent, CustomButton.Size.MEDIUM, "table.refresh", true) {
             @Override

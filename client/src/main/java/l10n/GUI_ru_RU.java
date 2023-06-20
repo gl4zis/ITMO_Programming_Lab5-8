@@ -36,7 +36,10 @@ public class GUI_ru_RU extends ListResourceBundle {
                 {"dragon.name", "имя"},
                 {"dragon.weight", "вес"},
                 {"dragon.age", "возраст"},
-                {"dragon.eyes_count", "кол-во глаз"}
+                {"dragon.eyes_count", "кол-во глаз"},
+                {"table.filter", "фильтр"},
+                {"table.refresh", "Обновить"},
+                {"table.remove", "Удалить выбранный"}
         };
     }
 }

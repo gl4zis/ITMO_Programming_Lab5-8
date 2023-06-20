@@ -36,7 +36,10 @@ public class GUI_el_GR extends ListResourceBundle {
                 {"dragon.name", "όνομα"},
                 {"dragon.weight", "βάρος"},
                 {"dragon.age", "ηλικία"},
-                {"dragon.eyes_count", "aριθμός ματιών"}
+                {"dragon.eyes_count", "aριθμός ματιών"},
+                {"table.filter", "φίλτρο"},
+                {"table.refresh", "Ανανέωση"},
+                {"table.remove", "Αφαιρέστε το"}
         };
     }
 }

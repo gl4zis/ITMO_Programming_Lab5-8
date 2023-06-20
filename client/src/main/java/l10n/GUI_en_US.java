@@ -36,7 +36,10 @@ public class GUI_en_US extends ListResourceBundle {
                 {"dragon.name", "name"},
                 {"dragon.weight", "weight"},
                 {"dragon.age", "age"},
-                {"dragon.eyes_count", "count of eyes"}
+                {"dragon.eyes_count", "count of eyes"},
+                {"table.filter", "filter regex"},
+                {"table.refresh", "Refresh"},
+                {"table.remove", "Remove allocated"}
         };
     }
 }

@@ -206,7 +206,7 @@ public class Settings {
 
     public void loadCollection() {
         try {
-            collection = connection.getCollection(new Request(CommandType.SHOW, null, null, user));
+            collection = connection.getCollection();
             connected = true;
         } catch (UnavailableServerException e) {
             connected = false;

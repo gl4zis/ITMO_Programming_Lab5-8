@@ -27,7 +27,7 @@ public class MyConsole extends JPanel {
         text.setEditable(false);
         text.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, fontSize));
         JScrollPane pane = new JScrollPane(text, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        pane.getVerticalScrollBar().setUI(new MyScrollBarUI(parent));
+        pane.getVerticalScrollBar().setUI(new MyScrollBarUI(parent, false));
         pane.setBorder(BorderFactory.createEmptyBorder());
         add(pane, BorderLayout.CENTER);
         text.setText(oldText);

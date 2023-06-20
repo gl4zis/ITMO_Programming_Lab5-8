@@ -4,12 +4,16 @@ import commands.CommandType;
 import dragons.Color;
 import dragons.*;
 import network.Request;
+import parsers.MyDate;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.util.Collection;
 import java.util.Date;
+
+import static GUI.CustomTextField.Size.SMALL;
 
 public class TablePanel extends BasePanel {
     private final JScrollPane pane;
@@ -21,16 +25,34 @@ public class TablePanel extends BasePanel {
         super(parent);
         table = new JTable(new MyTableModel(parent));
         table.setAutoCreateRowSorter(true);
-
         table.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, fontSize));
         table.getTableHeader().setOpaque(false);
-        table.setRowSelectionAllowed(false);
-        pane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        pane.getVerticalScrollBar().setUI(new MyScrollBarUI(parent));
-        pane.getHorizontalScrollBar().setUI(new MyScrollBarUI(parent));
+        table.setFillsViewportHeight(true);
+        pane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        pane.getVerticalScrollBar().setUI(new MyScrollBarUI(parent, false));
         pane.setOpaque(false);
         filter = new CustomTextField(parent, CustomTextField.Size.MEDIUM, "table.filter", false);
         fill();
+        setWidth();
+    }
+
+    private void setWidth() {
+        FontMetrics metrics = table.getFontMetrics(table.getFont());
+        for (int col = 0; col < table.getColumnCount(); col++) {
+            TableColumn column = table.getColumn(((MyTableModel) table.getModel()).header[col]);
+            String str = column.getHeaderValue().toString();
+            int maxWidth = metrics.stringWidth(str);
+            for (int row = 0; row < Math.min(table.getRowCount(), 20); row++) {
+                Object value = table.getModel().getValueAt(row, col);
+                if (value != null) {
+                    str = value.toString();
+                    int width = metrics.stringWidth(str);
+                    if (maxWidth < width)
+                        maxWidth = width;
+                }
+            }
+            column.setPreferredWidth((int) (maxWidth * 1.3));
+        }
     }
 
     @Override
@@ -42,12 +64,16 @@ public class TablePanel extends BasePanel {
             table.getTableHeader().setFont(table.getFont().deriveFont((float) (k * fontSize)));
         }
         pane.setBackground(parent.getSettings().getColors().get("mainColor"));
-        table.setFillsViewportHeight(true);
         table.setRowHeight((int) (fontSize * 1.5 * k));
         table.setBackground(parent.getSettings().getColors().get("mainColor"));
         table.setForeground(parent.getSettings().getColors().get("fontColor"));
         table.getTableHeader().setBackground(parent.getSettings().getColors().get("mainColor"));
         table.getTableHeader().setForeground(parent.getSettings().getColors().get("fontColor"));
+
+    }
+
+    private void refresh() {
+        parent.setStatus(PageStatus.TABLE);
     }
 
     private void fill() {
@@ -62,8 +88,22 @@ public class TablePanel extends BasePanel {
         southPanel.add(new CustomButton(parent, CustomButton.Size.MEDIUM, "table.refresh", true) {
             @Override
             protected void click() {
-                ((MyTableModel) table.getModel()).parseCollection();
-                table.repaint();
+                refresh();
+            }
+        });
+        southPanel.add(new CustomButton(parent, CustomButton.Size.SMALL, "table.remove", false) {
+            @Override
+            protected void click() {
+                int row = table.getSelectedRow();
+                if (row > -1) {
+                    String owner = (String) table.getValueAt(row, 10);
+                    if (owner.equals(parent.getSettings().getUser().getLogin())) {
+                        int id = (Integer) table.getValueAt(row, 0);
+                        Request removeId = new Request(CommandType.REMOVE_BY_ID, id, null, parent.getSettings().getUser());
+                        parent.getSettings().tryConnect(removeId);
+                        refresh();
+                    }
+                }
             }
         });
 
@@ -123,7 +163,7 @@ public class TablePanel extends BasePanel {
                     data[counter][1] = dragon.getName();
                     data[counter][2] = dragon.getCoordinates().getX();
                     data[counter][3] = dragon.getCoordinates().getY();
-                    data[counter][4] = dragon.getCreationDate();
+                    data[counter][4] = new MyDate(dragon.getCreationDate());
                     data[counter][5] = dragon.getWeight();
                     int age = dragon.getAge();
                     if (age != -1)
@@ -166,7 +206,7 @@ public class TablePanel extends BasePanel {
                 case 1, 7, 8, 10 -> String.class;
                 case 2 -> Double.class;
                 case 3, 9 -> Float.class;
-                case 4 -> Date.class;
+                case 4 -> MyDate.class;
                 case 5 -> Long.class;
                 default -> Object.class;
             };

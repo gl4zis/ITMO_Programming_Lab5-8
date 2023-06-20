@@ -54,7 +54,7 @@ public class HelpDialog extends JDialog {
             label.setForeground(parent.getSettings().getColors().get("fontColor"));
             label.setBackground(parent.getSettings().getColors().get("mainColor"));
             JScrollPane pane = new JScrollPane(label, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-            pane.getVerticalScrollBar().setUI(new MyScrollBarUI(parent));
+            pane.getVerticalScrollBar().setUI(new MyScrollBarUI(parent, false));
             pane.setBorder(BorderFactory.createEmptyBorder());
             add(pane, BorderLayout.CENTER);
         }

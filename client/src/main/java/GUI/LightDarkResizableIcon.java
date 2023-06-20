@@ -1,19 +1,28 @@
 package GUI;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 
 public class LightDarkResizableIcon extends ResizableIcon {
+    protected static final Color DARK_COLOR = new Color(221, 221, 221);
     protected LightDarkResizableIcon(MyFrame parent, String text, URL... images) {
         super(parent, text, images);
+        BufferedImage[] newImages = new BufferedImage[this.images.length * 2];
+        int counter = 0;
+        for (BufferedImage image : this.images) {
+            newImages[counter++] = image;
+            newImages[counter++] = recolor(image, Color.black, DARK_COLOR);
+        }
+        this.images = newImages;
     }
 
     protected LightDarkResizableIcon(MyFrame parent, URL... images) {
-        super(parent, images);
+        this(parent, null, images);
     }
 
     public static ResizableIcon getEyeButton(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, LIGHT_CLOSE_EYE, DARK_CLOSE_EYE, LIGHT_OPEN_EYE, DARK_OPEN_EYE) {
+        return new LightDarkResizableIcon(parent, LIGHT_CLOSE_EYE, LIGHT_OPEN_EYE) {
             private boolean isOpen = false;
 
             @Override
@@ -43,50 +52,8 @@ public class LightDarkResizableIcon extends ResizableIcon {
         };
     }
 
-    public static ResizableIcon getThemeButton(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, LIGHT_THEME, DARK_THEME) {
-            @Override
-            protected void click() {
-                parent.getSettings().changeTheme();
-                parent.repaint();
-            }
-        };
-    }
-
-    public static ResizableIcon getBigThemeButton(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, LIGHT_THEME, DARK_THEME) {
-            private final String darkText = "home.darkTheme";
-            private final String lightText = "home.lightTheme";
-
-            {
-                scale = 0.3;
-                defaultFontSize = 20;
-                if (!parent.getSettings().isDark()) {
-                    text = darkText;
-                    setText(parent.getSettings().getLocale().getResource(darkText));
-                } else {
-                    text = lightText;
-                    setText(parent.getSettings().getLocale().getResource(lightText));
-                }
-            }
-
-            @Override
-            protected void click() {
-                parent.getSettings().changeTheme();
-                if (text.equals(darkText)) {
-                    text = lightText;
-                    setText(parent.getSettings().getLocale().getResource(lightText));
-                } else {
-                    text = darkText;
-                    setText(parent.getSettings().getLocale().getResource(darkText));
-                }
-                parent.repaint();
-            }
-        };
-    }
-
     public static ResizableIcon getUserButton(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, "", LIGHT_USER, DARK_USER) {
+        return new LightDarkResizableIcon(parent, "", LIGHT_USER) {
             @Override
             protected void click() {
                 if (parent.getSettings().getUser() != null)
@@ -109,7 +76,7 @@ public class LightDarkResizableIcon extends ResizableIcon {
     }
 
     public static ResizableIcon getBigUserButton(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, "", LIGHT_USER, DARK_USER) {
+        return new LightDarkResizableIcon(parent, "", LIGHT_USER) {
             {
                 scale = 0.4;
                 defaultFontSize = 20;
@@ -131,7 +98,7 @@ public class LightDarkResizableIcon extends ResizableIcon {
     }
 
     public static ResizableIcon getHelpButton(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, LIGHT_HELP, DARK_HELP) {
+        return new LightDarkResizableIcon(parent, LIGHT_HELP) {
             @Override
             protected void click() {
                 new HelpDialog(parent, "synopsis.title", "synopsis.text");
@@ -140,7 +107,7 @@ public class LightDarkResizableIcon extends ResizableIcon {
     }
 
     public static ResizableIcon getITMO(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, LIGHT_ITMO, DARK_ITMO) {
+        return new LightDarkResizableIcon(parent, LIGHT_ITMO) {
             {
                 scale = 1;
             }
@@ -148,7 +115,7 @@ public class LightDarkResizableIcon extends ResizableIcon {
     }
 
     public static ResizableIcon getDragon(MyFrame parent) {
-        return new LightDarkResizableIcon(parent, LIGHT_DRAGON, DARK_DRAGON) {
+        return new LightDarkResizableIcon(parent, LIGHT_DRAGON) {
             {
                 scale = 1;
             }

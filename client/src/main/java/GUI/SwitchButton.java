@@ -12,7 +12,7 @@ public class SwitchButton extends LightDarkResizableIcon {
     }
 
     public static SwitchButton getHomeButton(MyFrame parent) {
-        return new SwitchButton(parent, "leftPanel.home", LIGHT_HOME, DARK_HOME) {
+        return new SwitchButton(parent, "leftPanel.home", LIGHT_HOME) {
             @Override
             protected void click() {
                 if (parent.getSettings().getUser() != null)
@@ -24,7 +24,7 @@ public class SwitchButton extends LightDarkResizableIcon {
     }
 
     public static SwitchButton getViewButton(MyFrame parent) {
-        return new SwitchButton(parent, "leftPanel.view", LIGHT_VIEW, DARK_VIEW) {
+        return new SwitchButton(parent, "leftPanel.view", LIGHT_VIEW) {
             @Override
             protected void click() {
                 parent.setStatus(PageStatus.VIEW);
@@ -33,7 +33,7 @@ public class SwitchButton extends LightDarkResizableIcon {
     }
 
     public static SwitchButton getTableButton(MyFrame parent) {
-        return new SwitchButton(parent, "leftPanel.table", LIGHT_TABLE, DARK_TABLE) {
+        return new SwitchButton(parent, "leftPanel.table", LIGHT_TABLE) {
             @Override
             protected void click() {
                 parent.setStatus(PageStatus.TABLE);
@@ -42,7 +42,7 @@ public class SwitchButton extends LightDarkResizableIcon {
     }
 
     public static SwitchButton getCommandsButton(MyFrame parent) {
-        return new SwitchButton(parent, "leftPanel.commands", LIGHT_COMMANDS, DARK_COMMANDS) {
+        return new SwitchButton(parent, "leftPanel.commands", LIGHT_COMMANDS) {
             @Override
             protected void click() {
                 if (parent.getSettings().getUser() != null)
@@ -62,7 +62,17 @@ public class SwitchButton extends LightDarkResizableIcon {
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    protected void chooseImg() {
+        if (parent.getSettings().isDark()) {
+            if (setted)
+                mainImg = recolor(images[1], DARK_COLOR, parent.getSettings().getColors().get("secondColor"));
+            else
+                mainImg = images[1];
+        } else {
+            if (setted)
+                mainImg = recolor(images[0], Color.black, parent.getSettings().getColors().get("secondColor"));
+            else
+                mainImg = images[0];
+        }
     }
 }

@@ -19,7 +19,7 @@ public class MyFrame extends JFrame {
     public MyFrame(String title, Settings settings) {
         super(title);
         setIconImage(new ImageIcon(Objects.requireNonNull(
-                getClass().getResource("/img/light/dragon.png"))).getImage());
+                getClass().getResource("/img/dragon.png"))).getImage());
         this.settings = settings;
         header = new Header(this);
         leftPanel = new LeftPanel(this);

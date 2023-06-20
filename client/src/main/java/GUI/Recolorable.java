@@ -14,12 +14,13 @@ public interface Recolorable {
 
         BufferedImage newImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         int preferredRGB = to.getRGB();
-        int baseRGB = from.getRGB();
+        int baseRGB = from.getRGB() << 8;
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 int color = transpImg.getRGB(i, j);
-                if (color == baseRGB) {
-                    newImage.setRGB(i, j, preferredRGB);
+                if (color >> 24 != 0 && color << 8 == baseRGB) {
+                    int newRGB = preferredRGB + (color >> 24 << 24);
+                    newImage.setRGB(i, j, newRGB);
                 } else
                     newImage.setRGB(i, j, 0);
             }

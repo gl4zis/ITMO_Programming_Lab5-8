@@ -18,7 +18,7 @@ public class Header extends JPanel implements GoodQuality {
         setLayout(new GridBagLayout());
 
         connIcon = ResizableIcon.getConnButton(parent);
-        themeButton = LightDarkResizableIcon.getThemeButton(parent);
+        themeButton = ResizableIcon.getThemeButton(parent);
         userButton = LightDarkResizableIcon.getUserButton(parent);
         helpButton = LightDarkResizableIcon.getHelpButton(parent);
         lang = CustomComboBox.getShortLangBox(parent);

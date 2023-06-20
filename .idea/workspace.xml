@@ -7,14 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="bugfix">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/TablePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/TablePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dragons/Dragon.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="recoloring all images instead of using two png">
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/LightDarkResizableIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/LightDarkResizableIcon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/SwitchButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SwitchButton.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,10 +61,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -125,11 +120,11 @@
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\java\GUI" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\resources\img" />
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\java" />
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5-8(stable)\client\src\main\resources\img\light" />
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5\common\src\main" />
       <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5\server\src\main\java" />
-      <recent name="C:\Users\Roma\Desktop\ITMO\Programming\lab5\src\main" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -337,20 +332,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00082" summary="user generates for each dragon">
-      <created>1682774988311</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1682774988311</updated>
-    </task>
-    <task id="LOCAL-00083" summary="adding dragons to database">
-      <created>1682781497201</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1682781497202</updated>
     </task>
     <task id="LOCAL-00084" summary="all commands works with database">
       <created>1682790590259</created>
@@ -681,7 +662,21 @@
       <option name="project" value="LOCAL" />
       <updated>1687279427089</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="view panel almost works">
+      <created>1687290000342</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1687290000342</updated>
+    </task>
+    <task id="LOCAL-00132" summary="recoloring all images instead of using two png">
+      <created>1687293916764</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1687293916765</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -709,8 +704,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="added ability to save login and password" />
-    <MESSAGE value="start of localization" />
     <MESSAGE value="tests + bugfix" />
     <MESSAGE value="database settings in resources now" />
     <MESSAGE value="removed insert dragon" />
@@ -734,7 +727,9 @@
     <MESSAGE value="added components with dragons" />
     <MESSAGE value="budfix" />
     <MESSAGE value="bugfix" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix" />
+    <MESSAGE value="view panel almost works" />
+    <MESSAGE value="recoloring all images instead of using two png" />
+    <option name="LAST_COMMIT_MESSAGE" value="recoloring all images instead of using two png" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

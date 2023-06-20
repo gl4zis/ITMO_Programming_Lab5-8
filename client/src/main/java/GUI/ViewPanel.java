@@ -4,25 +4,46 @@ import dragons.Dragon;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Collection;
+import java.util.*;
 
 public class ViewPanel extends BasePanel {
     private final JPanel view;
     private final JScrollPane pane;
-    private final DragoComp[] dragons;
+    private ArrayList<DragoComp> dragons;
     private final int offsetX = 500;
     private int offsetY;
+    private int counterKostil = 0;
+    private final Thread refreshing;
+    private final CustomButton goToStart;
 
     public ViewPanel(MyFrame parent) {
         super(parent);
         parent.getSettings().loadCollection();
         dragons = parseCollection();
+        goToStart = new CustomButton(parent, CustomButton.Size.TINY, "view.start", true) {
+            @Override
+            protected void click() {
+                pane.getVerticalScrollBar().setValue(offsetY - pane.getHeight() / 2);
+                pane.getHorizontalScrollBar().setValue(offsetX - pane.getWidth() / 2);
+            }
+        };
         view = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2D = setGoodQ(g);
                 setPreferredSize(getViewSize());
+
+                if (counterKostil < 2) {
+                    pane.getVerticalScrollBar().setValue(offsetY - pane.getHeight() / 2);
+                    pane.getHorizontalScrollBar().setValue(offsetX - pane.getWidth() / 2);
+                    counterKostil++;
+                }
+
+                goToStart.setSize(goToStart.getPreferredSize());
+                goToStart.setLocation(pane.getWidth() - (int) (goToStart.getWidth() * 1.2) +
+                                pane.getHorizontalScrollBar().getValue(),
+                        pane.getHeight() - goToStart.getHeight() * 2 + pane.getVerticalScrollBar().getValue());
 
                 g2D.setStroke(new BasicStroke(3));
                 g2D.setColor(Color.BLACK);
@@ -40,40 +61,50 @@ public class ViewPanel extends BasePanel {
         pane.getVerticalScrollBar().setUI(new MyScrollBarUI(parent, false));
         pane.getHorizontalScrollBar().setUI(new MyScrollBarUI(parent, true));
         fill();
-        CustomButton goToZero = new CustomButton(parent, CustomButton.Size.SMALL, "Go to 00", true) {
-            {
-                setLocation(pane.getWidth() - getWidth(), pane.getHeight() - getHeight());
-            }
-
-            @Override
-            protected void click() {
-                pane.getVerticalScrollBar().setValue((view.getHeight() - pane.getHeight()) / 2);
-                pane.getHorizontalScrollBar().setValue((view.getWidth() - pane.getWidth()) / 2);
-            }
-        };
+        view.add(goToStart);
         showDragons();
-        view.add(goToZero);
+        refreshing = new Thread(this::refresh);
+        refreshing.start();
     }
 
-    private DragoComp[] parseCollection() {
-        Collection<Dragon> coll = parent.getSettings().getCollection();
-        if (coll == null)
-            return new DragoComp[0];
-        else {
-            DragoComp[] dragons = new DragoComp[coll.size()];
-            int counter = 0;
-            for (Dragon dragon : coll) {
-                dragons[counter++] = new DragoComp(dragon, parent, this);
+    private void refresh() {
+        while (!Thread.currentThread().isInterrupted()) {
+            parent.getSettings().loadCollection();
+            ArrayList<DragoComp> newList = parseCollection();
+            showDragons();
+            dragons = newList;
+            view.repaint();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
-            return dragons;
         }
+    }
+
+
+    public void updateAllDragons() {
+        for (DragoComp dragon : dragons) {
+            if (dragon.isMoving())
+                dragon.updateDragon();
+        }
+        refreshing.interrupt();
+    }
+
+    private ArrayList<DragoComp> parseCollection() {
+        Collection<Dragon> coll = parent.getSettings().getCollection();
+        ArrayList<DragoComp> dragons = new ArrayList<>();
+        for (Dragon dragon : coll) {
+            dragons.add(new DragoComp(dragon, parent, this));
+        }
+        return dragons;
     }
 
     private Dimension getViewSize() {
         int maxX = 0;
         int minX = -500;
         int minY = 0;
-        int maxY = 500;
+        int maxY = 300;
         for (DragoComp dragon : dragons) {
             if (dragon.getTrueX() > maxX)
                 maxX = dragon.getTrueX();
@@ -82,11 +113,11 @@ public class ViewPanel extends BasePanel {
             if (dragon.getTrueY() < minY)
                 minY = dragon.getTrueY();
         }
-        return new Dimension(maxX - minX + 500, maxY - minY + 500);
+        return new Dimension(maxX - minX + 500, maxY - minY + 300);
     }
 
     private void setOffsetY() {
-        int maxY = 500;
+        int maxY = 300;
         for (DragoComp dragon : dragons) {
             if (dragon.getTrueY() > maxY)
                 maxY = dragon.getY();
@@ -113,9 +144,19 @@ public class ViewPanel extends BasePanel {
     }
 
     private void showDragons() {
+        for (Component comp : view.getComponents()) {
+            if (comp instanceof DragoComp dragon) {
+                if (!dragons.contains(dragon))
+                    view.remove(dragon);
+            }
+        }
+
         for (DragoComp dragon : dragons) {
-            dragon.setLocation(dragon.getTrueX() + offsetX, offsetY - dragon.getTrueY());
-            view.add(dragon);
+            if (!Arrays.asList(view.getComponents()).contains(dragon)) {
+                dragon.setLocation(dragon.getTrueX() + offsetX - dragon.getWidth() / 2,
+                        offsetY - dragon.getTrueY() - dragon.getHeight() / 2);
+                view.add(dragon);
+            }
         }
     }
 

@@ -22,6 +22,7 @@ public abstract class CustomButton extends JPanel implements GoodQuality {
         height = size.height;
         fontSize = size.fontSize;
         setLayout(new GridBagLayout());
+        setOpaque(false);
 
         name = new JLabel(parent.getSettings().getLocale().getResource(message), SwingConstants.CENTER);
 
@@ -58,7 +59,6 @@ public abstract class CustomButton extends JPanel implements GoodQuality {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         double k = parent.getKf();
-        setBackground(parent.getSettings().getColors().get("mainColor"));
         Graphics2D g2D = setGoodQ(g);
 
         g2D.setColor(parent.getSettings().getColors().get("secondColor"));

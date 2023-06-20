@@ -35,10 +35,12 @@ public class DragoComp extends JLabel implements Recolorable {
     private int iconInd = 0;
     private Point trueCoords;
     private final ViewPanel view;
+    private final Dragon dragon;
 
     public DragoComp(Dragon dragon, MyFrame parent, ViewPanel view) {
         this.parent = parent;
         this.view = view;
+        this.dragon = dragon;
         oldKf = parent.getKf();
         scale = getScale(dragon.getWeight()) * parent.getKf();
         Coordinates c = dragon.getCoordinates();
@@ -60,15 +62,15 @@ public class DragoComp extends JLabel implements Recolorable {
                         moving.start();
                     } else {
                         isMoving = false;
-                        moving.interrupt();
-                        updateDragon(dragon);
+                        updateDragon();
                     }
                 }
             }
         });
     }
 
-    private void updateDragon(Dragon dragon) {
+    public void updateDragon() {
+        moving.interrupt();
         Coordinates newCoords = new Coordinates(trueCoords.x, trueCoords.y);
         dragon.setCoordinates(newCoords);
         int id = dragon.hashCode();
@@ -92,14 +94,15 @@ public class DragoComp extends JLabel implements Recolorable {
             setIcon(getIcon(images[iconInd]));
             setLocation(getX() + 1, getY());
             counter++;
-            trueCoords = new Point(getX() - view.getOffsetX(), view.getOffsetY() - getY());
+            trueCoords = new Point(getX() + getWidth() / 2 - view.getOffsetX(),
+                    view.getOffsetY() - getY() - getHeight() / 2);
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
             iconInd = 0;
-            setIcon(getIcon(images[0]));
+            setIcon(getIcon(images[iconInd]));
         }
     }
 
@@ -139,6 +142,10 @@ public class DragoComp extends JLabel implements Recolorable {
         return trueCoords.y;
     }
 
+    public boolean isMoving() {
+        return isMoving;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -148,5 +155,13 @@ public class DragoComp extends JLabel implements Recolorable {
             oldKf = parent.getKf();
             setIcon(getIcon(images[iconInd]));
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof DragoComp drago) {
+            return drago.dragon.hashCode() == this.dragon.hashCode();
+        } else
+            return false;
     }
 }

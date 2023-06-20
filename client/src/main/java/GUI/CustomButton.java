@@ -83,7 +83,7 @@ public abstract class CustomButton extends JPanel implements GoodQuality {
 
     enum Size {
         TINY(25, 10),
-        SMALL(30, 14),
+        SMALL(30, 13),
         MEDIUM(40, 16);
 
         private final int height;

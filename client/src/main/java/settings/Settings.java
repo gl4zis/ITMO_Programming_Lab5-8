@@ -170,8 +170,7 @@ public class Settings {
 
     public void setUser(User user) {
         this.user = user;
-        if (user == null)
-            saveUser = false;
+        saveUser = user != null;
     }
 
     public void saveUser(boolean save) {

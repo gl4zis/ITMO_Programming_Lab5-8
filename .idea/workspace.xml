@@ -7,16 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="bugfix">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="toolTips on dragons and command buttons">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyTableModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/TableStreamSorter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CommandsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CommandsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/MyConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_el_GR.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_el_GR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ro_RO.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ro_RO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ru_RU.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ru_RU.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/TablePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/TablePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,8 +65,8 @@
       <list>
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -339,13 +334,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00089" summary="new command for changing password">
-      <created>1683185903506</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1683185903506</updated>
     </task>
     <task id="LOCAL-00090" summary="auto-generating hasMap in CommandManager">
       <created>1683191562803</created>
@@ -683,7 +671,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687362461549</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <task id="LOCAL-00138" summary="toolTips on dragons and command buttons">
+      <created>1687367737608</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1687367737608</updated>
+    </task>
+    <option name="localTasksCounter" value="139" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -711,7 +706,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="removed insert command" />
     <MESSAGE value="client GUI init (works sign in, sign up, change password) + localization" />
     <MESSAGE value="showing status of connection" />
     <MESSAGE value="better image quality" />
@@ -736,7 +730,8 @@
     <MESSAGE value="bugfix with repainting left panel" />
     <MESSAGE value="view panel finally works" />
     <MESSAGE value="bugfix" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix" />
+    <MESSAGE value="toolTips on dragons and command buttons" />
+    <option name="LAST_COMMIT_MESSAGE" value="toolTips on dragons and command buttons" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

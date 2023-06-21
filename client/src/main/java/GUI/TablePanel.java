@@ -71,7 +71,7 @@ public class TablePanel extends BasePanel {
     }
 
     private void refresh() {
-        parent.setStatus(PageStatus.TABLE);
+        table.setModel(new MyTableModel(parent));
     }
 
     private void fill() {

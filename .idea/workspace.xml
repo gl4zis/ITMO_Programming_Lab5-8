@@ -7,18 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="bugfix with repainting left panel">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="view panel finally works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/MyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_el_GR.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_el_GR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ro_RO.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ro_RO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ru_RU.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ru_RU.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/TablePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/TablePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database/DataBaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/commands/CommandTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/commands/CommandTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +148,7 @@
       <recent name="l10n" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.client">
+  <component name="RunManager" selected="Gradle.build">
     <configuration name="client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.Main" />
       <module name="lab5-8.client.main" />
@@ -164,7 +159,7 @@
     <configuration name="server" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="server.Main" />
       <module name="lab5-8.server.main" />
-      <option name="PROGRAM_PARAMETERS" value="collection" />
+      <option name="PROGRAM_PARAMETERS" value="!@#$%^&amp;*()_+" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -238,7 +233,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="DragonCollectionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CommandTest" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -251,7 +246,7 @@
           <list>
             <option value=":server:test" />
             <option value="--tests" />
-            <option value="&quot;collection.DragonCollectionTest&quot;" />
+            <option value="&quot;commands.CommandTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -261,7 +256,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="Tests in 'lab5-8.server.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DataBaseManagerTest" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -273,6 +268,8 @@
         <option name="taskNames">
           <list>
             <option value=":server:test" />
+            <option value="--tests" />
+            <option value="&quot;database.DataBaseManagerTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -286,7 +283,7 @@
       <ExternalSystemSettings>
         <option name="env">
           <map>
-            <entry key="collection" value="~/Desktop/ITMO/Programming/collection.json" />
+            <entry key="pepper" value="!@#$%^&amp;*()_+" />
           </map>
         </option>
         <option name="executionName" />
@@ -317,10 +314,10 @@
       <item itemvalue="Application.server" />
       <item itemvalue="Application.client" />
       <item itemvalue="Gradle.build" />
+      <item itemvalue="Gradle.DataBaseManagerTest" />
+      <item itemvalue="Gradle.CommandTest" />
       <item itemvalue="Gradle.CommandManagerTest" />
       <item itemvalue="Gradle.CommandManagerTest.parse" />
-      <item itemvalue="Gradle.DragonCollectionTest" />
-      <item itemvalue="Gradle.Tests in 'lab5-8.server.test'" />
       <item itemvalue="Gradle.CommandManagerTest.seekCommand" />
     </list>
     <recent_temporary>
@@ -328,8 +325,6 @@
         <item itemvalue="Gradle.CommandManagerTest" />
         <item itemvalue="Gradle.CommandManagerTest.seekCommand" />
         <item itemvalue="Gradle.CommandManagerTest.parse" />
-        <item itemvalue="Gradle.DragonCollectionTest" />
-        <item itemvalue="Gradle.Tests in 'lab5-8.server.test'" />
       </list>
     </recent_temporary>
   </component>
@@ -341,13 +336,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00087" summary="updated server multithreading">
-      <created>1683133057495</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1683133057496</updated>
     </task>
     <task id="LOCAL-00088" summary="password encryption became more difficult">
       <created>1683144843037</created>
@@ -685,7 +673,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687336488815</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="view panel finally works">
+      <created>1687353012529</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1687353012529</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -713,7 +708,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="removed insert dragon" />
     <MESSAGE value="removed insert command" />
     <MESSAGE value="client GUI init (works sign in, sign up, change password) + localization" />
     <MESSAGE value="showing status of connection" />
@@ -738,7 +732,8 @@
     <MESSAGE value="recoloring all images instead of using two png" />
     <MESSAGE value="refreshing collection on view + button go to start" />
     <MESSAGE value="bugfix with repainting left panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix with repainting left panel" />
+    <MESSAGE value="view panel finally works" />
+    <option name="LAST_COMMIT_MESSAGE" value="view panel finally works" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

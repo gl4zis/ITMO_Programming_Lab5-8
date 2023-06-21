@@ -29,7 +29,6 @@ public class DragoComp extends JLabel implements Recolorable {
     private final double scale;
     private final Color color;
     private BufferedImage[] images;
-    private boolean isMoving;
     private Thread moving;
     private volatile Point trueCoords;
     private final ViewPanel view;
@@ -48,18 +47,15 @@ public class DragoComp extends JLabel implements Recolorable {
         color = getColorByString(user.getLogin());
         setImages();
         setIcon(getIcon(images[0]));
-        isMoving = false;
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (parent.getSettings().getUser() != null &&
                         parent.getSettings().getUser().equals(dragon.getCreator())) {
-                    if (!isMoving) {
-                        isMoving = true;
+                    if (!moving.isAlive()) {
                         moving = new Thread(() -> move());
                         moving.start();
                     } else {
-                        isMoving = false;
                         updateDragon();
                     }
                 }
@@ -68,12 +64,14 @@ public class DragoComp extends JLabel implements Recolorable {
     }
 
     public void updateDragon() {
-        moving.interrupt();
-        Coordinates newCoords = new Coordinates(trueCoords.x, trueCoords.y);
-        dragon.setCoordinates(newCoords);
-        int id = dragon.hashCode();
-        Request update = new Request(CommandType.UPDATE, id, dragon, parent.getSettings().getUser());
-        parent.getSettings().tryConnect(update);
+        if (moving.isAlive()) {
+            moving.interrupt();
+            Coordinates newCoords = new Coordinates(trueCoords.x, trueCoords.y);
+            dragon.setCoordinates(newCoords);
+            int id = dragon.hashCode();
+            Request update = new Request(CommandType.UPDATE, id, dragon, parent.getSettings().getUser());
+            parent.getSettings().tryConnect(update);
+        }
     }
 
     private void move() {

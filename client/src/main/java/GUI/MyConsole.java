@@ -41,6 +41,7 @@ public class MyConsole extends JPanel {
             newStr = oldStr + "\n  " + newStr.replaceAll("\n", "\n  ");
         text.setText(newStr);
         oldText = newStr;
+        SwingUtilities.invokeLater(text::repaint);
     }
 
     private void paintTextArea() {

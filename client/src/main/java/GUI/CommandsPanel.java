@@ -98,4 +98,11 @@ public class CommandsPanel extends BasePanel {
         constraints.gridy = row;
         add(c, constraints);
     }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        for (CustomButton button : buttons)
+            button.setToolTipText(parent.getSettings().getLocale().getResource(button.getMessage().toUpperCase()));
+    }
 }

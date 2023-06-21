@@ -63,9 +63,13 @@ public class MyFrame extends JFrame {
     }
 
     public void setStatus(PageStatus status) {
-        if (base instanceof ViewPanel view)
-            view.updateAllDragons();
-        if (base != null) remove(base);
+        if (base != null) {
+            if (status.getPanelClass().equals(base.getClass()))
+                return;
+            if (base instanceof ViewPanel view)
+                view.updateAllDragons();
+            remove(base);
+        }
         try {
             Constructor<? extends BasePanel> cons = status.getPanelClass().getDeclaredConstructor(MyFrame.class);
             base = cons.newInstance(this);

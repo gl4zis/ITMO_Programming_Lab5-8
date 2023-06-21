@@ -23,6 +23,7 @@ public abstract class CustomButton extends JPanel implements GoodQuality {
         fontSize = size.fontSize;
         setLayout(new GridBagLayout());
         setOpaque(false);
+        updateSize(height);
 
         name = new JLabel(parent.getSettings().getLocale().getResource(message), SwingConstants.CENTER);
 

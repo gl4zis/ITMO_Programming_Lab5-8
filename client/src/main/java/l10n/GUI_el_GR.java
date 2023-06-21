@@ -39,7 +39,8 @@ public class GUI_el_GR extends ListResourceBundle {
                 {"dragon.eyes_count", "aριθμός ματιών"},
                 {"table.filter", "φίλτρο"},
                 {"table.refresh", "Ανανέωση"},
-                {"table.remove", "Αφαιρέστε το"}
+                {"table.remove", "Αφαιρέστε το"},
+                {"view.start", "Πηγαίνετε στην αρχή"}
         };
     }
 }

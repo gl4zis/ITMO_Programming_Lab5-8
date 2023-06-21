@@ -82,6 +82,10 @@ public abstract class CustomButton extends JPanel implements GoodQuality {
         updateSize((int) (k * height));
     }
 
+    public String getMessage() {
+        return message;
+    }
+
     enum Size {
         TINY(25, 10),
         SMALL(30, 13),

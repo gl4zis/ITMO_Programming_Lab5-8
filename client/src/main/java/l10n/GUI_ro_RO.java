@@ -40,7 +40,19 @@ public class GUI_ro_RO extends ListResourceBundle {
                 {"table.filter", "filtru"},
                 {"table.refresh", "Reîmprospătare"},
                 {"table.remove", "Eliminați alocat"},
-                {"view.start", "Mergeți la start"}
+                {"view.start", "Mergeți la start"},
+                {"ADD", "Adaugă un nou element în colecție"},
+                {"ADD_IF_MIN", "Adaugă un nou element în colecție dacă valoarea sa este mai mică decât cel mai mic element din colecție"},
+                {"AVERAGE_OF_WEIGHT", "Afișează valoarea medie a câmpului greutate pentru toate elementele din colecție"},
+                {"CLEAR", "Șterge colecția (șterge toți dragonii)"},
+                {"FILTER_LESS_THAN_WEIGHT", "Afișează elementele a căror valoare a câmpului de greutate este mai mică decât cea dată"},
+                {"INFO", "Afișează informații despre colecție"},
+                {"MIN_BY_AGE", "Afișează orice obiect din colecție, a cărui valoare a câmpului \"vârstă\" este minimă"},
+                {"REMOVE_BY_ID", "Elimină un obiect din colecție în funcție de id-ul său"},
+                {"REMOVE_GREATER", "Elimină din colecție toate obiectele care depășesc valoarea specificată"},
+                {"REMOVE_LOWER", "Elimină din colecție toate elementele care sunt mai mici decât valoarea specificată"},
+                {"UPDATE", "Actualizează valoarea elementului din colecție al cărui id este egal cu cel specificat"},
+                {"EXECUTE_SCRIPT", "Execută un script din orice fișier"}
         };
     }
 }

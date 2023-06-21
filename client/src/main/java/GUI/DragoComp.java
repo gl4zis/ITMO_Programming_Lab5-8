@@ -47,16 +47,17 @@ public class DragoComp extends JLabel implements Recolorable {
         color = getColorByString(user.getLogin());
         setImages();
         setIcon(getIcon(images[0]));
+        setToolTipText("<html>" + dragon.toString().replaceAll("\n", "<br>") + "</html>");
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (parent.getSettings().getUser() != null &&
                         parent.getSettings().getUser().equals(dragon.getCreator())) {
-                    if (!moving.isAlive()) {
+                    if (moving.isAlive())
+                        updateDragon();
+                    else {
                         moving = new Thread(() -> move());
                         moving.start();
-                    } else {
-                        updateDragon();
                     }
                 }
             }
@@ -71,6 +72,7 @@ public class DragoComp extends JLabel implements Recolorable {
             int id = dragon.hashCode();
             Request update = new Request(CommandType.UPDATE, id, dragon, parent.getSettings().getUser());
             parent.getSettings().tryConnect(update);
+            setToolTipText("<html>" + dragon.toString().replaceAll("\n", "<br>") + "</html>");
         }
     }
 
@@ -150,5 +152,13 @@ public class DragoComp extends JLabel implements Recolorable {
             return drago.dragon.hashCode() == this.dragon.hashCode();
         } else
             return false;
+    }
+
+    @Override
+    public JToolTip createToolTip() {
+        JToolTip tooltip = super.createToolTip();
+        tooltip.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        tooltip.setBackground(Color.white);
+        return tooltip;
     }
 }

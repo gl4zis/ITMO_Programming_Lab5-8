@@ -10,6 +10,8 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Collection;
 import java.util.Date;
 
@@ -18,11 +20,12 @@ public class TablePanel extends BasePanel {
     private final int fontSize = 12;
     private final JTable table;
     private final JTextField filter;
+    private TableStreamSorter sorter;
 
     public TablePanel(MyFrame parent) {
         super(parent);
         table = new JTable(new MyTableModel(parent));
-        table.setAutoCreateRowSorter(true);
+        sorter = new TableStreamSorter((MyTableModel) table.getModel());
         table.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, fontSize));
         table.getTableHeader().setOpaque(false);
         table.setFillsViewportHeight(true);
@@ -30,6 +33,17 @@ public class TablePanel extends BasePanel {
         pane.getVerticalScrollBar().setUI(new MyScrollBarUI(parent, false));
         pane.setOpaque(false);
         filter = new CustomTextField(parent, CustomTextField.Size.MEDIUM, "table.filter", false);
+        table.getColumnModel().getColumn(7).setCellEditor(new DefaultCellEditor(CustomComboBox.getColorBox(parent)));
+        table.getColumnModel().getColumn(8).setCellEditor(new DefaultCellEditor(CustomComboBox.getCharacterBox(parent)));
+
+        table.getTableHeader().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int ind = table.getTableHeader().columnAtPoint(e.getPoint());
+                sorter.clickOnColumn(ind);
+            }
+        });
+
         fill();
         setWidth();
     }
@@ -37,7 +51,7 @@ public class TablePanel extends BasePanel {
     private void setWidth() {
         FontMetrics metrics = table.getFontMetrics(table.getFont());
         for (int col = 0; col < table.getColumnCount(); col++) {
-            TableColumn column = table.getColumn(((MyTableModel) table.getModel()).header[col]);
+            TableColumn column = table.getColumn(((MyTableModel) table.getModel()).getHeader()[col]);
             String str = column.getHeaderValue().toString();
             int maxWidth = metrics.stringWidth(str);
             for (int row = 0; row < Math.min(table.getRowCount(), 20); row++) {
@@ -67,11 +81,11 @@ public class TablePanel extends BasePanel {
         table.setForeground(parent.getSettings().getColors().get("fontColor"));
         table.getTableHeader().setBackground(parent.getSettings().getColors().get("mainColor"));
         table.getTableHeader().setForeground(parent.getSettings().getColors().get("fontColor"));
-
     }
 
     private void refresh() {
         table.setModel(new MyTableModel(parent));
+        sorter = new TableStreamSorter((MyTableModel) table.getModel(), sorter.getColInd(), sorter.getStatus());
     }
 
     private void fill() {
@@ -128,156 +142,5 @@ public class TablePanel extends BasePanel {
         constraints.weighty = 0;
         constraints.weightx = 0.02;
         add(MyFrame.getSpacer(), constraints);
-    }
-
-    class MyTableModel extends AbstractTableModel {
-
-        private final String[] header = new String[]{
-                "ID",
-                "Name",
-                "X",
-                "Y",
-                "Creation date",
-                "Weight",
-                "Age",
-                "Color",
-                "Character",
-                "Eyes count",
-                "Owner"
-        };
-        private final MyFrame parent;
-        private Object[][] data;
-
-        public MyTableModel(MyFrame parent) {
-            this.parent = parent;
-            parseCollection();
-        }
-
-        private void parseCollection() {
-            parent.getSettings().loadCollection();
-            if (parent.getSettings().isConnected()) {
-                Collection<Dragon> collection = parent.getSettings().getCollection();
-                data = new Object[Math.max(collection.size(), 1)][11];
-                int counter = 0;
-                for (Dragon dragon : collection) {
-                    data[counter][0] = dragon.hashCode();
-                    data[counter][1] = dragon.getName();
-                    data[counter][2] = dragon.getCoordinates().getX();
-                    data[counter][3] = dragon.getCoordinates().getY();
-                    data[counter][4] = new MyDate(dragon.getCreationDate());
-                    data[counter][5] = dragon.getWeight();
-                    int age = dragon.getAge();
-                    if (age != -1)
-                        data[counter][6] = age;
-                    else
-                        data[counter][6] = null;
-                    data[counter][7] = dragon.getColor().name();
-                    data[counter][8] = dragon.getDragonCharacter().name();
-                    data[counter][9] = dragon.getDragonHead().getEyesCount();
-                    data[counter][10] = dragon.getCreator().getLogin();
-                    counter++;
-                }
-            } else data = new Object[1][11];
-        }
-
-        @Override
-        public int getRowCount() {
-            return data.length;
-        }
-
-        @Override
-        public int getColumnCount() {
-            return header.length;
-        }
-
-        @Override
-        public Object getValueAt(int rowIndex, int columnIndex) {
-            return data[rowIndex][columnIndex];
-        }
-
-        @Override
-        public String getColumnName(int col) {
-            return header[col];
-        }
-
-        @Override
-        public Class getColumnClass(int col) {
-            return switch (col) {
-                case 0, 6 -> Integer.class;
-                case 1, 7, 8, 10 -> String.class;
-                case 2 -> Double.class;
-                case 3, 9 -> Float.class;
-                case 4 -> MyDate.class;
-                case 5 -> Long.class;
-                default -> Object.class;
-            };
-        }
-
-        @Override
-        public boolean isCellEditable(int row, int col) {
-            return col != 0 && col != 4 && col != 10;
-        }
-
-        @Override
-        public void setValueAt(Object value, int row, int col) {
-            if (parent.getSettings().getUser() != null &&
-                    parent.getSettings().getUser().getLogin().equals(data[row][10])) {
-                if (col != 6 && value.toString().trim().isEmpty())
-                    return;
-                if (col == 2 && (Double) value <= -497)
-                    return;
-                if (col == 5 && (Long) value <= 0)
-                    return;
-                if (col == 6 && value != null && (Integer) value <= 0)
-                    return;
-                if (col == 9 && (Float) value < 0)
-                    return;
-                if (col == 7) {
-                    boolean flag = true;
-                    for (Color color : Color.values())
-                        if (value.equals(color.name())) {
-                            flag = false;
-                            break;
-                        }
-                    if (flag)
-                        return;
-                }
-                if (col == 8) {
-                    boolean flag = true;
-                    for (DragonCharacter character : DragonCharacter.values())
-                        if (value.equals(character.name())) {
-                            flag = false;
-                            break;
-                        }
-                    if (flag)
-                        return;
-                }
-                data[row][col] = value;
-                Object oldValue = data[row][col];
-
-                int id = (Integer) data[row][0];
-                String name = (String) data[row][1];
-                double x = (Double) data[row][2];
-                float y = (Float) data[row][3];
-                Date date = ((MyDate) data[row][4]).getDate();
-                long weight = (Long) data[row][5];
-                Color color = Color.getByName((String) data[row][7]);
-                DragonCharacter character = DragonCharacter.getByName((String) data[row][8]);
-                float eyes = (Float) data[row][9];
-                Coordinates coordinates = new Coordinates(x, y);
-                DragonHead head = new DragonHead(eyes);
-                Dragon dragon = new Dragon(id, name, coordinates, date, weight, color, character, head, parent.getSettings().getUser());
-
-                if (data[row][6] != null)
-                    dragon.setAge((Integer) data[row][6]);
-                Request request = new Request(CommandType.UPDATE, id, dragon, parent.getSettings().getUser());
-                parent.getSettings().tryConnect(request);
-                if (!parent.getSettings().isConnected()) {
-                    data[row][col] = oldValue;
-                    return;
-                }
-                fireTableCellUpdated(row, col);
-            }
-        }
     }
 }

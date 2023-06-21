@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 
 public class SwitchButton extends LightDarkResizableIcon {
@@ -8,6 +9,16 @@ public class SwitchButton extends LightDarkResizableIcon {
 
     protected SwitchButton(MyFrame parent, String text, URL... images) {
         super(parent, text, images);
+        BufferedImage[] newImages = new BufferedImage[this.images.length * 2];
+        int counter = 0;
+        for (BufferedImage image : this.images) {
+            newImages[counter++] = image;
+            if ((counter + 1) % 4 == 0)
+                newImages[counter++] = recolor(image, DARK_COLOR, parent.getSettings().getDarkColors().get("secondColor"));
+            else
+                newImages[counter++] = recolor(image, Color.black, parent.getSettings().getLightColors().get("secondColor"));
+        }
+        this.images = newImages;
         reset();
     }
 
@@ -63,16 +74,12 @@ public class SwitchButton extends LightDarkResizableIcon {
 
     @Override
     protected void chooseImg() {
+        int ind = 0;
         if (parent.getSettings().isDark()) {
-            if (setted)
-                mainImg = recolor(images[1], DARK_COLOR, parent.getSettings().getColors().get("secondColor"));
-            else
-                mainImg = images[1];
-        } else {
-            if (setted)
-                mainImg = recolor(images[0], Color.black, parent.getSettings().getColors().get("secondColor"));
-            else
-                mainImg = images[0];
+            ind = 2;
         }
+        if (setted)
+            ind++;
+        mainImg = images[ind];
     }
 }

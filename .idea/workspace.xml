@@ -7,11 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="recoloring all images instead of using two png">
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="refreshing collection on view + button go to start">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CustomButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/MyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/SwitchButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/SwitchButton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
     </list>
@@ -89,29 +87,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "jdk.selected.JAVA_MODULE": "17",
-    "last.edited.regexp": "Sample Text",
-    "last_directory_selection": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/test/java/commands",
-    "last_opened_file_path": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/main/resources/img",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.idesettings.debugger.capture"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last.edited.regexp&quot;: &quot;Sample Text&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/test/java/commands&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/main/resources/img&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.idesettings.debugger.capture&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.application.lab5.dragons" />
@@ -149,11 +147,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.client">
-    <configuration default="true" type="Application" factoryName="Application">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.Main" />
       <module name="lab5-8.client.main" />
@@ -308,6 +301,11 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="nim.task.build.to.cache" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.server" />
       <item itemvalue="Application.client" />
@@ -336,13 +334,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00085" summary="added insert command">
-      <created>1682867354103</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1682867354103</updated>
     </task>
     <task id="LOCAL-00086" summary="multithreading on server">
       <created>1682986409720</created>
@@ -680,7 +671,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687294185952</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="refreshing collection on view + button go to start">
+      <created>1687300313923</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1687300313923</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -708,7 +706,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="tests + bugfix" />
     <MESSAGE value="database settings in resources now" />
     <MESSAGE value="removed insert dragon" />
     <MESSAGE value="removed insert command" />
@@ -733,7 +730,8 @@
     <MESSAGE value="bugfix" />
     <MESSAGE value="view panel almost works" />
     <MESSAGE value="recoloring all images instead of using two png" />
-    <option name="LAST_COMMIT_MESSAGE" value="recoloring all images instead of using two png" />
+    <MESSAGE value="refreshing collection on view + button go to start" />
+    <option name="LAST_COMMIT_MESSAGE" value="refreshing collection on view + button go to start" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

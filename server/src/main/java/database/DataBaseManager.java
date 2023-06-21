@@ -260,7 +260,10 @@ public class DataBaseManager {
      * @return hashed password
      */
     private String preparePasswd(String passwd, String salt) {
-        String pepper = System.getenv("pepper");
+
+        String pepper = System.getProperty("pepper");
+        if (pepper == null)
+            pepper = System.getenv("pepper");
         passwd += salt + pepper;
         for (int i = 0; i < 500; i++) {
             passwd = User.getMD5Hash(passwd);

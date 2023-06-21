@@ -175,7 +175,10 @@ class CommandTest {
     @Test
     void signIn() throws SQLException, WrongPasswordException, NoSuchUserException {
         Request signInReq = new Request(CommandType.SIGN_IN, null, null, admin);
+        //Mockito.doReturn(true).when(manager.getBaseMan()).signInUser(Mockito.any());
         assertEquals("User was signed in", manager.seekCommand(signInReq));
+        //Mockito.doReturn(false).when(manager.getBaseMan()).signInUser(Mockito.any());
+        //assertEquals("This user already working", manager.seekCommand(signInReq));
         Mockito.doThrow(SQLException.class).when(manager.getBaseMan()).signInUser(Mockito.any());
         assertThrows(ExitException.class, () -> manager.seekCommand(signInReq));
         Mockito.doThrow(WrongPasswordException.class).when(manager.getBaseMan()).signInUser(Mockito.any());

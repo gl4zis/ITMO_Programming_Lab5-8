@@ -36,6 +36,7 @@ public class Main {
             DataBaseManager baseMan = new DataBaseManager(baseConn);
             baseMan.uploadCollection(collection);
             CommandManager manager = new CommandManager(baseMan, collection);
+            System.setProperty("pepper", args[0]);
 
             int port = 9812;
             ServerConnection con = new ServerConnection(manager);
@@ -43,7 +44,7 @@ public class Main {
         } catch (ExitException e) {
             LOGGER.debug("Correct exit");
             System.out.println(e.getMessage());
-        } catch (Throwable e) {
+        } catch (Exception e) {
             LOGGER.fatal("Something very strange happened =0 " + e.getMessage());
             LOGGER.debug("Incorrect exit (server crashed)");
         }

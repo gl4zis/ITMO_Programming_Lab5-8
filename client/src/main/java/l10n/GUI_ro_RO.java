@@ -39,7 +39,8 @@ public class GUI_ro_RO extends ListResourceBundle {
                 {"dragon.eyes_count", "număr de ochi"},
                 {"table.filter", "filtru"},
                 {"table.refresh", "Reîmprospătare"},
-                {"table.remove", "Eliminați alocat"}
+                {"table.remove", "Eliminați alocat"},
+                {"view.start", "Mergeți la start"}
         };
     }
 }

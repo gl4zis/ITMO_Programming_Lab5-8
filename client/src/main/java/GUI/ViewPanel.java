@@ -18,7 +18,6 @@ public class ViewPanel extends BasePanel {
 
     public ViewPanel(MyFrame parent) {
         super(parent);
-        parent.getSettings().loadCollection();
         dragons = parseCollection();
         goToStart = new CustomButton(parent, CustomButton.Size.TINY, "view.start", true) {
             @Override
@@ -32,7 +31,6 @@ public class ViewPanel extends BasePanel {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2D = setGoodQ(g);
-                setPreferredSize(getViewSize());
 
                 if (counterKostil < 2) {
                     pane.getVerticalScrollBar().setValue(offsetY - pane.getHeight() / 2);
@@ -51,6 +49,10 @@ public class ViewPanel extends BasePanel {
                 g2D.drawLine(offsetX, 0, offsetX, getHeight());
                 g2D.setFont(new Font("Arial", Font.BOLD, 20));
                 g2D.drawString("0", offsetX - 15, offsetY + 20);
+                g2D.drawLine(offsetX, 0, offsetX - 10, 10);
+                g2D.drawLine(offsetX, 0, offsetX + 10, 10);
+                g2D.drawLine(getWidth(), offsetY, getWidth() - 10, offsetY - 10);
+                g2D.drawLine(getWidth(), offsetY, getWidth() - 10, offsetY + 10);
             }
         };
         view.setBackground(Color.white);
@@ -62,6 +64,7 @@ public class ViewPanel extends BasePanel {
         pane.getHorizontalScrollBar().setUI(new MyScrollBarUI(parent, true));
         fill();
         view.add(goToStart);
+        view.setPreferredSize(getViewSize());
         showDragons();
         refreshing = new Thread(this::refresh);
         refreshing.start();
@@ -69,10 +72,10 @@ public class ViewPanel extends BasePanel {
 
     private void refresh() {
         while (!Thread.currentThread().isInterrupted()) {
-            parent.getSettings().loadCollection();
-            ArrayList<DragoComp> newList = parseCollection();
+            dragons = parseCollection();
+            setOffsetY();
+            view.setPreferredSize(getViewSize());
             showDragons();
-            dragons = newList;
             view.repaint();
             try {
                 Thread.sleep(1000);
@@ -84,14 +87,15 @@ public class ViewPanel extends BasePanel {
 
 
     public void updateAllDragons() {
-        for (DragoComp dragon : dragons) {
-            if (dragon.isMoving())
+        for (Component comp : view.getComponents()) {
+            if (comp instanceof DragoComp dragon)
                 dragon.updateDragon();
         }
         refreshing.interrupt();
     }
 
     private ArrayList<DragoComp> parseCollection() {
+        parent.getSettings().loadCollection();
         Collection<Dragon> coll = parent.getSettings().getCollection();
         ArrayList<DragoComp> dragons = new ArrayList<>();
         for (Dragon dragon : coll) {
@@ -102,7 +106,6 @@ public class ViewPanel extends BasePanel {
 
     private Dimension getViewSize() {
         int maxX = 0;
-        int minX = -500;
         int minY = 0;
         int maxY = 300;
         for (DragoComp dragon : dragons) {
@@ -113,16 +116,31 @@ public class ViewPanel extends BasePanel {
             if (dragon.getTrueY() < minY)
                 minY = dragon.getTrueY();
         }
-        return new Dimension(maxX - minX + 500, maxY - minY + 300);
+        return new Dimension(maxX + 1000, maxY - minY + 300);
+    }
+
+    public void setMaxX(int maxX) {
+        int oldMax = view.getPreferredSize().width;
+        Dimension newSize = new Dimension(Math.max(oldMax, maxX + 1000), view.getPreferredSize().height);
+        view.setPreferredSize(newSize);
     }
 
     private void setOffsetY() {
-        int maxY = 300;
+        int maxY = 200;
         for (DragoComp dragon : dragons) {
             if (dragon.getTrueY() > maxY)
-                maxY = dragon.getY();
+                maxY = dragon.getTrueY();
         }
-        offsetY = maxY;
+        int newOffset = maxY + 100;
+        if (offsetY != newOffset) {
+            offsetY = newOffset;
+            for (Component comp : view.getComponents()) {
+                if (comp instanceof DragoComp dragon) {
+                    dragon.setLocation(dragon.getTrueX() + offsetX - dragon.getWidth() / 2,
+                            offsetY - dragon.getTrueY() - dragon.getHeight() / 2);
+                }
+            }
+        }
     }
 
     private void fill() {
@@ -148,6 +166,17 @@ public class ViewPanel extends BasePanel {
             if (comp instanceof DragoComp dragon) {
                 if (!dragons.contains(dragon))
                     view.remove(dragon);
+                else if (!dragon.getCreator().equals(parent.getSettings().getUser())) {
+                    int ind = dragons.indexOf(dragon);
+                    DragoComp newDragon = dragons.get(ind);
+                    if (dragon.getTrueY() != newDragon.getTrueY() || dragon.getTrueX() != newDragon.getTrueY() ||
+                            Math.abs(dragon.getScale() - newDragon.getScale()) > 0.00001) {
+                        view.remove(dragon);
+                        newDragon.setLocation(newDragon.getTrueX() + offsetX - newDragon.getWidth() / 2,
+                                offsetY - newDragon.getTrueY() - newDragon.getHeight() / 2);
+                        view.add(newDragon);
+                    }
+                }
             }
         }
 

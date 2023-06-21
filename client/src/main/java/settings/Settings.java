@@ -17,10 +17,7 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Properties;
+import java.util.*;
 
 public class Settings {
     private static final Logger LOGGER = LogManager.getLogger(Settings.class);
@@ -270,7 +267,7 @@ public class Settings {
 
     public Collection<Dragon> getCollection() {
         if (collection == null)
-            return null;
+            return new HashSet<>();
         else
             return collection.getItems();
     }

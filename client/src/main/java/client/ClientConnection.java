@@ -118,7 +118,7 @@ public class ClientConnection {
         while (!respond) {
             from = channel.receive(packBuffer);
             respond = (from != null);
-            if (new Date().getTime() - requestTime > 200) {
+            if (new Date().getTime() - requestTime > 500) {
                 return false;
             }
         }

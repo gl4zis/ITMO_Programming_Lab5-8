@@ -39,7 +39,8 @@ public class GUI_ru_RU extends ListResourceBundle {
                 {"dragon.eyes_count", "кол-во глаз"},
                 {"table.filter", "фильтр"},
                 {"table.refresh", "Обновить"},
-                {"table.remove", "Удалить выбранный"}
+                {"table.remove", "Удалить выбранный"},
+                {"view.start", "В начало"}
         };
     }
 }

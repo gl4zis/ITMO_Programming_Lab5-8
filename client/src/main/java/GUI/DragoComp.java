@@ -26,14 +26,12 @@ public class DragoComp extends JLabel implements Recolorable {
 
 
     private final MyFrame parent;
-    private double scale;
+    private final double scale;
     private final Color color;
     private BufferedImage[] images;
     private boolean isMoving;
     private Thread moving;
-    private double oldKf;
-    private int iconInd = 0;
-    private Point trueCoords;
+    private volatile Point trueCoords;
     private final ViewPanel view;
     private final Dragon dragon;
 
@@ -41,8 +39,8 @@ public class DragoComp extends JLabel implements Recolorable {
         this.parent = parent;
         this.view = view;
         this.dragon = dragon;
-        oldKf = parent.getKf();
-        scale = getScale(dragon.getWeight()) * parent.getKf();
+        moving = new Thread(this::move);
+        scale = getScale(dragon.getWeight());
         Coordinates c = dragon.getCoordinates();
         trueCoords = new Point((int) c.getX(), (int) c.getY());
         setSize((int) (DEF_WIDTH * scale), (int) (DEF_HEIGHT * scale));
@@ -82,28 +80,26 @@ public class DragoComp extends JLabel implements Recolorable {
         boolean leftIcon = true;
         int counter = 0;
         while (!Thread.currentThread().isInterrupted()) {
-            if (leftIcon) {
-                iconInd = 1;
-                if (counter % 10 == 0)
-                    leftIcon = false;
-            } else {
-                iconInd = 2;
-                if (counter % 10 == 0)
-                    leftIcon = true;
-            }
-            setIcon(getIcon(images[iconInd]));
-            setLocation(getX() + 1, getY());
-            counter++;
-            trueCoords = new Point(getX() + getWidth() / 2 - view.getOffsetX(),
-                    view.getOffsetY() - getY() - getHeight() / 2);
             try {
-                Thread.sleep(10);
+                if (counter++ % 2 == 0) {
+                    if (leftIcon) {
+                        leftIcon = false;
+                        setIcon(getIcon(images[1]));
+                    } else {
+                        leftIcon = true;
+                        setIcon(getIcon(images[2]));
+                    }
+                }
+                setLocation(getX() + 5, getY());
+                trueCoords = new Point(getX() + getWidth() / 2 - view.getOffsetX(),
+                        view.getOffsetY() - getY() - getHeight() / 2);
+                view.setMaxX(trueCoords.x);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-            iconInd = 0;
-            setIcon(getIcon(images[iconInd]));
         }
+        setIcon(getIcon(images[0]));
     }
 
     private void setImages() {
@@ -142,19 +138,12 @@ public class DragoComp extends JLabel implements Recolorable {
         return trueCoords.y;
     }
 
-    public boolean isMoving() {
-        return isMoving;
+    public double getScale() {
+        return scale;
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        if (oldKf != parent.getKf()) {
-            scale = scale / oldKf * parent.getKf();
-            oldKf = parent.getKf();
-            setIcon(getIcon(images[iconInd]));
-        }
+    public User getCreator() {
+        return dragon.getCreator();
     }
 
     @Override

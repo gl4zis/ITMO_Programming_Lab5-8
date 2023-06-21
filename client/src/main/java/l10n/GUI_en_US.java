@@ -39,7 +39,8 @@ public class GUI_en_US extends ListResourceBundle {
                 {"dragon.eyes_count", "count of eyes"},
                 {"table.filter", "filter regex"},
                 {"table.refresh", "Refresh"},
-                {"table.remove", "Remove allocated"}
+                {"table.remove", "Remove allocated"},
+                {"view.start", "Go to start"}
         };
     }
 }

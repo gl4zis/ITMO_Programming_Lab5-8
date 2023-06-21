@@ -34,6 +34,8 @@ public class Settings {
     private String settingsPath;
     private ClientConnection connection;
     private HashMap<String, Color> colors;
+    private HashMap<String, Color> dark;
+    private HashMap<String, Color> light;
     private int port;
     private String hostName;
     private MyFrame mainWindow;
@@ -126,17 +128,24 @@ public class Settings {
     }
 
     private void loadStyle() throws IOException {
-        String stylePath;
-        if (darkTheme)
-            stylePath = DARK_STYLE_PATH;
-        else
-            stylePath = LIGH_STYLE_PATH;
+        light = new HashMap<>();
         Properties style = new Properties();
-        InputStream is = this.getClass().getResourceAsStream(stylePath);
+        InputStream is = this.getClass().getResourceAsStream(LIGH_STYLE_PATH);
         style.load(is);
         for (Object str : style.keySet()) {
-            colors.put((String) str, parseColor(style.get(str)));
+            light.put((String) str, parseColor(style.get(str)));
         }
+        dark = new HashMap<>();
+        style = new Properties();
+        is = this.getClass().getResourceAsStream(DARK_STYLE_PATH);
+        style.load(is);
+        for (Object str : style.keySet()) {
+            dark.put((String) str, parseColor(style.get(str)));
+        }
+        if (darkTheme)
+            colors = dark;
+        else
+            colors = light;
     }
 
     private Color parseColor(Object obj) {
@@ -148,16 +157,23 @@ public class Settings {
     }
 
     public void changeTheme() {
+        if (darkTheme)
+            colors = light;
+        else
+            colors = dark;
         darkTheme = !darkTheme;
-        try {
-            loadStyle();
-        } catch (IOException e) {
-            LOGGER.error("Can't load styles " + e.getMessage());
-        }
     }
 
     public HashMap<String, Color> getColors() {
         return colors;
+    }
+
+    public HashMap<String, Color> getDarkColors() {
+        return dark;
+    }
+
+    public HashMap<String, Color> getLightColors() {
+        return light;
     }
 
     public boolean isDark() {

@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MyConsole extends JPanel {
+    private static String oldText = "";
     private final MyFrame parent;
     private final int fontSize = 12;
     private final JTextArea text;
-    private static String oldText = "";
 
     public MyConsole(MyFrame parent) {
         this.parent = parent;
@@ -33,6 +33,10 @@ public class MyConsole extends JPanel {
         text.setText(oldText);
     }
 
+    public static void reset() {
+        oldText = "";
+    }
+
     public void addText(String newStr) {
         String oldStr = text.getText();
         if (oldStr.isEmpty())
@@ -41,7 +45,6 @@ public class MyConsole extends JPanel {
             newStr = oldStr + "\n  " + newStr.replaceAll("\n", "\n  ");
         text.setText(newStr);
         oldText = newStr;
-        SwingUtilities.invokeLater(text::repaint);
     }
 
     private void paintTextArea() {

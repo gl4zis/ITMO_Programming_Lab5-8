@@ -99,6 +99,10 @@ public class Dragon implements Comparable<Dragon>, Serializable {
         return coordinates;
     }
 
+    public void setCoordinates(Coordinates c) {
+        this.coordinates = c;
+    }
+
     /**
      * Returns age. If age == null, returns -1
      *
@@ -115,10 +119,6 @@ public class Dragon implements Comparable<Dragon>, Serializable {
     public void setAge(int age) {
         if (age <= 0) throw new IncorrectDataException("Incorrect age for dragon");
         this.age = age;
-    }
-
-    public void setCoordinates(Coordinates c) {
-        this.coordinates = c;
     }
 
     public long getWeight() {

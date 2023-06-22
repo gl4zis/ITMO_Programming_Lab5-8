@@ -16,8 +16,8 @@ public class TablePanel extends BasePanel {
     private final JTable table;
     private final JTextField filterField;
     private final WarningLabel warn;
-    private TableStreamSorter sorter;
     private final TableStreamFilter filter;
+    private TableStreamSorter sorter;
 
     public TablePanel(MyFrame parent) {
         super(parent);

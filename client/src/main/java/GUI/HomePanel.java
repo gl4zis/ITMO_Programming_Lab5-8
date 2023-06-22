@@ -68,6 +68,7 @@ public class HomePanel extends BasePanel {
         panel.add(new CustomButton(parent, CustomButton.Size.SMALL, "home.signOut", true) {
             @Override
             protected void click() {
+                MyConsole.reset();
                 parent.getSettings().setUser(null);
                 parent.setStatus(PageStatus.AUTHORIZE);
                 parent.repaint();

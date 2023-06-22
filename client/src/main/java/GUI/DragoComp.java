@@ -32,12 +32,12 @@ public class DragoComp extends JLabel implements Recolorable {
     private final MyFrame parent;
     private final double scale;
     private final Color color;
+    private final ViewPanel view;
+    private final Dragon dragon;
     private BufferedImage[] images;
     private BufferedImage[] animation;
     private Thread moving;
     private volatile Point trueCoords;
-    private final ViewPanel view;
-    private final Dragon dragon;
 
     public DragoComp(Dragon dragon, MyFrame parent, ViewPanel view) {
         this.parent = parent;

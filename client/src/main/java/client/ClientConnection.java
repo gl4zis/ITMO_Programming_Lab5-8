@@ -32,7 +32,6 @@ public class ClientConnection {
     private static final int MAX_UDP_BYTES_WINDOWS = 65507;
     private static final int MAX_UDP_BYTES_UNIX = 9216;
     private final InetSocketAddress address;
-    private boolean connected = true;
     private ByteBuffer buffer = ByteBuffer.allocate(100 * 1024);
 
     /**
@@ -135,14 +134,11 @@ public class ClientConnection {
             channel.configureBlocking(false);
             sendRequest(request, channel);
             if (receivePacks(channel)) {
-                connected = true;
                 return SerializationUtils.deserialize(buffer.array());
             } else {
-                connected = false;
                 throw new UnavailableServerException("No connection");
             }
         } catch (IOException e) {
-            connected = false;
             LOGGER.error("Something went wrong: " + e.getMessage());
             throw new UnavailableServerException("No connection");
         }

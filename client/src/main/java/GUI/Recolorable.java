@@ -21,8 +21,10 @@ public interface Recolorable {
                 if (color >> 24 != 0 && color << 8 == baseRGB) {
                     int newRGB = preferredRGB + (color >> 24 << 24);
                     newImage.setRGB(i, j, newRGB);
-                } else
+                } else if (color >> 24 == 0)
                     newImage.setRGB(i, j, 0);
+                else
+                    newImage.setRGB(i, j, color);
             }
         }
         return newImage;

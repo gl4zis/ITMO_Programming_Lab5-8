@@ -20,8 +20,12 @@ public class DragoComp extends JLabel implements Recolorable {
     private static final URL DINO_STAY = DragoComp.class.getResource("/img/dino_stay.png");
     private static final URL DINO_LEFT = DragoComp.class.getResource("/img/dino_left.png");
     private static final URL DINO_RIGHT = DragoComp.class.getResource("/img/dino_right.png");
+    private static final URL FIRE1 = DragoComp.class.getResource("/img/fire1.png");
+    private static final URL FIRE2 = DragoComp.class.getResource("/img/fire2.png");
+    private static final URL FIRE3 = DragoComp.class.getResource("/img/fire3.png");
     private static final int DEF_HEIGHT = 22;
     private static final int DEF_WIDTH = 20;
+    private static final int ANIM_WIDTH = 60;
     private static final Color BASE_COLOR = Color.black;
 
 
@@ -29,6 +33,7 @@ public class DragoComp extends JLabel implements Recolorable {
     private final double scale;
     private final Color color;
     private BufferedImage[] images;
+    private BufferedImage[] animation;
     private Thread moving;
     private volatile Point trueCoords;
     private final ViewPanel view;
@@ -104,16 +109,49 @@ public class DragoComp extends JLabel implements Recolorable {
 
     private void setImages() {
         images = new BufferedImage[3];
+        animation = new BufferedImage[3];
         try {
-            BufferedImage image = ImageIO.read(DINO_STAY);
-            images[0] = recolor(image, BASE_COLOR, color);
-            image = ImageIO.read(DINO_LEFT);
-            images[1] = recolor(image, BASE_COLOR, color);
-            image = ImageIO.read(DINO_RIGHT);
-            images[2] = recolor(image, BASE_COLOR, color);
+            images[0] = recolor(ImageIO.read(DINO_STAY), BASE_COLOR, color);
+            images[1] = recolor(ImageIO.read(DINO_LEFT), BASE_COLOR, color);
+            images[2] = recolor(ImageIO.read(DINO_RIGHT), BASE_COLOR, color);
+            animation[0] = recolor(ImageIO.read(FIRE1), BASE_COLOR, color);
+            animation[1] = recolor(ImageIO.read(FIRE2), BASE_COLOR, color);
+            animation[2] = recolor(ImageIO.read(FIRE3), BASE_COLOR, color);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void startAnimation() {
+        setSize((int) (ANIM_WIDTH * scale), (int) (DEF_HEIGHT * scale));
+        setIcon(getAnim(animation[0]));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        for (int i = 0; i < 10; i++) {
+            setIcon(getAnim(animation[1]));
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            setIcon(getAnim(animation[2]));
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        setIcon(getAnim(animation[0]));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        setSize((int) (DEF_WIDTH * scale), (int) (DEF_HEIGHT * scale));
+        setIcon(getIcon(images[0]));
     }
 
     private double getScale(long x) {
@@ -128,6 +166,10 @@ public class DragoComp extends JLabel implements Recolorable {
 
     private Icon getIcon(BufferedImage image) {
         return new GoodIcon(image.getScaledInstance((int) (scale * DEF_WIDTH), (int) (scale * DEF_HEIGHT), Image.SCALE_SMOOTH));
+    }
+
+    private Icon getAnim(BufferedImage image) {
+        return new GoodIcon(image.getScaledInstance((int) (scale * ANIM_WIDTH), (int) (scale * DEF_HEIGHT), Image.SCALE_SMOOTH));
     }
 
     public int getTrueX() {

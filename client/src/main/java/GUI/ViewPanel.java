@@ -185,6 +185,7 @@ public class ViewPanel extends BasePanel {
                 dragon.setLocation(dragon.getTrueX() + offsetX - dragon.getWidth() / 2,
                         offsetY - dragon.getTrueY() - dragon.getHeight() / 2);
                 view.add(dragon);
+                new Thread(dragon::startAnimation).start();
             }
         }
     }

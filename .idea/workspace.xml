@@ -8,13 +8,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="filter optimization">
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/fire1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/fire2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/fire3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/HelpDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/HelpDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_el_GR.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_el_GR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ro_RO.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ro_RO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ru_RU.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ru_RU.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/Recolorable.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/Recolorable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,29 +91,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;last.edited.regexp&quot;: &quot;Sample Text&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/test/java/commands&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/main/resources/img&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.idesettings.debugger.capture&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "jdk.selected.JAVA_MODULE": "17",
+    "last.edited.regexp": "Sample Text",
+    "last_directory_selection": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/test/java/commands",
+    "last_opened_file_path": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/main/resources/img",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.idesettings.debugger.capture"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.application.lab5.dragons" />
@@ -149,7 +150,12 @@
       <recent name="l10n" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.client">
+  <component name="RunManager" selected="Gradle.build">
+    <configuration default="true" type="Application" factoryName="Application">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.Main" />
       <module name="lab5-8.client.main" />
@@ -306,11 +312,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="nim.task.build.to.cache" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.server" />
       <item itemvalue="Application.client" />
@@ -337,13 +338,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00096" summary="unit tests">
-      <created>1683703938986</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1683703938986</updated>
     </task>
     <task id="LOCAL-00097" summary="now command 'insert' works with key not with id">
       <created>1684155626324</created>
@@ -681,7 +675,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687430033426</updated>
     </task>
-    <option name="localTasksCounter" value="145" />
+    <task id="LOCAL-00145" summary="filter optimization">
+      <created>1687430726029</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1687430726029</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

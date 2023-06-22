@@ -11,9 +11,9 @@ import java.util.stream.IntStream;
 public class TableStreamSorter {
 
     private final MyTableModel model;
+    private final ArrayList<Comparator<Object[]>> comparators;
     private int currentColumnIndex;
     private SortStatus status;
-    private final ArrayList<Comparator<Object[]>> comparators;
 
     public TableStreamSorter(MyTableModel model) {
         this.model = model;

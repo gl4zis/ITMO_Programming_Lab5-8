@@ -6,6 +6,7 @@ import java.net.URL;
 
 public class LightDarkResizableIcon extends ResizableIcon {
     protected static final Color DARK_COLOR = new Color(221, 221, 221);
+
     protected LightDarkResizableIcon(MyFrame parent, String text, URL... images) {
         super(parent, text, images);
         BufferedImage[] newImages = new BufferedImage[this.images.length * 2];

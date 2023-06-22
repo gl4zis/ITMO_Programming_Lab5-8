@@ -4,17 +4,19 @@ import dragons.Dragon;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 public class ViewPanel extends BasePanel {
     private final JPanel view;
     private final JScrollPane pane;
-    private ArrayList<DragoComp> dragons;
     private final int offsetX = 500;
-    private int offsetY;
-    private int counterKostil = 0;
     private final Thread refreshing;
     private final CustomButton goToStart;
+    private ArrayList<DragoComp> dragons;
+    private int offsetY;
+    private int counterKostil = 0;
 
     public ViewPanel(MyFrame parent) {
         super(parent);

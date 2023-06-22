@@ -2,7 +2,6 @@ package client;
 
 import commands.CommandType;
 import dragons.DragonCollection;
-import exceptions.IncorrectDataException;
 import exceptions.UnavailableServerException;
 import general.OsUtilus;
 import network.Request;
@@ -14,7 +13,6 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.awt.desktop.UserSessionEvent;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;

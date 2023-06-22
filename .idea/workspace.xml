@@ -7,15 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="filter optimization">
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/fire1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/fire2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/img/fire3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/Recolorable.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/Recolorable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="dragon animation">
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/HomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/HomePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/MyConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyConsole.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +144,7 @@
       <recent name="l10n" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.build">
+  <component name="RunManager" selected="Application.client">
     <configuration default="true" type="Application" factoryName="Application">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -338,13 +332,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00097" summary="now command 'insert' works with key not with id">
-      <created>1684155626324</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1684155626325</updated>
     </task>
     <task id="LOCAL-00098" summary="repeating password when sign_up">
       <created>1684156308310</created>
@@ -682,7 +669,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687430726029</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="dragon animation">
+      <created>1687444535682</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1687444535682</updated>
+    </task>
+    <option name="localTasksCounter" value="147" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -710,7 +704,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="increased all GUI quality" />
     <MESSAGE value="ResizableIcons now don't repaint everytime" />
     <MESSAGE value="optimized header and leftPanel" />
     <MESSAGE value="optimized interface" />
@@ -735,7 +728,8 @@
     <MESSAGE value="table is sorted by stream" />
     <MESSAGE value="table filters by stream" />
     <MESSAGE value="filter optimization" />
-    <option name="LAST_COMMIT_MESSAGE" value="filter optimization" />
+    <MESSAGE value="dragon animation" />
+    <option name="LAST_COMMIT_MESSAGE" value="dragon animation" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

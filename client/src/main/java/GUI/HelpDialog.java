@@ -45,7 +45,7 @@ public class HelpDialog extends JDialog {
         }
 
         private void addLabel() {
-            JTextArea label = new JTextArea(10, 20);
+            JTextArea label = new JTextArea(20, 30);
             label.setText(' ' + parent.getSettings().getLocale().getResource(message));
             label.setLineWrap(true);
             label.setEditable(false);

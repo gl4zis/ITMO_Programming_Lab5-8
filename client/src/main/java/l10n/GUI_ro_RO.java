@@ -30,7 +30,22 @@ public class GUI_ro_RO extends ListResourceBundle {
                 {"all.confirm", "Confirmați"},
                 {"chPass.incOld", "Parolă incorectă"},
                 {"synopsis.title", "Sinopsis"},
-                {"synopsis.text", "Nu știu ce ar trebui să scriu aici."},
+                {"synopsis.text", """
+                                      Instrucțiuni pentru filtrare și sortare
+                                            tabel:
+                                        Pentru a sorta în ordine crescătoare
+                                        faceți clic o dată pe titlu
+                                        al coloanei de care aveți nevoie.
+                                        În ordine descrescătoare - de 2 ori
+                                        Pentru a filtra, introduceți în câmpul
+                                        câmpul de filtrare introduceți o expresie booleană
+                                        în JavaScript, utilizând
+                                        operatorii de comparație (==, !=, < etc.),
+                                        operatori logici (&&, ||) și
+                                        funcții (name.length, sum(x,y) etc.).
+                                        De exemplu: id > 3000 && owner == 'user'.
+                                        AVERTISMENT: Începând cu versiunea
+                                        3.2.x, aplicația nu acceptă filtrarea în funcție de dată."""},
                 {"dialog.incorrect", "Un câmp este incorect"},
                 {"dragon.empty", "Vârsta poate fi goală:"},
                 {"dragon.name", "nume"},

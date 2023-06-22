@@ -17,12 +17,12 @@ public class MyTableModel extends AbstractTableModel {
             "Name",
             "X",
             "Y",
-            "Creation date",
+            "Creation_date",
             "Weight",
             "Age",
             "Color",
             "Character",
-            "Eyes count",
+            "Eyes_count",
             "Owner"
     };
     private final MyFrame parent;
@@ -40,7 +40,6 @@ public class MyTableModel extends AbstractTableModel {
             data = new Object[Math.max(collection.size(), 1)][11];
             int counter = 0;
             for (Dragon dragon : collection) {
-
                 data[counter][0] = dragon.hashCode();
                 data[counter][1] = dragon.getName();
                 data[counter][2] = dragon.getCoordinates().getX();

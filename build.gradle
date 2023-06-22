@@ -27,6 +27,7 @@ project(':client') {
 
     dependencies {
         implementation project(':common')
+        implementation 'org.openjdk.nashorn:nashorn-core:15.4'
     }
 
     jar {

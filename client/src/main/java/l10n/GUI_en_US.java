@@ -30,7 +30,22 @@ public class GUI_en_US extends ListResourceBundle {
                 {"all.confirm", "Confirm"},
                 {"chPass.incOld", "Incorrect password"},
                 {"synopsis.title", "Synopsis"},
-                {"synopsis.text", "I don't know what I should\n write here"},
+                {"synopsis.text", """
+                                      Instructions for filtering and sorting
+                                            table:
+                                        To sort in ascending order
+                                        click once on the title
+                                        of the column you need.
+                                        In descending order - 2 times.
+                                        To filter, enter in the
+                                        filtering field enter one Boolean expression
+                                        in JavaScript, using
+                                        comparison operators (==, !=, < etc),
+                                        logical operators (&&, ||) and
+                                        functions (name.length, sum(x,y) etc.).
+                                        For example: id > 3000 && owner == 'user'.
+                                        WARNING: As of version 3.2.x the application
+                                        does not support filtering by date."""},
                 {"dialog.incorrect", "Some field is incorrect"},
                 {"dragon.empty", "Age can be empty:"},
                 {"dragon.name", "name"},

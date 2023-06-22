@@ -7,12 +7,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="table is sorted by stream">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/GUI/TableStreamFilter.java" afterDir="false" />
+    <list default="true" id="dcf2b711-5f7e-47a5-a173-f9c72c5067a1" name="Changes" comment="filter optimization">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/MyTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/TablePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/TablePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/HelpDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/HelpDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_el_GR.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_el_GR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_en_US.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ro_RO.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ro_RO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ru_RU.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/l10n/GUI_ru_RU.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,20 +337,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00094" summary="reworked DataBaseManager class">
-      <created>1683699180411</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1683699180411</updated>
-    </task>
-    <task id="LOCAL-00095" summary="reworked DataBaseManager class">
-      <created>1683699276042</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1683699276042</updated>
     </task>
     <task id="LOCAL-00096" summary="unit tests">
       <created>1683703938986</created>
@@ -679,7 +667,21 @@
       <option name="project" value="LOCAL" />
       <updated>1687384586033</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="table filters by stream">
+      <created>1687425299419</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1687425299419</updated>
+    </task>
+    <task id="LOCAL-00144" summary="filter optimization">
+      <created>1687430033426</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1687430033426</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -707,8 +709,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="showing status of connection" />
-    <MESSAGE value="better image quality" />
     <MESSAGE value="increased all GUI quality" />
     <MESSAGE value="ResizableIcons now don't repaint everytime" />
     <MESSAGE value="optimized header and leftPanel" />
@@ -732,7 +732,9 @@
     <MESSAGE value="bugfix" />
     <MESSAGE value="toolTips on dragons and command buttons" />
     <MESSAGE value="table is sorted by stream" />
-    <option name="LAST_COMMIT_MESSAGE" value="table is sorted by stream" />
+    <MESSAGE value="table filters by stream" />
+    <MESSAGE value="filter optimization" />
+    <option name="LAST_COMMIT_MESSAGE" value="filter optimization" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

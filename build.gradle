@@ -44,7 +44,7 @@ allprojects {
     apply plugin: 'java'
 
     group 'ru.ifmo.se'
-    version '3.1.0'
+    version '3.2.0'
 
     repositories {
         mavenCentral()

@@ -1,38 +1,34 @@
 package GUI;
 
 import commands.CommandType;
-import dragons.Color;
-import dragons.*;
 import network.Request;
-import parsers.MyDate;
 
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Collection;
-import java.util.Date;
 
 public class TablePanel extends BasePanel {
     private final JScrollPane pane;
     private final int fontSize = 12;
     private final JTable table;
-    private final JTextField filter;
+    private final JTextField filterField;
     private TableStreamSorter sorter;
+    private final TableStreamFilter filter;
 
     public TablePanel(MyFrame parent) {
         super(parent);
         table = new JTable(new MyTableModel(parent));
         sorter = new TableStreamSorter((MyTableModel) table.getModel());
+        filter = new TableStreamFilter();
         table.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, fontSize));
         table.getTableHeader().setOpaque(false);
         table.setFillsViewportHeight(true);
         pane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         pane.getVerticalScrollBar().setUI(new MyScrollBarUI(parent, false));
         pane.setOpaque(false);
-        filter = new CustomTextField(parent, CustomTextField.Size.MEDIUM, "table.filter", false);
+        filterField = new CustomTextField(parent, CustomTextField.Size.MEDIUM, "table.filter", false);
         table.getColumnModel().getColumn(7).setCellEditor(new DefaultCellEditor(CustomComboBox.getColorBox(parent)));
         table.getColumnModel().getColumn(8).setCellEditor(new DefaultCellEditor(CustomComboBox.getCharacterBox(parent)));
 
@@ -43,7 +39,6 @@ public class TablePanel extends BasePanel {
                 sorter.clickOnColumn(ind);
             }
         });
-
         fill();
         setWidth();
     }
@@ -86,6 +81,8 @@ public class TablePanel extends BasePanel {
     private void refresh() {
         table.setModel(new MyTableModel(parent));
         sorter = new TableStreamSorter((MyTableModel) table.getModel(), sorter.getColInd(), sorter.getStatus());
+        if (!filterField.getText().trim().isEmpty())
+            filter.filter(filterField.getText(), (MyTableModel) table.getModel());
     }
 
     private void fill() {
@@ -97,7 +94,7 @@ public class TablePanel extends BasePanel {
             }
         };
         southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 20));
-        southPanel.add(filter);
+        southPanel.add(filterField);
         southPanel.add(new CustomButton(parent, CustomButton.Size.MEDIUM, "table.refresh", true) {
             @Override
             protected void click() {

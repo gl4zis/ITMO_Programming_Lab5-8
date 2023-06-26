@@ -1,0 +1,6 @@
+To connect with database you need to make file
+'database.cfg' in your user directory.
+database.cfg:
+    URL=<your database url>
+    user=<your database username>
+    password=<your database password>

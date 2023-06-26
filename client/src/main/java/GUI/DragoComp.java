@@ -8,6 +8,7 @@ import user.User;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.plaf.TableHeaderUI;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -59,7 +60,7 @@ public class DragoComp extends JLabel implements Recolorable {
                 if (parent.getSettings().getUser() != null &&
                         parent.getSettings().getUser().equals(dragon.getCreator())) {
                     if (moving.isAlive())
-                        updateDragon();
+                        new Thread(() -> updateDragon()).start();
                     else {
                         moving = new Thread(() -> move());
                         moving.start();
@@ -75,9 +76,16 @@ public class DragoComp extends JLabel implements Recolorable {
             Coordinates newCoords = new Coordinates(trueCoords.x, trueCoords.y);
             dragon.setCoordinates(newCoords);
             int id = dragon.hashCode();
-            Request update = new Request(CommandType.UPDATE, id, dragon, parent.getSettings().getUser());
-            parent.getSettings().tryConnect(update);
             setToolTipText("<html>" + dragon.toString().replaceAll("\n", "<br>") + "</html>");
+            Request update = new Request(CommandType.UPDATE, id, dragon, parent.getSettings().getUser());
+            do {
+                parent.getSettings().tryConnect(update);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            } while (!parent.getSettings().isConnected());
         }
     }
 
@@ -133,13 +141,13 @@ public class DragoComp extends JLabel implements Recolorable {
         for (int i = 0; i < 10; i++) {
             setIcon(getAnim(animation[1]));
             try {
-                Thread.sleep(100);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
             setIcon(getAnim(animation[2]));
             try {
-                Thread.sleep(100);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }

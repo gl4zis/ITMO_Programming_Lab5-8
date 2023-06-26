@@ -74,24 +74,33 @@ public class ViewPanel extends BasePanel {
 
     private void refresh() {
         while (!Thread.currentThread().isInterrupted()) {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
             dragons = parseCollection();
             setOffsetY();
             view.setPreferredSize(getViewSize());
             showDragons();
             view.repaint();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
         }
     }
 
 
     public void updateAllDragons() {
+        Thread update = null;
         for (Component comp : view.getComponents()) {
-            if (comp instanceof DragoComp dragon)
-                dragon.updateDragon();
+            if (comp instanceof DragoComp dragon) {
+                update = new Thread(dragon::updateDragon);
+                update.start();
+            }
+        }
+        try {
+            if (update != null)
+                update.join();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
         refreshing.interrupt();
     }

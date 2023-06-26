@@ -5,6 +5,7 @@ import general.OsUtilus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -22,24 +23,15 @@ public abstract class MyBaseConnection {
      */
     public static Connection connect() {
         Properties config = new Properties();
+        String dbFilePath = System.getProperty("user.home") + "/database.cfg";
         try {
-            InputStream stream = DataBaseManager.class.getClassLoader().getResourceAsStream("database.cfg");
+            InputStream stream = new FileInputStream(dbFilePath);
             config.load(stream);
-            return DriverManager.getConnection(getUrl(config), getUser(config), getPassword(config));
+            return DriverManager.getConnection((String) config.get("URL"), getUser(config), getPassword(config));
         } catch (SQLException | NullPointerException | IOException e) {
             LOGGER.fatal("Can't connect to the data base! " + e.getMessage());
             throw new ExitException();
         }
-    }
-
-    /**
-     * @return URL for database connection
-     */
-    private static String getUrl(Properties config) {
-        if (OsUtilus.IsWindows())
-            return (String) config.get("WINDOWS_URL");
-        else
-            return (String) config.get("HELIOS_URL");
     }
 
     private static String getUser(Properties config) {

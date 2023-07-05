@@ -48,6 +48,7 @@ public class MyFrame extends JFrame {
                 settings.save();
             }
         });
+        MyConsole.initialize(this);
     }
 
     public static JPanel getSpacer() {

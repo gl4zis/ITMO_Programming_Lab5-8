@@ -1,7 +1,6 @@
 package commands;
 
 import GUI.DragonDialog;
-import GUI.MyConsole;
 import GUI.NumberDialog;
 import dragons.Dragon;
 import parsers.MyScanner;
@@ -24,9 +23,9 @@ public abstract class Command {
         return name;
     }
 
-    public abstract void execute(MyConsole output);
+    public abstract String execute();
 
-    public abstract void exFromScript(MyConsole output, MyScanner script, String line);
+    public abstract String exFromScript(MyScanner script, String line);
 
     protected Dragon readDragon() {
         return new DragonDialog(settings.getMainWindow()).getDragon();

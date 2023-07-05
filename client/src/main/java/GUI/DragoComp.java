@@ -8,7 +8,6 @@ import user.User;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.plaf.TableHeaderUI;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -39,6 +38,7 @@ public class DragoComp extends JLabel implements Recolorable {
     private BufferedImage[] animation;
     private Thread moving;
     private volatile Point trueCoords;
+    private volatile boolean isAnimated;
 
     public DragoComp(Dragon dragon, MyFrame parent, ViewPanel view) {
         this.parent = parent;
@@ -58,7 +58,8 @@ public class DragoComp extends JLabel implements Recolorable {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (parent.getSettings().getUser() != null &&
-                        parent.getSettings().getUser().equals(dragon.getCreator())) {
+                        parent.getSettings().getUser().equals(dragon.getCreator()) &&
+                        !isAnimated) {
                     if (moving.isAlive())
                         new Thread(() -> updateDragon()).start();
                     else {
@@ -131,6 +132,7 @@ public class DragoComp extends JLabel implements Recolorable {
     }
 
     public void startAnimation() {
+        isAnimated = true;
         setSize((int) (ANIM_WIDTH * scale), (int) (DEF_HEIGHT * scale));
         setIcon(getAnim(animation[0]));
         try {
@@ -160,6 +162,7 @@ public class DragoComp extends JLabel implements Recolorable {
         }
         setSize((int) (DEF_WIDTH * scale), (int) (DEF_HEIGHT * scale));
         setIcon(getIcon(images[0]));
+        isAnimated = false;
     }
 
     private double getScale(long x) {

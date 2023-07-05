@@ -1,6 +1,5 @@
 package commands;
 
-import GUI.MyConsole;
 import network.Request;
 import parsers.MyScanner;
 import settings.Settings;
@@ -13,14 +12,16 @@ public class AverageOfWeightCommand extends Command {
     }
 
     @Override
-    public void execute(MyConsole output) {
-        output.addText("-----AVERAGE_OF_WEIGHT-----");
+    public String execute() {
+        StringBuilder output = new StringBuilder();
+        output.append("-----AVERAGE_OF_WEIGHT-----\n");
         String reply = settings.tryConnect(new Request(CommandType.AVERAGE_OF_WEIGHT, null, null, settings.getUser()));
-        output.addText(Objects.requireNonNullElse(reply, "No connection ("));
+        output.append(Objects.requireNonNullElse(reply, "No connection ("));
+        return output.toString();
     }
 
     @Override
-    public void exFromScript(MyConsole output, MyScanner script, String line) {
-        execute(output);
+    public String exFromScript(MyScanner script, String line) {
+        return execute();
     }
 }

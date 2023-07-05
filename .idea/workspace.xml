@@ -7,12 +7,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c3766e9-3171-4fd2-a88a-de0d882fe07e" name="Changes" comment="saving dragon update, even if server is unavailable">
-      <change afterPath="$PROJECT_DIR$/README" afterDir="false" />
+    <list default="true" id="3c3766e9-3171-4fd2-a88a-de0d882fe07e" name="Changes" comment="bugfix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CommandsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CommandsPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/ViewPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/database/MyBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database/MyBaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/MyConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyConsole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/MyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/AddCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/AddIfMinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/AddIfMinCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/AverageOfWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/AverageOfWeightCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/ClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/ClearCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/CommandProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/ExecuteScriptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/ExecuteScriptCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/FilterLessThanWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/FilterLessThanWeightCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/InfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/InfoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/MinByAgeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/MinByAgeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/RemoveByIdCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/RemoveGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/RemoveGreaterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/RemoveLowerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/RemoveLowerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/UpdateCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +118,7 @@
     "jdk.selected.JAVA_MODULE": "17",
     "last.edited.regexp": "Sample Text",
     "last_directory_selection": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/test/java/commands",
-    "last_opened_file_path": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(broken)",
+    "last_opened_file_path": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",

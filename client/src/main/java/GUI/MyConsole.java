@@ -9,7 +9,7 @@ public class MyConsole extends JPanel {
     private final int fontSize = 12;
     private final JTextArea text;
 
-    public MyConsole(MyFrame parent) {
+    private MyConsole(MyFrame parent) {
         this.parent = parent;
 
         setLayout(new BorderLayout());
@@ -37,6 +37,15 @@ public class MyConsole extends JPanel {
         oldText = "";
     }
 
+    public static void initialize(MyFrame parent) {
+        if (Holder.INSTANCE == null)
+            Holder.INSTANCE = new MyConsole(parent);
+    }
+
+    public static MyConsole getInstance() {
+        return Holder.INSTANCE;
+    }
+
     public void addText(String newStr) {
         String oldStr = text.getText();
         if (oldStr.isEmpty())
@@ -51,5 +60,9 @@ public class MyConsole extends JPanel {
         double k = parent.getKf();
         if (text.getFont().getSize() != (int) (k * fontSize))
             text.setFont(text.getFont().deriveFont((float) (k * fontSize)));
+    }
+
+    private static class Holder {
+        public static MyConsole INSTANCE;
     }
 }

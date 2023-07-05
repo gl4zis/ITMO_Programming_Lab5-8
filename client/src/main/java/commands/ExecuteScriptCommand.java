@@ -29,16 +29,18 @@ public class ExecuteScriptCommand extends Command {
      * Processes script file and sends every command from it one by one on server
      */
     @Override
-    public void execute(MyConsole output) {
+    public String execute() {
         JFileChooser chooser = new JFileChooser(System.getProperty("user.home"));
         chooser.showOpenDialog(settings.getMainWindow());
         File script = chooser.getSelectedFile();
         String filePath = script.getPath();
-        validateScript(new HashSet<>(), filePath, output);
+        validateScript(new HashSet<>(), filePath);
+        return "";
     }
 
     @Override
-    public void exFromScript(MyConsole output, MyScanner script, String line) {
+    public String exFromScript(MyScanner script, String line) {
+        return null;
     }
 
     /**
@@ -47,7 +49,8 @@ public class ExecuteScriptCommand extends Command {
      * @param files    set with filePaths for checking recursion
      * @param filePath new filepath
      */
-    private void validateScript(HashSet<String> files, String filePath, MyConsole output) {
+    private void validateScript(HashSet<String> files, String filePath) {
+        MyConsole console = MyConsole.getInstance();
         MyScanner reader;
         try {
             if (!files.contains(filePath)) {
@@ -61,29 +64,29 @@ public class ExecuteScriptCommand extends Command {
         } catch (FileNotFoundException | SecurityException e) {
             throw new IncorrectInputException("File don't exist or there are no enough rights");
         }
-        output.addText("-----EXECUTE_SCRIPT-----\n(" + filePath + ")");
+        console.addText("-----EXECUTE_SCRIPT-----\n(" + filePath + ")");
 
-        ex_script(files, reader, output);
+        ex_script(files, reader);
 
         files.remove(filePath);
-        output.addText("-----ENDED_SCRIPT-----\n(" + filePath + ")");
+        console.addText("-----ENDED_SCRIPT-----\n(" + filePath + ")");
         LOGGER.debug(String.format("Script: %s executing ended", filePath));
     }
 
     /**
      * Reads and executes command line by line from reader
      */
-    private void ex_script(HashSet<String> files, MyScanner reader, MyConsole output) {
+    private void ex_script(HashSet<String> files, MyScanner reader) {
         String line = reader.nextLine();
         while (line != null) {
             try {
                 if (line.startsWith("execute_script")) {
                     if (line.split(" ").length != 2)
                         throw new IncorrectDataException("Unknown command");
-                    validateScript(files, line.split(" ")[1], output);
+                    validateScript(files, line.split(" ")[1]);
                 } else {
                     LOGGER.debug("Executing: " + line);
-                    settings.getProcessor().exFromScript(output, reader, line);
+                    MyConsole.getInstance().addText(settings.getProcessor().exFromScript(reader, line));
                 }
             } catch (IncorrectDataException | NullPointerException e) {
                 LOGGER.warn(e.getMessage());

@@ -1,6 +1,5 @@
 package commands;
 
-import GUI.MyConsole;
 import network.Request;
 import parsers.MyScanner;
 import settings.Settings;
@@ -13,24 +12,28 @@ public class RemoveByIdCommand extends Command {
     }
 
     @Override
-    public void execute(MyConsole output) {
+    public String execute() {
+        StringBuilder output = new StringBuilder();
         Integer id = (Integer) readNumber("ID", Integer.class);
         if (id != null) {
-            output.addText("-----REMOVE_BY_ID-----");
+            output.append("-----REMOVE_BY_ID-----\n");
             String reply = settings.tryConnect(new Request(CommandType.REMOVE_BY_ID, id, null, settings.getUser()));
-            output.addText(Objects.requireNonNullElse(reply, "No connection ("));
+            output.append(Objects.requireNonNullElse(reply, "No connection ("));
         }
+        return output.toString();
     }
 
     @Override
-    public void exFromScript(MyConsole output, MyScanner script, String line) {
-        output.addText("-----REMOVE_BY_ID-----");
+    public String exFromScript(MyScanner script, String line) {
+        StringBuilder output = new StringBuilder();
+        output.append("-----REMOVE_BY_ID-----\n");
         try {
             int id = Integer.parseInt(line.split(" ")[1]);
             String reply = settings.tryConnect(new Request(CommandType.REMOVE_BY_ID, id, null, settings.getUser()));
-            output.addText(Objects.requireNonNullElse(reply, "No connection ("));
+            output.append(Objects.requireNonNullElse(reply, "No connection ("));
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
-            output.addText("Incorrect script");
+            output.append("Incorrect script");
         }
+        return output.toString();
     }
 }

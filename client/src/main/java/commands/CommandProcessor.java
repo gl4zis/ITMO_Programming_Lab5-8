@@ -1,6 +1,5 @@
 package commands;
 
-import GUI.MyConsole;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import parsers.MyScanner;
@@ -53,11 +52,11 @@ public class CommandProcessor {
         return className.toString();
     }
 
-    public void execute(String commandName, MyConsole output) {
-        commands.get(commandName).execute(output);
+    public String execute(String commandName) {
+        return commands.get(commandName).execute();
     }
 
-    public void exFromScript(MyConsole output, MyScanner script, String line) {
-        commands.get(line.split(" ")[0]).exFromScript(output, script, line);
+    public String exFromScript(MyScanner script, String line) {
+        return commands.get(line.split(" ")[0]).exFromScript(script, line);
     }
 }

@@ -2,7 +2,9 @@ package GUI;
 
 import commands.CommandType;
 
+import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.ExecutionException;
 
 public class CommandsPanel extends BasePanel {
     private final CustomButton[] buttons;
@@ -10,7 +12,7 @@ public class CommandsPanel extends BasePanel {
 
     public CommandsPanel(MyFrame parent) {
         super(parent);
-        console = new MyConsole(parent);
+        console = MyConsole.getInstance();
         buttons = new CustomButton[12];
         int counter = 0;
         for (CommandType commandType : CommandType.values()) {
@@ -35,7 +37,25 @@ public class CommandsPanel extends BasePanel {
     }
 
     private void executeCommand(String commandName) {
-        parent.getSettings().getProcessor().execute(commandName, console);
+        SwingWorker<String, Void> command = new SwingWorker<>() {
+            @Override
+            protected String doInBackground() {
+                return parent.getSettings().getProcessor().execute(commandName);
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    String newMessage = get();
+                    console.addText(newMessage);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                } catch (ExecutionException e) {
+                    console.addText(e.getMessage());
+                }
+            }
+        };
+        command.execute();
     }
 
     private void addConsole() {

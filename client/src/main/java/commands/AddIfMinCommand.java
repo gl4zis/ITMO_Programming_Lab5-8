@@ -1,6 +1,5 @@
 package commands;
 
-import GUI.MyConsole;
 import dragons.Dragon;
 import network.Request;
 import parsers.MyScanner;
@@ -14,23 +13,27 @@ public class AddIfMinCommand extends Command {
     }
 
     @Override
-    public void execute(MyConsole output) {
+    public String execute() {
+        StringBuilder output = new StringBuilder();
         Dragon dragon = readDragon();
         if (dragon != null) {
-            output.addText("-----ADD_IF_MIN-----");
+            output.append("-----ADD_IF_MIN-----\n");
             String reply = settings.tryConnect(new Request(CommandType.ADD_IF_MIN, null, dragon, settings.getUser()));
-            output.addText(Objects.requireNonNullElse(reply, "No connection ("));
+            output.append(Objects.requireNonNullElse(reply, "No connection ("));
         }
+        return output.toString();
     }
 
     @Override
-    public void exFromScript(MyConsole output, MyScanner script, String line) {
-        output.addText("-----ADD_IF_MIN-----");
+    public String exFromScript(MyScanner script, String line) {
+        StringBuilder output = new StringBuilder();
+        output.append("-----ADD_IF_MIN-----\n");
         Dragon dragon = script.readDragon(settings.getUser());
         if (dragon != null) {
             String reply = settings.tryConnect(new Request(CommandType.ADD_IF_MIN, null, dragon, settings.getUser()));
-            output.addText(Objects.requireNonNullElse(reply, "No connection ("));
+            output.append(Objects.requireNonNullElse(reply, "No connection ("));
         } else
-            output.addText("Incorrect script");
+            output.append("Incorrect script");
+        return output.toString();
     }
 }

@@ -15,7 +15,7 @@ public class InfoCommand extends Command {
     public String execute() {
         StringBuilder output = new StringBuilder();
         output.append("-----INFO-----\n");
-        String reply = settings.tryConnect(new Request(CommandType.INFO, null, null, settings.getUser()));
+        String reply = settings.getResponse(new Request(CommandType.INFO, null, null, settings.getUser()));
         output.append(Objects.requireNonNullElse(reply, "No connection ("));
         return output.toString();
     }

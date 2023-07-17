@@ -15,7 +15,7 @@ public class MinByAgeCommand extends Command {
     public String execute() {
         StringBuilder output = new StringBuilder();
         output.append("-----MIN_BY_AGE-----\n");
-        String reply = settings.tryConnect(new Request(CommandType.MIN_BY_AGE, null, null, settings.getUser()));
+        String reply = settings.getResponse(new Request(CommandType.MIN_BY_AGE, null, null, settings.getUser()));
         output.append(Objects.requireNonNullElse(reply, "No connection ("));
         return output.toString();
     }

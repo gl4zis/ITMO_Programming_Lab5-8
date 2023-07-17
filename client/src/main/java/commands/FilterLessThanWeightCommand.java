@@ -17,7 +17,7 @@ public class FilterLessThanWeightCommand extends Command {
         Long weight = (Long) readNumber("Weight", Long.class);
         if (weight != null) {
             output.append("-----FILTER_LESS_THAN_WEIGHT-----\n");
-            String reply = settings.tryConnect(new Request(CommandType.FILTER_LESS_THAN_WEIGHT, weight, null, settings.getUser()));
+            String reply = settings.getResponse(new Request(CommandType.FILTER_LESS_THAN_WEIGHT, weight, null, settings.getUser()));
             output.append(Objects.requireNonNullElse(reply, "No connection ("));
         }
         return output.toString();
@@ -29,7 +29,7 @@ public class FilterLessThanWeightCommand extends Command {
         output.append("-----FILTER_LESS_THAN_WEIGHT-----\n");
         try {
             Long weight = Long.parseLong(line.split(" ")[1]);
-            String reply = settings.tryConnect(new Request(CommandType.FILTER_LESS_THAN_WEIGHT, weight, null, settings.getUser()));
+            String reply = settings.getResponse(new Request(CommandType.FILTER_LESS_THAN_WEIGHT, weight, null, settings.getUser()));
             output.append(Objects.requireNonNullElse(reply, "No connection ("));
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             output.append("Incorrect script");

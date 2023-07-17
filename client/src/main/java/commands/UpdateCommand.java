@@ -24,7 +24,7 @@ public class UpdateCommand extends Command {
         Integer id = (Integer) readNumber("ID", Integer.class);
         if (id != null) {
             output.append("-----UPDATE-----\n");
-            String find = settings.tryConnect(new Request(CommandType.FIND, id, null, settings.getUser()));
+            String find = settings.getResponse(new Request(CommandType.FIND, id, null, settings.getUser()));
             if (find == null)
                 output.append("No connection (");
             else if (find.startsWith("No such"))
@@ -32,7 +32,7 @@ public class UpdateCommand extends Command {
             else {
                 Dragon dragon = readDragon();
                 if (dragon != null) {
-                    String update = settings.tryConnect(new Request(CommandType.UPDATE, id, dragon, settings.getUser()));
+                    String update = settings.getResponse(new Request(CommandType.UPDATE, id, dragon, settings.getUser()));
                     output.append(Objects.requireNonNullElse(update, "No connection ("));
                 }
             }
@@ -46,7 +46,7 @@ public class UpdateCommand extends Command {
         output.append("-----UPDATE-----\n");
         try {
             int id = Integer.parseInt(line.split(" ")[1]);
-            String find = settings.tryConnect(new Request(CommandType.FIND, id, null, settings.getUser()));
+            String find = settings.getResponse(new Request(CommandType.FIND, id, null, settings.getUser()));
             if (find == null)
                 output.append("No connection (");
             else if (find.startsWith("No such"))
@@ -54,7 +54,7 @@ public class UpdateCommand extends Command {
             else {
                 Dragon dragon = script.readDragon(settings.getUser());
                 if (dragon != null) {
-                    String update = settings.tryConnect(new Request(CommandType.UPDATE, id, dragon, settings.getUser()));
+                    String update = settings.getResponse(new Request(CommandType.UPDATE, id, dragon, settings.getUser()));
                     output.append(Objects.requireNonNullElse(update, "No connection ("));
                 } else
                     output.append("Incorrect script");

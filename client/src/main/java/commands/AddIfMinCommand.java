@@ -18,7 +18,7 @@ public class AddIfMinCommand extends Command {
         Dragon dragon = readDragon();
         if (dragon != null) {
             output.append("-----ADD_IF_MIN-----\n");
-            String reply = settings.tryConnect(new Request(CommandType.ADD_IF_MIN, null, dragon, settings.getUser()));
+            String reply = settings.getResponse(new Request(CommandType.ADD_IF_MIN, null, dragon, settings.getUser()));
             output.append(Objects.requireNonNullElse(reply, "No connection ("));
         }
         return output.toString();
@@ -30,7 +30,7 @@ public class AddIfMinCommand extends Command {
         output.append("-----ADD_IF_MIN-----\n");
         Dragon dragon = script.readDragon(settings.getUser());
         if (dragon != null) {
-            String reply = settings.tryConnect(new Request(CommandType.ADD_IF_MIN, null, dragon, settings.getUser()));
+            String reply = settings.getResponse(new Request(CommandType.ADD_IF_MIN, null, dragon, settings.getUser()));
             output.append(Objects.requireNonNullElse(reply, "No connection ("));
         } else
             output.append("Incorrect script");

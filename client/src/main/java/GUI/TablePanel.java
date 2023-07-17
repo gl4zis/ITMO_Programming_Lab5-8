@@ -166,7 +166,7 @@ public class TablePanel extends BasePanel {
                 int id = (Integer) table.getValueAt(row, 0);
                 Request removeId = new Request(CommandType.REMOVE_BY_ID, id,
                         null, parent.getSettings().getUser());
-                parent.getSettings().tryConnect(removeId);
+                parent.getSettings().getResponse(removeId);
                 refresh();
             }
         }

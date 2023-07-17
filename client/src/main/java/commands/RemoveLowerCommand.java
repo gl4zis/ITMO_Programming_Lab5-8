@@ -18,7 +18,7 @@ public class RemoveLowerCommand extends Command {
         Dragon dragon = readDragon();
         if (dragon != null) {
             output.append("-----REMOVE_LOWER-----\n");
-            String reply = settings.tryConnect(new Request(CommandType.REMOVE_LOWER, null, dragon, settings.getUser()));
+            String reply = settings.getResponse(new Request(CommandType.REMOVE_LOWER, null, dragon, settings.getUser()));
             output.append(Objects.requireNonNullElse(reply, "No connection ("));
         }
         return output.toString();
@@ -30,7 +30,7 @@ public class RemoveLowerCommand extends Command {
         output.append("-----REMOVE_LOWER-----\n");
         Dragon dragon = script.readDragon(settings.getUser());
         if (dragon != null) {
-            String reply = settings.tryConnect(new Request(CommandType.REMOVE_LOWER, null, dragon, settings.getUser()));
+            String reply = settings.getResponse(new Request(CommandType.REMOVE_LOWER, null, dragon, settings.getUser()));
             output.append(Objects.requireNonNullElse(reply, "No connection ("));
         } else
             output.append("Incorrect script");

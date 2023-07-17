@@ -80,7 +80,7 @@ public class DragoComp extends JLabel implements Recolorable {
             setToolTipText("<html>" + dragon.toString().replaceAll("\n", "<br>") + "</html>");
             Request update = new Request(CommandType.UPDATE, id, dragon, parent.getSettings().getUser());
             do {
-                parent.getSettings().tryConnect(update);
+                parent.getSettings().getResponse(update);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {

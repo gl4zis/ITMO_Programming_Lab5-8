@@ -17,7 +17,7 @@ public class RemoveByIdCommand extends Command {
         Integer id = (Integer) readNumber("ID", Integer.class);
         if (id != null) {
             output.append("-----REMOVE_BY_ID-----\n");
-            String reply = settings.tryConnect(new Request(CommandType.REMOVE_BY_ID, id, null, settings.getUser()));
+            String reply = settings.getResponse(new Request(CommandType.REMOVE_BY_ID, id, null, settings.getUser()));
             output.append(Objects.requireNonNullElse(reply, "No connection ("));
         }
         return output.toString();
@@ -29,7 +29,7 @@ public class RemoveByIdCommand extends Command {
         output.append("-----REMOVE_BY_ID-----\n");
         try {
             int id = Integer.parseInt(line.split(" ")[1]);
-            String reply = settings.tryConnect(new Request(CommandType.REMOVE_BY_ID, id, null, settings.getUser()));
+            String reply = settings.getResponse(new Request(CommandType.REMOVE_BY_ID, id, null, settings.getUser()));
             output.append(Objects.requireNonNullElse(reply, "No connection ("));
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             output.append("Incorrect script");

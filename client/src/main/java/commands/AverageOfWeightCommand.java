@@ -15,7 +15,7 @@ public class AverageOfWeightCommand extends Command {
     public String execute() {
         StringBuilder output = new StringBuilder();
         output.append("-----AVERAGE_OF_WEIGHT-----\n");
-        String reply = settings.tryConnect(new Request(CommandType.AVERAGE_OF_WEIGHT, null, null, settings.getUser()));
+        String reply = settings.getResponse(new Request(CommandType.AVERAGE_OF_WEIGHT, null, null, settings.getUser()));
         output.append(Objects.requireNonNullElse(reply, "No connection ("));
         return output.toString();
     }

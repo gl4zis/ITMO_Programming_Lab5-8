@@ -31,8 +31,8 @@ import java.util.concurrent.ForkJoinPool;
 /**
  * Does all works with clients interaction
  */
-public class ServerConnection {
-    private static final Logger LOGGER = LogManager.getLogger(ServerConnection.class);
+public class ServerConnectionUDP {
+    private static final Logger LOGGER = LogManager.getLogger(ServerConnectionUDP.class);
     private static final int MAX_UDP_BYTES_WINDOWS = 65507;
     private static final int MAX_UDP_BYTES_UNIX = 9216;
     private final CommandManager manager;
@@ -43,7 +43,7 @@ public class ServerConnection {
     /**
      * Constructor sets command manager for executing requests and creates queues for multithreading
      */
-    ServerConnection(CommandManager manager) {
+    ServerConnectionUDP(CommandManager manager) {
         this.manager = manager;
         requests = new ConcurrentLinkedDeque<>();
         responses = new ConcurrentLinkedDeque<>();

@@ -1,7 +1,7 @@
 package settings;
 
 import GUI.MyFrame;
-import client.ClientConnection;
+import client.ClientConnectionTCP;
 import commands.CommandProcessor;
 import commands.CommandType;
 import dragons.Dragon;
@@ -29,7 +29,7 @@ public class Settings {
     private boolean darkTheme;
     private MyLocale locale;
     private String settingsPath;
-    private ClientConnection connection;
+    private ClientConnectionTCP connection;
     private HashMap<String, Color> colors;
     private HashMap<String, Color> dark;
     private HashMap<String, Color> light;
@@ -92,7 +92,7 @@ public class Settings {
         port = 9812;
         hostName = "localhost";
         try {
-            connection = new ClientConnection(InetAddress.getByName(hostName), port);
+            connection = new ClientConnectionTCP(InetAddress.getByName(hostName), port);
         } catch (UnknownHostException ignored) {
         } //Can't be thrown
     }
@@ -100,7 +100,7 @@ public class Settings {
     private void loadServer(Properties settings) throws UnknownHostException {
         port = Integer.parseInt((String) settings.get("port"));
         hostName = (String) settings.get("host");
-        connection = new ClientConnection(InetAddress.getByName(hostName), port);
+        connection = new ClientConnectionTCP(InetAddress.getByName(hostName), port);
     }
 
     private void loadUser(Properties settings) {
@@ -218,16 +218,20 @@ public class Settings {
 
     public void loadCollection() {
         try {
-            collection = connection.getCollection();
+            DragonCollection newCollection = connection.getCollection();
+            if (newCollection != null)
+                collection = newCollection;
             connected = true;
         } catch (UnavailableServerException e) {
             connected = false;
         }
         if (mainWindow != null)
             mainWindow.checkConnect();
+        if (!connected)
+            connection.reconnect();
     }
 
-    public String tryConnect(Request request) {
+    public String getResponse(Request request) {
         String reply = null;
         try {
             reply = connection.getReply(request);
@@ -237,6 +241,8 @@ public class Settings {
         }
         if (mainWindow != null)
             mainWindow.checkConnect();
+        if (!connected)
+            connection.reconnect();
         return reply;
     }
 
@@ -274,7 +280,7 @@ public class Settings {
 
     public boolean signIn(User user) {
         Request request = new Request(CommandType.SIGN_IN, null, null, user);
-        String reply = tryConnect(request);
+        String reply = getResponse(request);
         if (reply == null)
             return false;
         else
@@ -283,7 +289,7 @@ public class Settings {
 
     public boolean signUp(User user) {
         Request request = new Request(CommandType.SIGN_UP, null, null, user);
-        String reply = tryConnect(request);
+        String reply = getResponse(request);
         if (reply == null)
             return false;
         else
@@ -292,7 +298,7 @@ public class Settings {
 
     public boolean changePasswd(User user, String newPasswd) {
         Request request = new Request(CommandType.CHANGE_PASSWORD, newPasswd, null, user);
-        String reply = tryConnect(request);
+        String reply = getResponse(request);
         if (reply == null)
             return false;
         else

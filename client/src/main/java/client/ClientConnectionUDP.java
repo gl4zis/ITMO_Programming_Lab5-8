@@ -25,8 +25,8 @@ import java.util.Date;
  * Realization of connection to the server.
  * Requests, responses etc
  */
-public class ClientConnection {
-    private static final Logger LOGGER = LogManager.getLogger(ClientConnection.class);
+public class ClientConnectionUDP {
+    private static final Logger LOGGER = LogManager.getLogger(ClientConnectionUDP.class);
     private static final int MAX_UDP_BYTES_WINDOWS = 65507;
     private static final int MAX_UDP_BYTES_UNIX = 9216;
     private final InetSocketAddress address;
@@ -38,7 +38,7 @@ public class ClientConnection {
      * @param host localhost
      * @param port server port
      */
-    public ClientConnection(InetAddress host, int port) {
+    public ClientConnectionUDP(InetAddress host, int port) {
         address = new InetSocketAddress(host, port);
     }
 

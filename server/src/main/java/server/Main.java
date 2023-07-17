@@ -39,7 +39,7 @@ public class Main {
             System.setProperty("pepper", args[0]);
 
             int port = 9812;
-            ServerConnection con = new ServerConnection(manager);
+            ServerConnectionTCP con = new ServerConnectionTCP(manager);
             con.open(port);
         } catch (ExitException e) {
             LOGGER.debug("Correct exit");

@@ -7,19 +7,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c3766e9-3171-4fd2-a88a-de0d882fe07e" name="Changes" comment="bugfix">
+    <list default="true" id="3c3766e9-3171-4fd2-a88a-de0d882fe07e" name="Changes" comment="reworked multithreading on client">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnectionTCP.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerConnectionTCP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/CommandsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/CommandsPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/DragoComp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/MyConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/MyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/MyTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/MyTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/GUI/TablePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/GUI/TablePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/client/ClientConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/client/ClientConnectionUDP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/AddCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/AddIfMinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/AddIfMinCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/AverageOfWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/AverageOfWeightCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/ClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/ClearCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/ExecuteScriptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/ExecuteScriptCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/FilterLessThanWeightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/FilterLessThanWeightCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/InfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/InfoCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/MinByAgeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/MinByAgeCommand.java" afterDir="false" />
@@ -27,6 +26,9 @@
       <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/RemoveGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/RemoveGreaterCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/RemoveLowerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/RemoveLowerCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/commands/UpdateCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/settings/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/ServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/ServerConnectionUDP.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,29 +105,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "jdk.selected.JAVA_MODULE": "17",
-    "last.edited.regexp": "Sample Text",
-    "last_directory_selection": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/test/java/commands",
-    "last_opened_file_path": "C:/Users/Roma/Desktop/ITMO/Programming/lab5-8",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.idesettings.debugger.capture"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last.edited.regexp&quot;: &quot;Sample Text&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/Roma/Desktop/ITMO/Programming/lab5-8(stable)/client/src/test/java/commands&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Roma/Desktop/ITMO/Programming/lab5-8&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.idesettings.debugger.capture&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.application.lab5.dragons" />
@@ -162,12 +164,7 @@
       <recent name="l10n" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.client">
-    <configuration default="true" type="Application" factoryName="Application">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Gradle.build">
     <configuration name="client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="client.Main" />
       <module name="lab5-8.client.main" />
@@ -324,6 +321,11 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="nim.task.build.to.cache" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.server" />
       <item itemvalue="Application.client" />
@@ -350,13 +352,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676546884692</updated>
-    </task>
-    <task id="LOCAL-00106" summary="database settings in resources now">
-      <created>1684782069312</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1684782069313</updated>
     </task>
     <task id="LOCAL-00107" summary="removed insert dragon">
       <created>1684782748791</created>
@@ -694,7 +689,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687522646586</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="reworked multithreading on client">
+      <created>1688558253355</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1688558253355</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -759,7 +761,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="added output console" />
     <MESSAGE value="added all commands on client" />
     <MESSAGE value="command 'add' works" />
     <MESSAGE value="reworked connection on client" />
@@ -784,7 +785,8 @@
     <MESSAGE value="clear console after sign out" />
     <MESSAGE value="animation bugfix" />
     <MESSAGE value="saving dragon update, even if server is unavailable" />
-    <option name="LAST_COMMIT_MESSAGE" value="saving dragon update, even if server is unavailable" />
+    <MESSAGE value="reworked multithreading on client" />
+    <option name="LAST_COMMIT_MESSAGE" value="reworked multithreading on client" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

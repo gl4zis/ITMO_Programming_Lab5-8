@@ -18,7 +18,7 @@ public class AddCommand extends Command {
         StringBuilder output = new StringBuilder();
         if (dragon != null) {
             output.append("-----ADD-----\n");
-            String reply = settings.tryConnect(new Request(CommandType.ADD, null, dragon, settings.getUser()));
+            String reply = settings.getResponse(new Request(CommandType.ADD, null, dragon, settings.getUser()));
             output.append(Objects.requireNonNullElse(reply, "No connection ("));
         }
         return output.toString();
@@ -30,7 +30,7 @@ public class AddCommand extends Command {
         output.append("-----ADD-----\n");
         Dragon dragon = script.readDragon(settings.getUser());
         if (dragon != null) {
-            String reply = settings.tryConnect(new Request(CommandType.ADD, null, dragon, settings.getUser()));
+            String reply = settings.getResponse(new Request(CommandType.ADD, null, dragon, settings.getUser()));
             output.append(Objects.requireNonNullElse(reply, "No connection ("));
         } else
             output.append("Incorrect script");

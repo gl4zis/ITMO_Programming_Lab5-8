@@ -15,7 +15,7 @@ public class ClearCommand extends Command {
     public String execute() {
         StringBuilder output = new StringBuilder();
         output.append("-----CLEAR-----\n");
-        String reply = settings.tryConnect(new Request(CommandType.CLEAR, null, null, settings.getUser()));
+        String reply = settings.getResponse(new Request(CommandType.CLEAR, null, null, settings.getUser()));
         output.append(Objects.requireNonNullElse(reply, "No connection ("));
         return output.toString();
     }

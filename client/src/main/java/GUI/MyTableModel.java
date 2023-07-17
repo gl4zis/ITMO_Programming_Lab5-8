@@ -121,7 +121,7 @@ public class MyTableModel extends AbstractTableModel {
             Dragon dragon = getDragon(row);
 
             Request request = new Request(CommandType.UPDATE, id, dragon, parent.getSettings().getUser());
-            parent.getSettings().tryConnect(request);
+            parent.getSettings().getResponse(request);
             if (!parent.getSettings().isConnected()) {
                 data[row][col] = oldValue;
                 return;
